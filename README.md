@@ -1,5 +1,4 @@
 # FinalProject-FE_33BT
-
 #Mấy trang mẫu siêu xịn để lấy ý tưởng ( có responsive luôn nha)
 https://tympanus.net/codrops/2019/06/04/inspirational-websites-roundup-5/
 https://w3layouts.com/movies-pro-entertainment-flat-bootstrap-responsive-web-template/
