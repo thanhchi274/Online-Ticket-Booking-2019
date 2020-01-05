@@ -1,25 +1,39 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
+import Navbar from "./Components/navbar.js";
+import Pagenotfound from "./pages/page-not-found.js";
+import {routeHome} from "./routes";
+const showMenuHome =routes=>{
+  if(routes&& routes.length >0){
+    return routes.map((item, index)=>{
+      //Duyệt mảng
+      return <Route key={index} {...item}/>
+    })
+  }
+}
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    
+    <BrowserRouter>
+    <div> 
+    <Navbar />
+    <Switch>
+    {showMenuHome(routeHome)}
+      {/* Trang chủ
+      <Route path="/" exact component={Home} />
+      {/* Trang About */}
+      {/* <Route path="/about"  component={About}/> */}
+      {/* Trang list Movie */}
+      {/* <Route path="/list-movie" component={ListMovie}/>  */} */
+
+
+      {/* Phải luôn để page not found cuối cùng */}
+      <Route path ="" component={Pagenotfound}/>
+    </Switch>
     </div>
+    </BrowserRouter>
   );
 }
 
