@@ -3,7 +3,7 @@ import {NavLink} from "react-router-dom";
 export default class Navbar extends Component {
   render () {
     return (
-  <nav className="navbar navbar-expand-md bg-dark navbar-dark">
+  <nav className="navbar navbar-expand-md navbar-dark">
   {/* Brand */}
   <div className="container">
   <div className="col-sm-8">
