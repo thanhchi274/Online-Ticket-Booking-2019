@@ -19,13 +19,6 @@ https://tympanus.net/codrops/2019/12/09/showcase-of-creative-websites/
 
 #Link Template PSD
 https://drive.google.com/drive/folders/1IBn_HEq2_DHVipfNOI43hISORXpG9xTh?usp=sharing
-
-#Page Loading ( dùng cho lúc mở đầu hoặc khi load page)
-https://viblo.asia/p/reactjs-loading-skeleton-trong-reactjs-WAyK84kkKxX
-https://loading.io/
-https://medium.com/front-end-weekly/react-loading-screen-tactics-improving-user-experience-9452f183c00b
-https://dev.to/prototyp/implementing-skeleton-loading-in-react-kia
-
 //Phần đặt vé
 https://tympanus.net/Development/SeatPreview
 https://w3layouts.com/movie-ticket-booking-widget-flat-responsive-widget-template/
