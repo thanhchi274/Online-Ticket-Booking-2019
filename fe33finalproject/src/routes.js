@@ -4,6 +4,7 @@ import ListMovie from "./pages/Home/list-movie.js"
 import DetailMovie from "./pages/Home/detailMovie.js";
 import OrderTicket from "./pages/Home/orderTicket.js";
 import TheaterMovie from "./pages/Home/theater.js";
+import Dashboard from "./pages/Home/Admin/dashboard.js";
 const routeHome =[
     {
         path: "/",
@@ -36,5 +37,12 @@ const routeHome =[
         component: TheaterMovie,
     }
 
+];
+const routeAdmin =[
+{
+    path:"/dashboard",
+    exact: false,
+    component: Dashboard
+}
 ];
 export {routeHome};

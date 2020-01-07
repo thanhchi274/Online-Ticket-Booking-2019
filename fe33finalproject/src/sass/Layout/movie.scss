@@ -1,0 +1,39 @@
+.list-movie{
+    background-color: #0c0c4a;
+    .movie{
+        width:250px;
+        position: relative;
+       .btn-booking{
+           position: absolute!important;
+           opacity: 0;
+           bottom:19.5%;
+           transform: translateX(-10%);
+           width: 250px;
+          
+       }
+        .card{
+            &:hover{
+                .btn-booking{
+                    opacity: 1;
+                }
+            }
+            border: none;
+            margin: 10px auto;
+            .card-img-top{
+                z-index: 0;
+                width:auto;
+                height: 400px;
+            }
+            .card-body{
+                height: 90px;
+                padding-top:0;
+                padding-bottom: 0;
+                p{
+                    font-size:17px;
+                    font-weight: 700;
+                }
+            }
+    
+        }
+    }
+}

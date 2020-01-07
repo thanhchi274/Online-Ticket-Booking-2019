@@ -37,6 +37,16 @@ export default class Navbar extends Component {
   </div>
   </div>
   <div className="col-sm-2">
+  <ul className="navbar-nav">
+      <li className="nav-item">
+      {/* Nối tới page khác */}
+        <NavLink activeClassName="active" exact className="nav-link" to="/login">Login</NavLink>
+      </li>
+      <li className="nav-item">
+        <NavLink activeClassName="active" className="nav-link" to="/sign-up">SignUp</NavLink>
+      </li>
+      
+    </ul>
   </div>
   </div>
   {/* Toggler/collapsibe Button */}
