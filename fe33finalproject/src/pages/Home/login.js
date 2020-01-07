@@ -86,13 +86,12 @@ class Login extends Component {
               />
             </div>
           </div>
-          <button className="btn btn-success">SIGN IN</button>
+          <button className="btn signin-btn">SIGN IN</button>
         </form>
         <h5 style={{ color: "white", textTransform: "uppercase" }}>Hoặc</h5>
-        <Link className="btn btn-info" to="/sign-up">
+        <Link className="btn signup-btn" to="/sign-up">
           SIGN UP
         </Link>
-        ;
       </div>
     );
   };
