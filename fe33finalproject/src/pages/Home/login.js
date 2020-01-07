@@ -84,6 +84,7 @@ class Login extends Component {
                 name="matKhau"
                 onChange={this.handleChange}
               />
+              abcdfgh
             </div>
           </div>
           <button className="btn signin-btn">SIGN IN</button>
