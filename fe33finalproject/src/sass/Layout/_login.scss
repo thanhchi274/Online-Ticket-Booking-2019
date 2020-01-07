@@ -1,0 +1,99 @@
+.login {
+  margin-left: 1000px;
+}
+.logined {
+  color: white;
+  margin-left: 100px;
+}
+.login-container {
+  text-align: center;
+  border: 1px solid black;
+  padding: 100px 0;
+  margin: 50px 0;
+  background-color: #0c0c4a;
+}
+.input-div div {
+  position: relative;
+  height: 45px;
+}
+
+.input-div h5 {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #999;
+  font-size: 18px;
+  transition: 0.3s;
+}
+
+.input-div.focus h5 {
+  transform: translateY(-200%);
+  font-size: 15px;
+}
+h3 {
+  text-transform: uppercase;
+  color: white;
+}
+
+.i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #d9d9d9;
+}
+
+.input-div {
+  position: relative;
+  width: 40%;
+  display: grid;
+  grid-template-columns: 20% 80%;
+  margin: 25px 340px;
+  padding: 5px 0;
+  border-bottom: 1px solid #d9d9d9;
+  transition: 0.3s;
+  z-index: 1001;
+}
+.input-div::before,
+.input-div::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: #28a745;
+  transition: 0.3s;
+}
+.input-div::after {
+  right: 50%;
+}
+.input-div::before {
+  left: 50%;
+}
+
+.input-div.focus:before,
+.input-div.focus:after {
+  width: 50%;
+}
+.input-div.focus .i {
+  color: #28a745;
+}
+
+.input-div input {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  outline: none;
+  background: none;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.signup h5 {
+  transform: translateY(-200%);
+  font-size: 15px;
+}
