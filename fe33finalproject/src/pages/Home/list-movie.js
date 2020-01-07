@@ -8,18 +8,16 @@ class Listmovie extends Component {
     }
     renderHTML =()=>{
        let {listMovie} =this.props; 
-       return listMovie.map((movie, index)=>{
-            return <Movie key={index} movie ={movie} />
-        })
+         return listMovie.map((movie, index)=>{
+             return <Movie key={index} movie ={movie} />
+          })
     }
     render() {
         return (
             <div className="container-fluid list-movie">
             <div className="row container mx-auto" >
             {this.renderHTML()}
-
             </div>
-            
             </div>
         )
     }
@@ -31,15 +29,7 @@ const mapDispatchToProps =(dispatch)=>{
     return {
         getListMovie:()=>{
             dispatch(Action.actGetListMovieAPI())
-        }
-        // getListMovie: (listMovie)=>{
-        //     let action ={
-        //         type: "GET_LIST_MOVIE",
-        //         listMovie,
-        //     }
-        //     dispatch(action)
-        // }
-        
+        },
     }
 }
 export default connect (mapStateToProps, mapDispatchToProps)(Listmovie); 

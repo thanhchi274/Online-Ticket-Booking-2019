@@ -1,0 +1,11 @@
+.slick-slider{
+    width: 100vw!important;
+    .slick-list{
+        height: 40vw!important;
+        img{
+            height: 800px;
+            width: 100%;
+            background-size: cover;
+        }
+    }
+}
