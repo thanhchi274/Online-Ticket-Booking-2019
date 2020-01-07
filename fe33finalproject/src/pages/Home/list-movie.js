@@ -5,18 +5,6 @@ import * as  Action from "./../../redux/action/index.js"
 class Listmovie extends Component {
     componentDidMount(){
         this.props.getListMovie();
-        // Axios({
-        //     method: "GET",
-        //     url:"http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
-        // })
-        // .then((result)=>{
-        //     console.log(result)
-        //     // Truyen tu producer truyen xuong
-        //     this.props.getListMovie(result.data);
-        // })
-        // .catch(err=>{
-        //     console.log(err);
-        // });
     }
     renderHTML =()=>{
        let {listMovie} =this.props; 
@@ -25,7 +13,6 @@ class Listmovie extends Component {
         })
     }
     render() {
-        console.log("render")
         return (
             <div className="container">
             <div className="row">

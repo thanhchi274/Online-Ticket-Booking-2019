@@ -2,6 +2,8 @@ import * as ActionType from "./../constants/ActionType";
 let initialState ={
     listMovie:[],
     movie:{},
+    loading:false,
+    listMovieCarousel:[],
 }
 const movieReducer =(state =initialState, action)=>{
     switch(action.type){
@@ -12,7 +14,15 @@ const movieReducer =(state =initialState, action)=>{
         case ActionType.GET_DETAIL_MOVIE :{
            state.movie = action.movie;
            console.log(action);
-            return{...state};
+            return{...state, loading:false};
+        }
+        case ActionType.GET_LIST_CAROUSEL:{
+            state.listMovieCarousel = action.listMovieCarousel;
+            console.log(action);
+            return {...state};
+        }
+        case ActionType.LOADING :{
+            return {...state,loading:true}
         }
         default:
         return{...state};

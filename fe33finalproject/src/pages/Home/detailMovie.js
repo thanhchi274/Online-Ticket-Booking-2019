@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import * as  Action from "./../../redux/action/index.js"
+import SVGLoading from "../../Components/loading"
 class DetailMovie extends Component {
     componentDidMount(){
         console.log(this.props.match.params.id);
         const id= this.props.match.params.id;
+        this.props.setLoading();
         this.props.getdetailMovie(id);
     }
     renderTable =()=>{
@@ -16,14 +18,17 @@ class DetailMovie extends Component {
                 <td>{new Date(item.ngayChieuGioChieu).toLocaleTimeString()}</td>
                 <td>{new Date(item.ngayChieuGioChieu).toLocaleDateString()}</td>
                 <td>
-                  
                 </td>
             </tr>
         })}
     }
     render() {
         console.log(this.props.movie); //{}
-        let {movie} =this.props;
+        let {movie,loading} =this.props;
+        if(loading){
+            return <div className="loading-spinner"><SVGLoading /></div>
+            
+        }
         return (
             <div className="container">
             <div className="row">
@@ -75,11 +80,15 @@ class DetailMovie extends Component {
 }
 const mapStateToProps =state=>({
     movie : state.movieReducer.movie,
+    loading: state.movieReducer.loading
 })
 const mapDispatchToProps =(dispatch)=>{
     return {
         getdetailMovie:(id)=>{
             dispatch(Action.actGetDetailMovieAPI(id))
+        },
+        setLoading: ()=>{
+            dispatch(Action.actLoading())
         }
         // getListMovie: (listMovie)=>{
         //     let action ={

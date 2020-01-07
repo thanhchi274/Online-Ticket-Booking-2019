@@ -3,6 +3,7 @@ import About from "./pages/Home/about.js"
 import ListMovie from "./pages/Home/list-movie.js"
 import DetailMovie from "./pages/Home/detailMovie.js";
 import OrderTicket from "./pages/Home/orderTicket.js";
+import TheaterMovie from "./pages/Home/theater.js";
 const routeHome =[
     {
         path: "/",
@@ -28,6 +29,11 @@ const routeHome =[
         path:"/order-ticket/:id",
         exact:false,
         component: OrderTicket,
+    },
+    {
+        path:"/theater-movie",
+        exact:false,
+        component: TheaterMovie,
     }
 
 ];
