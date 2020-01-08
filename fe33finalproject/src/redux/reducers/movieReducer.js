@@ -9,15 +9,11 @@ const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_LIST_MOVIE: {
       state.listMovie = action.listMovie;
-      return { ...state };
+      return { ...state,loading:false };
     }
     case ActionType.GET_DETAIL_MOVIE: {
       state.movie = action.movie;
       return { ...state, loading: false };
-    }
-    case ActionType.GET_LIST_CAROUSEL: {
-      state.listMovieCarousel = action.listMovieCarousel;
-      return { ...state };
     }
     case ActionType.LOADING: {
       return { ...state, loading: true };
@@ -25,6 +21,8 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.LOGIN:
       console.log(action);
       return { ...state };
+    case ActionType.LOGOUT:
+      return {...state};
     case ActionType.SIGNUP:
       console.log(action);
       return { ...state };

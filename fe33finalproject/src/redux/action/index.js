@@ -70,19 +70,29 @@ export const actLoginHome = (user, history) => {
       .then(result => {
         console.log(result.data);
         // Lưu vào local storage
-        localStorage.setItem("UserHome", JSON.stringify(result.data));
-        // Chuyển hướng đến trang home
-        history.push("/");
-        dispatch({
-          type: ActionTypes.LOGIN,
-          user: result.data
-        });
+        if(result.data.maLoaiNguoiDung ==="KhachHang"){
+          localStorage.setItem("UserHome", JSON.stringify(result.data));
+          // Chuyển hướng đến trang home
+          history.push("/");
+          dispatch({
+            type: ActionTypes.LOGIN,
+            user: result.data
+          });
+        }
+        else{
+          alert("Admin khong duoc dang nhap tai day")
+        }
       })
       .catch(err => {
         alert("Bạn chưa có quyền đăng nhập hãy tạo tài khoản");
       });
   };
 };
+export const actLogOutHome=() =>{
+  return {
+    type: ActionTypes.LOGOUT
+  }
+}
 export const actSignupHome = (user, history) => {
   return dispatch => {
     Axios({

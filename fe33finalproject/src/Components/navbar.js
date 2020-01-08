@@ -6,8 +6,22 @@ export default class Navbar extends Component {
     const innerHTML = localStorage.getItem("UserHome");
     const obj = JSON.parse(innerHTML);
     if (localStorage.getItem("UserHome")) {
-      return <div className="logined">{"Hello " + obj.hoTen}</div>;
-    } else {
+      return(
+        <ul className ="navbar-nav">
+          <li className=" nav-item nav-link logined">Welcome {obj.hoTen}</li>
+          <li className="nav-item">
+            <NavLink
+              activeClassName="active"
+              className="nav-link"
+              to="/log-up"
+            >
+              Sign Out
+            </NavLink>
+          </li> 
+        </ul>
+      )
+    } 
+    else {
       return (
         <ul className="navbar-nav">
           <li className="nav-item">
@@ -48,7 +62,7 @@ export default class Navbar extends Component {
             </div>
           </div>
 
-          <div className="col-sm-6">
+          <div className="col-sm-4">
             <button
               className="navbar-toggler"
               type="button"
@@ -101,7 +115,7 @@ export default class Navbar extends Component {
               </ul>
             </div>
           </div>
-          <div className="col-sm-2">{this.renderHTML()}</div>
+          <div className="col-sm-4">{this.renderHTML()}</div>
         </div>
         {/* Toggler/collapsibe Button */}
       </nav>

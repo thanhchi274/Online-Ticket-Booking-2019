@@ -1,5 +1,19 @@
 .slick-slider{
     width: 100vw!important;
+    .slick-prev{
+        left:40px;
+        z-index: 2;
+      &::before{
+          font-size: 45px;
+      }
+    }
+    .slick-next{
+       right: 60px;
+       z-index: 2;
+       &::before{
+           font-size:45px;
+       }
+    }
     .slick-list{
         height: 40vw!important;
         img{
