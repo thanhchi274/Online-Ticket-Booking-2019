@@ -38,7 +38,7 @@ class Signup extends Component {
     return (
       <div className="container login-container">
         <form onSubmit={this.handleSubmit}>
-          <h3>sign up form</h3>
+          <h3>sign up</h3>
           <div className="input-div signup">
             <div className="i">
               <FontAwesomeIcon icon={faGlobe} />

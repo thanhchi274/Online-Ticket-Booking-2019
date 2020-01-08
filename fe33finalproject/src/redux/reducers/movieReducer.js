@@ -3,13 +3,14 @@ let initialState = {
   listMovie: [],
   movie: {},
   loading: false,
-  listMovieCarousel: []
+  listMovieCarousel: [],
+  room: {}
 };
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_LIST_MOVIE: {
       state.listMovie = action.listMovie;
-      return { ...state,loading:false };
+      return { ...state, loading: false };
     }
     case ActionType.GET_DETAIL_MOVIE: {
       state.movie = action.movie;
@@ -19,12 +20,14 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case ActionType.LOGIN:
-      console.log(action);
       return { ...state };
     case ActionType.LOGOUT:
-      return {...state};
+      return { ...state };
     case ActionType.SIGNUP:
+      return { ...state };
+    case ActionType.GET_ROOM_LIST:
       console.log(action);
+      state.room = action.room;
       return { ...state };
     default:
       return { ...state };

@@ -1,0 +1,45 @@
+.seat-choosing {
+  margin-left: 120px;
+}
+.book {
+  margin-left: 240px;
+}
+.chose {
+  background-color: rgb(54, 167, 54) !important;
+  color: white !important;
+}
+
+.booked {
+  background-color: grey !important;
+  color: white !important;
+}
+
+.chairList {
+  margin-top: 20px;
+  margin-left: 18px !important;
+}
+
+.monitor {
+  width: 80%;
+  background-color: black;
+  color: white;
+  text-transform: uppercase;
+  text-align: center;
+}
+.active {
+  background-color: red;
+  color: white;
+}
+
+.chair {
+  background-color: black;
+  opacity: 0.5;
+  color: transparent;
+  line-height: 40px;
+  text-align: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid black;
+  cursor: pointer;
+}

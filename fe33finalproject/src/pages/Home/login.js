@@ -49,7 +49,7 @@ class Login extends Component {
     return (
       <div className="container login-container">
         <form onSubmit={this.handleSubmit}>
-          <h3>đăng nhập</h3>
+          <h3>sign in</h3>
           <div
             className={this.state.input1}
             onClick={this.handleClick}
@@ -88,7 +88,7 @@ class Login extends Component {
           </div>
           <button className="btn signin-btn">SIGN IN</button>
         </form>
-        <h5 style={{ color: "white", textTransform: "uppercase" }}>Hoặc</h5>
+        <h5 style={{ color: "white", textTransform: "uppercase" }}>or</h5>
         <Link className="btn signup-btn" to="/sign-up">
           SIGN UP
         </Link>

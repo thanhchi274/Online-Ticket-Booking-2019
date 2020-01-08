@@ -2,11 +2,11 @@ import Home from "./pages/Home/home.js";
 import About from "./pages/Home/about.js";
 import ListMovie from "./pages/Home/list-movie.js";
 import DetailMovie from "./pages/Home/detailMovie.js";
-import OrderTicket from "./pages/Home/orderTicket.js";
 import TheaterMovie from "./pages/Home/theater.js";
 import Dashboard from "./pages/Admin/dashboard.js";
 import Login from "./pages/Home/login";
 import Signup from "./pages/Home/signup.js";
+import Booking from "./pages/Home/booking";
 const routeHome = [
   {
     path: "/",
@@ -29,11 +29,6 @@ const routeHome = [
     component: DetailMovie
   },
   {
-    path: "/order-ticket/:id",
-    exact: false,
-    component: OrderTicket
-  },
-  {
     path: "/theater-movie",
     exact: false,
     component: TheaterMovie
@@ -47,6 +42,11 @@ const routeHome = [
     path: "/sign-up",
     exact: false,
     component: Signup
+  },
+  {
+    path: "/dat-ve/:id",
+    exact: false,
+    component: Booking
   }
 ];
 const routeAdmin = [
