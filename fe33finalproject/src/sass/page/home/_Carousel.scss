@@ -1,23 +1,29 @@
-.carousel-main{
-    .slick-slider{
-        width: 100vw!important;
-        .slick-prev{
-            left:40px;
+.carousel-main {
+    .slick-slider {
+        width: 100vw !important;
+
+        .slick-prev {
+            left: 40px;
             z-index: 2;
-          &::before{
-              font-size: 45px;
-          }
+
+            &::before {
+                font-size: 45px;
+            }
         }
-        .slick-next{
-           right: 60px;
-           z-index: 2;
-           &::before{
-               font-size:45px;
-           }
+
+        .slick-next {
+            right: 60px;
+            z-index: 2;
+
+            &::before {
+                font-size: 45px;
+            }
         }
-        .slick-list{
-            height: 40vw!important;
-            img{
+
+        .slick-list {
+            height: 40vw !important;
+
+            img {
                 height: 800px;
                 width: 100%;
                 background-size: cover;
@@ -25,44 +31,110 @@
         }
     }
 }
-#nav-tabContent{
-    .tab-pane{
-        background-color:transparent!important;
+
+#nav-tabContent {
+    .tab-pane {
+        background-color: transparent !important;
     }
-    .active{
-        background-color:#fff;
+
+    .active {
+        background-color: #fff;
     }
-    .slick-slider{
-        .slick-prev{
-            left:-60px;
+
+    .slick-slider {
+        .slick-prev {
+            left: -60px;
             z-index: 2;
-          &::before{
-              font-size: 45px;
-          }
-        }
-        .slick-next{
-           right: -40px;
-           z-index: 2;
-           &::before{
-               font-size:45px;
-           }
-        }
-        .movie-carousel{
-            margin-bottom: 50px!important;
-            .carousel-text{
-                margin-bottom: 0!important;
+
+            &::before {
+                font-size: 45px;
             }
-            .carousel-body{
-                p{
-                    font-size:16px;
+        }
+
+        .slick-next {
+            right: -40px;
+            z-index: 2;
+
+            &::before {
+                font-size: 45px;
+            }
+        }
+
+        .movie-carousel {
+            position: relative;
+
+            .carousel-image {
+                .carousel-trailer {
+                    z-index: 1;
+                    position: absolute;
+                    top: 0%;
+                    height: 400px;
+                    width: 250px;
+                    opacity: 0;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    button{
+                        position: absolute;
+                        top:35%;
+                        left:30%;
+                        background-color: transparent;
+                        outline:none;
+                        border:none;
+                    }
+                }
+
+                img {
+                    z-index: -1;
+                }
+
+                &:hover {
+                    .carousel-trailer {
+                        opacity: 1;
+                    }
+                }
+            }
+
+            .carousel-detail {
+                display: block;
+                width: 200px;
+                position: relative;
+                font-size: 16px;
+                font-weight: 600;
+                height: 90px;
+                margin-bottom: 20px !important;
+
+                p {
+                    margin-bottom: 0;
+
+                    &:first-child {
+                        position: relative;
+                        top: 0%;
+                        font-size: 18px;
+                    }
+
+                    &:nth-child(2) {
+                        position: absolute;
+                        bottom: 00%;
+                    }
+                }
+
+            }
+
+            .carousel-text {
+                margin-bottom: 0 !important;
+            }
+
+            .carousel-body {
+                p {
+                    font-size: 16px;
                     font-weight: 600;
                 }
             }
         }
-        .slick-list{
-           
-            img{
-                height: 400px!important;
+
+        .slick-list {
+
+            img {
+                height: 400px !important;
             }
         }
     }

@@ -44,24 +44,6 @@ export const actLoading = () => {
     type: ActionTypes.LOADING
   };
 };
-export const actGetMovieCarouselAPI = () => {
-  return dispatch => {
-    Axios({
-      method: "GET",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhimPhanTrang?maNhom=GP01&soTrang=0&soPhanTuTrenTrang=10"
-    })
-      .then(result => {
-        dispatch({
-          type: ActionTypes.GET_LIST_CAROUSEL,
-          listMovieCarousel: result.data
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
-};
 export const actLoginHome = (user, history) => {
   return dispatch => {
     Axios({

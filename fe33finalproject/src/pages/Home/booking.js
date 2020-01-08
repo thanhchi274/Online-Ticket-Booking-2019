@@ -3,6 +3,7 @@ import * as action from "../../redux/action";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import SVGLoading from "../../Components/loading";
 class Booking extends Component {
   handleClick = e => {
     e.target.classList.toggle("chose");
@@ -34,10 +35,18 @@ class Booking extends Component {
   };
   componentDidMount() {
     const id = this.props.match.params.id;
+    this.props.setLoading();
     this.props.getRoomList(id);
   }
   render() {
-    let { room } = this.props;
+    let { room, loading } = this.props;
+    if (loading) {
+      return (
+        <div className="loading-spinner">
+          <SVGLoading />
+        </div>
+      );
+    }
     return (
       <div className="container">
         <div className="row">
@@ -75,7 +84,8 @@ class Booking extends Component {
 
 const mapStateToProps = state => {
   return {
-    room: state.movieReducer.room
+    room: state.movieReducer.room,
+    loading: state.movieReducer.loading
   };
 };
 
@@ -83,6 +93,9 @@ const mapDispatchToProps = dispatch => {
   return {
     getRoomList: id => {
       dispatch(action.actGetRoomList(id));
+    },
+    setLoading: () => {
+      dispatch(action.actLoading());
     }
   };
 };

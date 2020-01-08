@@ -1,10 +1,12 @@
 import * as ActionType from "./../constants/ActionType";
+import data from "../../data.json"
 let initialState = {
   listMovie: [],
   movie: {},
   loading: false,
   listMovieCarousel: [],
-  room: {}
+  room: {},
+  news: data
 };
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -28,7 +30,7 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.GET_ROOM_LIST:
       console.log(action);
       state.room = action.room;
-      return { ...state };
+      return { ...state, loading: false };
     default:
       return { ...state };
   }

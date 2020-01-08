@@ -93,10 +93,10 @@ class DetailMovie extends Component {
           <table className="table">
             <thead>
               <tr>
-                <th>Ten Cum Rap</th>
-                <th>Ten Rap</th>
-                <th>Gio Chieu</th>
-                <th>Ngay Chieu</th>
+                <th>Tên Cụcm Rạp</th>
+                <th>Tên Rạp</th>
+                <th>Giờ Chiếu</th>
+                <th>Ngày Chiếu</th>
               </tr>
             </thead>
             <tbody>{this.renderTable()}</tbody>
