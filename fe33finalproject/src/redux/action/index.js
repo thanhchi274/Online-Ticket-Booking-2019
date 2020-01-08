@@ -70,7 +70,7 @@ export const actLoginHome = (user, history) => {
       .then(result => {
         console.log(result.data);
         // Lưu vào local storage
-        if(result.data.maLoaiNguoiDung ==="KhachHang"){
+        if (result.data.maLoaiNguoiDung === "KhachHang") {
           localStorage.setItem("UserHome", JSON.stringify(result.data));
           // Chuyển hướng đến trang home
           history.push("/");
@@ -78,9 +78,8 @@ export const actLoginHome = (user, history) => {
             type: ActionTypes.LOGIN,
             user: result.data
           });
-        }
-        else{
-          alert("Admin khong duoc dang nhap tai day")
+        } else {
+          alert("Admin khong duoc dang nhap tai day");
         }
       })
       .catch(err => {
@@ -88,11 +87,11 @@ export const actLoginHome = (user, history) => {
       });
   };
 };
-export const actLogOutHome=() =>{
+export const actLogOutHome = () => {
   return {
     type: ActionTypes.LOGOUT
-  }
-}
+  };
+};
 export const actSignupHome = (user, history) => {
   return dispatch => {
     Axios({
@@ -107,6 +106,24 @@ export const actSignupHome = (user, history) => {
         dispatch({
           type: ActionTypes.SIGNUP,
           user: result.data
+        });
+      })
+      .catch(err => {
+        return err;
+      });
+  };
+};
+
+export const actGetRoomList = id => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`
+    })
+      .then(result => {
+        dispatch({
+          type: ActionTypes.GET_ROOM_LIST,
+          room: result.data
         });
       })
       .catch(err => {

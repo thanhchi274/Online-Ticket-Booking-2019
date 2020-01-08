@@ -6,39 +6,22 @@ export default class Navbar extends Component {
     const innerHTML = localStorage.getItem("UserHome");
     const obj = JSON.parse(innerHTML);
     if (localStorage.getItem("UserHome")) {
-      return(
-        <ul className ="navbar-nav">
-          <li className=" nav-item nav-link logined">Welcome {obj.hoTen}</li>
-          <li className="nav-item">
-            <NavLink
-              activeClassName="active"
-              className="nav-link"
-              to="/log-up"
-            >
-              Sign Out
-            </NavLink>
-          </li> 
-        </ul>
-      )
-    } 
-    else {
       return (
         <ul className="navbar-nav">
+          <li className=" nav-item nav-link logined">Welcome {obj.hoTen}</li>
           <li className="nav-item">
-            {/* Nối tới page khác */}
-            <NavLink activeClassName="active" className="nav-link" to="/login">
-              Login
+            <NavLink activeClassName="active" className="nav-link" to="/log-up">
+              Sign Out
             </NavLink>
           </li>
-          <li className="nav-item">
-            <NavLink
-              activeClassName="active"
-              className="nav-link"
-              to="/sign-up"
-            >
-              SignUp
-            </NavLink>
-          </li>
+        </ul>
+      );
+    } else {
+      return (
+        <ul className="navbar-nav">
+          <NavLink activeClassName="active" className="btn-login" to="/login">
+            Login
+          </NavLink>
         </ul>
       );
     }
