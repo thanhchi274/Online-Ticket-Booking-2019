@@ -1,25 +1,69 @@
-.slick-slider{
-    width: 100vw!important;
-    .slick-prev{
-        left:40px;
-        z-index: 2;
-      &::before{
-          font-size: 45px;
-      }
+.carousel-main{
+    .slick-slider{
+        width: 100vw!important;
+        .slick-prev{
+            left:40px;
+            z-index: 2;
+          &::before{
+              font-size: 45px;
+          }
+        }
+        .slick-next{
+           right: 60px;
+           z-index: 2;
+           &::before{
+               font-size:45px;
+           }
+        }
+        .slick-list{
+            height: 40vw!important;
+            img{
+                height: 800px;
+                width: 100%;
+                background-size: cover;
+            }
+        }
     }
-    .slick-next{
-       right: 60px;
-       z-index: 2;
-       &::before{
-           font-size:45px;
-       }
+}
+#nav-tabContent{
+    .tab-pane{
+        background-color:transparent!important;
     }
-    .slick-list{
-        height: 40vw!important;
-        img{
-            height: 800px;
-            width: 100%;
-            background-size: cover;
+    .active{
+        background-color:#fff;
+    }
+    .slick-slider{
+        .slick-prev{
+            left:-60px;
+            z-index: 2;
+          &::before{
+              font-size: 45px;
+          }
+        }
+        .slick-next{
+           right: -40px;
+           z-index: 2;
+           &::before{
+               font-size:45px;
+           }
+        }
+        .movie-carousel{
+            margin-bottom: 50px!important;
+            .carousel-text{
+                margin-bottom: 0!important;
+            }
+            .carousel-body{
+                p{
+                    font-size:16px;
+                    font-weight: 600;
+                }
+            }
+        }
+        .slick-list{
+           
+            img{
+                height: 400px!important;
+            }
         }
     }
 }

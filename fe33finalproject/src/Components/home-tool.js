@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { GET_DETAIL_MOVIE } from "../redux/constants/ActionType";
-
 class HomeTool extends Component {
   render() {
+    let {movie} =this.props
     return (
       <div className="wrapper d-flex home-tool">
         <select className="form-control selectChoice">

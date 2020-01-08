@@ -1,18 +1,22 @@
 import React, { Component } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
+import ModalSanPham from "../HOC/Modal-SignOut";
+import WithModal from "./../HOC/with-modal.js"
 export default class Navbar extends Component {
   renderHTML() {
-    console.log("abc");
     const innerHTML = localStorage.getItem("UserHome");
     const obj = JSON.parse(innerHTML);
+    const FormsModal = WithModal( ModalSanPham)
     if (localStorage.getItem("UserHome")) {
       return (
         <ul className="navbar-nav">
           <li className=" nav-item nav-link logined">Welcome {obj.hoTen}</li>
           <li className="nav-item">
-            <NavLink activeClassName="active" className="nav-link" to="/log-up">
+            <Link
+             activeClassName="active" className="nav-link" data-toggle="modal" data-target="#myModal" >
               Sign Out
-            </NavLink>
+            </Link>
+            <FormsModal />
           </li>
         </ul>
       );
@@ -28,11 +32,12 @@ export default class Navbar extends Component {
   }
   render() {
     return (
+      <>
       <nav className="navbar navbar-expand-md navbar-dark">
-        {/* Brand */}
         <div className="container">
           <div className="col-sm-4  ">
-            <div className=" d-flex">
+
+            <Link className="logo-title d-flex" to="/">
               <img
                 className="img-fluid mx-2"
                 src="https://i.ibb.co/MMDksvw/icons8-movie-ticket.png"
@@ -42,7 +47,8 @@ export default class Navbar extends Component {
                 height={100}
               />
               <p className="logo-name">MOVIE THEATER</p>
-            </div>
+            </Link>
+
           </div>
 
           <div className="col-sm-4">
@@ -98,10 +104,13 @@ export default class Navbar extends Component {
               </ul>
             </div>
           </div>
+          
           <div className="col-sm-4">{this.renderHTML()}</div>
         </div>
         {/* Toggler/collapsibe Button */}
       </nav>
+      
+      </>
     );
   }
 }

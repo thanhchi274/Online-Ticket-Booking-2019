@@ -36,7 +36,8 @@ class Carousel extends Component {
             prevArrow:<PrevArrow /> , 
           };
         return (
-            <Slider {...settings}>
+          <div className="carousel-main">
+            <Slider {...settings} >
           <div>
            <NavLink to="/detail-movie/1314">
            <LazyLoadImage src={"https://www.upsieutoc.com/images/2020/01/07/ted-poster.jpg"}  effect="black-and-white" alt="Card" border="{0}" />
@@ -61,6 +62,7 @@ class Carousel extends Component {
           </NavLink>
             </div>
           </Slider>
+          </div>
         );
     }
 }
