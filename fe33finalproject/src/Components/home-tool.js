@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { GET_DETAIL_MOVIE } from '../redux/constants/ActionType'
-
+// Comment 
  class HomeTool extends Component {
     render() {
         return (
