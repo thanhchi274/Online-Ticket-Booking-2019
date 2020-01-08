@@ -6,7 +6,7 @@ class HomeTool extends Component {
   render() {
     return (
       <div className="wrapper d-flex home-tool">
-        <select class="form-control selectChoice">
+        <select className="form-control selectChoice">
           <option>Phim</option>
         </select>
         <select className="form-control selectChoice">
