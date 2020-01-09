@@ -1,7 +1,3 @@
-.logined {
-  color: white;
-  margin-left: 100px;
-}
 .login-container {
   text-align: center;
   border: 1px solid black;
@@ -120,19 +116,4 @@ h3 {
 .signup h5 {
   transform: translateY(-200%);
   font-size: 15px;
-}
-.btn-login {
-  padding: 10px 24px;
-  font-size: 18px;
-  margin-left: 180px;
-  border: 1px solid #2196f3;
-  background-color: #2196f3;
-  border-radius: 30px;
-  color: white;
-  transition: 0.5s;
-  &:hover {
-    color: white !important;
-    text-decoration: none !important;
-    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
-  }
 }

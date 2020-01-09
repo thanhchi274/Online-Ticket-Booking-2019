@@ -3,11 +3,45 @@
   background-color: #0c0c4a;
   transition: 0.2s;
   z-index: 1;
-  width: 94%;
+  width: 100%;
   .logo-title {
     &:hover {
       text-decoration: none;
     }
+  }
+  .logined {
+    color: white;
+    margin-left: 100px;
+    position: relative;
+  }
+  .btn-login {
+    padding: 10px 24px;
+    font-size: 18px;
+    margin-left: 40px;
+    border: 1px solid #2196f3;
+    background-color: #2196f3;
+    border-radius: 30px;
+    color: white;
+    transition: 0.5s;
+    &:hover {
+      color: white !important;
+      text-decoration: none !important;
+      box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    }
+  }
+  .nav-logout {
+    margin-left: 40px;
+  }
+  .btn-SignOut {
+    background-color: white;
+    color: black;
+    position: absolute;
+    top: 50px;
+    font-size: 20px;
+    text-transform: uppercase;
+    border: 1px solid grey;
+    padding: 5px 40px;
+    cursor: pointer;
   }
   .logo-name {
     margin-top: 1em;
@@ -30,9 +64,5 @@
       background: #2196f3;
       box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
     }
-  }
-  .btn-SignOut {
-    background-color: transparent;
-    border: none;
   }
 }

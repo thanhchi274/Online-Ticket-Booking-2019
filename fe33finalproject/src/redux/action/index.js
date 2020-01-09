@@ -56,6 +56,7 @@ export const actLoginHome = (user, history) => {
         localStorage.setItem("UserHome", JSON.stringify(result.data));
         // Chuyển hướng đến trang home
         history.push("/");
+        window.location.reload();
         dispatch({
           type: ActionTypes.LOGIN,
           user: result.data

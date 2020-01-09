@@ -9,9 +9,18 @@ export default class Navbar extends Component {
     const FormsModal = WithModal(ModalSanPham);
     if (localStorage.getItem("UserHome")) {
       return (
-        <ul className="navbar-nav">
-          <li className=" nav-item nav-link logined"> Welcome {obj.hoTen}</li>
-          <li className="nav-item">
+        <ul className="navbar-nav ">
+          <li className=" nav-item nav-link logined">{obj.hoTen}</li>
+          <div
+            activeClassName="active"
+            data-toggle="modal"
+            data-target="#myModal"
+            className=" btn-SignOut"
+          >
+            Log out
+          </div>
+          <FormsModal />
+          {/*<li className="nav-item">
             <button
               activeClassName="active"
               className="nav-link btn-SignOut"
@@ -21,7 +30,7 @@ export default class Navbar extends Component {
               Sign Out
             </button>
             <FormsModal />
-          </li>
+      </li>*/}
         </ul>
       );
     } else {
@@ -39,10 +48,10 @@ export default class Navbar extends Component {
       <>
         <nav className="navbar navbar-expand-md navbar-dark">
           <div className="header navbar">
-            <div className="col-sm-4  ">
+            <div className="col-sm-3  ">
               <Link className="logo-title d-flex" to="/">
                 <img
-                  className="img-fluid mx-2"
+                  className="img-fluid mx-4"
                   src="https://i.ibb.co/MMDksvw/icons8-movie-ticket.png"
                   alt="icons8-movie-ticket"
                   border={0}
@@ -53,7 +62,7 @@ export default class Navbar extends Component {
               </Link>
             </div>
 
-            <div className="col-sm-6">
+            <div className="col-sm-4 nav-menu">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -107,7 +116,7 @@ export default class Navbar extends Component {
               </div>
             </div>
 
-            <div className="col-sm-1">{this.renderHTML()}</div>
+            <div className="col-sm-2 nav-logout">{this.renderHTML()}</div>
           </div>
           {/* Toggler/collapsibe Button */}
         </nav>
