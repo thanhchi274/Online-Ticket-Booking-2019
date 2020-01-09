@@ -1,5 +1,5 @@
 import * as ActionType from "./../constants/ActionType";
-import data from "../../data.json"
+import data from "../../data.json";
 let initialState = {
   listMovie: [],
   movie: {},
@@ -22,6 +22,7 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case ActionType.LOGIN:
+      console.log(action);
       return { ...state };
     case ActionType.LOGOUT:
       return { ...state };

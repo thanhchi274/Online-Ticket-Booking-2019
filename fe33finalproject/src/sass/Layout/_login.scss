@@ -8,7 +8,7 @@
   padding: 100px 0;
   margin: 50px 0;
   background-color: black;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 .signin-btn {
   width: 20%;
@@ -129,6 +129,7 @@ h3 {
   background-color: #2196f3;
   border-radius: 30px;
   color: white;
+  transition: 0.5s;
   &:hover {
     color: white !important;
     text-decoration: none !important;
