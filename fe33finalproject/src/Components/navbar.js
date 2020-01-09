@@ -7,15 +7,16 @@ export default class Navbar extends Component {
     const innerHTML = localStorage.getItem("UserHome");
     const obj = JSON.parse(innerHTML);
     const FormsModal = WithModal( ModalSanPham)
-    if (localStorage.getItem("UserHome")) {
+    if (localStorage.getItem("UserHome")) 
+    {
       return (
         <ul className="navbar-nav">
           <li className=" nav-item nav-link logined">Welcome {obj.hoTen}</li>
           <li className="nav-item">
-            <Link
-             activeClassName="active" className="nav-link" data-toggle="modal" data-target="#myModal" >
+            <button
+             activeClassName="active" className="nav-link btn-SignOut" data-toggle="modal" data-target="#myModal"  >
               Sign Out
-            </Link>
+            </button>
             <FormsModal />
           </li>
         </ul>
