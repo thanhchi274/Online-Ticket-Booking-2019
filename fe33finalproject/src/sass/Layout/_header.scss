@@ -1,39 +1,38 @@
-.navbar{
-    height: 99px;
-    background-color: #0c0c4a;
+.navbar {
+  height: 99px;
+  background-color: #0c0c4a;
+  transition: 0.2s;
+  z-index: 1;
+  width: 94%;
+  .logo-title {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  .logo-name {
+    margin-top: 1em;
+    color: #fff;
+    font-weight: 700;
+    font-size: 18px;
+  }
+  .active {
+    border-radius: 30px;
+    background: #2196f3;
+    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+  }
+  .nav-link {
+    color: white !important;
+    margin: 0 20px;
+    font-size: 20px;
     transition: 0.2s;
-    z-index: 1;
-    .logo-title{
-        &:hover{
-            text-decoration: none;
-        }
+    &:hover {
+      border-radius: 30px;
+      background: #2196f3;
+      box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
     }
-    .logo-name{
-        margin-top:1em;
-        color:#fff;
-        font-weight: 700;
-        font-size: 18px;
-    }
-    .active{
-        border-radius: 30px;
-        background: #2196f3;
-        box-shadow: 0 0 10px #2196f3,0 0 40px #2196f3,0 0 80px #2196f3;
-    }
-    .nav-link{
-        color: white!important;
-        margin:0 10px;
-        font-size: 18px;
-        &:hover{
-            border-radius: 30px;
-            background: #2196f3;
-            box-shadow: 0 0 10px #2196f3,0 0 40px #2196f3,0 0 80px #2196f3;
-            transition-delay: 0.25s;
-        }
-    }
-    .btn-SignOut{
-        background-color: transparent;
-        border:none;
-    
-    }
-
+  }
+  .btn-SignOut {
+    background-color: transparent;
+    border: none;
+  }
 }

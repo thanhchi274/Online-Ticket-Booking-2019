@@ -11,7 +11,6 @@ export const actGetListMovieAPI = () => {
         console.log(result.data);
         // dispatch(actGetListMovie(result.data))
         dispatch({
-          
           type: ActionTypes.GET_LIST_MOVIE,
           listMovie: result.data
         });
@@ -54,20 +53,17 @@ export const actLoginHome = (user, history) => {
       .then(result => {
         console.log(result.data);
         // Lưu vào local storage
-        if (result.data.maLoaiNguoiDung === "KhachHang") {
-          localStorage.setItem("UserHome", JSON.stringify(result.data));
-          // Chuyển hướng đến trang home
-          history.push("/");
-          dispatch({
-            type: ActionTypes.LOGIN,
-            user: result.data
-          });
-        } else {
-          alert("Admin khong duoc dang nhap tai day");
-        }
+        localStorage.setItem("UserHome", JSON.stringify(result.data));
+        // Chuyển hướng đến trang home
+        history.push("/");
+        dispatch({
+          type: ActionTypes.LOGIN,
+          user: result.data
+        });
       })
       .catch(err => {
         alert("Bạn chưa có quyền đăng nhập hãy tạo tài khoản");
+        return err;
       });
   };
 };
