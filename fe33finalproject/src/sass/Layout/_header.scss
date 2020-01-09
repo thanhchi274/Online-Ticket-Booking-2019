@@ -5,14 +5,46 @@
   z-index: 1;
   width: 100%;
   .logo-title {
+
     &:hover {
       text-decoration: none;
     }
   }
   .logined {
+    &:hover{
+      .btn-SignOut{
+        display:block;
+      }
+    }
+    .btn-SignOut{
+      display:none;
+      font-size:16px;
+      font-weight:600;
+      width:100px;
+      padding: 10px 10px;
+      border:none;
+      text-decoration:none;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    }
+    width: 100px;
+    .nav-user-login{
+      display: flex;
+      justify-content: center;
+      svg{
+        width: 30px;
+        height: 30px;
+      }
+      p{
+        margin-bottom: 0!important;
+      }
+    }
+    
     color: white;
     margin-left: 100px;
     position: relative;
+    text-align:center;
+    &:hover{
+    }
   }
   .btn-login {
     padding: 10px 24px;

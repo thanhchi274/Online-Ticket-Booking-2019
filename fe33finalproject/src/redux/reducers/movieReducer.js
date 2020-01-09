@@ -12,7 +12,7 @@ const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_LIST_MOVIE: {
       state.listMovie = action.listMovie;
-      return { ...state, loading: false };
+      return { ...state, loading:false};
     }
     case ActionType.GET_DETAIL_MOVIE: {
       state.movie = action.movie;

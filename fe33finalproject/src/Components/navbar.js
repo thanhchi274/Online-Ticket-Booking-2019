@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
 import ModalSanPham from "../HOC/Modal-SignOut";
 import WithModal from "./../HOC/with-modal.js";
+import UserLogo from "./userLoginImage"
 export default class Navbar extends Component {
   renderHTML() {
     const innerHTML = localStorage.getItem("UserHome");
@@ -10,15 +11,22 @@ export default class Navbar extends Component {
     if (localStorage.getItem("UserHome")) {
       return (
         <ul className="navbar-nav ">
-          <li className=" nav-item nav-link logined">{obj.hoTen}</li>
-          <div
-            activeClassName="active"
+          <li className=" nav-item nav-link logined">
+          <div className ="nav-user-login"> 
+          <UserLogo /> 
+          <p>
+          {obj.hoTen}
+          </p>
+          </div>
+          <Link
             data-toggle="modal"
             data-target="#myModal"
             className=" btn-SignOut"
+            to="/"
           >
             Log out
-          </div>
+          </Link>
+          </li>
           <FormsModal />
           {/*<li className="nav-item">
             <button
@@ -48,7 +56,7 @@ export default class Navbar extends Component {
       <>
         <nav className="navbar navbar-expand-md navbar-dark">
           <div className="header navbar">
-            <div className="col-sm-3  ">
+            <div className="col-sm-4  ">
               <Link className="logo-title d-flex" to="/">
                 <img
                   className="img-fluid mx-4"
@@ -62,7 +70,7 @@ export default class Navbar extends Component {
               </Link>
             </div>
 
-            <div className="col-sm-4 nav-menu">
+            <div className="col-sm-4 nav-menu ">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -72,7 +80,7 @@ export default class Navbar extends Component {
                 <span className="navbar-toggler-icon" />
               </button>
               {/* Navbar links */}
-              <div className="collapse navbar-collapse" id="collapsibleNavbar">
+              <div className="collapse navbar-collapse d-flex justify-content-center" id="collapsibleNavbar">
                 <ul className="navbar-nav">
                   <li className="nav-item">
                     {/* Nối tới page khác */}
@@ -94,29 +102,11 @@ export default class Navbar extends Component {
                       Movie
                     </NavLink>
                   </li>
-                  <li className="nav-item">
-                    <NavLink
-                      activeClassName="active"
-                      className="nav-link"
-                      to="/theater-movie"
-                    >
-                      Theater
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink
-                      activeClassName="active"
-                      className="nav-link"
-                      to="/about"
-                    >
-                      About
-                    </NavLink>
-                  </li>
                 </ul>
               </div>
             </div>
 
-            <div className="col-sm-2 nav-logout">{this.renderHTML()}</div>
+            <div className="col-sm-3 d-flex justify-content-center nav-logout">{this.renderHTML()}</div>
           </div>
           {/* Toggler/collapsibe Button */}
         </nav>

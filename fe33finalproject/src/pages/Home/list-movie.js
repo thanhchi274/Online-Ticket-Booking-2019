@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Movie from "./../../Components/movie.js";
 import { connect } from 'react-redux';
 import * as  Action from "./../../redux/action/index.js"
-
 class Listmovie extends Component {
     componentDidMount(){
         this.props.getListMovie();
