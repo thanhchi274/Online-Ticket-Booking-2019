@@ -6,6 +6,7 @@ let initialState = {
   loading: false,
   listMovieCarousel: [],
   room: {},
+  booking: {},
   news: data
 };
 const movieReducer = (state = initialState, action) => {
@@ -32,6 +33,10 @@ const movieReducer = (state = initialState, action) => {
       console.log(action);
       state.room = action.room;
       return { ...state, loading: false };
+    case ActionType.BOOKING_MOVIE:
+      console.log(action);
+      state.booking  = action.booking;
+      return {...state}
     default:
       return { ...state };
   }

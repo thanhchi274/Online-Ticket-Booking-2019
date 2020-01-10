@@ -5,9 +5,26 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 class Booking extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+      malichChieu:"",
+      danhSachVe :[{
+        maGhe: "",
+        giaVe: ""
+      }],
+      taiKhoanNguoiDung: null
+    }
+  }
   handleClick = e => {
     e.target.classList.toggle("chose");
+    console.log(e);
   };
+  handleBookTicket = e=>{
+    console.log(e);
+    e.preventDefault();
+    this.props.postBooking(this.state);
+  }
   renderHTML = () => {
     if (this.props.room.danhSachGhe) {
       return this.props.room.danhSachGhe.map((item, index) => {
@@ -20,7 +37,7 @@ class Booking extends Component {
                   ? { backgroundColor: "#2196f3 " }
                   : { backgroundColor: "yellow" }
               }
-              key={index}
+              key={index} value={item.tenGhe}
               onClick={item.daDat ? null : this.handleClick}
             >
               {item.daDat ? <FontAwesomeIcon icon={faTimes} /> : item.tenGhe}
@@ -37,6 +54,7 @@ class Booking extends Component {
     const id = this.props.match.params.id;
     this.props.setLoading();
     this.props.getRoomList(id);
+    this.props.postBooking();
   }
   render() {
     let { room, loading } = this.props;
@@ -65,9 +83,14 @@ class Booking extends Component {
           <h3 className="mr-2">Suất chiếu:</h3>
           <h3> {room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}</h3>
         </div>
+        <div>
+        <h3 className="mr-2">Mã Lịch CHiếu:</h3>
+          <h3> {room.thongTinPhim ? room.thongTinPhim.maLichChieu : ""}</h3>
+        </div>
         <div className="seat-choosing">
           <div className="monitor">Màn hình</div>
-          <div className="row chairList">{this.renderHTML()}</div>
+          <div className="row chairList">
+          {this.renderHTML()}</div>
         </div>
         <div className="book">
           <button
@@ -85,7 +108,8 @@ class Booking extends Component {
 const mapStateToProps = state => {
   return {
     room: state.movieReducer.room,
-    loading: state.movieReducer.loading
+    loading: state.movieReducer.loading,
+    bookingMovie: state.movieReducer.booking
   };
 };
 
@@ -96,6 +120,9 @@ const mapDispatchToProps = dispatch => {
     },
     setLoading: () => {
       dispatch(action.actLoading());
+    },
+    postBooking:(bookingMovie)=>{
+      dispatch(action.actBookingMovie(bookingMovie));
     }
   };
 };

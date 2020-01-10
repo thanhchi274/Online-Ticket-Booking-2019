@@ -3,7 +3,7 @@ import About from "./pages/Home/about.js";
 import ListMovie from "./pages/Home/list-movie.js";
 import DetailMovie from "./pages/Home/detailMovie.js";
 import TheaterMovie from "./pages/Home/theater.js";
-// import Dashboard from "./pages/Admin/dashboard.js";
+import Dashboard from "./pages/Home/Admin/dashboard.js";
 import Login from "./pages/Home/login";
 import Signup from "./pages/Home/signup.js";
 import Booking from "./pages/Home/booking";
@@ -49,11 +49,11 @@ const routeHome = [
     component: Booking
   }
 ];
-// const routeAdmin = [
-//   {
-//     path: "/dashboard",
-//     exact: false,
-//     component: Dashboard
-//   }
-// ];
-export { routeHome };
+const routeAdmin = [
+  {
+    path: "/dashboard",
+    exact: false,
+    component: Dashboard
+  }
+];
+export { routeHome, routeAdmin };

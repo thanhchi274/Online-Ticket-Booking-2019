@@ -53,14 +53,45 @@ export const actLoginHome = (user, history) => {
       .then(result => {
         console.log(result.data);
         // Lưu vào local storage
-        localStorage.setItem("UserHome", JSON.stringify(result.data));
-        // Chuyển hướng đến trang home
-        history.push("/");
-        window.location.reload();
-        dispatch({
-          type: ActionTypes.LOGIN,
-          user: result.data
-        });
+        if(result.data.maLoaiNguoiDung ==="KhachHang"){
+          localStorage.setItem("UserHome", JSON.stringify(result.data));
+          // Chuyển hướng đến trang home
+          history.push("/");
+          window.location.reload();
+          dispatch({
+            type: ActionTypes.LOGIN,
+            user: result.data
+          });
+
+        }
+      })
+      .catch(err => {
+        alert("Bạn chưa có quyền đăng nhập hãy tạo tài khoản");
+        return err;
+      });
+  };
+};
+export const actLoginAdmin = (user, history) => {
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+      data: user
+    })
+      .then(result => {
+        console.log(result.data);
+        // Lưu vào local storage
+        if(result.data.maLoaiNguoiDung ==="QuanTri"){
+          localStorage.setItem("UserAdmin", JSON.stringify(result.data));
+          // Chuyển hướng đến trang home
+          history.push("/dashboard");
+          window.location.reload();
+          dispatch({
+            type: ActionTypes.LOGIN,
+            user: result.data
+          });
+
+        }
       })
       .catch(err => {
         alert("Bạn chưa có quyền đăng nhập hãy tạo tài khoản");
@@ -112,6 +143,24 @@ export const actGetRoomList = id => {
       });
   };
 };
+export const actBookingMovie = bookingMovie =>{
+  return dispatch =>{
+    Axios({
+      method :"POST",
+      url:"http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+      data:bookingMovie
+    })
+    .then(result=>{
+      dispatch({
+        type: ActionTypes.BOOKING_MOVIE,
+        bookingMovie: result.data
+      })
+    })
+    .catch(err=>{
+      return err;
+    })
+  }
+}
 // export const actGetListMovie =listMovie=>{
 // return {
 //     type: ActionTypes.GET_LIST_MOVIE,

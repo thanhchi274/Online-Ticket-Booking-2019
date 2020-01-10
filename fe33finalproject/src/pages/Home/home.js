@@ -10,6 +10,7 @@ class Home extends Component {
   componentDidMount() {
     this.props.getListMovie();
   }
+  
   renderHTML = () => {
     let { listMovie } = this.props;
     return listMovie.map((movie, index) => {
