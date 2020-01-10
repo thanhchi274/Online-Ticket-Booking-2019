@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as  Action from "../../../redux/action/index"
+import LoginAdminSVG from  "../../../Components/loginAdminSVG"
 class Admin extends Component {
 
     constructor(props){
@@ -22,15 +23,16 @@ class Admin extends Component {
     }
     render() {
         return (
-            <div className="container">
+            <div className="container adminLoginPage d-flex">
+            <LoginAdminSVG /> 
             <div className="col-sm-6 mx-auto">
               <form onSubmit={this.handleOnSubmit}>
                 <div className="form-group">
-                  <label className="text-white" htmlFor="">Username</label>
+                  <label  htmlFor="">Username</label>
                   <input type="text" className="form-control" name= "taiKhoan" onChange={this.handleOnChange} />
                 </div>
                 <div className="form-group">
-                  <label className="text-white" htmlFor="">Password</label>
+                  <label htmlFor="">Password</label>
                   <input type="text" className="form-control" name ="matKhau" onChange={this.handleOnChange}/>
                 </div>
                 <button type="submit" className="btn btn-success">
