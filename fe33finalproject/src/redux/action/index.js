@@ -50,7 +50,6 @@ export const actLoginHome = (user, history) => {
       data: user
     })
       .then(result => {
-        console.log(result.data);
         // Lưu vào local storage
         localStorage.setItem("UserHome", JSON.stringify(result.data));
         // Chuyển hướng đến trang home
@@ -107,9 +106,8 @@ export const actSignupHome = (user, history) => {
       data: user
     })
       .then(result => {
-        console.log(result.data);
         // Chuyển hướng đến trang home
-        history.push("/dang-nhap");
+        history.push("/login");
         dispatch({
           type: ActionTypes.SIGNUP,
           user: result.data

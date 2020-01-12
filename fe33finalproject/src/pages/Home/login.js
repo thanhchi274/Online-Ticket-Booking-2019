@@ -100,7 +100,6 @@ class Login extends Component {
         mkValid
       },
       () => {
-        console.log(this.state);
         this.handleFormValid();
       }
     );
@@ -123,7 +122,7 @@ class Login extends Component {
           <h3>sign in</h3>
           <div
             className={this.state.input1}
-            onClick={this.handleClick}
+            onFocus={this.handleClick}
             onBlur={this.handleBlur}
           >
             <div className="i">
@@ -140,15 +139,13 @@ class Login extends Component {
             </div>
           </div>
           {this.state.errors.taiKhoan ? (
-            <div className="alert alert-danger">
-              {this.state.errors.taiKhoan}
-            </div>
+            <div style={{ color: "red" }}>{this.state.errors.taiKhoan}</div>
           ) : (
             ""
           )}
           <div
             className={this.state.input2}
-            onClick={this.handleClick}
+            onFocus={this.handleClick}
             onBlur={this.handleBlur}
           >
             <div className="i">
@@ -165,7 +162,7 @@ class Login extends Component {
             </div>
           </div>
           {this.state.errors.matKhau ? (
-            <div className="alert alert-danger">
+            <div style={{ color: "red", marginBottom: "20px" }}>
               {this.state.errors.matKhau}
             </div>
           ) : (
