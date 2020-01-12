@@ -8,7 +8,6 @@ export const actGetListMovieAPI = () => {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01"
     })
       .then(result => {
-        console.log(result.data);
         // dispatch(actGetListMovie(result.data))
         dispatch({
           type: ActionTypes.GET_LIST_MOVIE,
