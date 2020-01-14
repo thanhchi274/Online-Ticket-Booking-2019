@@ -13,7 +13,7 @@ const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_LIST_MOVIE: {
       state.listMovie = action.listMovie;
-      return { ...state, loading:false};
+      return { ...state, loading: false };
     }
     case ActionType.GET_DETAIL_MOVIE: {
       state.movie = action.movie;
@@ -30,13 +30,12 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.SIGNUP:
       return { ...state };
     case ActionType.GET_ROOM_LIST:
-      console.log(action);
       state.room = action.room;
       return { ...state, loading: false };
     case ActionType.BOOKING_MOVIE:
       console.log(action);
-      state.booking  = action.booking;
-      return {...state}
+      state.booking = action.booking;
+      return { ...state };
     default:
       return { ...state };
   }

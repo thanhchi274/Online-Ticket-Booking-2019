@@ -7,6 +7,7 @@ import Dashboard from "./pages/Home/Admin/dashboard.js";
 import Login from "./pages/Home/login";
 import Signup from "./pages/Home/signup.js";
 import Booking from "./pages/Home/booking";
+import Info from "./pages/Home/info.js";
 const routeHome = [
   {
     path: "/",
@@ -47,6 +48,11 @@ const routeHome = [
     path: "/dat-ve/:id",
     exact: false,
     component: Booking
+  },
+  {
+    path: "/info",
+    exact: false,
+    component: Info
   }
 ];
 const routeAdmin = [
