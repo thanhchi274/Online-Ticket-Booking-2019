@@ -1,0 +1,16 @@
+.container {
+  margin-left: 260px !important;
+  .info {
+    margin: 0 60px;
+    .comp {
+      text-transform: uppercase;
+      font-size: 24px;
+      label {
+        margin-right: 10px;
+      }
+    }
+    button {
+      margin-left: 70%;
+    }
+  }
+}

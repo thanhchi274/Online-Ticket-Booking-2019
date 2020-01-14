@@ -8,10 +8,21 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      value: {
+        taiKhoan: "",
+        matKhau: ""
+      },
+      errors: {
+        taiKhoan: "",
+        matKhau: ""
+      },
       input1: "input-div",
       input2: "input-div",
       taiKhoan: "",
-      matKhau: ""
+      matKhau: "",
+      formvalid: false,
+      tkValid: false,
+      mkValid: false
     };
   }
   handleClick = e => {
@@ -33,6 +44,31 @@ class Login extends Component {
             input2: "input-div"
           });
     }
+    let { name, value } = e.target;
+    let message =
+      value === ""
+        ? (name === "taiKhoan" ? "Tài khoản" : "Mật khẩu") + " không được rỗng"
+        : "";
+
+    let { tkValid, mkValid } = this.state;
+    switch (name) {
+      case "taiKhoan":
+        tkValid = message ? false : true;
+        if (value && value.length < 4) {
+          tkValid = false;
+          message = "Độ dài chuỗi phải lớn hơn 4";
+        }
+        break;
+      case "matKhau":
+        mkValid = message ? false : true;
+        break;
+    }
+
+    this.setState({
+      errors: { ...this.state.errors, [name]: message },
+      tkValid,
+      mkValid
+    });
   };
 
   handleChange = e => {
@@ -40,10 +76,44 @@ class Login extends Component {
     this.setState({
       [name]: value
     });
+    let message = value === null;
+    let { tkValid, mkValid } = this.state;
+    switch (name) {
+      case "taiKhoan":
+        tkValid = message ? false : true;
+        // kiểm tra ký tự
+        if (value && value.length < 4) {
+          tkValid = false;
+          message = "Độ dài chuỗi phải lớn hơn 4";
+        }
+        break;
+      case "matKhau":
+        mkValid = message ? false : true;
+        break;
+    }
+    this.setState(
+      {
+        //   Copy lại values trên state và thay đổi [name]: value
+        values: { ...this.state.values, [name]: value },
+        errors: { ...this.state.errors, [name]: message },
+        tkValid,
+        mkValid
+      },
+      () => {
+        this.handleFormValid();
+      }
+    );
   };
+
   handleSubmit = e => {
     e.preventDefault();
     this.props.login(this.state, this.props.history);
+  };
+
+  handleFormValid = () => {
+    this.setState({
+      formvalid: this.state.tkValid && this.state.mkValid
+    });
   };
   renderHTML = () => {
     return (
@@ -52,7 +122,7 @@ class Login extends Component {
           <h3>sign in</h3>
           <div
             className={this.state.input1}
-            onClick={this.handleClick}
+            onFocus={this.handleClick}
             onBlur={this.handleBlur}
           >
             <div className="i">
@@ -68,9 +138,14 @@ class Login extends Component {
               />
             </div>
           </div>
+          {this.state.errors.taiKhoan ? (
+            <div style={{ color: "red" }}>{this.state.errors.taiKhoan}</div>
+          ) : (
+            ""
+          )}
           <div
             className={this.state.input2}
-            onClick={this.handleClick}
+            onFocus={this.handleClick}
             onBlur={this.handleBlur}
           >
             <div className="i">
@@ -86,7 +161,16 @@ class Login extends Component {
               />
             </div>
           </div>
-          <button className="btn signin-btn">SIGN IN</button>
+          {this.state.errors.matKhau ? (
+            <div style={{ color: "red", marginBottom: "20px" }}>
+              {this.state.errors.matKhau}
+            </div>
+          ) : (
+            ""
+          )}
+          <button className="btn signin-btn" disabled={!this.state.formvalid}>
+            SIGN IN
+          </button>
         </form>
         <h5 style={{ color: "white", textTransform: "uppercase" }}>or</h5>
         <Link className="btn signup-btn" to="/sign-up">

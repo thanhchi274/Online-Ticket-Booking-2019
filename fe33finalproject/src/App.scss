@@ -2,8 +2,6 @@
 @import "./sass/Base/typography";
 @import "./sass/Helper/extend";
 @import "./sass/Helper/mixin";
-@import "./sass/Helper/variable";
-@import 'node_modules/react-modal-video/scss/modal-video.scss';
 @import "./sass/Layout/header";
 @import "./sass/Layout/loading";
 @import "./sass/Layout/pagenotfound";
@@ -16,3 +14,4 @@
 @import "./sass/Layout/navTab";
 @import "./sass/Layout/news";
 @import "./sass/Layout/adminLogin";
+@import "./sass//Layout/info";

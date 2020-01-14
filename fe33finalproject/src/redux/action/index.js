@@ -8,7 +8,6 @@ export const actGetListMovieAPI = () => {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01"
     })
       .then(result => {
-        console.log(result.data);
         // dispatch(actGetListMovie(result.data))
         dispatch({
           type: ActionTypes.GET_LIST_MOVIE,
@@ -51,19 +50,15 @@ export const actLoginHome = (user, history) => {
       data: user
     })
       .then(result => {
-        console.log(result.data);
         // Lưu vào local storage
-        if(result.data.maLoaiNguoiDung ==="KhachHang"){
-          localStorage.setItem("UserHome", JSON.stringify(result.data));
-          // Chuyển hướng đến trang home
-          history.push("/");
-          window.location.reload();
-          dispatch({
-            type: ActionTypes.LOGIN,
-            user: result.data
-          });
-
-        }
+        localStorage.setItem("UserHome", JSON.stringify(result.data));
+        // Chuyển hướng đến trang home
+        history.push("/");
+        window.location.reload();
+        dispatch({
+          type: ActionTypes.LOGIN,
+          user: result.data
+        });
       })
       .catch(err => {
         alert("Bạn chưa có quyền đăng nhập hãy tạo tài khoản");
@@ -81,7 +76,7 @@ export const actLoginAdmin = (user, history) => {
       .then(result => {
         console.log(result.data);
         // Lưu vào local storage
-        if(result.data.maLoaiNguoiDung ==="QuanTri"){
+        if (result.data.maLoaiNguoiDung === "QuanTri") {
           localStorage.setItem("UserAdmin", JSON.stringify(result.data));
           // Chuyển hướng đến trang home
           history.push("/dashboard");
@@ -90,7 +85,6 @@ export const actLoginAdmin = (user, history) => {
             type: ActionTypes.LOGIN,
             user: result.data
           });
-
         }
       })
       .catch(err => {
@@ -112,9 +106,8 @@ export const actSignupHome = (user, history) => {
       data: user
     })
       .then(result => {
-        console.log(result.data);
         // Chuyển hướng đến trang home
-        history.push("/dang-nhap");
+        history.push("/login");
         dispatch({
           type: ActionTypes.SIGNUP,
           user: result.data
@@ -143,24 +136,24 @@ export const actGetRoomList = id => {
       });
   };
 };
-export const actBookingMovie = bookingMovie =>{
-  return dispatch =>{
+export const actBookingMovie = bookingMovie => {
+  return dispatch => {
     Axios({
-      method :"POST",
-      url:"http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
-      data:bookingMovie
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+      data: bookingMovie
     })
-    .then(result=>{
-      dispatch({
-        type: ActionTypes.BOOKING_MOVIE,
-        bookingMovie: result.data
+      .then(result => {
+        dispatch({
+          type: ActionTypes.BOOKING_MOVIE,
+          bookingMovie: result.data
+        });
       })
-    })
-    .catch(err=>{
-      return err;
-    })
-  }
-}
+      .catch(err => {
+        return err;
+      });
+  };
+};
 // export const actGetListMovie =listMovie=>{
 // return {
 //     type: ActionTypes.GET_LIST_MOVIE,

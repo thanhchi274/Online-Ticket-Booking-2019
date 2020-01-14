@@ -1,44 +1,57 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
-import ModalSanPham from "../HOC/Modal-SignOut";
-import WithModal from "./../HOC/with-modal.js";
-import UserLogo from "./userLoginImage"
+// import ModalSanPham from "../HOC/Modal-SignOut";
+// import WithModal from "./../HOC/with-modal.js";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      navigate: false
+    };
+  }
+  logout = () => {
+    localStorage.clear("token");
+    this.setState({ navigate: true });
+  };
+
   renderHTML() {
     const innerHTML = localStorage.getItem("UserHome");
     const obj = JSON.parse(innerHTML);
-    const FormsModal = WithModal(ModalSanPham);
+    const { navigate } = this.state;
+    if (navigate) {
+      return window.location.reload();
+    }
     if (localStorage.getItem("UserHome")) {
       return (
         <ul className="navbar-nav ">
-          <li className=" nav-item nav-link logined">
-          <div className ="nav-user-login"> 
-          <UserLogo /> 
-          <p>
-          {obj.hoTen}
-          </p>
-          </div>
-          <Link
-            data-toggle="modal"
-            data-target="#myModal"
-            className=" btn-SignOut"
-            to="/"
-          >
-            Log out
-          </Link>
+          <li className=" nav-item nav-link">
+            <div className="dropdown">
+              <button
+                type="button"
+                className="dropdown-toggle"
+                data-toggle="dropdown"
+              >
+                <FontAwesomeIcon className="user_icon" icon={faUser} />
+                {obj.hoTen}
+              </button>
+              <div className="dropdown-menu">
+                <Link className="dropdown-item" to="/info">
+                  Information
+                </Link>
+                <Link
+                  data-toggle="modal"
+                  data-target="#myModal"
+                  className="dropdown-item"
+                  onClick={this.logout}
+                  to="/"
+                >
+                  Log out
+                </Link>
+              </div>
+            </div>
           </li>
-          <FormsModal />
-          {/*<li className="nav-item">
-            <button
-              activeClassName="active"
-              className="nav-link btn-SignOut"
-              data-toggle="modal"
-              data-target="#myModal"
-            >
-              Sign Out
-            </button>
-            <FormsModal />
-      </li>*/}
         </ul>
       );
     } else {
@@ -80,7 +93,10 @@ export default class Navbar extends Component {
                 <span className="navbar-toggler-icon" />
               </button>
               {/* Navbar links */}
-              <div className="collapse navbar-collapse d-flex justify-content-center" id="collapsibleNavbar">
+              <div
+                className="collapse navbar-collapse d-flex justify-content-center"
+                id="collapsibleNavbar"
+              >
                 <ul className="navbar-nav">
                   <li className="nav-item">
                     {/* Nối tới page khác */}
@@ -106,7 +122,9 @@ export default class Navbar extends Component {
               </div>
             </div>
 
-            <div className="col-sm-3 d-flex justify-content-center nav-logout">{this.renderHTML()}</div>
+            <div className="col-sm-3 d-flex justify-content-center nav-logout">
+              {this.renderHTML()}
+            </div>
           </div>
           {/* Toggler/collapsibe Button */}
         </nav>
