@@ -11,18 +11,10 @@ https://date-fns.org/
 
 # FinalProject-FE_33BT
 #Mấy trang mẫu siêu xịn để lấy ý tưởng 
-https://tympanus.net/codrops/2019/06/04/inspirational-websites-roundup-5/ 
 https://w3layouts.com/movies-pro-entertainment-flat-bootstrap-responsive-web-template/
 https://w3layouts.com/one-movies-entertainment-category-bootstrap-responsive-web-template/
 https://w3layouts.com/movie-store-a-entertainment-category-flat-bootstrap-responsive-web-template/
 https://tympanus.net/codrops/2019/12/09/showcase-of-creative-websites/
-
-#Link Template PSD
-https://drive.google.com/drive/folders/1IBn_HEq2_DHVipfNOI43hISORXpG9xTh?usp=sharing
-//Phần đặt vé
-https://tympanus.net/Development/SeatPreview
-https://w3layouts.com/movie-ticket-booking-widget-flat-responsive-widget-template/
-https://w3layouts.com/movie-seat-selection-flat-responsive-widget-template/
 
 //Mục Tính tiền (Checkout)
 https://w3layouts.com/fascinating-checkout-form-flat-responsive-widget-template/
@@ -31,11 +23,5 @@ https://w3layouts.com/fascinating-checkout-form-flat-responsive-widget-template/
 https://tympanus.net/codrops/2019/05/22/creating-grid-to-fullscreen-animations-with-three-js/
 https://w3layouts.com/movie-review-responsive-widget-template/
 
-//Carousel Template( coi thử hiệu ứng ok không nè)
-https://tympanus.net/codrops/2019/08/20/react-slider-with-parallax-hover-effects/
-
-//Hiệu ứng
-https://codesandbox.io/embed/vqpqx5vrl0
-
-//Hiệu ứng giúp load page mượt hơn
-https://tympanus.net/Development/SmoothScrollingImageEffects/
+Hiệu ứng tuyết rơi
+https://csc.edu.vn/lap-trinh-va-csdl/tin-tuc/kien-thuc-lap-trinh/hoc-html5-css3-hieu-ung-tuyet-roi-cho-mua-giang-sinh-749
