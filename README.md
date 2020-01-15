@@ -1,7 +1,5 @@
 Page mẫu để code theo 
 https://themeforest.net/item/movtic-online-ticket-booking-website-psd-template/24605756
-Dùng Sass trong react
-https://scotch.io/tutorials/using-sass-in-create-react-app-v2
 Skeleton Loading
 https://viblo.asia/p/reactjs-loading-skeleton-trong-reactjs-WAyK84kkKxX
 Gom mục 
