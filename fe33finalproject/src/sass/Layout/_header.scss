@@ -1,9 +1,21 @@
+.navbar--hidden {
+  @extend .navbar;
+  top: -100px!important;
+  flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding: .5rem 1rem;
+    margin: 0!important;
+  
+}
 .navbar {
   height: 99px;
   background-color: #0c0c4a;
-  transition: 0.2s;
+  transition: top 0.6s;
   z-index: 1;
   width: 100%;
+  position: fixed!important;
+  top: 0;
   .logo-title {
     &:hover {
       text-decoration: none;

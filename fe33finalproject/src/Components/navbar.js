@@ -8,13 +8,34 @@ export default class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      navigate: false
+      navigate: false,
+      visibleNavBar : true,
     };
+  }
+  handleScroll = () => {
+    const { prevScrollpos } = this.state;
+
+    const currentScrollPos = window.pageYOffset;
+    const visible = prevScrollpos <= currentScrollPos;
+
+    this.setState({
+      prevScrollpos: currentScrollPos,
+      visible
+    });
+  };
+  componentDidMount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
+
+  // Remove the event listener when the component is unmount.
+  componentWillUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
   logout = () => {
     localStorage.clear("token");
     this.setState({ navigate: true });
   };
+  
 
   renderHTML() {
     const innerHTML = localStorage.getItem("UserHome");
@@ -67,8 +88,10 @@ export default class Navbar extends Component {
   render() {
     return (
       <>
-        <nav className="navbar navbar-expand-md navbar-dark">
-          <div className="header navbar">
+        <nav className="navbar-expand-md navbar-dark">
+          <div className={!this.state.visible? " header navbar": 
+          "header navbar--hidden row"
+        }>
             <div className="col-sm-4  ">
               <Link className="logo-title d-flex" to="/">
                 <img
