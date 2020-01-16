@@ -1,4 +1,15 @@
 .detail-movie {
+  a {
+    &:hover {
+      text-decoration: none;
+    }
+  }
+  * {
+    box-sizing: border-box;
+  }
+  .tabs {
+    margin: 40px 0;
+  }
   .detail-movie-intro-image {
     z-index: -1;
     width: 100vw;
@@ -31,7 +42,8 @@
   }
   .img-movie {
     .trailer {
-      box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+      box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
+        0 15px 12px rgba(0, 0, 0, 0.22);
       position: relative;
     }
     .bg-trailer {
@@ -61,14 +73,14 @@
       color: white;
     }
   }
-  .table{
-    margin:40px;
-    color:white!important;
-    thead{
-      tr{
-        th{
-          border-top:none!important;
-          border-bottom:none!important;
+  .table {
+    margin: 40px;
+    color: white !important;
+    thead {
+      tr {
+        th {
+          border-top: none !important;
+          border-bottom: none !important;
         }
       }
     }

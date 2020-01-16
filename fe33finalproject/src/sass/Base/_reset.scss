@@ -1,9 +1,12 @@
-body{
-    margin:0;
-    padding:0;
-    overflow-x: hidden;
-    background-color:#0c0c4a!important;
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: #0c0c4a !important;
 }
-.modal-backdrop{
-    display: none!important;
+html {
+  scroll-behavior: smooth;
+}
+.modal-backdrop {
+  display: none !important;
 }

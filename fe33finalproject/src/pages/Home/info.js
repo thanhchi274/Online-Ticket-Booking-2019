@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 export default class Info extends Component {
   renderHTML = () => {
@@ -70,11 +70,7 @@ export default class Info extends Component {
           </div>
         </div>
         <div className="ava ">
-          <img
-            src="./ava.jpg"
-            className="img-fluid ${3|rounded-top,rounded-right,rounded-bottom,rounded-left,rounded-circle,|}"
-            alt
-          />
+          <img src="./ava.jpg" className="img-fluid" alt="avatar" />
         </div>
       </div>
     );
