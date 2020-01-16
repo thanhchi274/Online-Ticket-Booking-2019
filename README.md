@@ -23,3 +23,7 @@ https://w3layouts.com/movie-review-responsive-widget-template/
 
 Hiệu ứng tuyết rơi
 https://csc.edu.vn/lap-trinh-va-csdl/tin-tuc/kien-thuc-lap-trinh/hoc-html5-css3-hieu-ung-tuyet-roi-cho-mua-giang-sinh-749
+
+Optimization
+https://viblo.asia/p/toi-uu-hoa-ung-dung-react-voi-lazy-loading-YWOZr83w5Q0
+https://scotch.io/tutorials/implementing-smooth-scrolling-in-react
