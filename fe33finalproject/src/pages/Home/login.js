@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import * as action from "../../redux/action";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -187,6 +187,9 @@ class Login extends Component {
   };
 
   render() {
+    if (localStorage.getItem("UserHome")) {
+      return <Redirect to="/" />;
+    }
     return <div>{this.renderHTML()}</div>;
   }
 }
