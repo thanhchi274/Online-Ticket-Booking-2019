@@ -78,4 +78,7 @@
       margin-right: 10px;
     }
   }
+  button:focus {
+    outline: none;
+  }
 }

@@ -6,36 +6,37 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-
+// import { Link } from "react-router-dom";
+import VerticalTabs from "../../Components/lich-chieu";
 class DetailMovie extends Component {
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.setLoading();
     this.props.getdetailMovie(id);
   }
-  renderTable = () => {
-    if (this.props.movie.lichChieu) {
-      return this.props.movie.lichChieu.map((item, index) => {
-        return (
-          <tr key={index}>
-            <td>{item.thongTinRap.tenCumRap}</td>
-            <td>{item.thongTinRap.tenRap}</td>
-            <td>{new Date(item.ngayChieuGioChieu).toLocaleTimeString()}</td>
-            <td>{new Date(item.ngayChieuGioChieu).toLocaleDateString()}</td>
-            <td>
-              <Link
-                className="btn btn-success"
-                to={`/dat-ve/${item.maLichChieu}`}
-              >
-                Đặt vé
-              </Link>
-            </td>
-          </tr>
-        );
-      });
-    }
-  };
+  // renderTable = () => {
+  //   if (this.props.movie.lichChieu) {
+  //     return this.props.movie.lichChieu.map((item, index) => {
+  //       return (
+  //         <tr key={index}>
+  //           <td>{item.thongTinRap.tenCumRap}</td>
+  //           <td>{item.thongTinRap.tenRap}</td>
+  //           <td>{new Date(item.ngayChieuGioChieu).toLocaleTimeString()}</td>
+  //           <td>{new Date(item.ngayChieuGioChieu).toLocaleDateString()}</td>
+  //           <td>
+  //             <Link
+  //               className="btn btn-success"
+  //               to={`/dat-ve/${item.maLichChieu}`}
+  //             >
+  //               Đặt vé
+  //             </Link>
+  //           </td>
+  //         </tr>
+  //       );
+  //     });
+  //   }
+  // };
+
   render() {
     let { movie, loading } = this.props;
     if (loading) {
@@ -84,13 +85,15 @@ class DetailMovie extends Component {
                 <strong>Description: {movie.moTa}</strong>
               </p>
               <p className="title-description">
-                <button className="book-btn">đặt vé</button>
+                <a href="#section2" className="book-btn">
+                  đặt vé
+                </a>
               </p>
             </div>
           </div>
         </div>
-        <div className="row">
-          <table className="table">
+        <div className="row tabs" id="section2">
+          {/*<table className="table">
             <thead>
               <tr>
                 <th>Tên Cụcm Rạp</th>
@@ -100,7 +103,8 @@ class DetailMovie extends Component {
               </tr>
             </thead>
             <tbody>{this.renderTable()}</tbody>
-          </table>
+    </table>*/}
+          <VerticalTabs movie={movie} />
         </div>
       </div>
     );

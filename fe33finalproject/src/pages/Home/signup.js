@@ -5,7 +5,6 @@ import {
   faLock,
   faPhone,
   faEnvelope,
-  faIdCard,
   faGlobe
 } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";

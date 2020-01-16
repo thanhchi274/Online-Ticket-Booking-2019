@@ -62,6 +62,9 @@ class Login extends Component {
       case "matKhau":
         mkValid = message ? false : true;
         break;
+      default:
+        message = "Invalid";
+        break;
     }
 
     this.setState({
@@ -89,6 +92,9 @@ class Login extends Component {
         break;
       case "matKhau":
         mkValid = message ? false : true;
+        break;
+      default:
+        message = "Invalid";
         break;
     }
     this.setState(
