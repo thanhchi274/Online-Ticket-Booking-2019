@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import "../../sb-admin-2.min.css"
 
 export default class Dashboard extends Component {
     render() {
