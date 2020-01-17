@@ -4,7 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Pagenotfound from "./pages/page-not-found.js";
 import HomeTemplate from "./Template/HomeTemplate";
 import AdminTemplate from "./Template/AdminTemplate";
-import Admin from "./pages/Home/Admin/admin.js";
+import Admin from "./pages/Admin/admin.js";
 import { routeHome, routeAdmin } from "./routes";
 const showMenuHome = routes => {
   if (routes && routes.length > 0) {
