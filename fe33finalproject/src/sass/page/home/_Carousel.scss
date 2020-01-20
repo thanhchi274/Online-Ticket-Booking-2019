@@ -62,38 +62,6 @@
 
         .movie-carousel {
             position: relative;
-
-            .carousel-image {
-                .carousel-trailer {
-                    z-index: 1;
-                    position: absolute;
-                    top: 0%;
-                    height: 400px;
-                    width: 250px;
-                    opacity: 0;
-                    background-color: rgba(0, 0, 0, 0.5);
-                    button{
-                        position: absolute;
-                        top:35%;
-                        left:30%;
-                        background-color: transparent;
-                        outline:none;
-                        border:none;
-                       
-                    }
-                }
-
-                img {
-                    z-index: -1;
-                }
-
-                &:hover {
-                    .carousel-trailer {
-                        opacity: 1;
-                    }
-                }
-            }
-
             .carousel-detail {
                 background-color: #fff;
                 box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
@@ -102,26 +70,41 @@
                 position: relative;
                 font-size: 16px;
                 font-weight: 600;
-                height: 90px;
+                height: 120px;
                 margin-bottom: 20px !important;
-
-                p {
-                    padding:5px 10px;
+                a{
+                    cursor: pointer;
+                    padding:10px 15px;
                     color:#000;
                     margin-bottom: 0;
-                    &:first-child {
+                    line-height: normal;
+                    position: absolute;
+                    top: 0%;
+                    font-size: 18px;
+                    font-size: 700;
+                    text-decoration: none;
+                }
+                p {
+                    padding:10px 15px;
+                    color:#000;
+                    margin-bottom: 0;
+                    &:nth-child(2){
                         position: absolute;
-                        top: 0%;
-                        font-size: 18px;
-                    }
-
-                    &:nth-child(2) {
-                        position: absolute;
-                        padding-top:5px;
-                        bottom: 0%;
+                        top:40%;
+                        font-size: 14px;
                     }
                 }
-
+               
+                
+                .MuiBox-root {
+                    position: absolute;
+                    padding-top:5px;
+                    bottom: -15%;
+                    left:5%;
+                    .MuiRating-root{
+                        font-size: 1.1rem;
+                    }
+                }
             }
 
             .carousel-text {

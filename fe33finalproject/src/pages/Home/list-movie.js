@@ -14,7 +14,7 @@ class Listmovie extends Component {
     }
     render() {
         return (
-            <div className="container-fluid list-movie">
+            <div className="container-fluid list-movie" >
             <div className="row container mx-auto" >
             {this.renderHTML()}
             </div>

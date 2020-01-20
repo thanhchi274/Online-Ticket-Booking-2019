@@ -10,7 +10,6 @@ import { Link } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
-
   return (
     <Typography
       component="div"
@@ -71,6 +70,9 @@ export default function VerticalTabs(props) {
                 {new Date(item.ngayChieuGioChieu).toLocaleDateString()}
               </Link>
             </TabPanel>
+            <TabPanel value={value} index={1}>
+              Item Two
+            </TabPanel>
           </div>
         );
       });
@@ -88,6 +90,7 @@ export default function VerticalTabs(props) {
         className={classes.tabs}
       >
         <Tab label="BHD" {...a11yProps(0)} />;
+        <Tab label="CineStar" {...a11yProps(1)} />;
       </Tabs>
       {renderHTML()}
     </div>

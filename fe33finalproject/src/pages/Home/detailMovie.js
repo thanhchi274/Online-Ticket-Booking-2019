@@ -6,9 +6,21 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import ModalVideo from 'react-modal-video'
 // import { Link } from "react-router-dom";
 import VerticalTabs from "../../Components/lich-chieu";
 class DetailMovie extends Component {
+  constructor () {
+    super()
+    this.state = {
+      isOpen: false
+    }
+    this.openModal = this.openModal.bind(this)
+  }
+ 
+  openModal () {
+    this.setState({isOpen: true})
+  }
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.setLoading();
@@ -39,15 +51,17 @@ class DetailMovie extends Component {
 
   render() {
     let { movie, loading } = this.props;
-    if (loading) {
-      return (
-        <div className="loading-spinner">
-          <SVGLoading />
-        </div>
-      );
-    }
+        if (loading) {
+          return (
+            <div className="loading-spinner">
+              <SVGLoading />
+            </div>
+          );
+        }
     return (
       <div className="container detail-movie">
+      <iframe isOpen={this.state.isOpen} onClose={() => this.setState({isOpen: false})} src={movie.trailer}></iframe>
+      <ModalVideo channel='youtube' isOpen={this.state.isOpen} videoId={movie.trailer}  onClose={() => this.setState({isOpen: false})} />
         <div className="detail-movie-intro">
           <LazyLoadImage
             className="detail-movie-intro-image"
@@ -85,9 +99,12 @@ class DetailMovie extends Component {
                 <strong>Description: {movie.moTa}</strong>
               </p>
               <p className="title-description">
-                <a href="#section2" className="book-btn">
+                <a href="#section2" className="book-btn mr-4">
                   đặt vé
                 </a>
+              <a href="#section2"  onClick={this.openModal} className="book-btn btn-Trailer">
+                  Watch Trailer
+              </a>  
               </p>
             </div>
           </div>
@@ -122,13 +139,6 @@ const mapDispatchToProps = dispatch => {
     setLoading: () => {
       dispatch(Action.actLoading());
     }
-    // getListMovie: (listMovie)=>{
-    //     let action ={
-    //         type: "GET_LIST_MOVIE",
-    //         listMovie,
-    //     }
-    //     dispatch(action)
-    // }
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(DetailMovie);

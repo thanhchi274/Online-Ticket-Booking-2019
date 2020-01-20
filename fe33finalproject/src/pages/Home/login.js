@@ -4,6 +4,7 @@ import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import * as action from "../../redux/action";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
+import SVGAdminLogin from "../../Components/userLoginImage"
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -123,7 +124,8 @@ class Login extends Component {
   };
   renderHTML = () => {
     return (
-      <div className="container login-container">
+      <div className="container login-container d-flex">
+      <SVGAdminLogin />
         <form onSubmit={this.handleSubmit}>
           <h3>sign in</h3>
           <div
@@ -174,14 +176,15 @@ class Login extends Component {
           ) : (
             ""
           )}
-          <button className="btn signin-btn" disabled={!this.state.formvalid}>
+          <button className="btn signin-btn mb-3" disabled={!this.state.formvalid}>
             SIGN IN
           </button>
-        </form>
-        <h5 style={{ color: "white", textTransform: "uppercase" }}>or</h5>
+          <h5 style={{ color: "black", textTransform: "uppercase", fontSize:"16px", fontWeight:"700" }}>or</h5>
         <Link className="btn signup-btn" to="/sign-up">
           SIGN UP
         </Link>
+        </form>
+
       </div>
     );
   };
