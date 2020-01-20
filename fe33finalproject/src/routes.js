@@ -1,8 +1,6 @@
 import Home from "./pages/Home/home.js";
-import About from "./pages/Home/about.js";
 import ListMovie from "./pages/Home/list-movie.js";
 import DetailMovie from "./pages/Home/detailMovie.js";
-import TheaterMovie from "./pages/Home/theater.js";
 import Dashboard from "./pages/Admin/dashboard.js";
 import Login from "./pages/Home/login";
 import Signup from "./pages/Home/signup.js";
@@ -15,11 +13,6 @@ const routeHome = [
     component: Home
   },
   {
-    path: "/about",
-    exact: false,
-    component: About
-  },
-  {
     path: "/list-movie",
     exact: false,
     component: ListMovie
@@ -28,11 +21,6 @@ const routeHome = [
     path: "/detail-movie/:id",
     exact: false,
     component: DetailMovie
-  },
-  {
-    path: "/theater-movie",
-    exact: false,
-    component: TheaterMovie
   },
   {
     path: "/login",

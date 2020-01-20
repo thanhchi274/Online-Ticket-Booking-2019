@@ -14,7 +14,6 @@ export default class Navbar extends Component {
   }
   handleScroll = () => {
     const { prevScrollpos } = this.state;
-
     const currentScrollPos = window.pageYOffset;
     const visible = prevScrollpos <= currentScrollPos;
 
@@ -88,7 +87,7 @@ export default class Navbar extends Component {
   render() {
     return (
       <>
-        <nav className="navbar-expand-md navbar-dark">
+        <nav className="navbar-expand-md">
           <div className={!this.state.visible? " header navbar": 
           "header navbar--hidden row"
         }>

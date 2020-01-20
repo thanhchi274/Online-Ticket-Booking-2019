@@ -12,10 +12,12 @@ let initialState = {
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_LIST_MOVIE: {
+      console.log(action);
       state.listMovie = action.listMovie;
       return { ...state, loading: false };
     }
     case ActionType.GET_DETAIL_MOVIE: {
+      console.log(action);
       state.movie = action.movie;
       return { ...state, loading: false };
     }

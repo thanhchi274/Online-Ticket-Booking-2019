@@ -5,18 +5,12 @@ import Carousel from "./../../Components/carousel";
 import HomeTool from "../../Components/home-tool";
 import MovieAvailable from "../../Components/MovieAvailable";
 import UpComingMovie from "../../Components/UpcomingMovie";
+import News from "../../Components/news"
 
 class Home extends Component {
   componentDidMount() {
     this.props.getListMovie();
   }
-  
-  renderHTML = () => {
-    let { listMovie } = this.props;
-    return listMovie.map((movie, index) => {
-      return <HomeTool key={index} movie={movie} />;
-    });
-  };
   render() {
     return (
       <div>
@@ -58,51 +52,9 @@ class Home extends Component {
               <UpComingMovie />
             </>
           </div>
+            <News/>
         </div>
-        <div>
-          <nav className="second-navs">
-            <div
-              className="nav nav-tabs mt-5 d-flex mb-2 pt-2"
-              id="nav-tab"
-              role="tablist"
-            >
-              <a
-                className="nav-item nav-link active"
-                id="nav-home-tab"
-                data-toggle="tab"
-                href="#nav-home"
-                role="tab"
-                aria-controls="nav-dang-chieu"
-                aria-selected="true"
-              >
-                Điện ảnh 24h
-              </a>
-              <a
-                className="nav-item nav-link"
-                id="nav-profile-tab"
-                data-toggle="tab"
-                href="#nav-profile"
-                role="tab"
-                aria-controls="nav-sap-chieu"
-                aria-selected="false"
-              >
-                Review
-              </a>
-              <a
-                className="nav-item nav-link"
-                id="nav-profile-tab"
-                data-toggle="tab"
-                href="#nav-profile"
-                role="tab"
-                aria-controls="nav-sap-chieu"
-                aria-selected="false"
-              >
-                Khuyến Mãi
-              </a>
-            </div>
-          </nav>
-        </div>
-        {this.renderHTML()}
+        <HomeTool listMovie ={this.listMovie}/>;
       </div>
     );
   }
