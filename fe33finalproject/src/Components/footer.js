@@ -2,27 +2,53 @@ import React from 'react'
 
 export default function footer() {
     return (
-       <div classname="footer">
-  <div classname="footer-content">
-  <div className="row">
-    <div classname="col-sm-4 col-xs-12">
-      <p classname="footer-title">
-        MOVIE THEATER
-      </p>
-      <div classname="col-sm-6 col-xs-6 noPaddingLeft">
-        <a ui-sref="main.faq" href="https://tix.vn/faq">FAQ</a>
+      <div className="footer">
+  <div className="container">
+    <div className="footer_trust_top">
+      <p>AS FEATURED IN</p>
+      <div className="trustlogos" />
+    </div>
+    <div className="col-lg-12 col-md-12 col-xs-12 footer_main row ">
+      <div className="col-xs-5 col-md-3 footer-left">
+        <h4>Find Out More</h4>
+        <ul className="footer_list">
+          <li><a href>About Us</a></li>
+          <li><a href>Reviews</a></li>
+          <li><a href>FAQ's</a></li>
+          <li><a href>Policies</a></li>
+          <li><a href>Contact Us</a></li>
+        </ul>
       </div>
-      <a ui-sref="guildline.guidev2" href="https://tix.vn/brand-guideline/">Brand Guidelines</a>
+      <div className="col-xs-12 col-md-6 col-md-pull-3 footer_middle">
+        <h4>Be the first to know about <strong>Movie Theater</strong></h4>
+        <p>Subscribe to get exclusive offers on the world’s greatest movie news.</p>
+        <form className="hero-cta__form">
+          <div className="elcontainer">
+            <div className="inner-wrap submit-container">
+              <div className="hero-cta__input-wrap"> <input type="email" name="data[email]" required id="hero-cta-email" placeholder="Enter Your Email Address" /></div> <button type="submit" className="emailsignup">Sign Up</button></div>
+          </div>
+        </form>
+      </div>
+      <div className="col-xs-7 col-md-3 col-md-push-6 footer-right">
+        <div className="footerbox">
+          <h4>Contact Us</h4>
+          <p>We're ready to help!</p>
+          <ul className="footer_list">
+            <li>VND | VIETNAM</li>
+            <li className="phone">+84 123 123 123</li>
+            <li>SIN | SINGAPORE</li>
+            <li className="phone">+65 8315 3444</li>
+          </ul>
+        </div>
+      </div>
+     </div>
+    <div className="footer_bottom"><div className="col-lg-3 col-md-12 footer_copyright">
+        <p>©2020 All rights reserved.</p>
+      </div>
+      <div className="col-md-9 col-xs-12 footer__partners"><img src="https://www.authenticireland.com/wp-content/uploads/2018/04/Bottom_Trust2.png" /></div>
     </div>
-    <div className="col-sm-6 col-xs-12 noPaddingLeft fontSizeP ng-scope">
-      <a ui-sref="main.term" href="https://tix.vn/thoa-thuan-su-dung">Thỏa thuận sử dụng</a>
-      <a ui-sref="main.regular" href="https://tix.vn/quy-che-hoat-dong">Quy chế hoạt động</a>
-      <a ui-sref="main.policy" href="https://tix.vn/chinh-sach-bao-mat">Chính sách bảo mật</a>
-      <a ui-sref="main.guidev2" href="https://tix.vn/quyen-loi-thanh-vien/">Quyền lợi thành viên</a>
-    </div>
-    </div>
-    </div>  
-    </div>
+  </div>
+  </div>
   )
 
 }
