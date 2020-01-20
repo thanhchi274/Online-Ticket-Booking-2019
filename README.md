@@ -8,12 +8,6 @@ Filter phim gần đây
 https://date-fns.org/
 
 # FinalProject-FE_33BT
-#Mấy trang mẫu siêu xịn để lấy ý tưởng 
-https://w3layouts.com/movies-pro-entertainment-flat-bootstrap-responsive-web-template/
-https://w3layouts.com/one-movies-entertainment-category-bootstrap-responsive-web-template/
-https://w3layouts.com/movie-store-a-entertainment-category-flat-bootstrap-responsive-web-template/
-https://tympanus.net/codrops/2019/12/09/showcase-of-creative-websites/
-
 //Mục Tính tiền (Checkout)
 https://w3layouts.com/fascinating-checkout-form-flat-responsive-widget-template/
 
