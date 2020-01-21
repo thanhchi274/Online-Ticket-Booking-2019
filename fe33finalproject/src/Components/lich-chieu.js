@@ -6,6 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import ScrollableTabsButtonAuto from "./dateShow";
 import { Link } from "react-router-dom";
 
 function TabPanel(props) {
@@ -56,28 +57,28 @@ export default function VerticalTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const renderHTML = () => {
-    console.log(props.movie);
-    if (props.movie.lichChieu) {
-      return props.movie.lichChieu.map((item, index) => {
-        return (
-          <div key={index}>
-            <TabPanel value={value} index={0}>
-              <Link
-                className="btn btn-success"
-                to={`/dat-ve/${item.maLichChieu}`}
-              >
-                {new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-              </Link>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              Item Two
-            </TabPanel>
-          </div>
-        );
-      });
-    }
-  };
+  // const renderHTML = () => {
+  //   console.log(props.movie);
+  //   if (props.movie.lichChieu) {
+  //     return props.movie.lichChieu.map((item, index) => {
+  //       return (
+  //         <div key={index}>
+  //           <TabPanel value={value} index={0}>
+  //             <Link
+  //               className="btn btn-success"
+  //               to={`/dat-ve/${item.maLichChieu}`}
+  //             >
+  //               {new Date(item.ngayChieuGioChieu).toLocaleDateString()}
+  //             </Link>
+  //           </TabPanel>
+  //           <TabPanel value={value} index={1}>
+  //             Item Two
+  //           </TabPanel>
+  //         </div>
+  //       );
+  //     });
+  //   }
+  // };
 
   return (
     <div className={classes.root}>
@@ -92,7 +93,9 @@ export default function VerticalTabs(props) {
         <Tab label="BHD" {...a11yProps(0)} />;
         <Tab label="CineStar" {...a11yProps(1)} />;
       </Tabs>
-      {renderHTML()}
+      <TabPanel value={value} index={0}>
+        <ScrollableTabsButtonAuto movie={props.movie} />
+      </TabPanel>
     </div>
   );
 }
