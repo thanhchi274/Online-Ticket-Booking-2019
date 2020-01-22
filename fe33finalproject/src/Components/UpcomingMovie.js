@@ -3,13 +3,14 @@ import Slider from "react-slick";
 import MovieCarousel from "../Components/movie-carousel";
 import { connect } from 'react-redux';
 import * as  Action from "../redux/action/index"
-class MovieAvailable extends Component {
+class UpcomingMovie extends Component {
     componentDidMount(){
-        this.props.getListMovie();
+        this.props.getListMovieUpcoming();
     }
+    
     renderHTML =()=>{
-       let {listMovie} =this.props; 
-         return listMovie.map((movie, index)=>{
+       let {listMovieUpcoming} =this.props; 
+         return listMovieUpcoming.map((movie, index)=>{
              return <MovieCarousel key={index} movie ={movie} />
           })
     }
@@ -36,13 +37,13 @@ class MovieAvailable extends Component {
 }
 
 const mapStateToProps =state=>({
-    listMovie : state.movieReducer.listMovie
+    listMovieUpcoming : state.movieReducer.listMovie
 })
 const mapDispatchToProps =(dispatch)=>{
 return {
-    getListMovie:()=>{
-        dispatch(Action.actGetListMovieAPI())
+    getListMovieUpcoming:()=>{
+        dispatch(Action.actGetListMovieUpcomingAPI())
     }
 }
 }
-export default connect (mapStateToProps, mapDispatchToProps)(MovieAvailable); 
+export default connect (mapStateToProps, mapDispatchToProps)(UpcomingMovie); 

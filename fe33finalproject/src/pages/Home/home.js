@@ -2,17 +2,18 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "../../redux/action/index";
 import Carousel from "./../../Components/carousel";
-import HomeTool from "../../Components/home-tool";
+// import HomeTool from "../../Components/home-tool";
 import MovieAvailable from "../../Components/MovieAvailable";
 import UpComingMovie from "../../Components/UpcomingMovie";
 import News from "../../Components/news"
-
+import Footer from "../../Components/footer"
 class Home extends Component {
   componentDidMount() {
     this.props.getListMovie();
   }
   render() {
     return (
+      <>
       <div>
         <Carousel />
         <div>
@@ -54,8 +55,10 @@ class Home extends Component {
           </div>
             <News/>
         </div>
-        <HomeTool listMovie ={this.listMovie}/>;
+        {/* <HomeTool listMovie ={this.listMovie}/>; */}
       </div>
+      <Footer />
+      </>
     );
   }
 }

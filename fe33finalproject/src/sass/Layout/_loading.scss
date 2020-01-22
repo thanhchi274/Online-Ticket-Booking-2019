@@ -5,10 +5,10 @@
 $offset: 187;
 $duration: 1.4s;
 .spinner {
-    position: relative;
+    position: fixed;
     height: 52.5vw;
     left:45%;
-    top:25%;
+    top:6%;
     animation: rotator $duration linear infinite;
   }
   

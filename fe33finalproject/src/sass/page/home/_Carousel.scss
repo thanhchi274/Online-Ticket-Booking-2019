@@ -62,7 +62,20 @@
 
         .movie-carousel {
             position: relative;
+            .carousel-image{
+                height:399px;
+                .carousel-image-home{
+                        border-bottom-right-radius: 0px!important;
+                        border-bottom-left-radius: 0px!important;
+                }
+            }
             .carousel-detail {
+                &:focus{
+                    outline:none;
+                }
+                border-top-left-radius: 0px!important;
+                border-top-right-radius: 0px!important;
+                border-top:none;
                 background-color: #fff;
                 box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
                 display: block;

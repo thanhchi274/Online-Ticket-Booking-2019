@@ -8,9 +8,27 @@ export const actGetListMovieAPI = () => {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01"
     })
       .then(result => {
-        // dispatch(actGetListMovie(result.data))
         dispatch({
           type: ActionTypes.GET_LIST_MOVIE,
+          listMovie: result.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+export const actGetListMovieUpcomingAPI = () => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP06"
+    })
+      .then(result => {
+        // dispatch(actGetListMovie(result.data))
+        dispatch({
+          type: ActionTypes.GET_LIST_MOVIE_UPCOMING,
           listMovie: result.data
         });
       })

@@ -12,11 +12,11 @@ export default function footer() {
       <div className="col-xs-5 col-md-3 footer-left">
         <h4>Find Out More</h4>
         <ul className="footer_list">
-          <li><a href>About Us</a></li>
-          <li><a href>Reviews</a></li>
-          <li><a href>FAQ's</a></li>
-          <li><a href>Policies</a></li>
-          <li><a href>Contact Us</a></li>
+          <li><a href="https://tix.vn/quyen-loi-thanh-vien/">About Us</a></li>
+          <li><a href="https://tix.vn/brand-guideline/">Brand Guidelines</a></li>
+          <li><a href="https://tix.vn/faq">FAQ's</a></li>
+          <li><a href="https://tix.vn/quy-che-hoat-dong">Policies</a></li>
+          <li><a href="https://tix.vn/thoa-thuan-su-dung">Contact Us</a></li>
         </ul>
       </div>
       <div className="col-xs-12 col-md-6 col-md-pull-3 footer_middle">
