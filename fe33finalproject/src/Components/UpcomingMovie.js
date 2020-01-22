@@ -10,7 +10,7 @@ class UpcomingMovie extends Component {
     
     renderHTML =()=>{
        let {listMovieUpcoming} =this.props; 
-         return listMovieUpcoming.map((movie, index)=>{
+         return listMovieUpcoming.slice(0,14).map((movie, index)=>{
              return <MovieCarousel key={index} movie ={movie} />
           })
     }
