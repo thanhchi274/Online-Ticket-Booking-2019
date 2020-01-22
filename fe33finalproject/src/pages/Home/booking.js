@@ -5,17 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 class Booking extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      malichChieu:"",
-      danhSachVe :[{
-        maGhe: "",
-        giaVe: ""
-      }],
-      taiKhoanNguoiDung: null
-    }
-  }
   handleClick = e => {
     e.target.classList.toggle("chose");
     console.log(e);
@@ -121,9 +110,6 @@ const mapDispatchToProps = dispatch => {
     setLoading: () => {
       dispatch(action.actLoading());
     },
-    postBooking:(bookingMovie)=>{
-      dispatch(action.actBookingMovie(bookingMovie));
-    }
   };
 };
 

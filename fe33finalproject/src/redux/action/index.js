@@ -8,9 +8,27 @@ export const actGetListMovieAPI = () => {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01"
     })
       .then(result => {
-        // dispatch(actGetListMovie(result.data))
         dispatch({
           type: ActionTypes.GET_LIST_MOVIE,
+          listMovie: result.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+export const actGetListMovieUpcomingAPI = () => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP06"
+    })
+      .then(result => {
+        // dispatch(actGetListMovie(result.data))
+        dispatch({
+          type: ActionTypes.GET_LIST_MOVIE_UPCOMING,
           listMovie: result.data
         });
       })
@@ -136,24 +154,24 @@ export const actGetRoomList = id => {
       });
   };
 };
-export const actBookingMovie = bookingMovie => {
-  return dispatch => {
-    Axios({
-      method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
-      data: bookingMovie
-    })
-      .then(result => {
-        dispatch({
-          type: ActionTypes.BOOKING_MOVIE,
-          bookingMovie: result.data
-        });
-      })
-      .catch(err => {
-        return err;
-      });
-  };
-};
+// export const actBookingMovie = bookingMovie => {
+//   return dispatch => {
+//     Axios({
+//       method: "POST",
+//       url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+//       data: bookingMovie
+//     })
+//       .then(result => {
+//         dispatch({
+//           type: ActionTypes.BOOKING_MOVIE,
+//           bookingMovie: result.data
+//         });
+//       })
+//       .catch(err => {
+//         return err;
+//       });
+//   };
+// };
 // export const actGetListMovie =listMovie=>{
 // return {
 //     type: ActionTypes.GET_LIST_MOVIE,

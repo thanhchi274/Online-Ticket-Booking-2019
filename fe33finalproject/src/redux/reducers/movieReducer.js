@@ -2,6 +2,7 @@ import * as ActionType from "./../constants/ActionType";
 import data from "../../data.json";
 let initialState = {
   listMovie: [],
+  listMovieUpcoming:[],
   movie: {},
   loading: false,
   listMovieCarousel: [],
@@ -21,6 +22,11 @@ const movieReducer = (state = initialState, action) => {
       state.movie = action.movie;
       return { ...state, loading: false };
     }
+    case ActionType.GET_LIST_MOVIE_UPCOMING:{
+      console.log(action);
+      state.listMovieUpcoming = action.listMovieUpcoming;
+      return {...state};
+    }
     case ActionType.LOADING: {
       return { ...state, loading: true };
     }
@@ -34,10 +40,6 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.GET_ROOM_LIST:
       state.room = action.room;
       return { ...state, loading: false };
-    case ActionType.BOOKING_MOVIE:
-      console.log(action);
-      state.booking = action.booking;
-      return { ...state };
     default:
       return { ...state };
   }

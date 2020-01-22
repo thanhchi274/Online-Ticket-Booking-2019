@@ -8,13 +8,13 @@ class HomeTool extends Component {
           <option>Phim</option>
         </select>
         <select className="form-control selectChoice">
-          <option>Rap</option>
+          <option>Rạp</option>
         </select>
         <select className="form-control selectChoice">
-          <option>Ngay Xem</option>
+          <option>Ngày Xem</option>
         </select>
         <select className="form-control selectChoice">
-          <option>Suat Chieu</option>
+          <option>Suất Chiếu</option>
         </select>
         <button className="btn-datve btn btn-primary">Mua vé ngay</button>
       </div>

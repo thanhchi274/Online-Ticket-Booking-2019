@@ -9,6 +9,12 @@ class MovieAvailable extends Component {
         
     }
     renderHTML =()=>{
+        let {listMovie} =this.props; 
+          return listMovie.map((movie, index)=>{
+              return <MovieCarousel key={index} movie ={movie} />
+           })
+     }
+    renderHTML =()=>{
        let {listMovie} =this.props; 
          return listMovie.map((movie, index)=>{
              return <MovieCarousel key={index} movie ={movie} />

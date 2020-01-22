@@ -6,7 +6,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import { Link } from "react-router-dom";
+import ScrollableTabsButtonAutoBHD from "./dateShowBHD";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -56,31 +56,31 @@ export default function VerticalTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const renderHTML = () => {
-    console.log(props.movie);
-    if (props.movie.lichChieu) {
-      return props.movie.lichChieu.map((item, index) => {
-        return (
-          <div key={index}>
-            <TabPanel value={value} index={0}>
-              <Link
-                className="btn btn-success"
-                to={`/dat-ve/${item.maLichChieu}`}
-              >
-                {new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-              </Link>
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-              Item Two
-            </TabPanel>
-          </div>
-        );
-      });
-    }
-  };
+  // const renderHTML = () => {
+  //   console.log(props.movie);
+  //   if (props.movie.lichChieu) {
+  //     return props.movie.lichChieu.map((item, index) => {
+  //       return (
+  //         <div key={index}>
+  //           <TabPanel value={value} index={0}>
+  //             <Link
+  //               className="btn btn-success"
+  //               to={`/dat-ve/${item.maLichChieu}`}
+  //             >
+  //               {new Date(item.ngayChieuGioChieu).toLocaleDateString()}
+  //             </Link>
+  //           </TabPanel>
+  //           <TabPanel value={value} index={1}>
+  //             Item Two
+  //           </TabPanel>
+  //         </div>
+  //       );
+  //     });
+  //   }
+  // };
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} style={{ width: "93%" }}>
       <Tabs
         orientation="vertical"
         variant="scrollable"
@@ -89,10 +89,33 @@ export default function VerticalTabs(props) {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        <Tab label="BHD" {...a11yProps(0)} />;
-        <Tab label="CineStar" {...a11yProps(1)} />;
+        <Tab
+          label={
+            <img
+              src="https://s3img.vcdn.vn/123phim/2018/09/f32670fd0eb083c9c4c804f0f3a252ed.png"
+              className="theater-icon"
+            />
+          }
+          {...a11yProps(0)}
+        />
+        ;
+        <Tab
+          label={
+            <img
+              src="https://s3img.vcdn.vn/123phim/2018/09/1721cfa98768f300c03792e25ceb0191.png"
+              className="theater-icon"
+            />
+          }
+          {...a11yProps(1)}
+        />
+        ;
       </Tabs>
-      {renderHTML()}
+      <TabPanel value={value} index={0}>
+        {<ScrollableTabsButtonAutoBHD movie={props.movie} />}
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        {<ScrollableTabsButtonAutoBHD movie={props.movie} />}
+      </TabPanel>
     </div>
   );
 }
