@@ -7,7 +7,6 @@ let initialState = {
   loading: false,
   listMovieCarousel: [],
   room: {},
-  booking: {},
   news: data
 };
 const movieReducer = (state = initialState, action) => {
