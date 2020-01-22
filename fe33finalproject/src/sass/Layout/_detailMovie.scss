@@ -28,6 +28,13 @@
       font-size: 24px;
     }
   }
+  .theater-icon {
+    width: 40%;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
+  }
   .book-btn {
     color: white;
     padding: 10px 30px;
@@ -131,6 +138,9 @@
 }
 .Mui-selected {
   outline: none !important;
+  .theater-icon {
+    opacity: 1;
+  }
 }
 
 .detailSec2 {
@@ -141,4 +151,8 @@
 }
 .MuiBox-root {
   padding: 0 !important;
+}
+
+.MuiTab-wrapper {
+  align-items: stretch !important;
 }

@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function ScrollableTabsButtonAuto(props) {
+export default function ScrollableTabsButtonAutoBHD(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -57,22 +57,38 @@ export default function ScrollableTabsButtonAuto(props) {
   const renderHTML = () => {
     console.log(props.movie);
     if (props.movie.lichChieu) {
-      return props.movie.lichChieu.map((item, index) => {
-        return (
-          <div key={index}>
-            <TabPanel value={value} index={index}>
+      return props.movie.lichChieu.map(
+        (item, index) => {
+          return (
+            <Tab
+              key={index}
+              label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
+              {...a11yProps(index)}
+            />
+          );
+        },
+        [(props.movie.lichChieu.length = 54)]
+      );
+    }
+  };
+
+  const renderTime = () => {
+    if (props.movie.lichChieu) {
+      return props.movie.lichChieu.map(
+        (item, index) => {
+          return (
+            <TabPanel key={index} value={value} index={index}>
               <Link
                 className="btn btn-success"
                 to={`/dat-ve/${item.maLichChieu}`}
               >
-                {new Date(item.ngayChieuGioChieu).toLocaleDateString()
-                  ? new Date(item.ngayChieuGioChieu).toLocaleTimeString()
-                  : ""}
+                {new Date(item.ngayChieuGioChieu).toLocaleTimeString()}
               </Link>
             </TabPanel>
-          </div>
-        );
-      });
+          );
+        },
+        [(props.movie.lichChieu.length = 54)]
+      );
     }
   };
 
@@ -89,10 +105,10 @@ export default function ScrollableTabsButtonAuto(props) {
           aria-label="scrollable auto tabs example"
           style={{ width: "950px" }}
         >
-          <Tab label="1/1/2019" {...a11yProps(0)} />
+          {renderHTML()}
         </Tabs>
       </AppBar>
-      {renderHTML()}
+      {renderTime()}
     </div>
   );
 }

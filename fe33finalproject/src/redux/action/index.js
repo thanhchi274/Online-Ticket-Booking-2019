@@ -154,24 +154,6 @@ export const actGetRoomList = id => {
       });
   };
 };
-export const actBookingMovie = bookingMovie => {
-  return dispatch => {
-    Axios({
-      method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
-      data: bookingMovie
-    })
-      .then(result => {
-        dispatch({
-          type: ActionTypes.BOOKING_MOVIE,
-          bookingMovie: result.data
-        });
-      })
-      .catch(err => {
-        return err;
-      });
-  };
-};
 // export const actGetListMovie =listMovie=>{
 // return {
 //     type: ActionTypes.GET_LIST_MOVIE,
