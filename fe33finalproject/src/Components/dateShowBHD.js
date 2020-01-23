@@ -55,17 +55,18 @@ export default function ScrollableTabsButtonAutoBHD(props) {
   };
 
   const renderHTML = () => {
-    console.log(props.movie);
     if (props.movie.lichChieu) {
       return props.movie.lichChieu.map(
         (item, index) => {
-          return (
-            <Tab
-              key={index}
-              label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-              {...a11yProps(index)}
-            />
-          );
+          if ((index + 6) % 6 === 0) {
+            return (
+              <Tab
+                key={index}
+                label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
+                {...a11yProps(index)}
+              />
+            );
+          }
         },
         [(props.movie.lichChieu.length = 54)]
       );
@@ -77,13 +78,22 @@ export default function ScrollableTabsButtonAutoBHD(props) {
       return props.movie.lichChieu.map(
         (item, index) => {
           return (
-            <TabPanel key={index} value={value} index={index}>
-              <Link
-                className="btn btn-success"
-                to={`/dat-ve/${item.maLichChieu}`}
-              >
-                {new Date(item.ngayChieuGioChieu).toLocaleTimeString()}
-              </Link>
+            <TabPanel className="m-3" key={index} value={value} index={index}>
+              <h5>{item.thongTinRap.tenCumRap}</h5>
+              <div className="row" style={{ color: "grey" }}>
+                <div className="text-center">
+                  <h1>2D</h1>
+                  <p>DIGITAL</p>
+                </div>
+
+                <Link
+                  className="btn btn-success ml-3"
+                  style={{ backgroundColor: "rgb(170, 170, 52)" }}
+                  to={`/dat-ve/${item.maLichChieu}`}
+                >
+                  {new Date(item.ngayChieuGioChieu).toLocaleTimeString()}
+                </Link>
+              </div>
             </TabPanel>
           );
         },

@@ -9,7 +9,6 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import ModalVideo from "react-modal-video";
 import FullWidthTabs from "../../Components/detailTab";
 // import { Link } from "react-router-dom";
-import VerticalTabs from "../../Components/lich-chieu";
 class DetailMovie extends Component {
   constructor() {
     super();
@@ -70,7 +69,7 @@ class DetailMovie extends Component {
               width={300}
               className="trailer"
             />
-            <a href={movie.trailer}>
+            <a onClick={this.openModal}>
               <div className="bg-trailer">
                 <div className="play-btn">
                   <FontAwesomeIcon icon={faPlay} />
@@ -92,13 +91,6 @@ class DetailMovie extends Component {
               <p className="title-description mt-5">
                 <a href="#section2" className="book-btn mr-4">
                   đặt vé
-                </a>
-                <a
-                  href="#abc"
-                  onClick={this.openModal}
-                  className="book-btn btn-Trailer"
-                >
-                  Watch Trailer
                 </a>
               </p>
             </div>
