@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import ModalVideo from "react-modal-video";
 import FullWidthTabs from "../../Components/detailTab";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 // import { Link } from "react-router-dom";
 class DetailMovie extends Component {
   constructor() {
@@ -89,9 +90,9 @@ class DetailMovie extends Component {
                 </strong>
               </p>
               <p className="title-description mt-5">
-                <a href="#section2" className="book-btn mr-4">
+                <AnchorLink href="#section2" className="book-btn mr-4">
                   đặt vé
-                </a>
+                </AnchorLink>
               </p>
             </div>
           </div>

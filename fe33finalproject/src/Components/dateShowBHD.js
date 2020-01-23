@@ -63,7 +63,7 @@ export default function ScrollableTabsButtonAutoBHD(props) {
               <Tab
                 key={index}
                 label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-                {...a11yProps(index)}
+                {...a11yProps(item.maLichChieu)}
               />
             );
           }
@@ -87,7 +87,7 @@ export default function ScrollableTabsButtonAutoBHD(props) {
                 </div>
 
                 <Link
-                  className="btn btn-success ml-3"
+                  className="btn text-white ml-3"
                   style={{ backgroundColor: "rgb(170, 170, 52)" }}
                   to={`/dat-ve/${item.maLichChieu}`}
                 >
