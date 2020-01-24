@@ -41,8 +41,8 @@ class Booking extends Component {
     this.props.setLoading();
     this.props.getRoomList(id);
   }
-  handleBookTicket = e => {
-    console.log(e.target.name);
+  handleBookTicket = () => {
+    console.log("abc");
   };
   render() {
     let { room, loading } = this.props;
@@ -78,13 +78,7 @@ class Booking extends Component {
         <div className="book">
           <button
             className="book btn btn-success"
-            onClick={() =>
-              localStorage.getItem("UserHome") ? (
-                this.handleBookTicket
-              ) : (
-                <Redirect to="/login" />
-              )
-            }
+            onClick={this.handleBookTicket}
           >
             Đặt vé
           </button>
