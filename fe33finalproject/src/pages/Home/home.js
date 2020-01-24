@@ -1,16 +1,31 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import SVGLoading from "../../Components/loading";
 import * as Action from "../../redux/action/index";
 import Carousel from "./../../Components/carousel";
-// import HomeTool from "../../Components/home-tool";
+import HomeTool from "../../Components/home-tool";
 import MovieAvailable from "../../Components/MovieAvailable";
 import UpComingMovie from "../../Components/UpcomingMovie";
 import Footer from "../../Components/footer"
 class Home extends Component {
   componentDidMount() {
+    this.props.setLoading();
     this.props.getListMovie();
   }
+  renderHTML = () => {
+    return this.props.listMovie.map((movie, index) => {
+      return <HomeTool key={index} listMovie={movie} />;
+    });
+  };
   render() {
+    let {loading} = this.props;
+    if(loading){
+      return(
+        <div className="loading-spinner">
+        <SVGLoading />
+      </div>
+      )
+    }
     return (
       <>
       <div>
@@ -53,7 +68,7 @@ class Home extends Component {
             </>
           </div>
         </div>
-        {/* <HomeTool listMovie ={this.listMovie}/>; */}
+       {this.renderHTML()};
       </div>
       <Footer />
       </>
@@ -61,12 +76,16 @@ class Home extends Component {
   }
 }
 const mapStateToProps = state => ({
-  listMovie: state.movieReducer.listMovie
+  listMovie: state.movieReducer.listMovie,
+  loading: state.movieReducer.loading
 });
 const mapDispatchToProps = dispatch => {
   return {
     getListMovie: () => {
       dispatch(Action.actGetListMovieAPI());
+    },
+    setLoading: () => {
+      dispatch(Action.actLoading());
     }
   };
 };

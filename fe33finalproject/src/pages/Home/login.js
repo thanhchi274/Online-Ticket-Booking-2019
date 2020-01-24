@@ -137,7 +137,7 @@ class Login extends Component {
               <FontAwesomeIcon icon={faUser} />
             </div>
             <div className="input-user">
-              <h5>username</h5>
+              <h5>UserName</h5>
               <input
                 type="text"
                 className="input"
@@ -160,7 +160,7 @@ class Login extends Component {
               <FontAwesomeIcon icon={faLock} />
             </div>
             <div>
-              <h5>password</h5>
+              <h5>Password</h5>
               <input
                 className="input"
                 type="password"

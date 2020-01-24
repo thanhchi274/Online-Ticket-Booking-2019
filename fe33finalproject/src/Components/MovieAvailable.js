@@ -25,7 +25,7 @@ class MovieAvailable extends Component {
             className: "center",
             centerMode: true,
             infinite: true,
-            centerPadding: "80px",
+            centerPadding: "40px",
             slidesToShow: 3,
             speed: 500,
             rows: 2,

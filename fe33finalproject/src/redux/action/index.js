@@ -7,10 +7,10 @@ export const actGetListMovieAPI = () => {
       url:
         "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01"
     })
-      .then(result => {
+      .then(async result => {
         dispatch({
-          type: ActionTypes.GET_LIST_MOVIE,
-          listMovie: result.data
+          type: await ActionTypes.GET_LIST_MOVIE,
+          listMovie: await result.data
         });
       })
       .catch(err => {
@@ -25,11 +25,11 @@ export const actGetListMovieUpcomingAPI = () => {
       url:
         "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP06"
     })
-      .then(result => {
+      .then(async result => {
         // dispatch(actGetListMovie(result.data))
         dispatch({
           type: ActionTypes.GET_LIST_MOVIE_UPCOMING,
-          listMovie: result.data
+          listMovie: await result.data
         });
       })
       .catch(err => {
@@ -37,17 +37,17 @@ export const actGetListMovieUpcomingAPI = () => {
       });
   };
 };
-export const actGetDetailMovieAPI = id => {
+export const actGetDetailMovieAPI = (id) => {
   return dispatch => {
     Axios({
       method: "GET",
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`
     })
-      .then(result => {
+      .then(async (result) => {
         // dispatch(actGetListMovie(result.data))
         dispatch({
-          type: ActionTypes.GET_DETAIL_MOVIE,
-          movie: result.data
+          type: await ActionTypes.GET_DETAIL_MOVIE,
+          movie: await result.data
         });
       })
       .catch(err => {

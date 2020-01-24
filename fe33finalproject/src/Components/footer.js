@@ -5,7 +5,6 @@ export default function footer() {
       <div className="footer">
   <div className="container">
     <div className="footer_trust_top">
-      <p>AS FEATURED IN</p>
       <div className="trustlogos" />
     </div>
     <div className="col-lg-12 col-md-12 col-xs-12 footer_main row ">

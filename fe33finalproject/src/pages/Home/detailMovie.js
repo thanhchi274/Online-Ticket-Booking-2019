@@ -14,22 +14,25 @@ class DetailMovie extends Component {
   constructor() {
     super();
     this.state = {
-      isOpen: false
+      isOpen: false,
+      videoid:""
     };
     this.openModal = this.openModal.bind(this);
   }
 
   openModal() {
-    this.setState({ isOpen: true });
+    this.setState({ 
+      isOpen: true,
+      videoid: this.props.movie.trailer.slice(30)
+    });
   }
   componentDidMount() {
     const id = this.props.match.params.id;
     this.props.setLoading();
     this.props.getdetailMovie(id);
   }
-
   render() {
-    let { movie, loading } = this.props;
+    let {loading ,movie} = this.props;
     if (loading) {
       return (
         <div className="loading-spinner">
@@ -39,21 +42,12 @@ class DetailMovie extends Component {
     }
     return (
       <div className="container detail-movie">
-        <iframe
-          isOpen={this.state.isOpen}
-          onClose={() => this.setState({ isOpen: false })}
-          src={movie.trailer}
-        ></iframe>
-        <ModalVideo
-          channel="youtube"
-          isOpen={this.state.isOpen}
-          videoId={movie.trailer}
-          onClose={() => this.setState({ isOpen: false })}
-        />
+        <ModalVideo channel="youtube" videoId={this.state.videoid}  onClose={() => this.setState({ isOpen: false })} isOpen={this.state.isOpen} />
         <div className="detail-movie-intro">
           <LazyLoadImage
             className="detail-movie-intro-image"
             src={movie.hinhAnh}
+            
             effect="blur"
             alt="Card"
             height={100}
@@ -70,7 +64,7 @@ class DetailMovie extends Component {
               width={300}
               className="trailer"
             />
-            <a href={movie.trailer}>
+            <a onClick={this.openModal}>
               <div className="bg-trailer">
                 <div className="play-btn">
                   <FontAwesomeIcon icon={faPlay} />
@@ -92,13 +86,6 @@ class DetailMovie extends Component {
               <p className="title-description mt-5">
                 <a href="#section2" className="book-btn mr-4">
                   đặt vé
-                </a>
-                <a
-                  href="#abc"
-                  onClick={this.openModal}
-                  className="book-btn btn-Trailer"
-                >
-                  Watch Trailer
                 </a>
               </p>
             </div>
