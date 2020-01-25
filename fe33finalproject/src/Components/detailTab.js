@@ -7,8 +7,7 @@ import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import VerticalTabs from "./lich-chieu";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faStar } from "@fortawesome/free-solid-svg-icons";
+
 import RatingStar from "./RatingMovie"
 
 function TabPanel(props) {

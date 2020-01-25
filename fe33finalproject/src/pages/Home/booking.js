@@ -54,35 +54,29 @@ class Booking extends Component {
       );
     }
     return (
-      <div className="container">
+      <div className="booking-movie">
         <div className="row">
-          <h3 className="mr-2">Tên cụm rạp: </h3>
-          <h3>{room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}</h3>
+          <h3 className="mr-2 tenCumRap">Tên cụm rạp: <span>{room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}</span> </h3>
         </div>
         <div className="row">
-          <h3 className="mr-2">Tên rạp:</h3>
-          <h3> {room.thongTinPhim ? room.thongTinPhim.tenRap : ""}</h3>
+          <h3 className="mr-2 tenRap">Tên rạp: <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""} </span></h3>
         </div>
         <div className="row">
-          <h3 className="mr-2">Tên phim:</h3>
-          <h3> {room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}</h3>
+          <h3 className="mr-2 tenPhim">Tên phim:<span>{room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}</span></h3>
         </div>
         <div className="row">
-          <h3 className="mr-2">Suất chiếu:</h3>
-          <h3> {room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}</h3>
+          <h3 className="mr-2 suatChieu">Suất chiếu:<span>{room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}</span></h3>
         </div>
         <div className="seat-choosing">
           <div className="monitor">Màn hình</div>
           <div className="row chairList">{this.renderHTML()}</div>
         </div>
-        <div className="book">
           <button
-            className="book btn btn-success"
+            className="btnBook btn btn-success"
             onClick={this.handleBookTicket}
           >
             Đặt vé
           </button>
-        </div>
       </div>
     );
   }

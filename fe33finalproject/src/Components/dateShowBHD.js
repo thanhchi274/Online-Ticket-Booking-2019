@@ -72,9 +72,10 @@ export default function ScrollableTabsButtonAutoBHD(props) {
       );
     }
   };
-
   const renderTime = () => {
     if (props.movie.lichChieu) {
+
+      console.log(props.movie.lichChieu);
       return props.movie.lichChieu.map(
         (item, index) => {
           return (
@@ -85,7 +86,6 @@ export default function ScrollableTabsButtonAutoBHD(props) {
                   <h1>2D</h1>
                   <p>DIGITAL</p>
                 </div>
-
                 <Link
                   className="btn text-white ml-3"
                   style={{ backgroundColor: "rgb(170, 170, 52)" }}

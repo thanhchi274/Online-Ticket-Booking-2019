@@ -1,45 +1,78 @@
-.seat-choosing {
-  margin-left: 120px;
-}
-.book {
-  margin-left: 240px;
-}
-.chose {
-  background-color: rgb(54, 167, 54) !important;
-  color: white !important;
-}
+.booking-movie {
+  background-color: #011840;
+  padding:60px;
+  padding-top:30px;
+  width: 1200px;
+  height:850px;
+  position: relative;
+  margin:0 auto;
+  .row{
+ margin-left:50px;
+  }
+  h3{
+    color:#fff!important;
+    font-weight: 300!important;
+    font-size:20px!important;
 
-.booked {
-  background-color: grey !important;
-  color: white !important;
-}
-
-.chairList {
-  margin-top: 20px;
-  margin-left: 18px !important;
-}
-
-.monitor {
-  width: 80%;
-  background-color: black;
-  color: white;
-  text-transform: uppercase;
-  text-align: center;
-}
-.active {
-  background-color: red;
-  color: white;
-}
-
-.chair {
-  background-color: black;
-  opacity: 0.5;
-  color: transparent;
-  line-height: 40px;
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid black;
-  cursor: pointer;
+    transform: translateX(0%);
+    span{
+      font-weight: 900!important;
+    }
+  }
+  .seat-choosing {
+    margin-left: 120px;
+  }
+  .btnBook {
+    position: absolute;
+    left:65%;
+    bottom:5%;
+    width: 210px;
+  }
+  .chose {
+    background-color: #33d6a8 !important;
+    color: white !important;
+    font-weight: 700!important;
+    font-size:14px;
+  }
+  
+  .booked {
+    background-color: grey !important;
+    color: white !important;
+  }
+  
+  .chairList {
+    margin-top: 20px;
+    margin-left: 18px !important;
+  }
+  
+  .monitor {
+    width: 87%;
+    background: linear-gradient(90deg, rgba(78,119,32,1) 0%, rgba(25,73,101,1) 43%, rgba(9,57,121,1) 57%, rgba(0,212,255,1) 100%);
+    color: white;
+    border-radius: 10px;
+    height: 50px;
+    padding-top:10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+  }
+  .active {
+    background-color: red;
+    color: white;
+  }
+  
+  .chair {
+    background-color: black;
+    opacity: 1;
+    color: transparent;
+    line-height: 40px;
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    font-weight: 300;
+    font-size:14px;
+    border-radius: 50%;
+    border: 1px solid black;
+    cursor: pointer;
+  }
 }
