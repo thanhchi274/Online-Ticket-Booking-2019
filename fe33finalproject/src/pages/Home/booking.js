@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
+import CountDown from "../../Components/CountDown"
 class Booking extends Component {
   handleClick = e => {
     e.target.classList.toggle("chose");
@@ -55,6 +56,7 @@ class Booking extends Component {
     }
     return (
       <div className="booking-movie">
+      <CountDown />
         <div className="row">
           <h3 className="mr-2 tenCumRap">Tên cụm rạp: <span>{room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}</span> </h3>
         </div>

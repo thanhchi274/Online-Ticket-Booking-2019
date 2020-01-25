@@ -6,6 +6,13 @@
   height:850px;
   position: relative;
   margin:0 auto;
+  .countdown{
+    position: absolute;
+    left:80%;
+    span{
+      color:#fff;
+    }
+  }
   .row{
  margin-left:50px;
   }
