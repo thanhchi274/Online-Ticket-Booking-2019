@@ -44,7 +44,7 @@ export default function footer() {
     <div className="footer_bottom"><div className="col-lg-3 col-md-12 footer_copyright">
         <p>©2020 All rights reserved.</p>
       </div>
-      <div className="col-md-9 col-xs-12 footer__partners"><img src="https://www.authenticireland.com/wp-content/uploads/2018/04/Bottom_Trust2.png" /></div>
+      <div className="col-md-9 col-xs-12 footer__partners"><img alt="footer-partners" src="https://www.authenticireland.com/wp-content/uploads/2018/04/Bottom_Trust2.png" /></div>
     </div>
   </div>
   </div>

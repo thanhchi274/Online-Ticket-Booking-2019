@@ -15,6 +15,7 @@ class HomeTool extends Component {
     })
   }
   render() {
+    let {movie, listMovie} = this.props
     return(
   <div className="wrapper d-flex home-tool">
     <select className="form-control selectChoice">

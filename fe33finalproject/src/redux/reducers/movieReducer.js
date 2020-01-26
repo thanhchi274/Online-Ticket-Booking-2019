@@ -22,7 +22,6 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: false };
     }
     case ActionType.GET_LIST_MOVIE_UPCOMING:{
-      console.log(action);
       state.listMovieUpcoming = action.listMovieUpcoming;
       return {...state};
     }
@@ -39,6 +38,8 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.GET_ROOM_LIST:
       state.room = action.room;
       return { ...state, loading: false };
+    case ActionType.CHECK_AUTHENTICATION:
+    return {...state}
     default:
       return { ...state };
   }

@@ -54,6 +54,10 @@ class Booking extends Component {
         </div>
       );
     }
+    if(localStorage.getItem("UserHome")===null){
+      alert("Bạn phải đăng nhập tài khoản trước khi đặt vé")
+      return <Redirect to='/login'/>
+    }
     return (
       <div className="booking-movie">
       <CountDown />
@@ -74,7 +78,7 @@ class Booking extends Component {
           <div className="row chairList">{this.renderHTML()}</div>
         </div>
           <button
-            className="btnBook btn btn-success"
+            className="btnBook"
             onClick={this.handleBookTicket}
           >
             Đặt vé

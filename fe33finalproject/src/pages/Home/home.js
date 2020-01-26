@@ -12,13 +12,8 @@ class Home extends Component {
     this.props.setLoading();
     this.props.getListMovie();
   }
-  renderHTML = () => {
-    return this.props.listMovie.map((movie, index) => {
-      return <HomeTool key={index} listMovie={movie} />;
-    });
-  };
   render() {
-    let {loading} = this.props;
+    let {loading, listMovie} = this.props;
     if(loading){
       return(
         <div className="loading-spinner">
@@ -68,7 +63,7 @@ class Home extends Component {
             </>
           </div>
         </div>
-       {this.renderHTML()};
+        <HomeTool listMovie={listMovie} />
       </div>
       <Footer />
       </>

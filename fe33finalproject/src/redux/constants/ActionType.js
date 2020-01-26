@@ -6,3 +6,4 @@ export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const SIGNUP = "SIGNUP";
 export const GET_ROOM_LIST = "GET_ROOM_LIST";
+export const CHECK_AUTHENTICATION ="CHECK_AUTHENTICATION"

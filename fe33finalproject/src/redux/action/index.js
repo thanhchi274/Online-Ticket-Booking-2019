@@ -60,6 +60,11 @@ export const actLoading = () => {
     type: ActionTypes.LOADING
   };
 };
+export const actCheckAuthentication =(history)=>{
+  if(localStorage.getItem("UserHome")===null){
+   return  history.push("/")
+  }
+}
 export const actLoginHome = (user, history) => {
   return dispatch => {
     Axios({

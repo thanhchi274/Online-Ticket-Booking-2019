@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class componentName extends Component {
-    render() {
-        let {MovieList}= this.props;
-        return (
+export default function DanhSachPhimHomeTool(props) {
+    let {MovieList}=props
+    return (
         <>
-         <option > {MovieList.tenPhim}</option>
+         <option value={MovieList.maPhim} > {MovieList.tenPhim}</option>
         </>
-        )
-    }
+    )
 }
