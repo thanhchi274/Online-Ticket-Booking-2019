@@ -64,7 +64,7 @@ class DetailMovie extends Component {
               width={300}
               className="trailer"
             />
-            <a onClick={this.openModal}>
+            <a href="123" onClick={this.openModal}>
               <div className="bg-trailer">
                 <div className="play-btn">
                   <FontAwesomeIcon icon={faPlay} />

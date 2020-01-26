@@ -82,9 +82,7 @@ export default function CenteredTabs(props) {
           </p>
           <p>Tên phim: {props.movie.tenPhim}</p>
           <p>Mô tả: {props.movie.moTa}</p>
-          <p>
           Đánh giá: <RatingStar danhGia ={props.movie.danhGia} />
-          </p>
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>

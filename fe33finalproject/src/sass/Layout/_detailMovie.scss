@@ -156,3 +156,13 @@
 .MuiTab-wrapper {
   align-items: stretch !important;
 }
+.MuiButtonBase-root{
+  &:focus{
+    outline:none!important
+  }
+  span{
+    &:focus{
+      outline:none!important
+    }
+  }
+}

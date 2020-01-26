@@ -191,12 +191,12 @@ export default class Dashboard extends Component {
                     Spending Alert: We've noticed unusually high spending for your account.
                   </div>
                 </a>
-                <a className="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                <a className="dropdown-item text-center small text-gray-500" href="a">Show All Alerts</a>
               </div>
             </li>
             {/* Nav Item - Messages */}
             <li className="nav-item dropdown no-arrow mx-1">
-              <a className="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a className="nav-link dropdown-toggle" href="a" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i className="fas fa-envelope fa-fw" />
                 {/* Counter - Messages */}
                 <span className="badge badge-danger badge-counter">7</span>
@@ -208,7 +208,7 @@ export default class Dashboard extends Component {
                 </h6>
                 <a className="dropdown-item d-flex align-items-center" href="#abc">
                   <div className="dropdown-list-image mr-3">
-                    <img className="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt />
+                    <img className="rounded-circle" src="https://source.unsplash.com/fn_BT9fwg_E/60x60" alt="img-test" />
                     <div className="status-indicator bg-success" />
                   </div>
                   <div className="font-weight-bold">
@@ -218,7 +218,7 @@ export default class Dashboard extends Component {
                 </a>
                 <a className="dropdown-item d-flex align-items-center" href="#abc">
                   <div className="dropdown-list-image mr-3">
-                    <img className="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt />
+                    <img className="rounded-circle" src="https://source.unsplash.com/AU4VPcFN4LE/60x60" alt="img-test1" />
                     <div className="status-indicator" />
                   </div>
                   <div>
@@ -228,7 +228,7 @@ export default class Dashboard extends Component {
                 </a>
                 <a className="dropdown-item d-flex align-items-center" href="#abc">
                   <div className="dropdown-list-image mr-3">
-                    <img className="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt />
+                    <img className="rounded-circle" src="https://source.unsplash.com/CS2uCrpNzJY/60x60" alt="img-test1" />
                     <div className="status-indicator bg-warning" />
                   </div>
                   <div>
@@ -238,7 +238,7 @@ export default class Dashboard extends Component {
                 </a>
                 <a className="dropdown-item d-flex align-items-center" href="#abc">
                   <div className="dropdown-list-image mr-3">
-                    <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt />
+                    <img className="rounded-circle" src="https://source.unsplash.com/Mv9hjnEUHR4/60x60" alt="img-test1" />
                     <div className="status-indicator bg-success" />
                   </div>
                   <div>
@@ -252,9 +252,9 @@ export default class Dashboard extends Component {
             <div className="topbar-divider d-none d-sm-block" />
             {/* Nav Item - User Information */}
             <li className="nav-item dropdown no-arrow">
-              <a className="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a className="nav-link dropdown-toggle" href="\a" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span className="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
-                <img className="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" />
+                <img className="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60" alt="img-test1" />
               </a>
               {/* Dropdown - User Information */}
               <div className="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -285,7 +285,7 @@ export default class Dashboard extends Component {
           {/* Page Heading */}
           <div className="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 className="h3 mb-0 text-gray-800">Dashboard</h1>
-            <a href="#" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i className="fas fa-download fa-sm text-white-50" /> Generate Report</a>
+            <a href="a" className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i className="fas fa-download fa-sm text-white-50" /> Generate Report</a>
           </div>
           {/* Content Row */}
           <div className="row">
@@ -372,15 +372,15 @@ export default class Dashboard extends Component {
                 <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 className="m-0 font-weight-bold text-primary">Earnings Overview</h6>
                   <div className="dropdown no-arrow">
-                    <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a className="dropdown-toggle" href="a" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" />
                     </a>
                     <div className="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div className="dropdown-header">Dropdown Header:</div>
-                      <a className="dropdown-item" href="#">Action</a>
-                      <a className="dropdown-item" href="#">Another action</a>
+                      <a className="dropdown-item" href="a">Action</a>
+                      <a className="dropdown-item" href="a">Another action</a>
                       <div className="dropdown-divider" />
-                      <a className="dropdown-item" href="#">Something else here</a>
+                      <a className="dropdown-item" href="a">Something else here</a>
                     </div>
                   </div>
                 </div>
@@ -399,15 +399,15 @@ export default class Dashboard extends Component {
                 <div className="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                   <h6 className="m-0 font-weight-bold text-primary">Revenue Sources</h6>
                   <div className="dropdown no-arrow">
-                    <a className="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <a className="dropdown-toggle" href="a" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       <i className="fas fa-ellipsis-v fa-sm fa-fw text-gray-400" />
                     </a>
                     <div className="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
                       <div className="dropdown-header">Dropdown Header:</div>
-                      <a className="dropdown-item" href="#">Action</a>
-                      <a className="dropdown-item" href="#">Another action</a>
+                      <a className="dropdown-item" href="a">Action</a>
+                      <a className="dropdown-item" href="a">Another action</a>
                       <div className="dropdown-divider" />
-                      <a className="dropdown-item" href="#">Something else here</a>
+                      <a className="dropdown-item" href="a">Something else here</a>
                     </div>
                   </div>
                 </div>
@@ -523,10 +523,10 @@ export default class Dashboard extends Component {
                 </div>
                 <div className="card-body">
                   <div className="text-center">
-                    <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: '25rem'}} src="img/undraw_posting_photo.svg" alt />
+                    <img className="img-fluid px-3 px-sm-4 mt-3 mb-4" style={{width: '25rem'}} src="img/undraw_posting_photo.svg" alt="aaaa" />
                   </div>
-                  <p>Add some quality, svg illustrations to your project courtesy of <a target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
-                  <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw →</a>
+                  <p>Add some quality, svg illustrations to your project courtesy of <a target="a" rel="nofollow" href="https://undraw.co/">unDraw</a>, a constantly updated collection of beautiful svg images that you can use completely free and without attribution!</p>
+                  <a target="a" rel="nofollow" href="https://undraw.co/">Browse Illustrations on unDraw →</a>
                 </div>
               </div>
               {/* Approach */}
