@@ -32,58 +32,6 @@
     }
   }
 
-  .seat-choosing {
-    margin-left: 120px;
-  }
-
-  .btnBook {
-    position: absolute;
-    left: 65%;
-    bottom: 5%;
-    width: 210px;
-    height:50px;
-    -webkit-appearance: none;
-    background: -webkit-gradient(to right, $green 0%, $sand 50%, $peach 100%);
-    background: linear-gradient(to right, $green 0%, $sand 50%, $peach 100%);
-    background-size: 500%;
-    border: none;
-    border-radius: 5rem;
-    box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
-    color: $white;
-    cursor: pointer;
-    font-weight: 700!important;
-    font: 1em Raleway, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: .05em;
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    &:hover {
-      animation-name: gradient;
-      -webkit-animation-name: gradient;
-      animation-duration: 2s;
-      -webkit-animation-duration: s;
-      animation-iteration-count: 1;
-      -webkit-animation-iteration-count: 1;
-      animation-fill-mode: forwards;
-      -webkit-animation-fill-mode: forwards;
-    }
-  }
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%
-    }
-
-    100% {
-      background-position: 100%
-    }
-
-  }
-
   .chose {
     background-color: #33d6a8 !important;
     color: white !important;
@@ -98,11 +46,11 @@
 
   .chairList {
     margin-top: 20px;
-    margin-left: 18px !important;
+    margin-left: 120px;
   }
 
   .monitor {
-    width: 87%;
+    width: 100%;
     background: black;
     color: white;
     border-radius: 10px;
@@ -131,5 +79,58 @@
     border-radius: 50%;
     border: 1px solid black;
     cursor: pointer;
+  }
+}
+.booking-ticket {
+  background-color: white;
+  p {
+    color: black;
+    font-size: 18px;
+  }
+  .btnBook {
+    position: absolute;
+    left: 30%;
+    bottom: 5%;
+    width: 210px;
+    height: 50px;
+    -webkit-appearance: none;
+    background: -webkit-gradient(to right, $green 0%, $sand 50%, $peach 100%);
+    background: linear-gradient(to right, $green 0%, $sand 50%, $peach 100%);
+    background-size: 500%;
+    border: none;
+    border-radius: 5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    color: $white;
+    cursor: pointer;
+    font-weight: 700 !important;
+    font: 1em Raleway, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: 0.05em;
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    &:hover {
+      animation-name: gradient;
+      -webkit-animation-name: gradient;
+      animation-duration: 2s;
+      -webkit-animation-duration: s;
+      animation-iteration-count: 1;
+      -webkit-animation-iteration-count: 1;
+      animation-fill-mode: forwards;
+      -webkit-animation-fill-mode: forwards;
+    }
+  }
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    100% {
+      background-position: 100%;
+    }
   }
 }
