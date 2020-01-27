@@ -5,11 +5,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
-import CountDown from "../../Components/CountDown"
+import CountDown from "../../Components/CountDown";
 class Booking extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      chair: ""
+    };
+  }
   handleClick = e => {
     e.target.classList.toggle("chose");
-    console.log(e);
   };
   renderHTML = () => {
     if (this.props.room.danhSachGhe) {
@@ -25,6 +30,7 @@ class Booking extends Component {
               }
               key={index}
               value={item.tenGhe}
+              name="chair"
               onClick={item.daDat ? null : this.handleClick}
             >
               {item.daDat ? <FontAwesomeIcon icon={faTimes} /> : item.tenGhe}
@@ -54,35 +60,75 @@ class Booking extends Component {
         </div>
       );
     }
-    if(localStorage.getItem("UserHome")===null){
-      alert("Bạn phải đăng nhập tài khoản trước khi đặt vé")
-      return <Redirect to='/login'/>
+    if (localStorage.getItem("UserHome") === null) {
+      alert("Bạn phải đăng nhập tài khoản trước khi đặt vé");
+      return <Redirect to="/login" />;
     }
     return (
-      <div className="booking-movie">
-      <CountDown />
-        <div className="row">
-          <h3 className="mr-2 tenCumRap">Tên cụm rạp: <span>{room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}</span> </h3>
+      <div className="row">
+        <div className="booking-movie col-sm-8">
+          <CountDown />
+          <div className="row">
+            <h3 className="mr-2 tenCumRap">
+              Tên cụm rạp:{" "}
+              <span>
+                {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}
+              </span>{" "}
+            </h3>
+          </div>
+          <div className="row">
+            <h3 className="mr-2 tenRap">
+              Tên rạp:{" "}
+              <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""} </span>
+            </h3>
+          </div>
+          <div className="row">
+            <h3 className="mr-2 tenPhim">
+              Tên phim:
+              <span>{room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}</span>
+            </h3>
+          </div>
+          <div className="row">
+            <h3 className="mr-2 suatChieu">
+              Suất chiếu:
+              <span>{room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}</span>
+            </h3>
+          </div>
+          <div className="seat-choosing">
+            <div className="monitor">Màn hình</div>
+            <div className="row chairList">{this.renderHTML()}</div>
+          </div>
         </div>
-        <div className="row">
-          <h3 className="mr-2 tenRap">Tên rạp: <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""} </span></h3>
-        </div>
-        <div className="row">
-          <h3 className="mr-2 tenPhim">Tên phim:<span>{room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}</span></h3>
-        </div>
-        <div className="row">
-          <h3 className="mr-2 suatChieu">Suất chiếu:<span>{room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}</span></h3>
-        </div>
-        <div className="seat-choosing">
-          <div className="monitor">Màn hình</div>
-          <div className="row chairList">{this.renderHTML()}</div>
-        </div>
-          <button
-            className="btnBook"
-            onClick={this.handleBookTicket}
-          >
+        <div className="booking-ticket col-sm-4">
+          <div className="total"></div>
+          <div className="movie-info">
+            <h4 className="tenPhim">
+              {room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}{" "}
+            </h4>
+            <p className="tenCumRap-book">
+              {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}{" "}
+            </p>
+            <p className="thoiGian">
+              <span>
+                {room.thongTinPhim ? room.thongTinPhim.ngayChieu : " "}
+                {"-"}
+              </span>
+              <span>
+                {room.thongTinPhim ? room.thongTinPhim.gioChieu : " "}
+                {"-"}
+              </span>
+              <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""} </span>
+            </p>
+          </div>
+          <div className="finish-book">
+            <p className="chair">Ghế {this.state.chair}</p>
+            <p className="combo">Combo</p>
+            <p>Phương thức thanh toán</p>
+          </div>
+          <button className="btnBook" onClick={this.handleBookTicket}>
             Đặt vé
           </button>
+        </div>
       </div>
     );
   }
@@ -102,8 +148,8 @@ const mapDispatchToProps = dispatch => {
     },
     setLoading: () => {
       dispatch(action.actLoading());
-    },
     }
   };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Booking);
