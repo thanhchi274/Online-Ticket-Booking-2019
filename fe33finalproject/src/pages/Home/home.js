@@ -13,7 +13,7 @@ class Home extends Component {
     this.props.getListMovie();
   }
   render() {
-    let {loading, listMovie} = this.props;
+    let {loading} = this.props;
     if(loading){
       return(
         <div className="loading-spinner">
@@ -63,7 +63,7 @@ class Home extends Component {
             </>
           </div>
         </div>
-        <HomeTool listMovie={listMovie} />
+        <HomeTool movieDate ={this.props.movieDate} />
       </div>
       <Footer />
       </>
@@ -72,7 +72,8 @@ class Home extends Component {
 }
 const mapStateToProps = state => ({
   listMovie: state.movieReducer.listMovie,
-  loading: state.movieReducer.loading
+  loading: state.movieReducer.loading,
+  listMovieUpcoming: state.movieReducer.listMovieUpcoming,
 });
 const mapDispatchToProps = dispatch => {
   return {
@@ -81,7 +82,7 @@ const mapDispatchToProps = dispatch => {
     },
     setLoading: () => {
       dispatch(Action.actLoading());
-    }
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -1,9 +1,11 @@
 import * as ActionType from "./../constants/ActionType";
 import data from "../../data.json";
-let initialState = {
+let initialState ={
   listMovie: [],
   listMovieUpcoming:[],
   movie: {},
+  movieDate:[],
+  theaterDateInformation:[],
   loading: false,
   listMovieCarousel: [],
   room: {},
@@ -12,18 +14,26 @@ let initialState = {
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_LIST_MOVIE: {
-      console.log(action);
       state.listMovie = action.listMovie;
       return { ...state, loading: false };
     }
     case ActionType.GET_DETAIL_MOVIE: {
-      console.log(action);
       state.movie = action.movie;
       return { ...state, loading: false };
     }
     case ActionType.GET_LIST_MOVIE_UPCOMING:{
       state.listMovieUpcoming = action.listMovieUpcoming;
       return {...state};
+    }
+    case ActionType.GET_DETAIL_DATETIME_MOVIE:{
+      state.movieDate = action.movieDate;
+      return{...state};
+      // return  state.merge({movieDate:action.movieDate})
+    }
+    case ActionType.GET_INFORMATION_THEATER_DATETIME:{
+      // console.log(action);
+      state.theaterDateInformation = action.theaterDateInformation
+      return {...state}
     }
     case ActionType.LOADING: {
       return { ...state, loading: true };

@@ -7,9 +7,22 @@ import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
 import CountDown from "../../Components/CountDown"
 class Booking extends Component {
+  constructor(props){
+    super(props);
+    this.state ={
+        maLichChieu: "",
+        danhSachVe: [
+          {
+            maGhe: "0",
+            giaVe: "0"
+          }
+        ],
+        taiKhoanNguoiDung: ""
+    }
+  }
   handleClick = e => {
     e.target.classList.toggle("chose");
-    console.log(e);
+    console.log(e.target.innerHTML);
   };
   renderHTML = () => {
     if (this.props.room.danhSachGhe) {
@@ -42,9 +55,6 @@ class Booking extends Component {
     this.props.setLoading();
     this.props.getRoomList(id);
   }
-  handleBookTicket = () => {
-    console.log("abc");
-  };
   render() {
     let { room, loading } = this.props;
     if (loading) {
@@ -59,6 +69,7 @@ class Booking extends Component {
       return <Redirect to='/login'/>
     }
     return (
+      <>
       <div className="booking-movie">
       <CountDown />
         <div className="row">
@@ -79,11 +90,31 @@ class Booking extends Component {
         </div>
           <button
             className="btnBook"
-            onClick={this.handleBookTicket}
+            data-toggle="modal" data-target="#BookingModal"
           >
             Đặt vé
           </button>
       </div>
+      <div className="modal fade" id="BookingModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <h5 className="modal-title" id="exampleModalLabel">Kiểm tra lại vé bạn đã đặt</h5>
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div className="modal-body">
+       <p>Số vé bạn đa đặt</p>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" onSubmit={this.handleSumbit} className="btn btn-primary">Đặt vé</button>
+      </div>
+    </div>
+  </div>
+</div>
+</>
     );
   }
 }

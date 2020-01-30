@@ -44,7 +44,6 @@ export const actGetDetailMovieAPI = (id) => {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`
     })
       .then(async (result) => {
-        // dispatch(actGetListMovie(result.data))
         dispatch({
           type: await ActionTypes.GET_DETAIL_MOVIE,
           movie: await result.data
@@ -159,6 +158,23 @@ export const actGetRoomList = id => {
       });
   };
 };
+export const actGetDateTimeMovie = id =>{
+  return dispatch =>{
+    Axios({
+      mẹthod:"GET",
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`
+    })
+    .then( result=>{
+      dispatch({
+        type: ActionTypes.GET_DETAIL_DATETIME_MOVIE,
+        movieDate: result.data
+      });
+    })
+    .catch(err=>{
+      return err;
+    });
+  };
+};
 // export const actBookingMovie = bookingMovie => {
 //   return dispatch => {
 //     Axios({
@@ -176,10 +192,4 @@ export const actGetRoomList = id => {
 //         return err;
 //       });
 //   };
-// };
-// export const actGetListMovie =listMovie=>{
-// return {
-//     type: ActionTypes.GET_LIST_MOVIE,
-//     listMovie,
-// };
 // };

@@ -2,12 +2,7 @@ import React, { Component } from 'react'
 import Slider from "react-slick";
 import MovieCarousel from "../Components/movie-carousel";
 import { connect } from 'react-redux';
-import * as  Action from "../redux/action/index"
 class MovieAvailable extends Component {
-    componentDidMount(){
-        this.props.getListMovie();
-        
-    }
     renderHTML =()=>{
         let {listMovie} =this.props; 
           return listMovie.slice(0,14).map((movie, index)=>{
@@ -45,11 +40,5 @@ class MovieAvailable extends Component {
 const mapStateToProps =state=>({
     listMovie : state.movieReducer.listMovie
 })
-const mapDispatchToProps =(dispatch)=>{
-return {
-    getListMovie:()=>{
-        dispatch(Action.actGetListMovieAPI())
-    }
-}
-}
-export default connect (mapStateToProps, mapDispatchToProps)(MovieAvailable); 
+
+export default connect (mapStateToProps, null)(MovieAvailable); 
