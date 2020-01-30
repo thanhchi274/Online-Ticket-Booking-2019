@@ -37,7 +37,7 @@ export const actGetListMovieUpcomingAPI = () => {
       });
   };
 };
-export const actGetDetailMovieAPI = (id) => {
+export const actGetDetailMovieAPI = id => {
   return dispatch => {
     Axios({
       method: "GET",
@@ -59,11 +59,11 @@ export const actLoading = () => {
     type: ActionTypes.LOADING
   };
 };
-export const actCheckAuthentication =(history)=>{
-  if(localStorage.getItem("UserHome")===null){
-   return  history.push("/")
+export const actCheckAuthentication = history => {
+  if (localStorage.getItem("UserHome") === null) {
+    return history.push("/");
   }
-}
+};
 export const actLoginHome = (user, history) => {
   return dispatch => {
     Axios({
@@ -148,6 +148,7 @@ export const actGetRoomList = id => {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`
     })
       .then(result => {
+        console.log(result.data);
         dispatch({
           type: ActionTypes.GET_ROOM_LIST,
           room: result.data

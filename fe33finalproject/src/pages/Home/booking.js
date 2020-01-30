@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
-import CountDown from "../../Components/CountDown"
+import CountDown from "../../Components/CountDown";
 class Booking extends Component {
   constructor(props){
     super(props);
@@ -38,6 +38,7 @@ class Booking extends Component {
               }
               key={index}
               value={item.tenGhe}
+              name="chair"
               onClick={item.daDat ? null : this.handleClick}
             >
               {item.daDat ? <FontAwesomeIcon icon={faTimes} /> : item.tenGhe}
@@ -64,9 +65,9 @@ class Booking extends Component {
         </div>
       );
     }
-    if(localStorage.getItem("UserHome")===null){
-      alert("Bạn phải đăng nhập tài khoản trước khi đặt vé")
-      return <Redirect to='/login'/>
+    if (localStorage.getItem("UserHome") === null) {
+      alert("Bạn phải đăng nhập tài khoản trước khi đặt vé");
+      return <Redirect to="/login" />;
     }
     return (
       <>
@@ -94,7 +95,7 @@ class Booking extends Component {
           >
             Đặt vé
           </button>
-      </div>
+        </div>
       <div className="modal fade" id="BookingModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog" role="document">
     <div className="modal-content">
@@ -133,8 +134,8 @@ const mapDispatchToProps = dispatch => {
     },
     setLoading: () => {
       dispatch(action.actLoading());
-    },
     }
   };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Booking);

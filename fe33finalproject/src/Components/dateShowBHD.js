@@ -1,13 +1,13 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-
 import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import { Link} from "react-router-dom";
+import { Link } from "react-router-dom";
+
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -46,13 +46,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function ScrollableTabsButtonAutoBHD(props) {
+export default function ScrollableTabsButtonAutoBHD(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+
   const renderHTML = () => {
     if (props.movie.lichChieu) {
       return props.movie.lichChieu.map(
@@ -71,9 +72,9 @@ function ScrollableTabsButtonAutoBHD(props) {
       );
     }
   };
+
   const renderTime = () => {
-    if (props.movie.lichChieu ) {
-      console.log(props.movie.lichChieu);
+    if (props.movie.lichChieu) {
       return props.movie.lichChieu.map(
         (item, index) => {
           return (
@@ -84,6 +85,7 @@ function ScrollableTabsButtonAutoBHD(props) {
                   <h1>2D</h1>
                   <p>DIGITAL</p>
                 </div>
+
                 <Link
                   className="btn text-white ml-3"
                   style={{ backgroundColor: "rgb(170, 170, 52)" }}
@@ -120,5 +122,3 @@ function ScrollableTabsButtonAutoBHD(props) {
     </div>
   );
 }
-
-export default  (ScrollableTabsButtonAutoBHD)
