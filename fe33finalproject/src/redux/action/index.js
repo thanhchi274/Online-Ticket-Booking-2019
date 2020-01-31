@@ -115,11 +115,6 @@ export const actLoginAdmin = (user, history) => {
       });
   };
 };
-export const actLogOutHome = () => {
-  return {
-    type: ActionTypes.LOGOUT
-  };
-};
 export const actSignupHome = (user, history) => {
   return dispatch => {
     Axios({
