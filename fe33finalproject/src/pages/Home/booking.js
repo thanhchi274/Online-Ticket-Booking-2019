@@ -6,7 +6,6 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
 import CountDown from "../../Components/CountDown";
-import { trackWindowScroll } from "react-lazy-load-image-component";
 class Booking extends Component {
   constructor(props) {
     super(props);
@@ -16,9 +15,6 @@ class Booking extends Component {
       taiKhoanNguoiDung: "",
       count: null
     };
-  }
-  componentDidUpdate() {
-    console.log(this.state);
   }
   handleClick = e => {
     let { thongTinPhim } = this.props.room;
@@ -36,29 +32,15 @@ class Booking extends Component {
             giaVe
           }
         ],
-        taiKhoanNguoiDung: userName.taiKhoan,
-        count: this.state.count + 1
+        taiKhoanNguoiDung: userName.taiKhoan
+        // count: this.state.count + 1
       });
-      //   this.setState(prevState => ({
-      //     ...prevState,
-      //     maLichChieu: "",
-      //     taiKhoanNguoiDung: "",
-      //     count:this.state.count+1,
-      //     danhSachVe: [
-      //       {
-      //         maGhe,
-      //         giaVe
-      //     }
-      //   ]
-      // }))
-    } else {
-      this.setState(
-        {
-          count: this.state.count - 1
-        },
-        console.log(this.state.count)
-      );
     }
+    // else {
+    //   this.setState({
+    //     count: this.state.count - 1
+    //   });
+    // }
   };
   handleSubmit = () => {
     let ve = { ...this.state };
