@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
+import React, { memo,useState, useEffect } from 'react'
 import Countdown from 'react-countdown';
 import  { Redirect } from 'react-router-dom'
-export default function CountDown() {
+function CountDown() {
     const [redirect, setRedirect] = useState(false);
 
     useEffect(() => {
@@ -23,3 +23,4 @@ export default function CountDown() {
         </div>
     )
 }
+export default memo(CountDown)

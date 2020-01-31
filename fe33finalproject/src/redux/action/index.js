@@ -176,6 +176,36 @@ export const actGetDateTimeMovie = id =>{
     });
   };
 };
+export const actDatVe =(ve)=>{
+  // http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe
+  const UserHome =JSON.parse(localStorage.getItem("UserHome"))
+  return dispatch =>{
+      Axios({
+          method:"POST",
+          url:"https://cors-anywhere.herokuapp.com/http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+          data: ve,
+          headers:{
+            // "access-control-allow-origin":'*',
+            'content-type': 'application/json',
+            'access-control-allow-credentials': true ,
+            'access-control-allow-origin': 'http://movie0706.cybersoft.edu.vn ',
+            // "Content-Type": "application/x-www-form-urlencoded",
+            "Authorization": `Bearer ${UserHome.accessToken}`
+          },
+          validateStatus: (status) => {
+            return status;
+          },
+      })
+      .then((result)=>{
+        alert("Đặt vé thành công")
+         console.log(result.data);
+      })
+      .catch((err)=>{
+          console.log(err.response);
+          console.log(err.message);
+      })
+  }
+}
 // export const actBookingMovie = bookingMovie => {
 //   return dispatch => {
 //     Axios({

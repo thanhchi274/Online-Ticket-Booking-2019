@@ -76,8 +76,8 @@ class HomeTool extends Component {
       getdetailMovie: id => {
         dispatch(Action.actGetDetailMovieAPI(id));
       },
-      getMovieDateTime:(id)=>{
-        dispatch(Action.actGetDateTimeMovie(id))
+      getMovieDateTime:(ve)=>{
+        dispatch(Action.actGetDateTimeMovie(ve))
       },
     };
   };

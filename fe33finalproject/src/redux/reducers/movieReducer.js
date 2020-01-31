@@ -35,6 +35,10 @@ const movieReducer = (state = initialState, action) => {
       state.theaterDateInformation = action.theaterDateInformation
       return {...state}
     }
+    case ActionType.BOOKING_MOVIE:{
+      console.log(action);
+      return{...state}
+  }
     case ActionType.LOADING: {
       return { ...state, loading: true };
     }

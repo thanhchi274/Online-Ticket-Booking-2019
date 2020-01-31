@@ -10,20 +10,56 @@ class Booking extends Component {
   constructor(props){
     super(props);
     this.state ={
-        maLichChieu: "",
-        danhSachVe: [
-          {
-            maGhe: "0",
-            giaVe: "0"
-          }
-        ],
-        taiKhoanNguoiDung: ""
+        danhSachVe:[],
+        taiKhoanNguoiDung: "",
     }
   }
+  componentDidUpdate(){
+    console.log(this.state);
+  }
   handleClick = e => {
-    e.target.classList.toggle("chose");
-    console.log(e.target.innerHTML);
-  };
+    let userName= JSON.parse(localStorage.getItem('UserHome'));
+    if(e.target.classList.toggle("chose")){
+      let giaVe = e.target.getAttribute("giave")
+      let maGhe = e.target.innerHTML
+      let maLichChieu = this.props.room.thongTinPhim.maLichChieu
+      this.setState({
+        maLichChieu,
+        ...this.state,
+        danhSachVe:[
+          ...this.state.danhSachVe,
+          {
+            maGhe,
+            giaVe,
+          }
+        ],
+        taiKhoanNguoiDung: userName.taiKhoan
+      })
+    //   this.setState(prevState => ({
+    //     ...prevState,
+    //     maLichChieu: "",
+    //     taiKhoanNguoiDung: "",
+    //     count:this.state.count+1,
+    //     danhSachVe: [
+    //       {
+    //         maGhe,
+    //         giaVe    
+    //     }
+    //   ]
+    // }))
+  }
+  else{
+    this.setState({
+      count: this.state.count-1
+    },console.log(this.state.count))
+  }
+};
+  handleSubmit =e=>{
+    let ve ={...this.state}
+    console.log(ve);
+    e.preventDefault();
+    this.props.bookingTicket(ve)
+  }
   renderHTML = () => {
     if (this.props.room.danhSachGhe) {
       return this.props.room.danhSachGhe.map((item, index) => {
@@ -38,6 +74,7 @@ class Booking extends Component {
               }
               key={index}
               value={item.tenGhe}
+              giave ={item.giaVe}
               name="chair"
               onClick={item.daDat ? null : this.handleClick}
             >
@@ -98,6 +135,7 @@ class Booking extends Component {
         </div>
       <div className="modal fade" id="BookingModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div className="modal-dialog" role="document">
+  <form onSubmit={this.handleSubmit}>
     <div className="modal-content">
       <div className="modal-header">
         <h5 className="modal-title" id="exampleModalLabel">Kiểm tra lại vé bạn đã đặt</h5>
@@ -110,9 +148,10 @@ class Booking extends Component {
       </div>
       <div className="modal-footer">
         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" onSubmit={this.handleSumbit} className="btn btn-primary">Đặt vé</button>
+        <button type="submit" className="btn btn-primary">Đặt vé</button>
       </div>
     </div>
+</form>
   </div>
 </div>
 </>
@@ -134,7 +173,10 @@ const mapDispatchToProps = dispatch => {
     },
     setLoading: () => {
       dispatch(action.actLoading());
-    }
+    },
+    bookingTicket:(user)=>{
+      dispatch(action.actDatVe(user))
+  }
   };
 };
 
