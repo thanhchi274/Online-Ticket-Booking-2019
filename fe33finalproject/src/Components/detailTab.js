@@ -8,7 +8,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import VerticalTabs from "./lich-chieu";
 
-import RatingStar from "./RatingMovie"
+import RatingStar from "./RatingMovie";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -82,7 +82,7 @@ export default function CenteredTabs(props) {
           </p>
           <p>Tên phim: {props.movie.tenPhim}</p>
           <p>Mô tả: {props.movie.moTa}</p>
-          Đánh giá: <RatingStar danhGia ={props.movie.danhGia} />
+          Đánh giá: <RatingStar danhGia={props.movie.danhGia} />
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>

@@ -9,7 +9,7 @@ export default class Navbar extends Component {
     super(props);
     this.state = {
       navigate: false,
-      visibleNavBar : true,
+      visibleNavBar: true
     };
   }
   handleScroll = () => {
@@ -34,7 +34,6 @@ export default class Navbar extends Component {
     localStorage.clear("token");
     this.setState({ navigate: true });
   };
-  
 
   renderHTML() {
     const innerHTML = localStorage.getItem("UserHome");
@@ -88,9 +87,13 @@ export default class Navbar extends Component {
     return (
       <>
         <nav className="navbar-expand-md">
-          <div className={!this.state.visible? " header navbar": 
-          "header navbar--hidden row"
-        }>
+          <div
+            className={
+              !this.state.visible
+                ? " header navbar"
+                : "header navbar--hidden row"
+            }
+          >
             <div className="col-sm-4  ">
               <Link className="logo-title d-flex" to="/">
                 <img

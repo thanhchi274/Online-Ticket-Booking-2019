@@ -6,60 +6,64 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
 import CountDown from "../../Components/CountDown";
+import { trackWindowScroll } from "react-lazy-load-image-component";
 class Booking extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state ={
-        danhSachVe:[],
-        taiKhoanNguoiDung: "",
-    }
+    this.state = {
+      maLichChieu: "",
+      danhSachVe: [],
+      taiKhoanNguoiDung: "",
+      count: null
+    };
   }
-  componentDidUpdate(){
+  componentDidUpdate() {
     console.log(this.state);
   }
   handleClick = e => {
-    let userName= JSON.parse(localStorage.getItem('UserHome'));
-    if(e.target.classList.toggle("chose")){
-      let giaVe = e.target.getAttribute("giave")
-      let maGhe = e.target.innerHTML
-      let maLichChieu = this.props.room.thongTinPhim.maLichChieu
+    let { thongTinPhim } = this.props.room;
+    let userName = JSON.parse(localStorage.getItem("UserHome"));
+    if (e.target.classList.toggle("chose")) {
+      let giaVe = e.target.getAttribute("giave");
+      let maGhe = e.target.getAttribute("maghe");
+      let maLichChieu = thongTinPhim.maLichChieu;
       this.setState({
         maLichChieu,
-        ...this.state,
-        danhSachVe:[
+        danhSachVe: [
           ...this.state.danhSachVe,
           {
             maGhe,
-            giaVe,
+            giaVe
           }
         ],
-        taiKhoanNguoiDung: userName.taiKhoan
-      })
-    //   this.setState(prevState => ({
-    //     ...prevState,
-    //     maLichChieu: "",
-    //     taiKhoanNguoiDung: "",
-    //     count:this.state.count+1,
-    //     danhSachVe: [
-    //       {
-    //         maGhe,
-    //         giaVe    
-    //     }
-    //   ]
-    // }))
-  }
-  else{
-    this.setState({
-      count: this.state.count-1
-    },console.log(this.state.count))
-  }
-};
-  handleSubmit =e=>{
-    let ve ={...this.state}
-    console.log(ve);
-    e.preventDefault();
-    this.props.bookingTicket(ve)
-  }
+        taiKhoanNguoiDung: userName.taiKhoan,
+        count: this.state.count + 1
+      });
+      //   this.setState(prevState => ({
+      //     ...prevState,
+      //     maLichChieu: "",
+      //     taiKhoanNguoiDung: "",
+      //     count:this.state.count+1,
+      //     danhSachVe: [
+      //       {
+      //         maGhe,
+      //         giaVe
+      //     }
+      //   ]
+      // }))
+    } else {
+      this.setState(
+        {
+          count: this.state.count - 1
+        },
+        console.log(this.state.count)
+      );
+    }
+  };
+  handleSubmit = () => {
+    let ve = { ...this.state };
+    this.props.bookingTicket(ve);
+  };
   renderHTML = () => {
     if (this.props.room.danhSachGhe) {
       return this.props.room.danhSachGhe.map((item, index) => {
@@ -73,9 +77,8 @@ class Booking extends Component {
                   : { backgroundColor: "yellow" }
               }
               key={index}
-              value={item.tenGhe}
-              giave ={item.giaVe}
-              name="chair"
+              maghe={item.maGhe}
+              giave={item.giaVe}
               onClick={item.daDat ? null : this.handleClick}
             >
               {item.daDat ? <FontAwesomeIcon icon={faTimes} /> : item.tenGhe}
@@ -108,53 +111,48 @@ class Booking extends Component {
     }
     return (
       <>
-      <div className="booking-movie">
-      <CountDown />
-        <div className="row">
-          <h3 className="mr-2 tenCumRap">Tên cụm rạp: <span>{room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}</span> </h3>
-        </div>
-        <div className="row">
-          <h3 className="mr-2 tenRap">Tên rạp: <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""} </span></h3>
-        </div>
-        <div className="row">
-          <h3 className="mr-2 tenPhim">Tên phim:<span>{room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}</span></h3>
-        </div>
-        <div className="row">
-          <h3 className="mr-2 suatChieu">Suất chiếu:<span>{room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}</span></h3>
-        </div>
-        <div className="seat-choosing">
-          <div className="monitor">Màn hình</div>
-          <div className="row chairList">{this.renderHTML()}</div>
-        </div>
+        <div className="booking-movie">
+          <CountDown />
+          <div className="row">
+            <h3 className="mr-2 tenCumRap">
+              Tên cụm rạp:{" "}
+              <span>
+                {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}
+              </span>{" "}
+            </h3>
+          </div>
+          <div className="row">
+            <h3 className="mr-2 tenRap">
+              Tên rạp:{" "}
+              <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""} </span>
+            </h3>
+          </div>
+          <div className="row">
+            <h3 className="mr-2 tenPhim">
+              Tên phim:
+              <span>{room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}</span>
+            </h3>
+          </div>
+          <div className="row">
+            <h3 className="mr-2 suatChieu">
+              Suất chiếu:
+              <span>{room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}</span>
+            </h3>
+          </div>
+          <div className="seat-choosing">
+            <div className="monitor">Màn hình</div>
+            <div className="row chairList">{this.renderHTML()}</div>
+          </div>
           <button
             className="btnBook"
-            data-toggle="modal" data-target="#BookingModal"
+            data-toggle="modal"
+            data-target="#BookingModal"
+            onClick={this.handleSubmit}
           >
             Đặt vé
           </button>
         </div>
-      <div className="modal fade" id="BookingModal" tabIndex={-1} role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div className="modal-dialog" role="document">
-  <form onSubmit={this.handleSubmit}>
-    <div className="modal-content">
-      <div className="modal-header">
-        <h5 className="modal-title" id="exampleModalLabel">Kiểm tra lại vé bạn đã đặt</h5>
-        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">×</span>
-        </button>
-      </div>
-      <div className="modal-body">
-       <p>Số vé bạn đa đặt</p>
-      </div>
-      <div className="modal-footer">
-        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" className="btn btn-primary">Đặt vé</button>
-      </div>
-    </div>
-</form>
-  </div>
-</div>
-</>
+      </>
     );
   }
 }
@@ -174,9 +172,9 @@ const mapDispatchToProps = dispatch => {
     setLoading: () => {
       dispatch(action.actLoading());
     },
-    bookingTicket:(user)=>{
-      dispatch(action.actDatVe(user))
-  }
+    bookingTicket: user => {
+      dispatch(action.actDatVe(user));
+    }
   };
 };
 

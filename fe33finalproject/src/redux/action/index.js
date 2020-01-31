@@ -43,7 +43,7 @@ export const actGetDetailMovieAPI = id => {
       method: "GET",
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`
     })
-      .then(async (result) => {
+      .then(async result => {
         dispatch({
           type: await ActionTypes.GET_DETAIL_MOVIE,
           movie: await result.data
@@ -159,68 +159,43 @@ export const actGetRoomList = id => {
       });
   };
 };
-export const actGetDateTimeMovie = id =>{
-  return dispatch =>{
+export const actGetDateTimeMovie = id => {
+  return dispatch => {
     Axios({
-      mẹthod:"GET",
+      mẹthod: "GET",
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`
     })
-    .then( result=>{
-      dispatch({
-        type: ActionTypes.GET_DETAIL_DATETIME_MOVIE,
-        movieDate: result.data
+      .then(result => {
+        dispatch({
+          type: ActionTypes.GET_DETAIL_DATETIME_MOVIE,
+          movieDate: result.data
+        });
+      })
+      .catch(err => {
+        return err;
       });
-    })
-    .catch(err=>{
-      return err;
-    });
   };
 };
-export const actDatVe =(ve)=>{
+export const actDatVe = user => {
   // http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe
-  const UserHome =JSON.parse(localStorage.getItem("UserHome"))
-  return dispatch =>{
-      Axios({
-          method:"POST",
-          url:"https://cors-anywhere.herokuapp.com/http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
-          data: ve,
-          headers:{
-            // "access-control-allow-origin":'*',
-            'content-type': 'application/json',
-            'access-control-allow-credentials': true ,
-            'access-control-allow-origin': 'http://movie0706.cybersoft.edu.vn ',
-            // "Content-Type": "application/x-www-form-urlencoded",
-            "Authorization": `Bearer ${UserHome.accessToken}`
-          },
-          validateStatus: (status) => {
-            return status;
-          },
+  const UserHome = JSON.parse(localStorage.getItem("UserHome"));
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+      data: user,
+      headers: {
+        // "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${UserHome.accessToken}`
+      }
+    })
+      .then(result => {
+        alert("Đặt vé thành công");
+        window.location.reload();
+        dispatch(result.data);
       })
-      .then((result)=>{
-        alert("Đặt vé thành công")
-         console.log(result.data);
-      })
-      .catch((err)=>{
-          console.log(err.response);
-          console.log(err.message);
-      })
-  }
-}
-// export const actBookingMovie = bookingMovie => {
-//   return dispatch => {
-//     Axios({
-//       method: "POST",
-//       url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
-//       data: bookingMovie
-//     })
-//       .then(result => {
-//         dispatch({
-//           type: ActionTypes.BOOKING_MOVIE,
-//           bookingMovie: result.data
-//         });
-//       })
-//       .catch(err => {
-//         return err;
-//       });
-//   };
-// };
+      .catch(err => {
+        return err;
+      });
+  };
+};
