@@ -91,7 +91,8 @@ export default function VerticalTabs(props) {
       >
         <Tab
           label={
-            <img alt="movie-theater1"
+            <img
+              alt="movie-theater1"
               src="https://s3img.vcdn.vn/123phim/2018/09/f32670fd0eb083c9c4c804f0f3a252ed.png"
               className="theater-icon"
             />
@@ -101,7 +102,8 @@ export default function VerticalTabs(props) {
         ;
         <Tab
           label={
-            <img alt="movie-theater2"
+            <img
+              alt="movie-theater2"
               src="https://s3img.vcdn.vn/123phim/2018/09/1721cfa98768f300c03792e25ceb0191.png"
               className="theater-icon"
             />

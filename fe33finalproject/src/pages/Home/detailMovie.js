@@ -15,13 +15,14 @@ class DetailMovie extends Component {
     super();
     this.state = {
       isOpen: false,
-      videoid:""
+      videoid: "",
+      bookTicket: false
     };
     this.openModal = this.openModal.bind(this);
   }
 
   openModal() {
-    this.setState({ 
+    this.setState({
       isOpen: true,
       videoid: this.props.movie.trailer.slice(30)
     });
@@ -32,7 +33,7 @@ class DetailMovie extends Component {
     this.props.getdetailMovie(id);
   }
   render() {
-    let {loading ,movie} = this.props;
+    let { loading, movie } = this.props;
     if (loading) {
       return (
         <div className="loading-spinner">
@@ -42,12 +43,16 @@ class DetailMovie extends Component {
     }
     return (
       <div className="container detail-movie">
-        <ModalVideo channel="youtube" videoId={this.state.videoid}  onClose={() => this.setState({ isOpen: false })} isOpen={this.state.isOpen} />
+        <ModalVideo
+          channel="youtube"
+          videoId={this.state.videoid}
+          onClose={() => this.setState({ isOpen: false })}
+          isOpen={this.state.isOpen}
+        />
         <div className="detail-movie-intro">
           <LazyLoadImage
             className="detail-movie-intro-image"
             src={movie.hinhAnh}
-            
             effect="blur"
             alt="Card"
             height={100}
@@ -64,13 +69,13 @@ class DetailMovie extends Component {
               width={300}
               className="trailer"
             />
-            <a href="123" onClick={this.openModal}>
+            <button onClick={this.openModal}>
               <div className="bg-trailer">
                 <div className="play-btn">
                   <FontAwesomeIcon icon={faPlay} />
                 </div>
               </div>
-            </a>
+            </button>
           </div>
           <div className="col-sm-8">
             <div className="table detail-description">
@@ -92,7 +97,7 @@ class DetailMovie extends Component {
           </div>
         </div>
         <div className="row tabs" id="section2">
-          <FullWidthTabs movie={movie} />
+          <FullWidthTabs movie={movie} ticket={this.state.bookTicket} />
           {/*<VerticalTabs />*/}
         </div>
       </div>
