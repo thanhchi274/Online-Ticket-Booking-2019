@@ -10,21 +10,21 @@ export default class Navbar extends Component {
       visibleNavBar: true
     };
   }
-  
+
   scrollToMovie = () => {
     window.scroll({
-      top: 970, 
-      left: 0, 
-      behavior: 'smooth'
+      top: 970,
+      left: 0,
+      behavior: "smooth"
     });
   };
-  scrollToTop=()=>{
+  scrollToTop = () => {
     window.scroll({
-      top: 0, 
-      left: 0, 
-      behavior: 'smooth'
+      top: 0,
+      left: 0,
+      behavior: "smooth"
     });
-  }
+  };
   handleScroll = () => {
     const { prevScrollpos } = this.state;
     const currentScrollPos = window.pageYOffset;
@@ -108,7 +108,11 @@ export default class Navbar extends Component {
             }
           >
             <div className="col-sm-4  ">
-              <Link className="logo-title d-flex" onClick={this.scrollToTop} to="/">
+              <Link
+                className="logo-title d-flex"
+                onClick={this.scrollToTop}
+                to="/"
+              >
                 <img
                   className="img-fluid mx-4"
                   src="https://i.ibb.co/MMDksvw/icons8-movie-ticket.png"

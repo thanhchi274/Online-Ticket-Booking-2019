@@ -192,45 +192,46 @@ export const actDatVe = user => {
       });
   };
 };
-export const actLayThongTinUser = user =>{
-  return dispatch=>{
+export const actLayThongTinUser = user => {
+  return dispatch => {
     Axios({
-      method:"POST",
-      url:"http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
-      data: user,
+      method: "POST",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+      data: user
     })
-    
-    .then(result =>{
-      console.log(result);
-      localStorage.setItem("UserInfo", JSON.stringify(result.data));
-      dispatch({
-        type: ActionTypes.GET_USER_INFORMATION,
-        userInformation: result.data
+      .then(result => {
+        localStorage.setItem("UserInfo", JSON.stringify(result.data));
+        dispatch({
+          type: ActionTypes.GET_USER_INFORMATION,
+          userInformation: result.data
+        });
       })
-    })
-    .catch(err=>{
-      console.log(err);
-    })
-  }
-}
-export const actUpdateUserInformation = user =>{
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+export const actUpdateUserInformation = user => {
   const UserHome = JSON.parse(localStorage.getItem("UserHome"));
-  return dispatch=>{
+  return dispatch => {
     Axios({
-      method:"PUT",
-      url:"http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+      method: "PUT",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
       data: user,
       headers: {
         Authorization: `Bearer ${UserHome.accessToken}`
       }
     })
-    
-    .then(result =>{
-      setTimeout(function() { alert("Cập nhật thành công")}, 500);
-      dispatch(result.data)
-    })
-    .catch(err =>{
-      return err;
-    })
-  }
-}
+      .then(result => {
+        setTimeout(function() {
+          alert("Cập nhật thành công");
+        }, 500);
+        dispatch(result.data);
+      })
+      .catch(err => {
+        return err;
+      });
+  };
+};

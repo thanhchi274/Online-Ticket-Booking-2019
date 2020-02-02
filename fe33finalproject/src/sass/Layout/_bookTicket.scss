@@ -45,8 +45,7 @@
   }
 
   .chairList {
-    margin-top: 20px;
-    margin-left: 120px;
+    margin: 20px 7vw;
   }
 
   .monitor {
@@ -85,7 +84,18 @@
   background-color: white;
   p {
     color: black;
-    font-size: 18px;
+    font-size: 15px;
+  }
+  .checkType {
+    .payStyle {
+      p {
+        margin: 0 20px;
+        font-size: 30px;
+      }
+    }
+  }
+  .total {
+    text-align: center;
   }
   .btnBook {
     position: absolute;
