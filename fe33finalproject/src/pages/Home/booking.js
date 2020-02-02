@@ -19,7 +19,8 @@ class Booking extends Component {
   handleClick = e => {
     let { thongTinPhim } = this.props.room;
     let userName = JSON.parse(localStorage.getItem("UserHome"));
-    if (e.target.classList.toggle("chose")) {
+    e.target.classList.toggle("chose");
+    if (e.target.className === "chair m-1 chose") {
       let giaVe = e.target.getAttribute("giave");
       let maGhe = e.target.getAttribute("maghe");
       let maLichChieu = thongTinPhim.maLichChieu;
@@ -35,12 +36,11 @@ class Booking extends Component {
         taiKhoanNguoiDung: userName.taiKhoan
         // count: this.state.count + 1
       });
+    } else {
+      this.setState({
+        // count: this.state.count - 1
+      });
     }
-    // else {
-    //   this.setState({
-    //     count: this.state.count - 1
-    //   });
-    // }
   };
   handleSubmit = () => {
     let ve = { ...this.state };
