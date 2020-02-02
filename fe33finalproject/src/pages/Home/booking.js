@@ -44,6 +44,7 @@ class Booking extends Component {
   };
   handleSubmit = () => {
     let ve = { ...this.state };
+    
     this.props.bookingTicket(ve);
   };
   renderHTML = () => {
