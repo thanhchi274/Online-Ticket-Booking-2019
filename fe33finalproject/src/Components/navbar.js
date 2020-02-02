@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { NavLink, Link } from "react-router-dom";
-// import ModalSanPham from "../HOC/Modal-SignOut";
-// import WithModal from "./../HOC/with-modal.js";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default class Navbar extends Component {
@@ -11,6 +9,21 @@ export default class Navbar extends Component {
       navigate: false,
       visibleNavBar: true
     };
+  }
+  
+  scrollToMovie = () => {
+    window.scroll({
+      top: 970, 
+      left: 0, 
+      behavior: 'smooth'
+    });
+  };
+  scrollToTop=()=>{
+    window.scroll({
+      top: 0, 
+      left: 0, 
+      behavior: 'smooth'
+    });
   }
   handleScroll = () => {
     const { prevScrollpos } = this.state;
@@ -95,7 +108,7 @@ export default class Navbar extends Component {
             }
           >
             <div className="col-sm-4  ">
-              <Link className="logo-title d-flex" to="/">
+              <Link className="logo-title d-flex" onClick={this.scrollToTop} to="/">
                 <img
                   className="img-fluid mx-4"
                   src="https://i.ibb.co/MMDksvw/icons8-movie-ticket.png"
@@ -117,14 +130,12 @@ export default class Navbar extends Component {
               >
                 <span className="navbar-toggler-icon" />
               </button>
-              {/* Navbar links */}
               <div
                 className="collapse navbar-collapse d-flex justify-content-center"
                 id="collapsibleNavbar"
               >
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    {/* Nối tới page khác */}
                     <NavLink
                       activeClassName="active"
                       exact
@@ -135,13 +146,17 @@ export default class Navbar extends Component {
                     </NavLink>
                   </li>
                   <li className="nav-item">
-                    <NavLink
+                    <Link
                       activeClassName="active"
                       className="nav-link"
-                      to="/list-movie"
+                      onClick={this.scrollToMovie}
+                      spy={true}
+                      smooth={true}
+                      offset={-70}
+                      duration={500}
                     >
                       Movie
-                    </NavLink>
+                    </Link>
                   </li>
                 </ul>
               </div>

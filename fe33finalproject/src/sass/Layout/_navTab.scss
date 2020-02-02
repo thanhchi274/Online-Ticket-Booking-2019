@@ -2,14 +2,14 @@
     .nav-tabs{
         width:400px;
         margin: 0 auto;
-        display: block;
-        border-bottom: none!important;
+        border: none!important;
+        display: flex!important;
+        transform: translateX(9%);
         .nav-link{
-            width: 160px;
+            width: 200px!important;
             color: #fff;
             border:none!important;
             background-color: transparent!important;
-            margin-left:10px;
         }
         .active{
             color: #f03f42!important;

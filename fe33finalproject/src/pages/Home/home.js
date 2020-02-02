@@ -6,7 +6,7 @@ import Carousel from "./../../Components/carousel";
 import HomeTool from "../../Components/home-tool";
 import MovieAvailable from "../../Components/MovieAvailable";
 import UpComingMovie from "../../Components/UpcomingMovie";
-import Footer from "../../Components/footer"
+import Footer from "../../Components/footer";
 class Home extends Component {
   componentDidMount() {
     this.props.setLoading();
@@ -56,7 +56,7 @@ class Home extends Component {
               </a>
             </div>
           </nav>
-          <div className="tab-content" id="nav-tabContent">
+          <div className="tab-content nav-tabContent" id="section1">
             <>
               <MovieAvailable />
               <UpComingMovie />

@@ -11,14 +11,16 @@
   margin: 0 !important;
 }
 .navbar {
+  #collapsibleNavbar{
+    transform: translateX(-12%);
+  }
   height: 99px;
   background-color: #0c0c4a;
-  transition: top 0.6s;
   z-index: 1001;
   width: 100%;
   font-size:16px;
   position: fixed !important;
-  transition: all 0.2s;
+  transition: all 0.4s;
   top: 0;
   .logo-title {
     &:hover {
@@ -68,6 +70,17 @@
     font-weight: 700;
     font-size: 18px;
   }
+  .dropdown-menu{
+    border:none;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    a{
+      padding: 8px 0 8px 20px;
+      &:hover{
+        font-weight: 700;
+      }
+    }
+  }
   .active {
     font-size:22px!important;
     color:white!important;
@@ -78,7 +91,7 @@
   }
   .nav-link {
     color:#03ffd2;
-    margin: 0 20px;
+    margin: 0 10px;
     font-size: 20px;
     transition: 0.2s;
     &:hover {

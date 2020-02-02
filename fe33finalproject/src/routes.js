@@ -1,5 +1,4 @@
 import Home from "./pages/Home/home.js";
-import ListMovie from "./pages/Home/list-movie.js";
 import DetailMovie from "./pages/Home/detailMovie.js";
 import Dashboard from "./pages/Admin/dashboard.js";
 import Login from "./pages/Home/login";
@@ -11,11 +10,6 @@ const routeHome = [
     path: "/",
     exact: true,
     component: Home
-  },
-  {
-    path: "/list-movie",
-    exact: false,
-    component: ListMovie
   },
   {
     path: "/detail-movie/:id",
