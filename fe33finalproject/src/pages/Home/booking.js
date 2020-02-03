@@ -14,7 +14,8 @@ class Booking extends Component {
       danhSachVe: [],
       taiKhoanNguoiDung: "",
       count: 1,
-      tienVe: 0
+      tienVe: 0,
+      valid: true
     };
   }
   handleClick = e => {
@@ -28,6 +29,7 @@ class Booking extends Component {
     if (e.target.className === "chair m-1 chose") {
       this.setState(
         {
+          valid: false,
           maLichChieu,
           danhSachVe: [
             ...this.state.danhSachVe,
@@ -257,6 +259,7 @@ class Booking extends Component {
               data-toggle="modal"
               data-target="#BookingModal"
               onClick={this.handleSubmit}
+              disabled={this.state.valid}
             >
               Đặt vé
             </button>
