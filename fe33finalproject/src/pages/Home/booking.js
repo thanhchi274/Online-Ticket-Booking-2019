@@ -14,7 +14,6 @@ class Booking extends Component {
       danhSachVe: [],
       taiKhoanNguoiDung: "",
       count: 1,
-      danhSachGhe: [],
       tienVe: 0
     };
   }
@@ -22,46 +21,66 @@ class Booking extends Component {
     let { thongTinPhim } = this.props.room;
     let userName = JSON.parse(localStorage.getItem("UserHome"));
     e.target.classList.toggle("chose");
+    let giaVe = e.target.getAttribute("giave");
+    let tenGhe = e.target.getAttribute("tenghe");
+    let maGhe = e.target.getAttribute("maghe");
+    let maLichChieu = thongTinPhim.maLichChieu;
     if (e.target.className === "chair m-1 chose") {
-      let giaVe = e.target.getAttribute("giave");
-      let tenGhe = e.target.getAttribute("tenghe");
-      let maGhe = e.target.getAttribute("maghe");
-      let maLichChieu = thongTinPhim.maLichChieu;
       this.setState(
         {
           maLichChieu,
           danhSachVe: [
             ...this.state.danhSachVe,
             {
+              tenGhe,
               maGhe,
               giaVe
             }
           ],
           taiKhoanNguoiDung: userName.taiKhoan,
-          danhSachGhe: [
-            ...this.state.danhSachGhe,
-            {
-              tenGhe
-            }
-          ],
           tienVe: giaVe * this.state.count,
           count: this.state.count + 1
         },
         () => {
-          console.log(this.state.danhSachGhe);
+          console.log(this.state);
         }
       );
     } else {
-      this.setState({
-        count: this.state.count - 1
-      });
+      this.xoaGhe(maGhe);
+      this.setState(
+        {
+          count: this.state.count - 1,
+          tienVe: giaVe * this.state.count
+        },
+        () => {
+          console.log(this.state);
+        }
+      );
     }
   };
+  timViTri = maGhe => {
+    let viTri = -1;
+    this.state.danhSachVe.map((item, index) => {
+      if (item.maGhe === maGhe) {
+        viTri = index;
+      }
+    });
+    return viTri;
+  };
+
+  xoaGhe = maGhe => {
+    let viTri = this.timViTri(maGhe);
+    if (viTri !== -1) {
+      this.state.danhSachVe.splice(viTri, 1);
+    }
+  };
+
   handleSubmit = () => {
     let ve = { ...this.state };
 
     this.props.bookingTicket(ve);
   };
+
   renderHTML = () => {
     if (this.props.room.danhSachGhe) {
       return this.props.room.danhSachGhe.map((item, index) => {
@@ -96,7 +115,7 @@ class Booking extends Component {
     this.props.getRoomList(id);
   }
   renderTicket = () => {
-    return this.state.danhSachGhe.map((item, index) => {
+    return this.state.danhSachVe.map((item, index) => {
       return <React.Fragment key={index}>{item.tenGhe} </React.Fragment>;
     });
   };
@@ -164,11 +183,11 @@ class Booking extends Component {
               </p>
             </div>
             <hr />
-            <div className="seat-check">
-              <h5>
-                Ghế {""}
-                {this.renderTicket()}
-              </h5>
+            <div className="seat-check container">
+              <div className="row justify-content-between">
+                <h5>Ghế</h5>
+                <h5>{this.renderTicket()}</h5>
+              </div>
             </div>
             <hr />
             <div className="checkType">
