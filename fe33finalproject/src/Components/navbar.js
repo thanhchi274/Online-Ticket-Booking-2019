@@ -151,13 +151,10 @@ export default class Navbar extends Component {
                   </li>
                   <li className="nav-item">
                     <Link
-                      activeClassName="active"
+                      activeclassname="active"
                       className="nav-link"
                       onClick={this.scrollToMovie}
-                      spy={true}
-                      smooth={true}
-                      offset={-70}
-                      duration={500}
+                      to=""
                     >
                       Movie
                     </Link>

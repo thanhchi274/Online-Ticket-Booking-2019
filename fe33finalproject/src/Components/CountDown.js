@@ -15,7 +15,7 @@ function CountDown() {
         if(completed){
           return <Completionist />
         }
-        return <span>{minutes}:{seconds}</span>
+        return <span>Thời gian còn lại: {minutes}:{seconds}</span>
     }
     return (
         <div className="countdown">

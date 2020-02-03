@@ -3,7 +3,7 @@
   padding: 60px;
   padding-top: 30px;
   width: 1200px;
-  height: 850px;
+  height: 820px;
   position: relative;
   margin: 0 auto;
 
@@ -45,11 +45,12 @@
   }
 
   .chairList {
-    margin: 20px 7vw;
+    margin: 30px 9vw;
   }
 
   .monitor {
-    width: 100%;
+    width: 90%;
+    margin: 0 auto;
     background: black;
     color: white;
     border-radius: 10px;
@@ -81,21 +82,61 @@
   }
 }
 .booking-ticket {
+  .seat-check{
+    h5{
+      font-size:20px;
+      font-weight: 300;
+    }
+  }
+  .info-ticket{
+    h5{
+      font-size: 23px;
+      font-weight: 300;
+      &:nth-child(3){
+        font-weight: 700;
+      }
+    }
+    span{
+      font-size:23px;
+      font-weight: 700;
+    }
+  }
   background-color: white;
   p {
     color: black;
     font-size: 15px;
   }
   .checkType {
+    img{
+      width:40px!important;
+      height: 40px!important;
+      margin-left:20px;
+    }
+    h5{
+      font-size:20px;
+      font-weight: 700;
+    }
     .payStyle {
       p {
-        margin: 0 20px;
-        font-size: 30px;
+        margin: 15px 20px;
+        font-size: 18px;
       }
     }
   }
   .total {
     text-align: center;
+    padding: 0 30px;
+    padding-top:7vh!important;
+    padding-bottom:10px!important;
+    h2{
+      font-size:30px;
+      font-weight: 500;
+      
+      &:nth-child(2){
+        font-size:40px;
+        font-weight:700;
+      }
+    }
   }
   .btnBook {
     position: absolute;
