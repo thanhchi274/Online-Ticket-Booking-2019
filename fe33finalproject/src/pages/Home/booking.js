@@ -135,7 +135,7 @@ class Booking extends Component {
     return (
       <div className="row">
         <div className="booking-movie col-sm-8">
-         <CountDown />
+          <CountDown />
           <div className="row">
             <h3 className="mr-2 tenCumRap">
               Tên cụm rạp:{" "}
@@ -175,8 +175,18 @@ class Booking extends Component {
             </div>
             <hr />
             <div className="info-ticket">
-              <h5>Tên Phim: <span>{room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}</span></h5>
-              <h5>Địa Điểm: <span>{room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}</span></h5>
+              <h5>
+                Tên Phim:{" "}
+                <span>
+                  {room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}
+                </span>
+              </h5>
+              <h5>
+                Địa Điểm:{" "}
+                <span>
+                  {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}
+                </span>
+              </h5>
               <h5>
                 {room.thongTinPhim ? room.thongTinPhim.ngayChieu : ""} -{" "}
                 {room.thongTinPhim ? room.thongTinPhim.gioChieu : ""} -{" "}
@@ -202,17 +212,42 @@ class Booking extends Component {
                     value="zalopay"
                     defaultChecked
                   />
-                  <img className ="paymentMethod--img" src="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw" srcset="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s360-rw 2x" class="T75of sHb2Xb" aria-hidden="true" alt="Ảnh bìa" itemprop="image" data-atf="false" data-iml="1314.2249999946216"></img>
+                  <img
+                    className="paymentMethod--img"
+                    src="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw"
+                    srcset="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s360-rw 2x"
+                    class="T75of sHb2Xb"
+                    aria-hidden="true"
+                    alt="Ảnh bìa"
+                    itemprop="image"
+                    data-atf="false"
+                    data-iml="1314.2249999946216"
+                  ></img>
                   <p>Thanh toán qua Zalo PAY</p>
                 </div>
                 <div className="row align-items-center payStyle">
                   <input type="radio" name="pay" value="momo" />
-                  <img className ="paymentMethod--img" src="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s180-rw" srcset="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s360-rw 2x" class="T75of sHb2Xb" aria-hidden="true" alt="Ảnh bìa" itemprop="image" data-atf="false" data-iml="37830.04499999515"></img>
+                  <img
+                    className="paymentMethod--img"
+                    src="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s180-rw"
+                    srcset="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s360-rw 2x"
+                    class="T75of sHb2Xb"
+                    aria-hidden="true"
+                    alt="Ảnh bìa"
+                    itemprop="image"
+                    data-atf="false"
+                    data-iml="37830.04499999515"
+                  ></img>
                   <p>Thanh toán bằng ví điện tử MOMO</p>
                 </div>
                 <div className="row align-items-center payStyle">
                   <input type="radio" name="pay" value="card" />
-                 <img className ="paymentMethod--img" src="https://anh4.com/images/2020/02/02/OfruP.png" alt="OfruP.png" border={0} />
+                  <img
+                    className="paymentMethod--img"
+                    src="https://anh4.com/images/2020/02/02/OfruP.png"
+                    alt="OfruP.png"
+                    border={0}
+                  />
                   <p>Thanh toán qua thẻ VISA/MASTERCARD</p>
                 </div>
               </form>
