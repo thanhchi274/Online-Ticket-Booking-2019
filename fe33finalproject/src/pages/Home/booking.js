@@ -44,18 +44,19 @@ class Booking extends Component {
           count: this.state.count + 1
         },
         () => {
-          console.log(this.state);
+          console.log(this.state.valid);
         }
       );
     } else {
       this.xoaGhe(maGhe);
       this.setState(
         {
+          valid: true,
           count: this.state.count - 1,
           tienVe: giaVe * this.state.count
         },
         () => {
-          console.log(this.state);
+          console.log(this.state.valid);
         }
       );
     }
@@ -77,10 +78,13 @@ class Booking extends Component {
     }
   };
 
-  handleSubmit = () => {
+  handleSubmit = e => {
     let ve = { ...this.state };
-
-    this.props.bookingTicket(ve);
+    if (this.state.valid === false) {
+      this.props.bookingTicket(ve);
+    } else {
+      this.handleRemind();
+    }
   };
 
   renderHTML = () => {
@@ -120,6 +124,40 @@ class Booking extends Component {
     return this.state.danhSachVe.map((item, index) => {
       return <React.Fragment key={index}>{item.tenGhe} </React.Fragment>;
     });
+  };
+  handleRemind = () => {
+    return (
+      <div>
+        <button
+          type="button"
+          className=" btnBook"
+          onClick={this.handleSubmit}
+          data-toggle="modal"
+          data-target="#modelId"
+        >
+          Đặt vé
+        </button>
+        <div
+          className="modal fade"
+          id="modelId"
+          tabIndex={-1}
+          role="dialog"
+          aria-labelledby="modelTitleId"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-body">
+                <div className=" errNoti row">
+                  <FontAwesomeIcon className="circleTimes" icon={faTimes} />
+                  <h4>Vui lòng chọn ghế</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
   render() {
     let { room, loading } = this.props;
@@ -254,15 +292,21 @@ class Booking extends Component {
                 </div>
               </form>
             </div>
-            <button
+            {/*<button
               className="btnBook"
               data-toggle="modal"
               data-target="#BookingModal"
-              onClick={this.handleSubmit}
-              disabled={this.state.valid}
+              data-dismiss="modal"
+              aria-label="Close"
+              onClick={
+                (this.state.valid = false
+                  ? this.handleSubmit
+                  : this.handleRemind)
+              }
             >
               Đặt vé
-            </button>
+            </button>*/}
+            {this.handleRemind()}
           </div>
         </div>
       </div>
