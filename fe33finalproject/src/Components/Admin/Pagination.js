@@ -43,15 +43,15 @@ class Paginition extends Component {
       );
     }
   };
-  handleSearch = e => {
-    // let searchData = this.state.keyWord;
-    // this.setState(
-    //   {
-    //     keyWord: searchData
-    //   },
-    //   this.props.searchUser(this.state.keyWord)
-    // );
-  };
+  // handleSearch = e => {
+  //   let searchData = this.state.keyWord;
+  //   this.setState(
+  //     {
+  //       keyWord: searchData
+  //     },
+  //     this.props.searchUser(this.state.keyWord)
+  //   );
+  // };
   handleDelete = e => {
     this.setState(
       {
