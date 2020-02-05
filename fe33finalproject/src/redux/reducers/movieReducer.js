@@ -9,9 +9,9 @@ let initialState = {
   loading: false,
   listMovieCarousel: [],
   room: {},
-  userList:[],
-  userInformation :{},
-  keyWord:[],
+  userList: [],
+  userInformation: {},
+  keyWord: [],
   news: data
 };
 const movieReducer = (state = initialState, action) => {
@@ -20,18 +20,18 @@ const movieReducer = (state = initialState, action) => {
       state.listMovie = action.listMovie;
       return { ...state, loading: false };
     }
-    case ActionType.GET_USER_LIST:{
+    case ActionType.GET_USER_LIST: {
       console.log(action);
       state.userList = action.userList;
-      return {...state, loading:false}
+      return { ...state, loading: false };
     }
     case ActionType.GET_DETAIL_MOVIE: {
       state.movie = action.movie;
       return { ...state, loading: false };
     }
-    case ActionType.GET_USER_INFORMATION:{
-      state.userInformation = action.userInformation
-      return {...state, loading:false}
+    case ActionType.GET_USER_INFORMATION: {
+      state.userInformation = action.userInformation;
+      return { ...state, loading: false };
     }
     case ActionType.GET_LIST_MOVIE_UPCOMING: {
       state.listMovieUpcoming = action.listMovieUpcoming;
@@ -48,11 +48,11 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.BOOKING_MOVIE: {
       return { ...state };
     }
-    case ActionType.UPDATE_USER_INFORMATION:{
-      return {...state, loading:false}
+    case ActionType.UPDATE_USER_INFORMATION: {
+      return { ...state, loading: false };
     }
-    case ActionType.UPDATE_USER_ADMIN_INFORMATION:{
-      return {...state}
+    case ActionType.UPDATE_USER_ADMIN_INFORMATION: {
+      return { ...state };
     }
     case ActionType.LOADING: {
       return { ...state, loading: true };
@@ -69,10 +69,12 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: false };
     case ActionType.CHECK_AUTHENTICATION:
       return { ...state };
-    case ActionType.SEARCH_USER:{
-      state.keyWord = action.keyWord
-      return {...state};
+    case ActionType.SEARCH_USER: {
+      state.keyWord = action.keyWord;
+      return { ...state };
     }
+    case ActionType.DELETE_USER:
+      return { ...state };
     default:
       return { ...state };
   }

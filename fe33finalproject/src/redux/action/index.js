@@ -293,3 +293,26 @@ export const actSearchUser = id => {
       });
   };
 };
+
+export const actDeleteUser = tk => {
+  return dispatch => {
+    const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+    Axios({
+      method: "DELETE",
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${tk}`,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(result => {
+        console.log(result.data);
+        dispatch({
+          type: ActionTypes.DELETE_USER
+        });
+      })
+      .catch(err => {
+        console.log(err.response.data);
+        return err;
+      });
+  };
+};
