@@ -21,8 +21,6 @@ this.handlePageClick = this.handlePageClick.bind(this);
 componentDidMount() {
   setInterval( ()=> {this.receivedData()},2000)
 }
-componentWillUpdate(){
-}
 
 handleChangeSearch=(e)=>{
   if(this.state.keyWord =""){
@@ -42,6 +40,7 @@ handleChangeSearch=(e)=>{
 }
 componentDidUpdate(){
   console.log(this.state);
+  console.log(this.state.searchData);
   
 }
 handleSearch=(e)=>{
@@ -54,7 +53,7 @@ receivedData() {
   axios
       .get(`http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`)
       .then(res => {
-          if(this.state.keyWord ==""){
+          if(this.state.keyWord ===""){
             const data = res.data;
             const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
             let postData = slice.map((pd,index) => 
@@ -85,7 +84,7 @@ receivedData() {
           }
         if(this.state.keyWord !=="")
         {
-          const data = this.state.searchData;
+          const data = this.props.keyWord;
           const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
           let postData = slice.map((pd,index) => 
           <React.Fragment key={index} >
