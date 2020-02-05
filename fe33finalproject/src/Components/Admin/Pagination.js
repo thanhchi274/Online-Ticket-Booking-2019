@@ -12,38 +12,17 @@ class Paginition extends Component {
       perPage: 10,
       currentPage: 0,
       pageCount: 0,
-<<<<<<< HEAD
       searchData: [],
       keyWord: "",
       TaiKhoan: ""
     };
     this.handlePageClick = this.handlePageClick.bind(this);
-=======
-      searchData:[],
-      keyWord:""
-};
-this.handlePageClick = this.handlePageClick.bind(this);
-};
-componentDidMount() {
-  setInterval( ()=> {this.receivedData()},2000)
-}
-
-handleChangeSearch=(e)=>{
-  if(this.state.keyWord =""){
-    let keyWord = e.target.value;
-    this.setState({
-      keyWord,
-      searchData:""
-    })
->>>>>>> 5c81c39bebbf993a332f144cdada09701b99247f
   }
   componentDidMount() {
     setInterval(() => {
       this.receivedData();
     }, 2000);
   }
-<<<<<<< HEAD
-  componentWillUpdate() {}
 
   handleChangeSearch = e => {
     if ((this.state.keyWord = "")) {
@@ -52,21 +31,18 @@ handleChangeSearch=(e)=>{
         keyWord,
         searchData: ""
       });
-    } else {
-      let keyWord = e.target.value;
-      this.setState(
-        {
-          keyWord,
-          searchData: this.props.keyWord
-        },
-        this.props.searchUser(keyWord)
-      );
     }
   };
-  componentDidUpdate() {
-    console.log(this.state);
+  componentDidMount() {
+    setInterval(() => {
+      this.receivedData();
+    }, 2000);
   }
 
+  componentDidUpdate() {
+    console.log(this.state);
+    console.log(this.state.searchData);
+  }
   handleDelete = e => {
     this.setState(
       {
@@ -77,14 +53,13 @@ handleChangeSearch=(e)=>{
       }
     );
   };
-
   receivedData() {
     axios
       .get(
         `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`
       )
       .then(res => {
-        if (this.state.keyWord == "") {
+        if (this.state.keyWord === "") {
           const data = res.data;
           const slice = data.slice(
             this.state.offset,
@@ -124,78 +99,51 @@ handleChangeSearch=(e)=>{
               </div>
             </React.Fragment>
           ));
-=======
-}
-componentDidUpdate(){
-  console.log(this.state);
-  console.log(this.state.searchData);
-  
-}
-handleSearch=(e)=>{
-  // let searchData = this.state.keyWord;
-  // this.setState({
-  //   keyWord: searchData
-  // },this.props.searchUser(this.state.keyWord))
-}
-receivedData() {
-  axios
-      .get(`http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`)
-      .then(res => {
-          if(this.state.keyWord ===""){
-            const data = res.data;
-            const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-            let postData = slice.map((pd,index) => 
-            <React.Fragment key={index} >
-                      <div className="table100-body js-pscroll">
-              <table>
-                <tbody>
-                  <tr className="row100 body">
-                    <td className="cell100 column1">{pd.taiKhoan}</td>
-                    <td className="cell100 column2">{pd.hoTen}</td>
-                    <td className="cell100 column3">{pd.email}</td>
-                    <td className="cell100 column4">{pd.soDt}</td>
-                    <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
-                    <td className="cell100 column6">{pd.matKhau}</td>
-                    <td className="cell100 column7">
-                    <button onClick={this.handleEdit} value={pd.taiKhoan} className="btn btnEdit btn-success">Edit</button>
-                    <button  onClick={this.handleDelete} value={pd.taiKhoan} className="btn btnDelete btn-danger">Delete</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            </React.Fragment>)
-            this.setState({
-              pageCount: Math.ceil(data.length / this.state.perPage),
-              postData
-            })
-          }
-        if(this.state.keyWord !=="")
-        {
+          this.setState({
+            pageCount: Math.ceil(data.length / this.state.perPage),
+            postData
+          });
+        }
+        if (this.state.keyWord !== "") {
           const data = this.props.keyWord;
-          const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-          let postData = slice.map((pd,index) => 
-          <React.Fragment key={index} >
-                    <div className="table100-body js-pscroll">
-            <table>
-              <tbody>
-                <tr className="row100 body">
-                  <td className="cell100 column1">{pd.taiKhoan}</td>
-                  <td className="cell100 column2">{pd.hoTen}</td>
-                  <td className="cell100 column3">{pd.email}</td>
-                  <td className="cell100 column4">{pd.soDt}</td>
-                  <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
-                  <td className="cell100 column6">{pd.matKhau}</td>
-                  <td className="cell100 column7">
-                  <button onClick={this.handleEdit} value={pd.taiKhoan} className="btn btnEdit btn-success">Edit</button>
-                  <button  onClick={this.handleDelete} value={pd.taiKhoan} className="btn btnDelete btn-danger">Delete</button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          </React.Fragment>)
->>>>>>> 5c81c39bebbf993a332f144cdada09701b99247f
+          const slice = data.slice(
+            this.state.offset,
+            this.state.offset + this.state.perPage
+          );
+          let postData = slice.map((pd, index) => (
+            <React.Fragment key={index}>
+              <div className="table100-body js-pscroll">
+                <table>
+                  <tbody>
+                    <tr className="row100 body">
+                      <td className="cell100 column1">{pd.taiKhoan}</td>
+                      <td className="cell100 column2">{pd.hoTen}</td>
+                      <td className="cell100 column3">{pd.email}</td>
+                      <td className="cell100 column4">{pd.soDt}</td>
+                      <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
+                      <td className="cell100 column6">{pd.matKhau}</td>
+                      <td className="cell100 column7">
+                        <button
+                          onClick={this.handleEdit}
+                          value={pd.taiKhoan}
+                          className="btn btnEdit btn-success"
+                        >
+                          Edit
+                        </button>
+                        <button
+                          onClick={this.handleDelete}
+                          value={pd.taiKhoan}
+                          className="btn btnDelete btn-danger"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </React.Fragment>
+          ));
           this.setState({
             pageCount: Math.ceil(data.length / this.state.perPage),
             postData
