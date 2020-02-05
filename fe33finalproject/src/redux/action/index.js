@@ -18,6 +18,24 @@ export const actGetListMovieAPI = () => {
       });
   };
 };
+export const actGetUserList = () => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01"
+    })
+      .then(async result => {
+        dispatch({
+          type: await ActionTypes.GET_USER_LIST,
+          userList: await result.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
 export const actGetListMovieUpcomingAPI = () => {
   return dispatch => {
     Axios({
@@ -222,6 +240,29 @@ export const actUpdateUserInformation = user => {
       data: user,
       headers: {
         Authorization: `Bearer ${UserHome.accessToken}`
+      }
+    })
+      .then(result => {
+        setTimeout(function() {
+          alert("Cập nhật thành công");
+        }, 500);
+        dispatch(result.data);
+      })
+      .catch(err => {
+        return err;
+      });
+  };
+};
+export const actUpdateUserAdminInformation = user => {
+  const UserAdmin = JSON.parse(localStorage.getItem("UserHome"));
+  return dispatch => {
+    Axios({
+      method: "PUT",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
       }
     })
       .then(result => {

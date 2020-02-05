@@ -1,0 +1,74 @@
+.navbar--hidden {
+    transform: translateX(16.4%)!important;
+    .navbar-search{
+        display: none!important;
+    }
+    .navbar-nav{
+        display: none!important;
+    }
+}
+
+.navbar-expand{
+  z-index: 1001;
+  padding-top:20px;
+  position: fixed !important;
+  transition: all 0.3s;
+  transform: translateX(21%)!important;
+  top: 0;
+    // .navbar-search{
+    //     input{
+    //         background-color:white!important;
+    //         border-top-left-radius: 40px !important;
+    //         border-bottom-left-radius: 40px !important;
+    //         outline:none!important;
+    //         &:focus{
+    //             outline:none!important;
+    //             box-shadow: none!important;
+    //         }
+    //     }
+    //     .btnSearch{
+    //         border:none!important;
+    //         padding: 0 10px;
+    //         transition: all 0.2s;
+    //         border-top-right-radius: 40px !important;
+    //         border-bottom-right-radius: 40px !important;
+    //         background-color: #e3e3e3;
+    //         &:hover{
+    //             background: #e3e3e3;
+    //             box-shadow:  7px 7px 36px #cfcfcf, 
+    //              -7px -7px 36px #f7f7f7;
+    //         }
+    //     }
+    // }
+    .navbar-nav{
+        .dropdown-menu{
+            width: 100px!important;
+            .dropdown-item{
+                padding: 4px 8px 8px 20px!important;
+                svg{
+                    margin-right:10px;
+                }
+            }
+            border:none;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+            a{
+              padding: 8px 0 8px 20px;
+              &:hover{
+                font-weight: 700;
+              }
+            }
+          }
+        .nav-item{
+            .dropdown-toggle{
+                border-radius: 1rem;
+                height: 2.5rem!important;
+                &:hover{
+                box-shadow:  7px 7px 36px #cfcfcf, 
+                 -7px -7px 36px #f7f7f7!important;
+                }
+            }
+        }
+    }
+
+}

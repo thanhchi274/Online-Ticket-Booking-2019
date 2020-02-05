@@ -1,9 +1,22 @@
 import React from 'react'
 import {Route, Redirect} from "react-router-dom";
-
+import NavBar from "../Components/Admin/NavBar";
+import SideBar from "../Components/Admin/Sidebar"
 const AdminLayout =(props)=>{
-    return (<div>
-    {props.children}
+    return (
+      
+      <div id="wrapper">
+      {/* Sidebar */}
+      <NavBar /> 
+      <SideBar />
+      {/* Content Wrapper */}
+      <div id="content-wrapper" className="d-flex flex-column">
+       
+        <div id="content">
+        {props.children}
+        </div>
+        </div>
+
     </div>)
 }
 export default function AdminTemplate({Component,component,...props}) {

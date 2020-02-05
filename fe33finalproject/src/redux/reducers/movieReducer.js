@@ -9,7 +9,9 @@ let initialState = {
   loading: false,
   listMovieCarousel: [],
   room: {},
+  userList:[],
   userInformation :{},
+  keyWord:"",
   news: data
 };
 const movieReducer = (state = initialState, action) => {
@@ -17,6 +19,11 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.GET_LIST_MOVIE: {
       state.listMovie = action.listMovie;
       return { ...state, loading: false };
+    }
+    case ActionType.GET_USER_LIST:{
+      console.log(action);
+      state.userList = action.userList;
+      return {...state, loading:false}
     }
     case ActionType.GET_DETAIL_MOVIE: {
       state.movie = action.movie;
@@ -44,6 +51,9 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.UPDATE_USER_INFORMATION:{
       return {...state, loading:false}
     }
+    case ActionType.UPDATE_USER_ADMIN_INFORMATION:{
+      return {...state}
+    }
     case ActionType.LOADING: {
       return { ...state, loading: true };
     }
@@ -59,6 +69,9 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: false };
     case ActionType.CHECK_AUTHENTICATION:
       return { ...state };
+    case ActionType.SEARCH_USER:{
+      return {...state};
+    }
     default:
       return { ...state };
   }
