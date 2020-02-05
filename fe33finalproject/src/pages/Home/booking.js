@@ -125,18 +125,9 @@ class Booking extends Component {
       return <React.Fragment key={index}>{item.tenGhe} </React.Fragment>;
     });
   };
-  handleRemind = () => {
-    return (
-      <div>
-        <button
-          type="button"
-          className=" btnBook"
-          onClick={this.handleSubmit}
-          data-toggle="modal"
-          data-target="#modelId"
-        >
-          Đặt vé
-        </button>
+  renderRemindHTML = () => {
+    if (this.state.valid === true) {
+      return (
         <div
           className="modal fade"
           id="modelId"
@@ -156,6 +147,22 @@ class Booking extends Component {
             </div>
           </div>
         </div>
+      );
+    }
+  };
+  handleRemind = () => {
+    return (
+      <div>
+        <button
+          type="button"
+          className=" btnBook"
+          onClick={this.handleSubmit}
+          data-toggle="modal"
+          data-target="#modelId"
+        >
+          Đặt vé
+        </button>
+        {this.renderRemindHTML()}
       </div>
     );
   };
