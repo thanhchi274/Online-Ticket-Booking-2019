@@ -12,48 +12,108 @@ class Paginition extends Component {
       data: [],
       perPage: 10,
       currentPage: 0,
-      pageCount: 0
+      pageCount: 0,
+      searchData:[],
+      keyWord:""
 };
 this.handlePageClick = this.handlePageClick.bind(this);
 };
 componentDidMount() {
-  this.receivedData()
+  setInterval( ()=> {this.receivedData()},2000)
 }
-handleEdit=(e)=>{
-console.log(e.target.value);}
+componentWillUpdate(){
+}
+
+handleChangeSearch=(e)=>{
+  if(this.state.keyWord =""){
+    let keyWord = e.target.value;
+    this.setState({
+      keyWord,
+      searchData:""
+    })
+  }
+  else{
+    let keyWord = e.target.value
+    this.setState({
+      keyWord,
+      searchData: this.props.keyWord
+    },this.props.searchUser(keyWord))
+  }
+}
+componentDidUpdate(){
+  console.log(this.state);
+  
+}
+handleSearch=(e)=>{
+  // let searchData = this.state.keyWord;
+  // this.setState({
+  //   keyWord: searchData
+  // },this.props.searchUser(this.state.keyWord))
+}
 receivedData() {
   axios
       .get(`http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`)
       .then(res => {
-          const data = res.data;
-          console.log(data.length)
+          if(this.state.keyWord ==""){
+            const data = res.data;
+            const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
+            let postData = slice.map((pd,index) => 
+            <React.Fragment key={index} >
+                      <div className="table100-body js-pscroll">
+              <table>
+                <tbody>
+                  <tr className="row100 body">
+                    <td className="cell100 column1">{pd.taiKhoan}</td>
+                    <td className="cell100 column2">{pd.hoTen}</td>
+                    <td className="cell100 column3">{pd.email}</td>
+                    <td className="cell100 column4">{pd.soDt}</td>
+                    <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
+                    <td className="cell100 column6">{pd.matKhau}</td>
+                    <td className="cell100 column7">
+                    <button onClick={this.handleEdit} value={pd.taiKhoan} className="btn btnEdit btn-success">Edit</button>
+                    <button  onClick={this.handleDelete} value={pd.taiKhoan} className="btn btnDelete btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            </React.Fragment>)
+            this.setState({
+              pageCount: Math.ceil(data.length / this.state.perPage),
+              postData
+            })
+          }
+        if(this.state.keyWord !=="")
+        {
+          const data = this.state.searchData;
           const slice = data.slice(this.state.offset, this.state.offset + this.state.perPage)
-          const postData = slice.map((pd,index) => 
+          let postData = slice.map((pd,index) => 
           <React.Fragment key={index} >
-          					<div className="table100-body js-pscroll">
-						<table>
-							<tbody>
-								<tr className="row100 body">
-									<td className="cell100 column1">{pd.taiKhoan}</td>
-									<td className="cell100 column2">{pd.hoTen}</td>
-									<td className="cell100 column3">{pd.email}</td>
-									<td className="cell100 column4">{pd.soDt}</td>
-									<td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
+                    <div className="table100-body js-pscroll">
+            <table>
+              <tbody>
+                <tr className="row100 body">
+                  <td className="cell100 column1">{pd.taiKhoan}</td>
+                  <td className="cell100 column2">{pd.hoTen}</td>
+                  <td className="cell100 column3">{pd.email}</td>
+                  <td className="cell100 column4">{pd.soDt}</td>
+                  <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
                   <td className="cell100 column6">{pd.matKhau}</td>
                   <td className="cell100 column7">
                   <button onClick={this.handleEdit} value={pd.taiKhoan} className="btn btnEdit btn-success">Edit</button>
-                  <button  onClick={this.handleDelete} value={index} className="btn btnDelete btn-danger">Delete</button>
+                  <button  onClick={this.handleDelete} value={pd.taiKhoan} className="btn btnDelete btn-danger">Delete</button>
                   </td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           </React.Fragment>)
-
           this.setState({
-              pageCount: Math.ceil(data.length / this.state.perPage),
-              postData
+            pageCount: Math.ceil(data.length / this.state.perPage),
+            postData,
           })
+        }
+
       });
 }
 handlePageClick = (e) => {
@@ -81,9 +141,9 @@ handlingChange =(e)=>{
       <div className="limiter">
       <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-2 my-2 my-md-0 col-md-10 navbar-search" >
             <div className="input-group">
-              <input type="text" className="form-control border-0 small" onChange={(e)=>{this.props.keyWord(e.target.value)}} placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
+              <input type="text" className="form-control border-0 small" onChange={this.handleChangeSearch} placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2" />
               <div className="input-group-append">
-                <button className="btnSearch" type="button">
+                <button className="btnSearch" type="button" onClick={this.handleSearch}>
                Search
                 </button>
               </div>
@@ -142,7 +202,7 @@ handlingChange =(e)=>{
 }
 const mapStateToProps = state => {
   return {
-    userList: state.movieReducer.userList,
+    keyWord: state.movieReducer.keyWord,
     loading: state.movieReducer.loading
   };
 };
@@ -152,8 +212,8 @@ const mapDispatchToProps = dispatch => {
     getUserList:() => {
       dispatch(action.actGetUserList());
     },
-    setLoading: () => {
-      dispatch(action.actLoading());
+    searchUser:(id)=>{
+      dispatch(action.actSearchUser(id))
     }
   };
 };

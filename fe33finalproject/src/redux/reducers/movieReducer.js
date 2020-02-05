@@ -11,7 +11,7 @@ let initialState = {
   room: {},
   userList:[],
   userInformation :{},
-  keyWord:"",
+  keyWord:[],
   news: data
 };
 const movieReducer = (state = initialState, action) => {
@@ -70,6 +70,7 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.CHECK_AUTHENTICATION:
       return { ...state };
     case ActionType.SEARCH_USER:{
+      state.keyWord = action.keyWord
       return {...state};
     }
     default:

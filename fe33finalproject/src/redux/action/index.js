@@ -276,3 +276,20 @@ export const actUpdateUserAdminInformation = user => {
       });
   };
 };
+export const actSearchUser = id => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${id}`
+    })
+      .then(result => {
+        dispatch({
+          type: ActionTypes.SEARCH_USER,
+          keyWord: result.data
+        });
+      })
+      .catch(err => {
+        return err;
+      });
+  };
+};
