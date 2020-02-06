@@ -39,10 +39,6 @@ class Paginition extends Component {
     }, 2000);
   }
 
-  componentDidUpdate() {
-    console.log(this.state);
-    console.log(this.state.searchData);
-  }
   handleDelete = e => {
     this.setState(
       {
@@ -77,6 +73,7 @@ class Paginition extends Component {
                       <td className="cell100 column4">{pd.soDt}</td>
                       <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
                       <td className="cell100 column6">{pd.matKhau}</td>
+                      <td className="cell100 column6">{pd.matKhau}</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
@@ -92,6 +89,13 @@ class Paginition extends Component {
                         >
                           Delete
                         </button>
+                        <a
+                          href="/quan-ly-ve"
+                          value={pd.taiKhoan}
+                          className="btn btnTicket btn-info"
+                        >
+                          Ticket
+                        </a>
                       </td>
                     </tr>
                   </tbody>
@@ -137,6 +141,13 @@ class Paginition extends Component {
                         >
                           Delete
                         </button>
+                        <link
+                          to="/quan-ly-ve"
+                          value={pd.taiKhoan}
+                          className="btn btnTicket btn-info"
+                        >
+                          Ticket
+                        </link>
                       </td>
                     </tr>
                   </tbody>
@@ -224,6 +235,7 @@ class Paginition extends Component {
                         <th className="cell100 column4">Số ĐT</th>
                         <th className="cell100 column5">Type</th>
                         <th className="cell100 column6">Mật khẩu</th>
+                        <th className="cell100 column6">Số vé đã đặt</th>
                         <th className="cell100 column7">Action</th>
                       </tr>
                     </thead>

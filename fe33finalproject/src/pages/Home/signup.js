@@ -42,9 +42,9 @@ class Signup extends Component {
       case "taiKhoan":
         message = value === "" ? "Tài khoản không được rỗng" : "";
         tkValid = message ? false : true;
-        if (value && value.length < 4) {
+        if (value && value.length < 8) {
           tkValid = false;
-          message = "Độ dài chuỗi phải có it nhất 4 kí tự";
+          message = "Tên tài khoản phải có it nhất 8 kí tự";
         }
         break;
       case "matKhau":
@@ -97,118 +97,140 @@ class Signup extends Component {
   handleSubmit = e => {
     e.preventDefault();
     let user = { ...this.state };
+    let { tkValid, mkValid, dtValid, tenValid, emailValid } = this.state;
     user.maNhom = "GP01";
     user.maLoaiNguoiDung = "KhachHang";
-    this.props.signup(user, this.props.history);
+    if ((tkValid, mkValid, dtValid, tenValid, emailValid === true)) {
+      this.props.signup(user, this.props.history);
+    } else {
+      alert("Vui lòng điền đầy đủ thông tin");
+    }
   };
   renderHTML = () => {
     return (
-      <div className="container login-container">
-        <form onSubmit={this.handleSubmit}>
-          <h3>sign up</h3>
-          <div className="input-div signup">
-            <div className="i">
-              <FontAwesomeIcon icon={faGlobe} />
-            </div>
-            <div className="input-user">
-              <h5>username</h5>
-              <input
-                type="text"
-                className="input"
-                name="taiKhoan"
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-              />
-            </div>
+      <div className="signup-container">
+        <h4>sign up</h4>
+        <div className="signup-content  row">
+          <div className="signup-img col-sm-4">
+            <img src="https://cdn.jotfor.ms/images/podo-login-signup.png" />
+            <p>hi there, wanna book your movie tickets, register now</p>
           </div>
-          {this.state.errors.taiKhoan ? (
-            <div style={{ color: "red" }}>{this.state.errors.taiKhoan}</div>
-          ) : (
-            ""
-          )}
-          <div className="input-div signup">
-            <div className="i">
-              <FontAwesomeIcon icon={faLock} />
-            </div>
-            <div>
-              <h5>password</h5>
-              <input
-                className="input"
-                type="password"
-                name="matKhau"
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-              />
-            </div>
+          <div className="signUp-form col-sm-8">
+            <form onSubmit={this.handleSubmit}>
+              <div className="input-div signup">
+                <div className="i">
+                  <FontAwesomeIcon icon={faGlobe} />
+                </div>
+                <div className="input-user">
+                  <h5>username</h5>
+                  <input
+                    type="text"
+                    className="input"
+                    name="taiKhoan"
+                    onChange={this.handleChange}
+                    onBlur={this.handleBlur}
+                  />
+                </div>
+              </div>
+              {this.state.errors.taiKhoan ? (
+                <div className="errorNoti" style={{ color: "red" }}>
+                  {this.state.errors.taiKhoan}
+                </div>
+              ) : (
+                ""
+              )}
+              <div className="input-div signup">
+                <div className="i">
+                  <FontAwesomeIcon icon={faLock} />
+                </div>
+                <div>
+                  <h5>password</h5>
+                  <input
+                    className="input"
+                    type="password"
+                    name="matKhau"
+                    onChange={this.handleChange}
+                    onBlur={this.handleBlur}
+                  />
+                </div>
+              </div>
+              {this.state.errors.matKhau ? (
+                <div className="errorNoti" style={{ color: "red" }}>
+                  {this.state.errors.matKhau}
+                </div>
+              ) : (
+                ""
+              )}
+              <div className="input-div signup">
+                <div className="i">
+                  <FontAwesomeIcon icon={faUser} />
+                </div>
+                <div className="input-user">
+                  <h5>fullname</h5>
+                  <input
+                    type="text"
+                    className="input"
+                    name="hoTen"
+                    onChange={this.handleChange}
+                    onBlur={this.handleBlur}
+                  />
+                </div>
+              </div>
+              {this.state.errors.hoTen ? (
+                <div className="errorNoti" style={{ color: "red" }}>
+                  {this.state.errors.hoTen}
+                </div>
+              ) : (
+                ""
+              )}
+              <div className="input-div signup">
+                <div className="i">
+                  <FontAwesomeIcon icon={faPhone} />
+                </div>
+                <div className="input-user">
+                  <h5>phone</h5>
+                  <input
+                    type="text"
+                    className="input"
+                    name="soDT"
+                    onChange={this.handleChange}
+                    onBlur={this.handleBlur}
+                  />
+                </div>
+              </div>
+              {this.state.errors.soDT ? (
+                <div className="errorNoti" style={{ color: "red" }}>
+                  {this.state.errors.soDT}
+                </div>
+              ) : (
+                ""
+              )}
+              <div className="input-div signup">
+                <div className="i">
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </div>
+                <div className="input-user">
+                  <h5>email</h5>
+                  <input
+                    type="text"
+                    className="input"
+                    name="email"
+                    onChange={this.handleChange}
+                    onBlur={this.handleBlur}
+                  />
+                </div>
+              </div>
+              {this.state.errors.email ? (
+                <div className="errorNoti" style={{ color: "red" }}>
+                  {this.state.errors.email}
+                </div>
+              ) : (
+                ""
+              )}
+              <button className="btn signup-btn">SIGN UP</button>
+            </form>
           </div>
-          {this.state.errors.matKhau ? (
-            <div style={{ color: "red" }}>{this.state.errors.matKhau}</div>
-          ) : (
-            ""
-          )}
-          <div className="input-div signup">
-            <div className="i">
-              <FontAwesomeIcon icon={faUser} />
-            </div>
-            <div className="input-user">
-              <h5>fullname</h5>
-              <input
-                type="text"
-                className="input"
-                name="hoTen"
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-              />
-            </div>
-          </div>
-          {this.state.errors.hoTen ? (
-            <div style={{ color: "red" }}>{this.state.errors.hoTen}</div>
-          ) : (
-            ""
-          )}
-          <div className="input-div signup">
-            <div className="i">
-              <FontAwesomeIcon icon={faPhone} />
-            </div>
-            <div className="input-user">
-              <h5>phone</h5>
-              <input
-                type="text"
-                className="input"
-                name="soDT"
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-              />
-            </div>
-          </div>
-          {this.state.errors.soDT ? (
-            <div style={{ color: "red" }}>{this.state.errors.soDT}</div>
-          ) : (
-            ""
-          )}
-          <div className="input-div signup">
-            <div className="i">
-              <FontAwesomeIcon icon={faEnvelope} />
-            </div>
-            <div className="input-user">
-              <h5>email</h5>
-              <input
-                type="text"
-                className="input"
-                name="email"
-                onChange={this.handleChange}
-                onBlur={this.handleBlur}
-              />
-            </div>
-          </div>
-          {this.state.errors.email ? (
-            <div style={{ color: "red" }}>{this.state.errors.email}</div>
-          ) : (
-            ""
-          )}
-          <button className="btn signup-btn">SIGN UP</button>
-        </form>
-        ;
+        </div>
       </div>
     );
   };
