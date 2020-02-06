@@ -8,6 +8,7 @@ import Info from "./pages/Home/info.js";
 import InfoAdmin from "./pages/Admin/infoAdmin";
 import UserManagement from "./pages/Admin/UserManagement";
 import MovieManagement from "./pages/Admin/MovieManagement";
+import TicketManageMent from "./pages/Admin/ticket-management.js";
 const routeHome = [
   {
     path: "/",
@@ -60,6 +61,11 @@ const routeAdmin = [
     path: "/quan-ly-movie",
     exact: false,
     component: MovieManagement
+  },
+  {
+    path: "/quan-ly-ve",
+    exact: false,
+    component: TicketManageMent
   }
 ];
 export { routeHome, routeAdmin };
