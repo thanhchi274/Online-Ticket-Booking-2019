@@ -24,24 +24,24 @@ class Paginition extends Component {
     }, 2000);
   }
 
-  handleChangeSearch = e => {
-    if ((this.state.keyWord = "")) {
+  componentDidUpdate(){
+    console.log(this.state);
+  }
+  handleChangeSearch=(e)=>{
+    if(this.state.keyWord =""){
       let keyWord = e.target.value;
       this.setState({
         keyWord,
-        searchData: ""
-      });
+        searchData:""
+      })
     }
-  };
-  componentDidMount() {
-    setInterval(() => {
-      this.receivedData();
-    }, 2000);
-  }
-
-  componentDidUpdate() {
-    console.log(this.state);
-    console.log(this.state.searchData);
+    else{
+      let keyWord = e.target.value
+      this.setState({
+        keyWord,
+        searchData: this.props.keyWord
+      },this.props.searchUser(keyWord))
+    }
   }
   handleDelete = e => {
     this.setState(
@@ -65,7 +65,7 @@ class Paginition extends Component {
             this.state.offset,
             this.state.offset + this.state.perPage
           );
-          let postData = slice.map((pd, index) => (
+          let postData = slice.map((pd, index) => 
             <React.Fragment key={index}>
               <div className="table100-body js-pscroll">
                 <table>
@@ -97,12 +97,11 @@ class Paginition extends Component {
                   </tbody>
                 </table>
               </div>
-            </React.Fragment>
-          ));
-          this.setState({
-            pageCount: Math.ceil(data.length / this.state.perPage),
-            postData
-          });
+            </React.Fragment>)
+              this.setState({
+                pageCount: Math.ceil(data.length / this.state.perPage),
+                postData
+              });
         }
         if (this.state.keyWord !== "") {
           const data = this.props.keyWord;
@@ -110,7 +109,7 @@ class Paginition extends Component {
             this.state.offset,
             this.state.offset + this.state.perPage
           );
-          let postData = slice.map((pd, index) => (
+          let postData = slice.map((pd, index) => 
             <React.Fragment key={index}>
               <div className="table100-body js-pscroll">
                 <table>
@@ -142,8 +141,7 @@ class Paginition extends Component {
                   </tbody>
                 </table>
               </div>
-            </React.Fragment>
-          ));
+            </React.Fragment>)
           this.setState({
             pageCount: Math.ceil(data.length / this.state.perPage),
             postData

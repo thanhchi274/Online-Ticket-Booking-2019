@@ -69,11 +69,9 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: false };
     case ActionType.CHECK_AUTHENTICATION:
       return { ...state };
-    case ActionType.SEARCH_USER: {
-      console.log(action);
+    case ActionType.SEARCH_USER: 
       state.keyWord = action.keyWord;
       return { ...state };
-    }
     case ActionType.DELETE_USER:
       return { ...state };
     default:
