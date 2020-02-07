@@ -254,7 +254,7 @@ export const actUpdateUserInformation = user => {
   };
 };
 export const actUpdateUserAdminInformation = user => {
-  const UserAdmin = JSON.parse(localStorage.getItem("UserHome"));
+  const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
   return dispatch => {
     Axios({
       method: "PUT",
@@ -305,12 +305,14 @@ export const actDeleteUser = tk => {
       }
     })
       .then(result => {
+        alert(result.data);
         console.log(result.data);
         dispatch({
           type: ActionTypes.DELETE_USER
         });
       })
       .catch(err => {
+        alert(err.response.data);
         console.log(err.response.data);
         return err;
       });

@@ -30,6 +30,7 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: false };
     }
     case ActionType.GET_USER_INFORMATION: {
+      console.log(action);
       state.userInformation = action.userInformation;
       return { ...state, loading: false };
     }

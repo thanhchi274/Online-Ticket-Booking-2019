@@ -3,6 +3,9 @@ import { connect } from "react-redux";
 import axios from "axios";
 import * as action from "../../redux/action";
 import ReactPaginate from "react-paginate";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserEdit,faTrash,faTicketAlt } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 class Paginition extends Component {
   constructor(props) {
     super(props);
@@ -14,21 +17,30 @@ class Paginition extends Component {
       pageCount: 0,
       searchData: [],
       keyWord: "",
-      TaiKhoan: ""
+      taiKhoanDelete: "",
+      taiKhoan: "",
+      matKhau: "",
+      email:"",
+      soDt:"",
+      hoTen:"",
+      sumbitData:{
+      taiKhoan: "",
+      matKhau: "",
+      email:"",
+      soDt:"",
+      hoTen:""
+      }
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   componentDidMount() {
     setInterval(() => {
       this.receivedData();
-    }, 2000);
-  }
-
-  componentDidUpdate(){
-    console.log(this.state);
+    }, 100);
+    
   }
   handleChangeSearch=(e)=>{
-    if(this.state.keyWord =""){
+    if(this.state.keyWord ===""){
       let keyWord = e.target.value;
       this.setState({
         keyWord,
@@ -43,22 +55,69 @@ class Paginition extends Component {
       },this.props.searchUser(keyWord))
     }
   };
-  componentDidMount() {
-    setInterval(() => {
-      this.receivedData();
-    }, 2000);
+  handleChangeEdit =e =>{
+    let target = e.target;
+    let name  = target.name;
+    let value = target.value;
+    this.setState({
+      [name]:value,
+      sumbitData:{
+        taiKhoan : this.state.taiKhoan,
+        hoTen : this.state.hoTen,
+        email: this.state.email,
+        soDt : this.state.soDt,
+        matKhau: this.state.matKhau,
+        maLoaiNguoiDung: this.state.maLoaiNguoiDung,
+        maNhom:"GP01",
+        [name]: value,
+      }
+    },()=>{
+      console.log(this.state);
+    });
   }
-
   handleDelete = e => {
     this.setState(
       {
-        TaiKhoan: e.target.value
+        taiKhoanDelete: e.target.value
       },
       () => {
-        this.props.deleteUser(this.state.TaiKhoan);
+        this.props.deleteUser(this.state.taiKhoanDelete);
       }
     );
   };
+  handleSubmitEdit = e=>{
+    this.props.updateUser(this.state.sumbitData);
+    e.preventDefault();
+    this.setState({
+      ...this.state.sumbitData,
+    }, console.log(this.state))
+  }
+  handleEdit= e=>{
+    let hoTen = e.target.getAttribute("hoten");
+    let email = e.target.getAttribute("email");
+    let soDt = e.target.getAttribute("sodt");
+    let matKhau = e.target.getAttribute("matkhau");
+    let taiKhoan = e.target.value;
+    let maLoaiNguoiDung = e.target.getAttribute("maloainguoidung");
+      this.setState({
+        taiKhoan,
+        email,
+        soDt,
+        matKhau,
+        hoTen,
+        maLoaiNguoiDung,
+        sumbitData:{
+            maNhom:"GP01",
+            taiKhoan,
+            email,
+            soDt,
+            matKhau,
+            hoTen,
+            maLoaiNguoiDung,
+        }
+      },console.log(this.state)
+      )
+  }
   receivedData() {
     axios
       .get(
@@ -89,23 +148,30 @@ class Paginition extends Component {
                           onClick={this.handleEdit}
                           value={pd.taiKhoan}
                           className="btn btnEdit btn-success"
+                          maloainguoidung = {pd.maLoaiNguoiDung}
+                          hoten = {pd.hoTen}
+                          email = {pd.email}
+                          sodt ={pd.soDt}
+                          matkhau ={pd.matKhau}
+                          data-toggle="modal" data-target="#myModal"
                         >
-                          Edit
+                           <FontAwesomeIcon icon={faUserEdit} />
                         </button>
                         <button
                           onClick={this.handleDelete}
                           value={pd.taiKhoan}
+                          maloainguoidung = {pd.maLoaiNguoiDung}  
                           className="btn btnDelete btn-danger"
                         >
-                          Delete
+                           <FontAwesomeIcon icon={faTrash} />
                         </button>
-                        <a
-                          href="/quan-ly-ve"
+                        <Link
+                          to="/quan-ly-ve"
                           value={pd.taiKhoan}
                           className="btn btnTicket btn-info"
                         >
-                          Ticket
-                        </a>
+                          <FontAwesomeIcon icon={faTicketAlt} />
+                        </Link>
                       </td>
                     </tr>
                   </tbody>
@@ -135,28 +201,31 @@ class Paginition extends Component {
                       <td className="cell100 column4">{pd.soDt}</td>
                       <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
                       <td className="cell100 column6">{pd.matKhau}</td>
+                      <td className="cell100 column6">{pd.matKhau}</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
                           value={pd.taiKhoan}
                           className="btn btnEdit btn-success"
+                          maloainguoidung = {pd.maLoaiNguoiDung}
                         >
-                          Edit
+                           <FontAwesomeIcon icon={faUserEdit} />
                         </button>
                         <button
                           onClick={this.handleDelete}
                           value={pd.taiKhoan}
                           className="btn btnDelete btn-danger"
                         >
-                          Delete
+                          <FontAwesomeIcon icon={faTrash} />
                         </button>
-                        <link
+                        <button
                           to="/quan-ly-ve"
                           value={pd.taiKhoan}
                           className="btn btnTicket btn-info"
+                          data-toggle="modal" data-target="#myModal"
                         >
-                          Ticket
-                        </link>
+                         <FontAwesomeIcon icon={faTicketAlt} />
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -209,15 +278,6 @@ class Paginition extends Component {
                 aria-label="Search"
                 aria-describedby="basic-addon2"
               />
-              <div className="input-group-append">
-                <button
-                  className="btnSearch"
-                  type="button"
-                  onClick={this.handleSearch}
-                >
-                  Search
-                </button>
-              </div>
             </div>
           </form>
           <div className="selectEntries d-flex">
@@ -267,6 +327,86 @@ class Paginition extends Component {
             </div>
           </div>
         </div>
+          <div id="myModal" className="modal fade" role="dialog">
+          <div className="modal-dialog">
+            {/* Modal content*/}
+            <div className="modal-content">
+              <div className="modal-header">
+                <h4 className="modal-title">Edit User</h4>
+              </div>
+              <div className="modal-body">
+              <form onSubmit={this.handleSubmitEdit}>
+                        <div className="form-group">
+                          <label>Tài Khoản:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="taiKhoan"
+                            value={this.state.taiKhoan ? this.state.taiKhoan: ""}
+                            onChange={this.handleChangeEdit}
+                            placeholder="Nhập Họ và Tên"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Họ Tên:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="hoTen"
+                            value={this.state.hoTen}
+                            onChange={this.handleChangeEdit}
+                            placeholder="Nhập Họ và Tên"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Password:</label>
+                          <input
+                            type="password"
+                            className="form-control"
+                            name="matKhau"
+                            autoComplete="password"
+                            value={this.state.matKhau}
+                            onChange={this.handleChangeEdit }
+                            placeholder="Nhập Password"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Số Điện Thoại:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="soDt"
+                            value={this.state.soDt}
+                            onChange={this.handleChangeEdit}
+                            placeholder="Nhập số điện thoại"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Email:</label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            name="email"
+                            value={this.state.email}
+                            onChange={this.handleChangeEdit}
+                            placeholder="Nhập Email"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          className="btn btn-update btn-success"
+                        >
+                          Cập nhật
+                        </button>
+                      </form>
+              </div>
+              <div className="modal-footer">
+                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     );
   }
@@ -274,7 +414,8 @@ class Paginition extends Component {
 const mapStateToProps = state => {
   return {
     keyWord: state.movieReducer.keyWord,
-    loading: state.movieReducer.loading
+    loading: state.movieReducer.loading,
+    userInformation: state.movieReducer.userInformation
   };
 };
 
@@ -288,6 +429,12 @@ const mapDispatchToProps = dispatch => {
     },
     deleteUser: tk => {
       dispatch(action.actDeleteUser(tk));
+    },
+    getUserInformation: tk =>{
+      dispatch(action.actLayThongTinUser(tk))
+    },
+    updateUser: tk =>{
+      dispatch(action.actUpdateUserInformation(tk))
     }
   };
 };
