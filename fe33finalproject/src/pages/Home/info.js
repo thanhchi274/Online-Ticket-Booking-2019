@@ -4,9 +4,9 @@ import * as Action from "../../redux/action/index";
 import { connect } from "react-redux";
 import UserImage from "../../Components/UserImage";
 import SVGLoading from "../../Components/loading";
-import { Link } from "react-router-dom";
-import { Date } from "prismic-reactjs";
+import FullWidthTabs from "../../Components/info-detail";
 import _ from "lodash";
+
 class Info extends Component {
   constructor(props) {
     super(props);
@@ -86,8 +86,6 @@ class Info extends Component {
   };
 
   renderHTML = () => {
-    let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-    let UserData = this.state.movieData;
     let { loading } = this.props;
     if (loading) {
       return (
@@ -97,256 +95,19 @@ class Info extends Component {
       );
     }
     return (
-      <div
-        className="info--user"
-        style={{ backgroundColor: "white", opacity: "1" }}
-      >
-        <h1>THÔNG TIN TÀI KHOẢN</h1>
-        <div className="container row d-flex">
-          <div className="avatar col-md-4 ">
-            <UserImage />
-          </div>
-          <div className="info col-md-8">
-            <div className="comp">
-              <p>
-                Tài Khoản:<span>{UserInfo ? UserInfo.taiKhoan : ""}</span>
-              </p>
+      <div className="container info-user">
+        <div className="info-cover">
+          <div className="detail-info">
+            <div className="ava">
+              <UserImage />
             </div>
-            <div className="comp ">
-              <p>
-                Mật Khẩu:<span>{UserInfo ? UserInfo.matKhau : ""}</span>
-              </p>
-            </div>
-            <div className="comp">
-              <p>
-                Họ và tên:<span>{UserInfo ? UserInfo.hoTen : ""}</span>
-              </p>
-            </div>
-            <div className="comp">
-              <p>
-                Email: <span>{UserInfo ? UserInfo.email : ""}</span>
-              </p>
-            </div>
-            <div className="comp ">
-              <p>
-                Số điện thoại:<span>{UserInfo ? UserInfo.soDT : ""}</span>
-              </p>
-            </div>
-            <div className="d-flex comboButtonUser justify-content-between">
-              {/* Button to Open the Modal */}
-              <button
-                type="button"
-                className="btn btn-update btn-info "
-                data-toggle="modal"
-                data-target="#myModal1"
-                onClick={this.handleClick}
-              >
-                Chỉnh Sửa Tài Khoản
-              </button>
-              <Link
-                className="nav-link btn btn-success"
-                onClick={this.scrollToHistory}
-                to="/info"
-              >
-                Lịch Sử Giao Dịch
-              </Link>
-              {/* The Modal */}
-              <div className="modal" id="myModal1">
-                <div className="modal-dialog">
-                  <div className="modal-content">
-                    {/* Modal Header */}
-                    <div className="modal-header">
-                      <h4 className="modal-title">UPDATE INFORMATION</h4>
-                      <button
-                        type="button"
-                        className="close"
-                        data-dismiss="modal"
-                      >
-                        ×
-                      </button>
-                    </div>
-                    {/* Modal body */}
-                    <div className="modal-body">
-                      <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                          <label>Họ Tên:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="hoTen"
-                            value={this.state.hoTen}
-                            onChange={this.handleChange}
-                            placeholder="Nhập Họ và Tên"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Password:</label>
-                          <input
-                            type="password"
-                            className="form-control"
-                            name="matKhau"
-                            value={this.state.matKhau}
-                            onChange={this.handleChange}
-                            placeholder="Nhập Password"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Số Điện Thoại:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="soDt"
-                            value={this.state.soDt}
-                            onChange={this.handleChange}
-                            placeholder="Nhập số điện thoại"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Email:</label>
-                          <input
-                            type="email"
-                            className="form-control"
-                            name="email"
-                            value={this.state.email}
-                            onChange={this.handleChange}
-                            placeholder="Nhập Email"
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          className="btn btn-update btn-success"
-                        >
-                          Cập nhật
-                        </button>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="general">
+              <h5>{this.state.hoTen}</h5>
             </div>
           </div>
         </div>
-        {/* Lịch Sử giao dịch */}
-        <div className="container-table100 history-user mt-5">
-          <h1 className="my-4">Lịch Sử Giao Dịch</h1>
-          <div className="wrap-table100">
-            <div className="table100 ver2 m-b-110">
-              <div className="table100-head">
-                <table>
-                  <thead>
-                    <tr className="row100 head">
-                      <th className="cell100 column1">Tên Phim</th>
-                      <th className="cell100 column2">Ngày giao dịch</th>
-                      <th className="cell100 column3">Tên Hệ Thống Rạp</th>
-                      <th className="cell100 column4">Tên Rạp</th>
-                      <th className="cell100 column5">Tên Ghế</th>
-                    </tr>
-                  </thead>
-                </table>
-              </div>
-              {Object.keys(UserData).map((value, index) => (
-                <div key={index}>
-                  {typeof _.groupBy(UserData[value], "ngayDat") == "object" ? (
-                    <div>
-                      {Object.keys(_.groupBy(UserData[value], "ngayDat")).map(
-                        (item2, index2) => {
-                          {
-                            /* {console.log(_.groupBy(UserData[value],'ngayDat')[item2][index2])} */
-                          }
-                          return typeof _.groupBy(UserData[value], "ngayDat")[
-                            item2
-                          ][index2].danhSachGhe == "object" ? (
-                            <div key={index2}>
-                              {console.log(
-                                _.groupBy(UserData[value], "ngayDat")[item2][
-                                  index2
-                                ].ngayDat
-                              )}
-                              {Object.keys(
-                                _.groupBy(UserData[value], "ngayDat")[item2][
-                                  index2
-                                ].danhSachGhe
-                              ).map((item3, index3) => {
-                                {
-                                  console.log(
-                                    _.groupBy(UserData[value], "ngayDat")[
-                                      item2
-                                    ][index2].danhSachGhe[item3]
-                                  );
-                                }
-                                return (
-                                  <div key={index3}>
-                                    <div className="table100-body js-pscroll">
-                                      <table>
-                                        <tbody>
-                                          <tr className="row100 body">
-                                            <td className="cell100 column1">
-                                              {" "}
-                                              {
-                                                _.groupBy(
-                                                  UserData[value],
-                                                  "ngayDat"
-                                                )[item2][index2].tenPhim
-                                              }
-                                            </td>
-                                            <td className="cell100 column2">
-                                              {new Date(
-                                                _.groupBy(
-                                                  UserData[value],
-                                                  "ngayDat"
-                                                )[item2][index2].ngayDat
-                                              ).toLocaleDateString()}
-                                            </td>
-                                            <td className="cell100 column3">
-                                              {" "}
-                                              {
-                                                _.groupBy(
-                                                  UserData[value],
-                                                  "ngayDat"
-                                                )[item2][index2].danhSachGhe[
-                                                  item3
-                                                ].tenHeThongRap
-                                              }
-                                            </td>
-                                            <td className="cell100 column4">
-                                              {" "}
-                                              {
-                                                _.groupBy(
-                                                  UserData[value],
-                                                  "ngayDat"
-                                                )[item2][index2].danhSachGhe[
-                                                  item3
-                                                ].tenRap
-                                              }
-                                            </td>
-                                            <td className="cell100 column5">
-                                              {" "}
-                                              {
-                                                _.groupBy(
-                                                  UserData[value],
-                                                  "ngayDat"
-                                                )[item2][index2].danhSachGhe[
-                                                  item3
-                                                ].tenGhe
-                                              }
-                                            </td>
-                                          </tr>
-                                        </tbody>
-                                      </table>
-                                    </div>
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          ) : null;
-                        }
-                      )}
-                    </div>
-                  ) : null}
-                </div>
-              ))}
-            </div>
-          </div>
+        <div className="detail-info">
+          <FullWidthTabs />
         </div>
       </div>
     );
