@@ -4,10 +4,9 @@ import * as Action from "../../redux/action/index";
 import { connect } from "react-redux";
 import UserImage from "../../Components/UserImage";
 import SVGLoading from "../../Components/loading";
-import {  Link } from "react-router-dom";
-import {Date} from 'prismic-reactjs';
-import _ from 'lodash';
-import { map, tail, times, uniq, groupBy ,mapValues } from 'lodash';
+import { Link } from "react-router-dom";
+import { Date } from "prismic-reactjs";
+import _ from "lodash";
 class Info extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +19,7 @@ class Info extends Component {
       hoTen: "",
       maNhom: "",
       maLoaiNguoiDung: "",
-      movieData:[],
+      movieData: []
     };
   }
   scrollToHistory = () => {
@@ -31,27 +30,26 @@ class Info extends Component {
     });
   };
   componentDidUpdate() {
-    setInterval(()=>{
-      let user = { ...this.state };
-      this.props.getUserInformation(user)
-    },2000)
-    // let user = { ...this.state };
-    // this.props.getUserInformation(user);
+    let user = { ...this.state };
+    this.props.getUserInformation(user);
   }
   componentDidMount() {
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-    const group1 = _.groupBy(UserInfo.thongTinDatVe, 'ngayDat');
-    console.log(group1)
-    this.setState({
-      movieData : group1
-    },()=>{
-      console.log(this.state);
-    })
+    const group1 = _.groupBy(UserInfo.thongTinDatVe, "ngayDat");
+    console.log(group1);
+    this.setState(
+      {
+        movieData: group1
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
     if (localStorage.getItem("UserHome")) {
       let info = JSON.parse(localStorage.getItem("UserHome"));
       let taiKhoan = info.taiKhoan;
       this.setState({
-        taiKhoan,
+        taiKhoan
       });
     }
     if (localStorage.getItem("UserInfo")) {
@@ -80,17 +78,16 @@ class Info extends Component {
     this.setState({
       [name]: value
     });
-    
   };
   handleSubmit = e => {
     e.preventDefault();
     let updatedUser = { ...this.state };
     this.props.updateUser(updatedUser);
   };
-  
+
   renderHTML = () => {
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-    let UserData = this.state.movieData
+    let UserData = this.state.movieData;
     let { loading } = this.props;
     if (loading) {
       return (
@@ -102,7 +99,8 @@ class Info extends Component {
     return (
       <div
         className="info--user"
-        style={{ backgroundColor: "white", opacity: "1" }}>
+        style={{ backgroundColor: "white", opacity: "1" }}
+      >
         <h1>THÔNG TIN TÀI KHOẢN</h1>
         <div className="container row d-flex">
           <div className="avatar col-md-4 ">
@@ -112,9 +110,7 @@ class Info extends Component {
             <div className="comp">
               <p>
                 Tài Khoản:<span>{UserInfo ? UserInfo.taiKhoan : ""}</span>
-                
               </p>
-             
             </div>
             <div className="comp ">
               <p>
@@ -147,13 +143,13 @@ class Info extends Component {
               >
                 Chỉnh Sửa Tài Khoản
               </button>
-             <Link
-                      className="nav-link btn btn-success"
-                      onClick={this.scrollToHistory}
-                      to="/info"
-                    >
-                      Lịch Sử Giao Dịch
-                    </Link>
+              <Link
+                className="nav-link btn btn-success"
+                onClick={this.scrollToHistory}
+                to="/info"
+              >
+                Lịch Sử Giao Dịch
+              </Link>
               {/* The Modal */}
               <div className="modal" id="myModal1">
                 <div className="modal-dialog">
@@ -204,7 +200,6 @@ class Info extends Component {
                             onChange={this.handleChange}
                             placeholder="Nhập số điện thoại"
                           />
-                      
                         </div>
                         <div className="form-group">
                           <label>Email:</label>
@@ -233,68 +228,130 @@ class Info extends Component {
         </div>
         {/* Lịch Sử giao dịch */}
         <div className="container-table100 history-user mt-5">
-                <h1 className="my-4">Lịch Sử Giao Dịch</h1>
-            <div className="wrap-table100">
-              <div className="table100 ver2 m-b-110">
-                <div className="table100-head">
-                  <table>
-                    <thead>
-                      <tr className="row100 head">
-                        <th className="cell100 column1">Tên Phim</th>
-                        <th className="cell100 column2">Ngày giao dịch</th>
-                        <th className="cell100 column3">Tên Hệ Thống Rạp</th>
-                        <th className="cell100 column4">Tên Rạp</th>
-                        <th className="cell100 column5">Tên Ghế</th>
-                      </tr>
-                    </thead>
-                  </table>
-                </div>
-                {
-        Object.keys(UserData).map((value,index)=>
-            <div key ={index}>
-             {(typeof(_.groupBy(UserData[value],'ngayDat'))=='object')?
-               <div>
-               {
-               Object.keys(_.groupBy(UserData[value],'ngayDat')).map((item2, index2)=>{
-                    {/* {console.log(_.groupBy(UserData[value],'ngayDat')[item2][index2])} */}
-                  return( 
-                      (typeof(_.groupBy(UserData[value],'ngayDat')[item2][index2].danhSachGhe)=='object')?
-                      <div key={index2}>
-                      {console.log(_.groupBy(UserData[value],'ngayDat')[item2][index2].ngayDat)}
-                      {Object.keys(_.groupBy(UserData[value],'ngayDat')[item2][index2].danhSachGhe).map((item3,index3)=>{
-                          {console.log(_.groupBy(UserData[value],'ngayDat')[item2][index2].danhSachGhe[item3])}
-                        return(
-                        <div key={index3}>
-                        <div className="table100-body js-pscroll">
-                        <table>
-                          <tbody>
-                            <tr className="row100 body">
-                              <td className="cell100 column1"> {_.groupBy(UserData[value],'ngayDat')[item2][index2].tenPhim}</td>
-                              <td className="cell100 column2">{new Date(_.groupBy(UserData[value],'ngayDat')[item2][index2].ngayDat).toLocaleDateString()}</td>
-                              <td className="cell100 column3"> {_.groupBy(UserData[value],'ngayDat')[item2][index2].danhSachGhe[item3].tenHeThongRap}</td>
-                              <td className="cell100 column4"> {_.groupBy(UserData[value],'ngayDat')[item2][index2].danhSachGhe[item3].tenRap}</td>
-                              <td className="cell100 column5"> {_.groupBy(UserData[value],'ngayDat')[item2][index2].danhSachGhe[item3].tenGhe}</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                    </div>   
-                        </div>
-                        )
-                      })}
-                      </div>:null
-                    )})}
-               </div>:null}
-            </div>
-          )
-        }
+          <h1 className="my-4">Lịch Sử Giao Dịch</h1>
+          <div className="wrap-table100">
+            <div className="table100 ver2 m-b-110">
+              <div className="table100-head">
+                <table>
+                  <thead>
+                    <tr className="row100 head">
+                      <th className="cell100 column1">Tên Phim</th>
+                      <th className="cell100 column2">Ngày giao dịch</th>
+                      <th className="cell100 column3">Tên Hệ Thống Rạp</th>
+                      <th className="cell100 column4">Tên Rạp</th>
+                      <th className="cell100 column5">Tên Ghế</th>
+                    </tr>
+                  </thead>
+                </table>
               </div>
+              {Object.keys(UserData).map((value, index) => (
+                <div key={index}>
+                  {typeof _.groupBy(UserData[value], "ngayDat") == "object" ? (
+                    <div>
+                      {Object.keys(_.groupBy(UserData[value], "ngayDat")).map(
+                        (item2, index2) => {
+                          {
+                            /* {console.log(_.groupBy(UserData[value],'ngayDat')[item2][index2])} */
+                          }
+                          return typeof _.groupBy(UserData[value], "ngayDat")[
+                            item2
+                          ][index2].danhSachGhe == "object" ? (
+                            <div key={index2}>
+                              {console.log(
+                                _.groupBy(UserData[value], "ngayDat")[item2][
+                                  index2
+                                ].ngayDat
+                              )}
+                              {Object.keys(
+                                _.groupBy(UserData[value], "ngayDat")[item2][
+                                  index2
+                                ].danhSachGhe
+                              ).map((item3, index3) => {
+                                {
+                                  console.log(
+                                    _.groupBy(UserData[value], "ngayDat")[
+                                      item2
+                                    ][index2].danhSachGhe[item3]
+                                  );
+                                }
+                                return (
+                                  <div key={index3}>
+                                    <div className="table100-body js-pscroll">
+                                      <table>
+                                        <tbody>
+                                          <tr className="row100 body">
+                                            <td className="cell100 column1">
+                                              {" "}
+                                              {
+                                                _.groupBy(
+                                                  UserData[value],
+                                                  "ngayDat"
+                                                )[item2][index2].tenPhim
+                                              }
+                                            </td>
+                                            <td className="cell100 column2">
+                                              {new Date(
+                                                _.groupBy(
+                                                  UserData[value],
+                                                  "ngayDat"
+                                                )[item2][index2].ngayDat
+                                              ).toLocaleDateString()}
+                                            </td>
+                                            <td className="cell100 column3">
+                                              {" "}
+                                              {
+                                                _.groupBy(
+                                                  UserData[value],
+                                                  "ngayDat"
+                                                )[item2][index2].danhSachGhe[
+                                                  item3
+                                                ].tenHeThongRap
+                                              }
+                                            </td>
+                                            <td className="cell100 column4">
+                                              {" "}
+                                              {
+                                                _.groupBy(
+                                                  UserData[value],
+                                                  "ngayDat"
+                                                )[item2][index2].danhSachGhe[
+                                                  item3
+                                                ].tenRap
+                                              }
+                                            </td>
+                                            <td className="cell100 column5">
+                                              {" "}
+                                              {
+                                                _.groupBy(
+                                                  UserData[value],
+                                                  "ngayDat"
+                                                )[item2][index2].danhSachGhe[
+                                                  item3
+                                                ].tenGhe
+                                              }
+                                            </td>
+                                          </tr>
+                                        </tbody>
+                                      </table>
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          ) : null;
+                        }
+                      )}
+                    </div>
+                  ) : null}
+                </div>
+              ))}
             </div>
           </div>
+        </div>
       </div>
-      
     );
   };
-  
+
   render() {
     return localStorage.getItem("UserHome") ? (
       <div>{this.renderHTML()}</div>
