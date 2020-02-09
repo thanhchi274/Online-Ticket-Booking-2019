@@ -86,7 +86,8 @@ export default function CenteredTabs(props) {
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Item Three
+      <textarea rows="4" cols="110" name="comment" form="usrform">
+        Enter comment here...</textarea>
       </TabPanel>
     </Paper>
   );

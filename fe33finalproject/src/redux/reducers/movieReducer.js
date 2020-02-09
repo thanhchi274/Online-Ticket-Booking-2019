@@ -30,7 +30,6 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: false };
     }
     case ActionType.GET_USER_INFORMATION: {
-      console.log(action);
       state.userInformation = action.userInformation;
       return { ...state, loading: false };
     }
@@ -59,7 +58,6 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: true };
     }
     case ActionType.LOGIN:
-      console.log(action);
       return { ...state };
     case ActionType.LOGOUT:
       return { ...state };

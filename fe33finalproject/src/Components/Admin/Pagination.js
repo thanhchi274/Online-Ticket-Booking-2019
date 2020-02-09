@@ -289,6 +289,7 @@ class Paginition extends Component {
               <option value={50}>50</option>
               <option value={100}>100</option>
             </select>
+            <button className="btnAddUser btn btn-success">Add User</button>
           </div>
           <div className="container-table100">
             <div className="wrap-table100">

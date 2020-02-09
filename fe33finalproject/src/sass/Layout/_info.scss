@@ -43,8 +43,11 @@
       }
     }
   }
+  .comboButtonUser{
+    width:450px!important; 
+  }
   .btn-info{
-    margin-left: 40%;
+    // margin-left: 40%;
   }
   .avatar{
     margin-top:3vh;
@@ -55,4 +58,10 @@
     box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     border-radius: 0.75rem;
   }
+}
+.history-user{
+  width: 100vw!important;
+  transform: translateX(-27%);
+  margin:0 auto!important;
+  position: relative!important;
 }

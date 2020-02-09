@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import * as Action from "../redux/action/index.js";
+import axios from "axios";
 import DanhSachPhimHomeTool from "./DanhSachPhimHomeTool"
 import { connect } from 'react-redux'
 
@@ -13,10 +14,8 @@ class HomeTool extends Component {
     }
  componentDidUpdate(){
   this.props.getMovieDateTime(this.state.id)
-  //  if(this.props.movieDate!== prevProps.id){
-  //    this.props.getMovieDateTime(this.state.id);
-  //  }
  }
+ componentDidMount(){}
   renderDanhSachPhim=()=>{
     return this.props.listMovie.map((MovieList, index)=>{
       return <DanhSachPhimHomeTool key={index} MovieList={MovieList}/> 
@@ -42,6 +41,8 @@ class HomeTool extends Component {
     this.setState({
       maRap:event.target.value
     });
+   
+      this.receivedData();
   }
   render() {
     return (
@@ -56,7 +57,7 @@ class HomeTool extends Component {
     </select>
     <select className="form-control selectChoice">
       <option>Ngày Xem</option>
-      {/* {this.renderNgayChieu} */}
+      {this.state.postData}
     </select>
     <select className="form-control selectChoice">
       <option>Suất Chiếu</option>
