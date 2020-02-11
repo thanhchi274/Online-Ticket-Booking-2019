@@ -64,7 +64,6 @@ export const actGetDetailMovieAPI = id => {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`
     })
       .then(async result => {
-        console.log(result.data);
         dispatch({
           type: await ActionTypes.GET_DETAIL_MOVIE,
           movie: await result.data
@@ -115,7 +114,6 @@ export const actLoginAdmin = (user, history) => {
       data: user
     })
       .then(result => {
-        console.log(result.data);
         // Lưu vào local storage
         if (result.data.maLoaiNguoiDung === "QuanTri") {
           localStorage.setItem("UserAdmin", JSON.stringify(result.data));
@@ -312,7 +310,6 @@ export const actDeleteUser = tk => {
       })
       .catch(err => {
         alert(err.response.data);
-        console.log(err.response.data);
         return err;
       });
   };
