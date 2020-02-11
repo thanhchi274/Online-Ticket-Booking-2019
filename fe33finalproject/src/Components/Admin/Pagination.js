@@ -86,13 +86,12 @@ class Paginition extends Component {
     );
   };
   handleSubmitEdit = e=>{
-    this.props.updateUser(this.state.sumbitData);
-    e.preventDefault();
     this.setState({
       ...this.state.sumbitData,
-    }, console.log(this.state))
+    }, this.props.updateUser(this.state.sumbitData))
+    e.preventDefault();
   }
-  handleEdit= e=>{
+  handleEdit= (e)=>{
     let hoTen = e.target.getAttribute("hoten");
     let email = e.target.getAttribute("email");
     let soDt = e.target.getAttribute("sodt");
@@ -354,7 +353,7 @@ class Paginition extends Component {
                             type="text"
                             className="form-control"
                             name="hoTen"
-                            value={this.state.hoTen}
+                            value={this.state.hoTen ? this.state.hoTen: ""}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập Họ và Tên"
                           />
@@ -366,7 +365,7 @@ class Paginition extends Component {
                             className="form-control"
                             name="matKhau"
                             autoComplete="password"
-                            value={this.state.matKhau}
+                            value={this.state.matKhau ? this.state.matKhau :""}
                             onChange={this.handleChangeEdit }
                             placeholder="Nhập Password"
                           />
@@ -377,7 +376,7 @@ class Paginition extends Component {
                             type="text"
                             className="form-control"
                             name="soDt"
-                            value={this.state.soDt}
+                            value={this.state.soDt ? this.state.soDt :""}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập số điện thoại"
                           />
@@ -388,7 +387,7 @@ class Paginition extends Component {
                             type="email"
                             className="form-control"
                             name="email"
-                            value={this.state.email}
+                            value={this.state.email ? this.state.email :""}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập Email"
                           />

@@ -15,7 +15,6 @@ export default class Navbar extends Component {
         const { prevScrollpos } = this.state;
         const currentScrollPos = window.pageYOffset;
         const visible = prevScrollpos <= currentScrollPos;
-    
         this.setState({
           prevScrollpos: currentScrollPos,
           visible
@@ -24,8 +23,6 @@ export default class Navbar extends Component {
       componentDidMount() {
         window.addEventListener("scroll", this.handleScroll);
       }
-    
-      // Remove the event listener when the component is unmount.
       componentWillUnmount() {
         window.removeEventListener("scroll", this.handleScroll);
       }
@@ -35,8 +32,8 @@ export default class Navbar extends Component {
             <nav id="collapsibleNavbar" 
              className={
               !this.state.visible
-                ? " header navbar-expand row navbar-light bg-white topbar  shadow"
-                : "header navbar--hidden row navbar-light bg-white topbar  shadow"
+                ? " navbar-expand row navbar-light bg-white topbar  shadow"
+                : " navbar--hidden row navbar-light bg-white topbar  shadow"
             }
             >
           <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">

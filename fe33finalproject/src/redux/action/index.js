@@ -1,7 +1,5 @@
 import * as ActionTypes from "./../constants/ActionType.js";
 import Axios from "axios";
-import _ from "lodash";
-import { map, tail, times, uniq, groupBy } from "lodash";
 export const actGetListMovieAPI = () => {
   return dispatch => {
     Axios({

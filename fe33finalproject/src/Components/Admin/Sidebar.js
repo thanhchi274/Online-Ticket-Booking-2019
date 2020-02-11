@@ -7,7 +7,6 @@ export default function Sidebar() {
         className="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
         id="accordionSidebar"
       >
-        {/* Sidebar - Brand */}
         <NavLink
           className="sidebar-brand d-flex align-items-center justify-content-center"
           to="/dashboard"
@@ -85,6 +84,9 @@ export default function Sidebar() {
               <h6 className="collapse-header">Actions:</h6>
               <NavLink className="collapse-item" to="/quan-ly-movie">
                 Movie Management
+              </NavLink>
+              <NavLink className="collapse-item" to="/up-anh">
+               Upload Ảnh Phim
               </NavLink>
               <a className="collapse-item" href="utilities-border.html">
                 Upcoming

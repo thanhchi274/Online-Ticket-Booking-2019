@@ -76,7 +76,7 @@ class Info extends Component {
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
     return (
       <div
-        className="info--user"
+        className="info--admin"
         style={{ backgroundColor: "white", opacity: "1" }}
       >
         <h1>THÔNG TIN TÀI KHOẢN</h1>
@@ -185,7 +185,7 @@ class Info extends Component {
                         </div>
                         <button
                           type="submit"
-                          className="btn btn-update btn-success"
+                          className="btn btn-update"
                         >
                           Cập nhật
                         </button>

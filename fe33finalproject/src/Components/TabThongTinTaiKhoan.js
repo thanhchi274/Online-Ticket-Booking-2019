@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import * as Action from "../redux/action/index";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import Skeleton from '@material-ui/lab/Skeleton';
 
 class DetailInfo extends Component {
   constructor(props) {
@@ -48,31 +49,30 @@ class DetailInfo extends Component {
       <div className="container userInformation">
         <div className="comp">
           <p>
-            Tài Khoản:<span>{UserInfo ? UserInfo.taiKhoan : "loading"}</span>
+            Tài Khoản:<span>{UserInfo ? UserInfo.taiKhoan : <Skeleton animation="wave" variant="text" width="250px" />}</span>
           </p>
         </div>
         <div className="comp ">
           <p>
-            Mật Khẩu:<span>{UserInfo ? UserInfo.matKhau : "loading"}</span>
+            Mật Khẩu:<span>{UserInfo ? UserInfo.matKhau : <Skeleton animation="wave" variant="text" width="250px" />}</span>
           </p>
         </div>
         <div className="comp">
           <p>
-            Họ và tên:<span>{UserInfo ? UserInfo.hoTen : "loading"}</span>
+            Họ và tên:<span>{UserInfo ? UserInfo.hoTen : <Skeleton  animation="wave" variant="text" width="250px" />}</span>
           </p>
         </div>
         <div className="comp">
           <p>
-            Email: <span>{UserInfo ? UserInfo.email : "loading"}</span>
+            Email: <span>{UserInfo ? UserInfo.email : <Skeleton  animation="wave" variant="text" width="250px" />}</span>
           </p>
         </div>
         <div className="comp ">
           <p>
-            Số điện thoại:<span>{UserInfo ? UserInfo.soDT : ""}</span>
+            Số điện thoại:<span>{UserInfo ? UserInfo.soDT : <Skeleton variant="text" width="250px" />}</span>
           </p>
         </div>
         <div className="d-flex comboButtonUser justify-content-between">
-          {/* Button to Open the Modal */}
           <button
             type="button"
             className="btn btn-update btn-info "
