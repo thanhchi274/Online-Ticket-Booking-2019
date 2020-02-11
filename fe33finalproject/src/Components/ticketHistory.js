@@ -62,11 +62,6 @@ class TicketHistory extends Component {
                           item2
                         ][index2].danhSachGhe == "object" ? (
                           <div key={index2}>
-                            {console.log(
-                              _.groupBy(UserData[value], "ngayDat")[item2][
-                                index2
-                              ].ngayDat
-                            )}
                             {Object.keys(
                               _.groupBy(UserData[value], "ngayDat")[item2][
                                 index2
