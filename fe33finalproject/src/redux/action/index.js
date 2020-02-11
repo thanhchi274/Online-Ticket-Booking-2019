@@ -1,5 +1,7 @@
 import * as ActionTypes from "./../constants/ActionType.js";
 import Axios from "axios";
+import _ from "lodash";
+import { map, tail, times, uniq, groupBy } from "lodash";
 export const actGetListMovieAPI = () => {
   return dispatch => {
     Axios({
@@ -62,6 +64,7 @@ export const actGetDetailMovieAPI = id => {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`
     })
       .then(async result => {
+        console.log(result.data);
         dispatch({
           type: await ActionTypes.GET_DETAIL_MOVIE,
           movie: await result.data
@@ -218,10 +221,10 @@ export const actLayThongTinUser = user => {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
       data: user
     })
-      .then( async result => {
+      .then(async result => {
         localStorage.setItem("UserInfo", JSON.stringify(result.data));
         dispatch({
-          type:await ActionTypes.GET_USER_INFORMATION,
+          type: await ActionTypes.GET_USER_INFORMATION,
           userInformation: await result.data
         });
       })

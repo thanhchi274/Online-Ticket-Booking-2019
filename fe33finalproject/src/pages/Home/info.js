@@ -59,31 +59,14 @@ class Info extends Component {
       let email = UserInfo.email;
       let soDt = UserInfo.soDT;
       let hoTen = UserInfo.hoTen;
-      let maNhom = UserHome.maNhom;
-      let maLoaiNguoiDung = UserHome.maLoaiNguoiDung;
       this.setState({
         matKhau,
         email,
         soDt,
-        hoTen,
-        maNhom,
-        maLoaiNguoiDung
+        hoTen
       });
     }
   }
-  handleChange = e => {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
-    this.setState({
-      [name]: value
-    });
-  };
-  handleSubmit = e => {
-    e.preventDefault();
-    let updatedUser = { ...this.state };
-    this.props.updateUser(updatedUser);
-  };
 
   renderHTML = () => {
     let { loading } = this.props;
