@@ -56,8 +56,7 @@ export default function ScrollableTabsButtonAutoBHD(props) {
 
   const renderHTML = () => {
     if (props.movie.lichChieu) {
-      return props.movie.lichChieu.map(
-        (item, index) => {
+      return props.movie.lichChieu.map((item, index) => {
           if ((index + 6) % 6 === 0) {
             return (
               <Tab
@@ -75,6 +74,8 @@ export default function ScrollableTabsButtonAutoBHD(props) {
 
   const renderTime = () => {
     if (props.movie.lichChieu) {
+      console.log(props.movie.lichChieu)
+      console.log(typeof(props.movie.lichChieu))
       return props.movie.lichChieu.map(
         (item, index) => {
           return (

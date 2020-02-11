@@ -139,7 +139,6 @@ export const actSignupHome = (user, history) => {
       data: user
     })
       .then(result => {
-        // Chuyển hướng đến trang home
         history.push("/login");
         dispatch({
           type: ActionTypes.SIGNUP,
@@ -159,7 +158,6 @@ export const actGetRoomList = id => {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`
     })
       .then(result => {
-        console.log(result.data);
         dispatch({
           type: ActionTypes.GET_ROOM_LIST,
           room: result.data
@@ -196,7 +194,6 @@ export const actDatVe = user => {
       url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
       data: user,
       headers: {
-        // "Content-Type": "application/x-www-form-urlencoded",
         Authorization: `Bearer ${UserHome.accessToken}`
       }
     })
@@ -211,14 +208,14 @@ export const actDatVe = user => {
   };
 };
 export const actLayThongTinUser = user => {
-  return async dispatch => {
+  return dispatch => {
     Axios({
       method: "POST",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+      "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
       data: user
     })
-      .then( async result => {
+      .then(async result => {
         localStorage.setItem("UserInfo", JSON.stringify(result.data));
         dispatch({
           type:await ActionTypes.GET_USER_INFORMATION,
@@ -306,7 +303,6 @@ export const actDeleteUser = tk => {
     })
       .then(result => {
         alert(result.data);
-        console.log(result.data);
         dispatch({
           type: ActionTypes.DELETE_USER
         });

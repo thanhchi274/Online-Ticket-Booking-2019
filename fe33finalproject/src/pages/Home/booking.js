@@ -63,12 +63,12 @@ class Booking extends Component {
   };
   timViTri = maGhe => {
     let viTri = -1;
-    this.state.danhSachVe.map((item, index) => {
+    return this.state.danhSachVe.map((item, index) => {
       if (item.maGhe === maGhe) {
         viTri = index;
       }
+      return viTri;
     });
-    return viTri;
   };
 
   xoaGhe = maGhe => {
@@ -262,11 +262,10 @@ class Booking extends Component {
                   <img
                     className="paymentMethod--img"
                     src="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw"
-                    srcset="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s360-rw 2x"
-                    class="T75of sHb2Xb"
+                    srcSet="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s360-rw 2x"
                     aria-hidden="true"
                     alt="Ảnh bìa"
-                    itemprop="image"
+                    itemProp="image"
                     data-atf="false"
                     data-iml="1314.2249999946216"
                   ></img>
@@ -277,11 +276,10 @@ class Booking extends Component {
                   <img
                     className="paymentMethod--img"
                     src="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s180-rw"
-                    srcset="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s360-rw 2x"
-                    class="T75of sHb2Xb"
+                    srcSet="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s360-rw 2x"
                     aria-hidden="true"
                     alt="Ảnh bìa"
-                    itemprop="image"
+                    itemProp="image"
                     data-atf="false"
                     data-iml="37830.04499999515"
                   ></img>

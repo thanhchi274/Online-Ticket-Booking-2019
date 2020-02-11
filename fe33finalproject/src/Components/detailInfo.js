@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import UserImage from "./UserImage";
 import * as Action from "../redux/action/index";
 import { connect } from "react-redux";
-import _ from "lodash";
 import SVGLoading from "./loading";
 import FullWidthTabs from "./info-detail";
+import { Redirect } from "react-router-dom";
 
 class DetailInfo extends Component {
   constructor(props) {
@@ -18,58 +18,27 @@ class DetailInfo extends Component {
       hoTen: "",
       maNhom: "",
       maLoaiNguoiDung: "",
-      movieData: []
     };
   }
-  scrollToHistory = () => {
-    window.scroll({
-      top: 770,
-      left: 0,
-      behavior: "smooth"
-    });
-  };
-  componentDidUpdate() {
-    let user = { ...this.state };
-    this.props.getUserInformation(user);
-  }
-  componentDidMount() {
+ async componentDidMount() {
+   try{
+    let UserHome = JSON.parse(localStorage.getItem("UserHome"));
+    let taiKhoan = UserHome.taiKhoan;
+    this.props.getUserInformation({taiKhoan});
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-    const group1 = _.groupBy(UserInfo.thongTinDatVe, "ngayDat");
-    console.log(group1);
-    this.setState(
-      {
-        movieData: group1
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
-    if (localStorage.getItem("UserHome")) {
-      let info = JSON.parse(localStorage.getItem("UserHome"));
-      let taiKhoan = info.taiKhoan;
       this.setState({
-        taiKhoan
+        taiKhoan,
+        matKhau :UserInfo.matKhau,
+        email :UserInfo.email,
+        soDt: UserInfo.soDT,
+        hoTen:UserInfo.hoTen,
+        maNhom:UserHome.maNhom,
+        maLoaiNguoiDung: UserHome.maLoaiNguoiDung
       });
-    }
-    if (localStorage.getItem("UserInfo")) {
-      let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-      let UserHome = JSON.parse(localStorage.getItem("UserHome"));
-      let matKhau = UserInfo.matKhau;
-      let email = UserInfo.email;
-      let soDt = UserInfo.soDT;
-      let hoTen = UserInfo.hoTen;
-      let maNhom = UserHome.maNhom;
-      let maLoaiNguoiDung = UserHome.maLoaiNguoiDung;
-      this.setState({
-        matKhau,
-        email,
-        soDt,
-        hoTen,
-        maNhom,
-        maLoaiNguoiDung
-      });
-    }
-  }
+   }
+   catch(err){
+  return <Redirect to ="/" />
+}}
   handleChange = e => {
     let target = e.target;
     let name = target.name;
@@ -111,30 +80,28 @@ class DetailInfo extends Component {
     );
   };
   render() {
-    let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-
+    let UserInfo = JSON.parse(localStorage.getItem("UserInfo"))
     return (
-      <div className="container">
-        <h4>Thông tin cá nhân</h4>
-        <hr />
+      <>
+      <div className="container userInformation">
         <div className="comp">
           <p>
-            Tài Khoản:<span>{UserInfo ? UserInfo.taiKhoan : ""}</span>
+            Tài Khoản:<span>{UserInfo ? UserInfo.taiKhoan : "loading"}</span>
           </p>
         </div>
         <div className="comp ">
           <p>
-            Mật Khẩu:<span>{UserInfo ? UserInfo.matKhau : ""}</span>
+            Mật Khẩu:<span>{UserInfo ? UserInfo.matKhau : "loading"}</span>
           </p>
         </div>
         <div className="comp">
           <p>
-            Họ và tên:<span>{UserInfo ? UserInfo.hoTen : ""}</span>
+            Họ và tên:<span>{UserInfo ? UserInfo.hoTen : "loading"}</span>
           </p>
         </div>
         <div className="comp">
           <p>
-            Email: <span>{UserInfo ? UserInfo.email : ""}</span>
+            Email: <span>{UserInfo ? UserInfo.email : "loading"}</span>
           </p>
         </div>
         <div className="comp ">
@@ -224,6 +191,7 @@ class DetailInfo extends Component {
           </div>
         </div>
       </div>
+      </>
     );
   }
 }

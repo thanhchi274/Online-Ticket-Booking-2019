@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import _ from "lodash";
 import * as Action from "../redux/action/index";
 import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 class TicketHistory extends Component {
   constructor(props) {
     super(props);
@@ -10,54 +11,32 @@ class TicketHistory extends Component {
       movieData: []
     };
   }
-  componentDidUpdate() {
-    let user = { ...this.state };
-    this.props.getUserInformation(user);
-  }
-  componentDidMount() {
-    let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-    const group1 = _.groupBy(UserInfo.thongTinDatVe, "ngayDat");
-    console.log(group1);
-    this.setState(
-      {
-        movieData: group1
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
-    if (localStorage.getItem("UserHome")) {
-      let info = JSON.parse(localStorage.getItem("UserHome"));
-      let taiKhoan = info.taiKhoan;
-      this.setState({
-        taiKhoan
-      });
-    }
-    if (localStorage.getItem("UserInfo")) {
-      let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
+ async componentDidMount() {
+   try{
+     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
+     const group1 = _.groupBy(UserInfo.thongTinDatVe, "ngayDat");
       let UserHome = JSON.parse(localStorage.getItem("UserHome"));
-      let matKhau = UserInfo.matKhau;
-      let email = UserInfo.email;
-      let soDt = UserInfo.soDT;
-      let hoTen = UserInfo.hoTen;
-      let maNhom = UserHome.maNhom;
-      let maLoaiNguoiDung = UserHome.maLoaiNguoiDung;
-      this.setState({
-        matKhau,
-        email,
-        soDt,
-        hoTen,
-        maNhom,
-        maLoaiNguoiDung
-      });
-    }
+       let taiKhoan = UserHome.taiKhoan;
+       this.props.getUserInformation({taiKhoan});
+       this.setState({
+         taiKhoan,
+         movieData: group1,
+         matKhau:UserInfo.matKhau,
+         email:UserInfo.email,
+         soDt:UserInfo.soDT,
+         hoTen:UserInfo.hoTen,
+         maNhom:UserHome.maNhom,
+         maLoaiNguoiDung:UserHome.maLoaiNguoiDung,
+       });
+   }
+   catch(err){
+    return <Redirect to ="/" />
+   }
   }
   render() {
     let UserData = this.state.movieData;
-
     return (
       <div className="container-table100" style={{ width: "100%" }}>
-        <h1 className="my-4">Lịch Sử Giao Dịch</h1>
         <div className="wrap-table100">
           <div className="table100 ver2 m-b-110">
             <div className="table100-head">
@@ -79,9 +58,6 @@ class TicketHistory extends Component {
                   <div>
                     {Object.keys(_.groupBy(UserData[value], "ngayDat")).map(
                       (item2, index2) => {
-                        {
-                          /* {console.log(_.groupBy(UserData[value],'ngayDat')[item2][index2])} */
-                        }
                         return typeof _.groupBy(UserData[value], "ngayDat")[
                           item2
                         ][index2].danhSachGhe == "object" ? (
@@ -96,13 +72,6 @@ class TicketHistory extends Component {
                                 index2
                               ].danhSachGhe
                             ).map((item3, index3) => {
-                              {
-                                console.log(
-                                  _.groupBy(UserData[value], "ngayDat")[item2][
-                                    index2
-                                  ].danhSachGhe[item3]
-                                );
-                              }
                               return (
                                 <div key={index3}>
                                   <div className="table100-body js-pscroll">
@@ -182,15 +151,11 @@ class TicketHistory extends Component {
 }
 const mapStateToProps = state => ({
   userInformation: state.movieReducer.userInformation,
-  loading: state.movieReducer.loading
 });
 const mapDispatchToProps = dispatch => {
   return {
     getUserInformation: user => {
       dispatch(Action.actLayThongTinUser(user));
-    },
-    setLoading: () => {
-      dispatch(Action.actLoading());
     },
     updateUser: user => {
       dispatch(Action.actUpdateUserInformation(user));

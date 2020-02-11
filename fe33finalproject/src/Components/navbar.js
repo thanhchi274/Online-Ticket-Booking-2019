@@ -29,7 +29,6 @@ export default class Navbar extends Component {
     const { prevScrollpos } = this.state;
     const currentScrollPos = window.pageYOffset;
     const visible = prevScrollpos <= currentScrollPos;
-
     this.setState({
       prevScrollpos: currentScrollPos,
       visible
@@ -42,9 +41,11 @@ export default class Navbar extends Component {
   // Remove the event listener when the component is unmount.
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+
   }
   logout = () => {
     localStorage.clear("token");
+    localStorage.removeItem("UserInfo")
     this.setState({ navigate: true });
   };
 
@@ -104,7 +105,7 @@ export default class Navbar extends Component {
             className={
               !this.state.visible
                 ? " header navbar"
-                : "header navbar--hidden row"
+                : "header navbar--hidden-main row"
             }
           >
             <div className="col-sm-4  ">

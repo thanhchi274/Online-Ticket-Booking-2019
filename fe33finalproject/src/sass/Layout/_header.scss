@@ -1,7 +1,7 @@
 .navbar-expand-md {
   height: 100px !important;
 }
-.navbar--hidden {
+.navbar--hidden-main {
   @extend .navbar;
   top: -100px !important;
   flex-wrap: wrap;

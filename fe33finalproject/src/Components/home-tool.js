@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
 import * as Action from "../redux/action/index.js";
-import DanhSachPhimHomeTool from "./DanhSachPhimHomeTool"
 import { connect } from 'react-redux'
 import _ from 'lodash';
 import { Link } from "react-router-dom";
-import { map, groupBy, filter, uniq, union } from 'lodash';
 class HomeTool extends Component {
   constructor(props){
     super(props);
@@ -18,7 +16,7 @@ class HomeTool extends Component {
     }
   renderDanhSachPhim=()=>{
     return this.props.listMovie.map((MovieList, index)=>{
-      return <DanhSachPhimHomeTool key={index} MovieList={MovieList}/> 
+      return   <option key={index} value={MovieList.maPhim} > {MovieList.tenPhim}</option>
     })  
   };
   renderDanhSachRap =()=>{
@@ -82,7 +80,6 @@ class HomeTool extends Component {
                 const filteredArr = objLichChieu.reduce((arrayDuplicated, current) => {
                 const duplicatedItem = arrayDuplicated.find(time =>(new Date(time.ngayChieuGioChieu).toLocaleTimeString()) === new Date(current.ngayChieuGioChieu).toLocaleTimeString());
                       if (!duplicatedItem) {
-                        console.log(arrayDuplicated.concat([current]))
                         return arrayDuplicated.concat([current]);
                       } else {
                         return arrayDuplicated;
@@ -122,7 +119,6 @@ class HomeTool extends Component {
     })
   }
   handlinTest2=e =>{
-    console.log(e.target.value)
     this.setState({
       maPhim : e.target.value
     })
