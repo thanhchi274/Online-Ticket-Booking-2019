@@ -312,3 +312,23 @@ export const actDeleteUser = tk => {
       });
   };
 };
+export const actThemNguoiDung = user =>{
+  const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(result => {
+        alert("Đăng kí thành công");
+        dispatch(result.data);
+      })
+      .catch(err => {
+        return err;
+      });
+  };
+}

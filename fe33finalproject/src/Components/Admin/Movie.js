@@ -29,58 +29,51 @@ class Paginition extends Component {
       email:"",
       soDt:"",
       hoTen:""
-      },
-      addNewUserData:{
-        taiKhoan :"",
-        matKhau :"",
-        email: "",
-        soDT: "",
-        hoTen: "",
-        maLoaiNguoiDung:""
       }
     };
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   componentDidMount() {
-    setInterval(() => {
-      this.receivedData();
-    }, 100);
+    // setInterval(() => {
+    //   this.receivedData();
+    // }, 100);
+    
   }
   handleChangeSearch=(e)=>{
-    if(this.state.keyWord ===""){
-      let keyWord = e.target.value;
-      this.setState({
-        keyWord,
-        searchData:""
-      })
-    }
-    else{
-      let keyWord = e.target.value
-      this.setState({
-        keyWord,
-        searchData: this.props.keyWord
-      },this.props.searchUser(keyWord))
-    }
+    // if(this.state.keyWord ===""){
+    //   let keyWord = e.target.value;
+    //   this.setState({
+    //     keyWord,
+    //     searchData:""
+    //   })
+    // }
+    // else{
+    //   let keyWord = e.target.value
+    //   this.setState({
+    //     keyWord,
+    //     searchData: this.props.keyWord
+    //   },this.props.searchUser(keyWord))
+    // }
   };
   handleChangeEdit =e =>{
-    let target = e.target;
-    let name  = target.name;
-    let value = target.value;
-    this.setState({
-      [name]:value,
-      sumbitData:{
-        taiKhoan : this.state.taiKhoan,
-        hoTen : this.state.hoTen,
-        email: this.state.email,
-        soDt : this.state.soDt,
-        matKhau: this.state.matKhau,
-        maLoaiNguoiDung: this.state.maLoaiNguoiDung,
-        maNhom:"GP01",
-        [name]: value,
-      }
-    },()=>{
-      console.log(this.state);
-    });
+    // let target = e.target;
+    // let name  = target.name;
+    // let value = target.value;
+    // this.setState({
+    //   [name]:value,
+    //   sumbitData:{
+    //     taiKhoan : this.state.taiKhoan,
+    //     hoTen : this.state.hoTen,
+    //     email: this.state.email,
+    //     soDt : this.state.soDt,
+    //     matKhau: this.state.matKhau,
+    //     maLoaiNguoiDung: this.state.maLoaiNguoiDung,
+    //     maNhom:"GP01",
+    //     [name]: value,
+    //   }
+    // },()=>{
+    //   console.log(this.state);
+    // });
   }
   handleDelete = e => {
     this.setState(
@@ -99,34 +92,35 @@ class Paginition extends Component {
     e.preventDefault();
   }
   handleEdit= (e)=>{
-    let hoTen = e.target.getAttribute("hoten");
-    let email = e.target.getAttribute("email");
-    let soDt = e.target.getAttribute("sodt");
-    let matKhau = e.target.getAttribute("matkhau");
-    let taiKhoan = e.target.value;
-    let maLoaiNguoiDung = e.target.getAttribute("maloainguoidung");
-      this.setState({
-        taiKhoan,
-        email,
-        soDt,
-        matKhau,
-        hoTen,
-        maLoaiNguoiDung,
-        sumbitData:{
-            maNhom:"GP01",
-            taiKhoan,
-            email,
-            soDt,
-            matKhau,
-            hoTen,
-        }
-      },console.log(this.state)
-      )
+    // let hoTen = e.target.getAttribute("hoten");
+    // let email = e.target.getAttribute("email");
+    // let soDt = e.target.getAttribute("sodt");
+    // let matKhau = e.target.getAttribute("matkhau");
+    // let taiKhoan = e.target.value;
+    // let maLoaiNguoiDung = e.target.getAttribute("maloainguoidung");
+    //   this.setState({
+    //     taiKhoan,
+    //     email,
+    //     soDt,
+    //     matKhau,
+    //     hoTen,
+    //     maLoaiNguoiDung,
+    //     sumbitData:{
+    //         maNhom:"GP01",
+    //         taiKhoan,
+    //         email,
+    //         soDt,
+    //         matKhau,
+    //         hoTen,
+    //         maLoaiNguoiDung,
+    //     }
+    //   },console.log(this.state)
+    //   )
   }
   receivedData() {
     axios
       .get(
-        `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`
+        `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01`
       )
       .then(res => {
         if (this.state.keyWord === "") {
@@ -141,30 +135,30 @@ class Paginition extends Component {
                 <table>
                   <tbody>
                     <tr className="row100 body">
-                      <td className="cell100 column1">{pd.taiKhoan}</td>
-                      <td className="cell100 column2">{pd.hoTen}</td>
-                      <td className="cell100 column3">{pd.email}</td>
-                      <td className="cell100 column4">{pd.soDt}</td>
-                      <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
-                      <td className="cell100 column6">{pd.matKhau}</td>
+                      <td className="cell100 column1">{pd.maPhim}</td>
+                      <td className="cell100 column2">{pd.tenPhim}</td>
+                      <td className="cell100 column3">{pd.trailer}</td>
+                      <td className="cell100 column4">{pd.hinhAnh}</td>
+                      <td className="cell100 column5">{pd.ngayKhoiChieu}</td>
+                      <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
-                          value={pd.taiKhoan}
+                          value={pd.maPhim}
                           className="btn btnEdit btn-success"
                           maloainguoidung = {pd.maLoaiNguoiDung}
-                          hoten = {pd.hoTen}
-                          email = {pd.email}
-                          sodt ={pd.soDt}
-                          matkhau ={pd.matKhau}
+                          // hoten = {pd.hoTen}
+                          // email = {pd.email}
+                          // sodt ={pd.soDt}
+                          // matkhau ={pd.matKhau}
                           data-toggle="modal" data-target="#myModal"
                         >
                            <FontAwesomeIcon icon={faUserEdit} />
                         </button>
                         <button
-                          onClick={this.handleDelete}
-                          value={pd.taiKhoan}
-                          maloainguoidung = {pd.maLoaiNguoiDung}  
+                          // onClick={this.handleDelete}
+                          // value={pd.taiKhoan}
+                          // maloainguoidung = {pd.maLoaiNguoiDung}  
                           className="btn btnDelete btn-danger"
                         >
                            <FontAwesomeIcon icon={faTrash} />
@@ -199,18 +193,18 @@ class Paginition extends Component {
                 <table>
                   <tbody>
                     <tr className="row100 body">
-                      <td className="cell100 column1">{pd.taiKhoan}</td>
-                      <td className="cell100 column2">{pd.hoTen}</td>
-                      <td className="cell100 column3">{pd.email}</td>
-                      <td className="cell100 column4">{pd.soDt}</td>
-                      <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
-                      <td className="cell100 column6">{pd.matKhau}</td>
+                    <td className="cell100 column1">{pd.maPhim}</td>
+                      <td className="cell100 column2">{pd.tenPhim}</td>
+                      <td className="cell100 column3">{pd.trailer}</td>
+                      <td className="cell100 column4">{pd.hinhAnh}</td>
+                      <td className="cell100 column5">{pd.ngayKhoiChieu}</td>
+                      <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
-                          value={pd.taiKhoan}
+                          // value={pd.taiKhoan}
                           className="btn btnEdit btn-success"
-                          maloainguoidung = {pd.maLoaiNguoiDung}
+                          // maloainguoidung = {pd.maLoaiNguoiDung}
                         >
                            <FontAwesomeIcon icon={faUserEdit} />
                         </button>
@@ -267,116 +261,10 @@ class Paginition extends Component {
       }
     );
   };
-  chooseMLND=(e)=>{
-    this.setState({
-      addNewUserData:{
-        ...this.state.addNewUserData,
-        maLoaiNguoiDung: e.target.value
-      }
-    })
-  }
-  handleAddUser=e=>{
-    let { name, value } = e.target;
-    this.setState({
-      [name]: value,
-      addNewUserData:{
-        maNhom:"GP01",
-        taiKhoan: this.state.taiKhoan,
-        email :this.state.email,
-        soDt: this.state.soDt,
-        matKhau : this.state.matKhau,
-        hoTen:this.state.hoTen
-      }
-    },()=>{console.log(this.state)})
-  }
-  handleOnAddNew= (e)=>{
-    if(this.state.addNewUserData.maLoaiNguoiDung ===""){
-      e.preventDefault();
-      
-      return alert("Chọn loại Người Dùng Trước")
-    }
-    else{
-      e.preventDefault();
-      console.log(this.state.addNewUserData)
-      this.props.addUser(this.state.addNewUserData)
-    }
-  }
   render() {
     return (
       <div>
         <div className="limiter">
-          <div id="myModalAdd" className="modal fade" role="dialog">
-            <div className="modal-dialog">
-              {/* Modal content*/}
-              <div className="modal-content">
-                <div className="modal-body">
-                <form onSubmit={this.handleOnAddNew}>
-            <div className="form-group">
-              <label htmlFor="">Tài Khoản</label>
-              <input
-                type="text"
-                className="form-control"
-                name="taiKhoan"
-                onChange={this.handleAddUser}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="matKhau"
-                onChange={this.handleAddUser}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Họ Tên</label>
-              <input
-                type="text"
-                className="form-control"
-                name="hoTen"
-                onChange={this.handleAddUser}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Email</label>
-              <input
-                type="text"
-                className="form-control"
-                name="email"
-                onChange={this.handleAddUser}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Số Điện Thoại</label>
-              <input
-                type="text"
-                className="form-control"
-                name="soDt"
-                onChange={this.handleAddUser}
-              />
-            </div>
-  
-            <div className="form-group">
-                        <label>Mã Loại Người Dùng:</label>
-                        <select onChange={this.chooseMLND}>
-                            <option value="">Mời Bạn Chọn</option>
-                            <option value="KhachHang">Khách Hàng</option>
-                            <option value="QuanTri">Quản Trị</option>
-                          </select>
-                        </div>
-            <button type="submit" className="btn btn-success">
-              Them Nguoi Dung
-            </button>
-          </form>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
           <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-2 my-2 my-md-0 col-md-10 navbar-search">
             <div className="input-group">
               <input
@@ -398,7 +286,7 @@ class Paginition extends Component {
               <option value={50}>50</option>
               <option value={100}>100</option>
             </select>
-            <button className="btnAddUser btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add User</button>
+            <button className="btnAddPhim btn btn-success">Add Phim</button>
           </div>
           <div className="container-table100">
             <div className="wrap-table100">
@@ -544,10 +432,7 @@ const mapDispatchToProps = dispatch => {
     },
     updateUser: tk =>{
       dispatch(action.actUpdateUserInformation(tk))
-    },
-    addUser:(user)=>{
-      dispatch(action.actThemNguoiDung(user))
-  }
+    }
   };
 };
 

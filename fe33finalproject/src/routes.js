@@ -61,12 +61,12 @@ const routeAdmin = [
   {
     path: "/quan-ly-movie",
     exact: false,
-    component: UpAnhPhim
+    component: MovieManagement
   },
   {
     path: "/up-anh",
     exact: false,
-    component: MovieManagement
+    component: UpAnhPhim
   },
   {
     path: "/quan-ly-ve",

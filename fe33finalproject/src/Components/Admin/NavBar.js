@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-// import SearchBar from "../../Components/Admin/Search"
 import UserNavBar from "../../Components/Admin/UserInformation"
-
 export default class Navbar extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +8,6 @@ export default class Navbar extends Component {
           visibleNavBar: true
         };
       }
-    
     handleScroll = () => {
         const { prevScrollpos } = this.state;
         const currentScrollPos = window.pageYOffset;
