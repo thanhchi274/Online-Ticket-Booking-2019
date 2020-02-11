@@ -59,15 +59,11 @@ class Info extends Component {
       let email = UserInfo.email;
       let soDt = UserInfo.soDT;
       let hoTen = UserInfo.hoTen;
-      let maNhom = UserHome.maNhom;
-      let maLoaiNguoiDung = UserHome.maLoaiNguoiDung;
       this.setState({
         matKhau,
         email,
         soDt,
-        hoTen,
-        maNhom,
-        maLoaiNguoiDung
+        hoTen
       });
     }
   }

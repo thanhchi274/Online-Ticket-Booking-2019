@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function ScrollableTabsButtonAutoBHD(props) {
+export default function ScrollableTabsButtonAutoCNS(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -57,15 +57,13 @@ export default function ScrollableTabsButtonAutoBHD(props) {
   const renderHTML = () => {
     if (props.movie.lichChieu) {
       return props.movie.lichChieu.map((item, index) => {
-        if (item.thongTinRap.tenHeThongRap === "BHD Star Cineplex") {
-          return (
-            <Tab
-              key={index}
-              label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-              {...a11yProps(index)}
-            />
-          );
-        }
+        return (
+          <Tab
+            key={index}
+            label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
+            {...a11yProps(index)}
+          />
+        );
       });
     }
   };
@@ -73,7 +71,7 @@ export default function ScrollableTabsButtonAutoBHD(props) {
   const renderTime = () => {
     if (props.movie.lichChieu) {
       return props.movie.lichChieu.map((item, index) => {
-        if (item.thongTinRap.tenHeThongRap === "BHD Star Cineplex") {
+        if (item.thongTinRap.tenHeThongRap === "CineStar") {
           return (
             <TabPanel className="m-3" key={index} value={value} index={index}>
               <h5>{item.thongTinRap.tenCumRap}</h5>
