@@ -1,25 +1,25 @@
 import React, { Component } from 'react'
 import * as Action from "../redux/action/index.js";
-import axios from "axios";
 import DanhSachPhimHomeTool from "./DanhSachPhimHomeTool"
 import { connect } from 'react-redux'
-
+import _ from 'lodash';
+import { Link } from "react-router-dom";
+import { map, groupBy, filter, uniq, union } from 'lodash';
 class HomeTool extends Component {
   constructor(props){
     super(props);
       this.state={
         id:"",
-        maRap:"",
+        maHeThongRap:"",
+        homeToolData:[],
+        ngayChieu:[],
+        maPhim:""
       }
     }
- componentDidUpdate(){
-  this.props.getMovieDateTime(this.state.id)
- }
- componentDidMount(){}
   renderDanhSachPhim=()=>{
     return this.props.listMovie.map((MovieList, index)=>{
       return <DanhSachPhimHomeTool key={index} MovieList={MovieList}/> 
-    })
+    })  
   };
   renderDanhSachRap =()=>{
     if( this.props.movieDate.heThongRapChieu){
@@ -31,18 +31,101 @@ class HomeTool extends Component {
         )
       })
     }
+    if(this.state.id !== ""){
+      this.props.getMovieDateTime(this.state.id)
+    }
   };
+  renderNgayXem = ()=>{
+  if(this.props.movieDate ){
+  let data = this.state.homeToolData.heThongRapChieu;
+  const renderData = _.filter(data,{maHeThongRap: this.state.maHeThongRap})
+  return typeof(renderData)=="object"?(
+    Object.keys(renderData).map((value,index)=>{
+      return(
+        (typeof(renderData[value].cumRapChieu)=="object")?(
+        <React.Fragment key={index}> {
+          Object.keys(renderData[value].cumRapChieu).map((item1,indexTheater)=>{
+              const objLichChieu = renderData[value].cumRapChieu[item1].lichChieuPhim
+              const filteredArr = objLichChieu.reduce((arrayDuplicated, current) => {
+              const duplicatedItem = arrayDuplicated.find(movie =>new Date(movie.ngayChieuGioChieu).toLocaleDateString() === new Date( current.ngayChieuGioChieu).toLocaleDateString());
+                    if (!duplicatedItem) {
+                      return arrayDuplicated.concat([current]);
+                    } else {
+                      return arrayDuplicated;
+                    }
+                  }, []);
+                  return (
+                     <React.Fragment key={indexTheater}>{
+                      Object.keys(filteredArr).map((dateMovie,indexDateMovie)=>{
+                       return ( 
+                     <option key={dateMovie}>
+                       {new Date(filteredArr[dateMovie].ngayChieuGioChieu).toLocaleDateString()}
+                     </option>
+                    )})}
+                     </React.Fragment>
+                    )})}
+        </React.Fragment>):null
+      )})):null
+    }
+  }
+  renderGioChieu = ()=>{
+    if(this.props.movieDate ){
+    let data = this.state.homeToolData.heThongRapChieu;
+    const renderData = _.filter(data,{maHeThongRap: this.state.maHeThongRap})
+    return typeof(renderData)=="object"?(
+      Object.keys(renderData).map((value,index)=>{
+        return(
+          (typeof(renderData[value].cumRapChieu)=="object")?(
+          <React.Fragment key={index}> {
+            Object.keys(renderData[value].cumRapChieu).map((item1,indexTheater)=>{
+                const objLichChieu = renderData[value].cumRapChieu[item1].lichChieuPhim
+                const filteredArr = objLichChieu.reduce((arrayDuplicated, current) => {
+                const duplicatedItem = arrayDuplicated.find(time =>(new Date(time.ngayChieuGioChieu).toLocaleTimeString()) === new Date(current.ngayChieuGioChieu).toLocaleTimeString());
+                      if (!duplicatedItem) {
+                        console.log(arrayDuplicated.concat([current]))
+                        return arrayDuplicated.concat([current]);
+                      } else {
+                        return arrayDuplicated;
+                      }
+                    }, []);
+                    return (
+                       <React.Fragment key={indexTheater}>{
+                        Object.keys(filteredArr).map((dateMovie,indexDateMovie)=>{
+                         return ( 
+                       <option key={indexDateMovie} value={filteredArr[dateMovie].maLichChieu} >
+                         {new Date(filteredArr[dateMovie].ngayChieuGioChieu).toLocaleTimeString()}
+                       </option>
+                      )
+                      })}
+                       </React.Fragment>
+                      )})}
+          </React.Fragment>):null
+        )})):null
+      }
+    }
   handlingChange=(event)=>{
     this.setState({
       id:event.target.value,
+    },()=>{
+      this.props.getMovieDateTime(this.state.id)
     })
   }
   handlingChangeTheater=event =>{
     this.setState({
-      maRap:event.target.value
+      maHeThongRap:event.target.value,
+      homeToolData: this.props.movieDate
     });
-   
-      this.receivedData();
+  }
+  handlinTest=e =>{
+    this.setState({
+      ngayChieu: e.target.value
+    })
+  }
+  handlinTest2=e =>{
+    console.log(e.target.value)
+    this.setState({
+      maPhim : e.target.value
+    })
   }
   render() {
     return (
@@ -55,28 +138,25 @@ class HomeTool extends Component {
       <option>Chọn Rạp</option>
      {this.renderDanhSachRap()}
     </select>
-    <select className="form-control selectChoice">
+    <select className="form-control selectChoice" onChange={this.handlinTest}>
       <option>Ngày Xem</option>
-      {this.state.postData}
-    </select>
-    <select className="form-control selectChoice">
+    {this.renderDanhSachRap()? this.renderNgayXem():null}
+      </select>
+    <select className="form-control selectChoice" onChange={this.handlinTest2}>
       <option>Suất Chiếu</option>
+    {this.renderNgayXem()? this.renderGioChieu():null}
     </select>
-    <button className="btn-datve btn btn-primary">Mua vé ngay</button>
+   {this.state.maPhim !==""? (<Link className="btn-datve btn btn-primary" to={`/dat-ve/${this.state.maPhim}`}>Mua vé ngay</Link>):(<Link className="btn-datve btn btn-primary" disabled to={'/'}>Mua vé ngay</Link>)} 
   </div>
     )
   }
 }
   const mapStatetoProps = state=>({
     listMovie : state.movieReducer.listMovie,
-    movie: state.movieReducer.movie,
     movieDate: state.movieReducer.movieDate,
   })
   const mapDispatchToProps = dispatch => {
     return {
-      getdetailMovie: id => {
-        dispatch(Action.actGetDetailMovieAPI(id));
-      },
       getMovieDateTime:(ve)=>{
         dispatch(Action.actGetDateTimeMovie(ve))
       },

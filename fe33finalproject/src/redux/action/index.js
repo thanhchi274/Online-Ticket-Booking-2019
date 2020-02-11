@@ -213,7 +213,7 @@ export const actDatVe = user => {
   };
 };
 export const actLayThongTinUser = user => {
-  return dispatch => {
+  return async dispatch => {
     Axios({
       method: "POST",
       url:
