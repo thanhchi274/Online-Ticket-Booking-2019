@@ -86,23 +86,11 @@ class TicketHistory extends Component {
                           item2
                         ][index2].danhSachGhe == "object" ? (
                           <div key={index2}>
-                            {console.log(
-                              _.groupBy(UserData[value], "ngayDat")[item2][
-                                index2
-                              ].ngayDat
-                            )}
                             {Object.keys(
                               _.groupBy(UserData[value], "ngayDat")[item2][
                                 index2
                               ].danhSachGhe
                             ).map((item3, index3) => {
-                              {
-                                console.log(
-                                  _.groupBy(UserData[value], "ngayDat")[item2][
-                                    index2
-                                  ].danhSachGhe[item3]
-                                );
-                              }
                               return (
                                 <div key={index3}>
                                   <div className="table100-body js-pscroll">
