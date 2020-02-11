@@ -53,10 +53,10 @@ class Booking extends Component {
         {
           valid: true,
           count: this.state.count - 1,
-          tienVe: giaVe * this.state.count
+          tienVe: this.state.tienVe  -giaVe 
         },
         () => {
-          console.log(this.state.valid);
+          console.log(this.state);
         }
       );
     }

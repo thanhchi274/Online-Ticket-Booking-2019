@@ -51,6 +51,9 @@
         0 15px 12px rgba(0, 0, 0, 0.22);
       position: relative;
     }
+    button{
+      opacity: 0;
+    }
     .bg-trailer {
       background-color: rgba(0, 0, 0, 0.5);
       position: absolute;
