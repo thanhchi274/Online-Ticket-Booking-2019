@@ -12,9 +12,6 @@
   }
 }
 .info-user {
-  .modal{
-    background-color: rgba(0,0,0,0.4);
-  }
   .info-cover {
     background-color: white;
     background-image: url("../../banner.png");
@@ -46,3 +43,25 @@
     }
   }
 }
+  form{
+    margin: 0 auto;
+    width: 500px!important;
+    .form-group{
+      label{
+        font-size: 16px;
+        font-weight: 700;
+      }
+      input{
+        border:none;
+        border-radius: 0;
+        outline: none;
+        border-bottom: 2px solid black;
+        transition: all 0.2s;
+        &:focus{
+          outline: none!important;
+          border-bottom: 2px solid #1feb6d;
+          box-shadow: none;
+        }
+      }
+    }
+  }
