@@ -62,6 +62,7 @@ export const actGetDetailMovieAPI = id => {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`
     })
       .then(async result => {
+        console.log(result.data);
         dispatch({
           type: await ActionTypes.GET_DETAIL_MOVIE,
           movie: await result.data
@@ -211,7 +212,7 @@ export const actLayThongTinUser = user => {
     Axios({
       method: "POST",
       url:
-      "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
       data: user
     })
       .then(async result => {

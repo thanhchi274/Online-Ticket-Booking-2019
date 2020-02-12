@@ -7,7 +7,6 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import ScrollableTabsButtonAutoBHD from "./dateShowBHD";
-import ScrollableTabsButtonAutoCNS from "./dataShowCine";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -57,31 +56,40 @@ export default function VerticalTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  // const renderHTML = () => {
-  //   console.log(props.movie);
-  //   if (props.movie.lichChieu) {
-  //     return props.movie.lichChieu.map((item, index) => {
-  //       return (
-  //         <div key={index}>
-  //           <TabPanel value={value} index={0}>
-  //             <Link
-  //               className="btn btn-success"
-  //               to={`/dat-ve/${item.maLichChieu}`}
-  //             >
-  //               {new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-  //             </Link>
-  //           </TabPanel>
-  //           <TabPanel value={value} index={1}>
-  //             Item Two
-  //           </TabPanel>
-  //         </div>
-  //       );
-  //     });
-  //   }
-  // };
 
+  const renderRap = () => {
+    if (props.movie.lichChieu) {
+      return props.movie.lichChieu.map((item, index) => {
+        const id = props.movie.lichChieu.findIndex(
+          value =>
+            value.thongTinRap.maHeThongRap === item.thongTinRap.maHeThongRap
+        );
+        if (id !== -1) {
+          return (
+            <Tab
+              key={index}
+              label={item.thongTinRap.maHeThongRap}
+              {...a11yProps(index)}
+            />
+          );
+        }
+      });
+    }
+  };
+
+  const renderRapContent = () => {
+    if (props.movie.lichChieu) {
+      return props.movie.lichChieu.map((item, index) => {
+        return (
+          <TabPanel key={index} value={value} index={index}>
+            {<ScrollableTabsButtonAutoBHD movie={props.movie} />}
+          </TabPanel>
+        );
+      });
+    }
+  };
   return (
-    <div className={classes.root} style={{ width: "93%" }}>
+    <div className={classes.root}>
       <Tabs
         orientation="vertical"
         variant="scrollable"
@@ -90,35 +98,9 @@ export default function VerticalTabs(props) {
         aria-label="Vertical tabs example"
         className={classes.tabs}
       >
-        <Tab
-          label={
-            <img
-              alt="movie-theater1"
-              src="https://s3img.vcdn.vn/123phim/2018/09/f32670fd0eb083c9c4c804f0f3a252ed.png"
-              className="theater-icon"
-            />
-          }
-          {...a11yProps(0)}
-        />
-        ;
-        <Tab
-          label={
-            <img
-              alt="movie-theater2"
-              src="https://s3img.vcdn.vn/123phim/2018/09/1721cfa98768f300c03792e25ceb0191.png"
-              className="theater-icon"
-            />
-          }
-          {...a11yProps(1)}
-        />
-        ;
+        {renderRap()}
       </Tabs>
-      <TabPanel value={value} index={0}>
-        {<ScrollableTabsButtonAutoBHD movie={props.movie} />}
-      </TabPanel>
-      <TabPanel value={value} index={1}>
-        {<ScrollableTabsButtonAutoCNS movie={props.movie} />}
-      </TabPanel>
+      {renderRapContent()}
     </div>
   );
 }
