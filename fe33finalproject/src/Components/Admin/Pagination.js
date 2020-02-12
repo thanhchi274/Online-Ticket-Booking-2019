@@ -392,7 +392,7 @@ class Paginition extends Component {
           <div className="selectEntries d-flex">
             <span>Choose Display Entries</span>
             <select onChange={this.handlingChange}>
-              <option value={0}>Select entries:</option>
+              <option value={10}>Select entries:</option>
               <option value={10}>10 </option>
               <option value={20}>20</option>
               <option value={50}>50</option>

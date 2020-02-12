@@ -34,46 +34,46 @@ class Paginition extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   componentDidMount() {
-    // setInterval(() => {
-    //   this.receivedData();
-    // }, 100);
+    setInterval(() => {
+      this.receivedData();
+    }, 100);
     
   }
   handleChangeSearch=(e)=>{
-    // if(this.state.keyWord ===""){
-    //   let keyWord = e.target.value;
-    //   this.setState({
-    //     keyWord,
-    //     searchData:""
-    //   })
-    // }
-    // else{
-    //   let keyWord = e.target.value
-    //   this.setState({
-    //     keyWord,
-    //     searchData: this.props.keyWord
-    //   },this.props.searchUser(keyWord))
-    // }
+    if(this.state.keyWord ===""){
+      let keyWord = e.target.value;
+      this.setState({
+        keyWord,
+        searchData:""
+      })
+    }
+    else{
+      let keyWord = e.target.value
+      this.setState({
+        keyWord,
+        searchData: this.props.keyWord
+      },this.props.searchUser(keyWord))
+    }
   };
   handleChangeEdit =e =>{
-    // let target = e.target;
-    // let name  = target.name;
-    // let value = target.value;
-    // this.setState({
-    //   [name]:value,
-    //   sumbitData:{
-    //     taiKhoan : this.state.taiKhoan,
-    //     hoTen : this.state.hoTen,
-    //     email: this.state.email,
-    //     soDt : this.state.soDt,
-    //     matKhau: this.state.matKhau,
-    //     maLoaiNguoiDung: this.state.maLoaiNguoiDung,
-    //     maNhom:"GP01",
-    //     [name]: value,
-    //   }
-    // },()=>{
-    //   console.log(this.state);
-    // });
+    let target = e.target;
+    let name  = target.name;
+    let value = target.value;
+    this.setState({
+      [name]:value,
+      sumbitData:{
+        taiKhoan : this.state.taiKhoan,
+        hoTen : this.state.hoTen,
+        email: this.state.email,
+        soDt : this.state.soDt,
+        matKhau: this.state.matKhau,
+        maLoaiNguoiDung: this.state.maLoaiNguoiDung,
+        maNhom:"GP01",
+        [name]: value,
+      }
+    },()=>{
+      console.log(this.state);
+    });
   }
   handleDelete = e => {
     this.setState(
@@ -134,13 +134,13 @@ class Paginition extends Component {
               <div className="table100-body js-pscroll">
                 <table>
                   <tbody>
-                    <tr className="row100 body">
+                    <tr className="row100 body MovieBody">
                       <td className="cell100 column1">{pd.maPhim}</td>
                       <td className="cell100 column2">{pd.tenPhim}</td>
+                      <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column3">{pd.trailer}</td>
                       <td className="cell100 column4">{pd.hinhAnh}</td>
                       <td className="cell100 column5">{pd.ngayKhoiChieu}</td>
-                      <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
@@ -192,13 +192,13 @@ class Paginition extends Component {
               <div className="table100-body js-pscroll">
                 <table>
                   <tbody>
-                    <tr className="row100 body">
+                    <tr className="row100 body MovieBody">
                     <td className="cell100 column1">{pd.maPhim}</td>
                       <td className="cell100 column2">{pd.tenPhim}</td>
+                      <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column3">{pd.trailer}</td>
                       <td className="cell100 column4">{pd.hinhAnh}</td>
                       <td className="cell100 column5">{pd.ngayKhoiChieu}</td>
-                      <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
@@ -280,7 +280,7 @@ class Paginition extends Component {
           <div className="selectEntries d-flex">
             <span>Choose Display Entries</span>
             <select onChange={this.handlingChange}>
-              <option value={0}>Select entries:</option>
+              <option value={10}>Select entries:</option>
               <option value={10}>10 </option>
               <option value={20}>20</option>
               <option value={50}>50</option>
@@ -294,13 +294,13 @@ class Paginition extends Component {
                 <div className="table100-head">
                   <table>
                     <thead>
-                      <tr className="row100 head">
-                        <th className="cell100 column1">Tài Khoản</th>
-                        <th className="cell100 column2">Họ Tên</th>
-                        <th className="cell100 column3">Email</th>
-                        <th className="cell100 column4">Số ĐT</th>
-                        <th className="cell100 column5">Type</th>
-                        <th className="cell100 column6">Mật khẩu</th>
+                      <tr className="row100 head MovieManagement">
+                        <th className="cell100 column1">Mã Phim</th>
+                        <th className="cell100 column2">Tên Phim</th>
+                        <th className="cell100 column6">Bí Danh</th>
+                        <th className="cell100 column3">Trailer</th>
+                        <th className="cell100 column4">Hình Ảnh</th>
+                        <th className="cell100 column5">Ngày Khởi Chiếu</th>
                         <th className="cell100 column7">Action</th>
                       </tr>
                     </thead>

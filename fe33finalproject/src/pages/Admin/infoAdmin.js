@@ -32,7 +32,7 @@ class Info extends Component {
     }
     if (localStorage.getItem("UserInfo")) {
       let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-      let UserHome = JSON.parse(localStorage.getItem("UserHome"));
+      let UserHome = JSON.parse(localStorage.getItem("UserAdmin"));
       let matKhau = UserInfo.matKhau;
       let email = UserInfo.email;
       let soDt = UserInfo.soDT;
@@ -201,7 +201,7 @@ class Info extends Component {
     );
   };
   render() {
-    return localStorage.getItem("UserHome") ? (
+    return localStorage.getItem("UserAdmin") ? (
       <div>{this.renderHTML()}</div>
     ) : (
       <Redirect to="/" />
