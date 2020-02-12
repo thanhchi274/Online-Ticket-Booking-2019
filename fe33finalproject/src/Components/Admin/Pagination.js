@@ -176,7 +176,7 @@ handleDelete = async(e) => {
                            <FontAwesomeIcon icon={faTrash} />
                         </button>
                         <Link
-                          to="/quan-ly-ve"
+                          to={`/quan-ly-ve/${pd.taiKhoan}`}
                           value={pd.taiKhoan}
                           className="btn btnTicket btn-info"
                         >
@@ -228,7 +228,7 @@ handleDelete = async(e) => {
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
                         <button
-                          to="/quan-ly-ve"
+                          to={`/quan-ly-ve/${pd.taiKhoan}`}
                           value={pd.taiKhoan}
                           className="btn btnTicket btn-info"
                           data-toggle="modal" data-target="#myModal"
@@ -363,7 +363,7 @@ handleDelete = async(e) => {
               />
             </div>
   
-            <div className="form-group">
+            <div className="form-group choiceTypeUser">
                         <label>Mã Loại Người Dùng:</label>
                         <select onChange={this.chooseMLND}>
                             <option value="">Mời Bạn Chọn</option>
@@ -371,13 +371,11 @@ handleDelete = async(e) => {
                             <option value="QuanTri">Quản Trị</option>
                           </select>
                         </div>
-            <button type="submit" className="btn btn-success">
-              Them Nguoi Dung
+            <button type="submit" className="btnADDUSER">
+             Submit
             </button>
+            <button type="button" className="btnCloseAddUser" data-dismiss="modal">Close</button>
           </form>
-                </div>
-                <div className="modal-footer">
-                  <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
               </div>
             </div>

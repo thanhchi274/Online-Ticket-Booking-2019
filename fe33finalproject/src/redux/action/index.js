@@ -227,6 +227,26 @@ export const actLayThongTinUser = user => {
       });
   };
 };
+export const actQuanLyVeUser = user => {
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+      data: user
+    })
+      .then(async result => {
+        localStorage.setItem("TicketManage", JSON.stringify(result.data));
+        dispatch({
+          type: await ActionTypes.GET_TICKET_DETAIL,
+          tickets: await result.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
 export const actUpdateUserInformation = user => {
   const UserHome = JSON.parse(localStorage.getItem("UserHome"));
   return dispatch => {

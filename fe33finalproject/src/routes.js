@@ -69,7 +69,7 @@ const routeAdmin = [
     component: UpAnhPhim
   },
   {
-    path: "/quan-ly-ve",
+    path: "/quan-ly-ve/:id",
     exact: false,
     component: TicketManageMent
   }

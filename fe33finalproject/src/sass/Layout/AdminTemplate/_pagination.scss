@@ -62,3 +62,55 @@
        @extend .previous
     }
 }
+.choiceTypeUser{
+    position: relative;
+  font-family: Arial;
+    select{
+        margin-left:30px;
+        border-width: 0px;
+        border: none!important;
+        option{
+            border:none!important;
+        }
+        background: linear-gradient(145deg, #14d280, #18f998);
+        width: 180px;
+        height: 40px;
+        color:white;
+        font-size: 16px;
+        font-weight: 700;
+        border-radius: 10px;
+        padding-left: 10px;
+    }
+}
+#myModalAdd{
+    background-color: rgba(0,0,0,0.25);
+    padding-top:10vh;
+    .form-group{
+        input{
+            width: 460px;
+        }
+    }
+    .btnADDUSER{
+        background:transparent;
+        position: relative;
+        right:5%;
+        width: 150px;
+        color:#4e73df;
+        font-weight: 700;
+        border-radius: 70px;
+        border: 2px solid #4e73df;
+        transition: all 0.2s;
+        font-size: 20px !important;
+        margin: 30px 0 10px 30px;
+        &:hover {
+          background:linear-gradient(180deg, #4e73df 10%, #224abe 100%);
+          color:white;
+          border: 2px solid #4e73df;
+        }
+    }
+    .btnCloseAddUser{
+        @extend .btnADDUSER;
+        left:20%;
+    }
+
+}
