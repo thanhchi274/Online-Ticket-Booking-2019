@@ -40,7 +40,7 @@
     &:hover {
       background:linear-gradient(145deg, #14d280, #18f998);
       color:white;
-      border: none;
+      border: 2px solid #03ffd2;
     }
   }
   .signup-btn {
@@ -50,6 +50,7 @@
     border-color:#e8e111;
     border:2px solid #e8e111;
     &:hover{
+      border: 2px solid #e8e111;
       background: linear-gradient(145deg, #e6de00, #e8e111);
     }
   }
@@ -135,12 +136,26 @@ h3 {
   left: 0;
   border: none;
   outline: none;
-  background: none;
+  background: transparent;
   padding: 0.5rem 0.7rem;
   font-size: 1.2rem;
+  color:white
+  
 }
 
 .signup h5 {
   transform: translateY(-200%);
   font-size: 15px;
+}
+@-webkit-keyframes autofill {
+  0%,100% {
+      color: #666;
+      background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
 }
