@@ -73,6 +73,8 @@ const movieReducer = (state = initialState, action) => {
       return { ...state };
     case ActionType.DELETE_USER:
       return { ...state };
+    case ActionType.DELETE_MOVIE:
+      return { ...state };
     default:
       return { ...state };
   }

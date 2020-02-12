@@ -17,18 +17,23 @@ class Paginition extends Component {
       pageCount: 0,
       searchData: [],
       keyWord: "",
-      taiKhoanDelete: "",
-      taiKhoan: "",
-      matKhau: "",
-      email:"",
-      soDt:"",
-      hoTen:"",
-      sumbitData:{
-      taiKhoan: "",
-      matKhau: "",
-      email:"",
-      soDt:"",
-      hoTen:""
+      maPhimDelete: "",
+      maPhim:"",
+      tenPhim: "",
+      biDanh: "",
+      trailer:"",
+      hinhAnh:"",
+      ngayKhoiChieu:"",
+      sumbitDataMovie:{
+      maPhim:"",
+      tenPhim: "",
+      biDanh: "",
+      trailer:"",
+      hinhAnh:"",
+      moTa:"",
+      maNhom:"GP01",
+      ngayKhoiChieu:"",
+      danhGia:0
       }
     };
     this.handlePageClick = this.handlePageClick.bind(this);
@@ -37,23 +42,9 @@ class Paginition extends Component {
     setInterval(() => {
       this.receivedData();
     }, 100);
-    
   }
+
   handleChangeSearch=(e)=>{
-    if(this.state.keyWord ===""){
-      let keyWord = e.target.value;
-      this.setState({
-        keyWord,
-        searchData:""
-      })
-    }
-    else{
-      let keyWord = e.target.value
-      this.setState({
-        keyWord,
-        searchData: this.props.keyWord
-      },this.props.searchUser(keyWord))
-    }
   };
   handleChangeEdit =e =>{
     let target = e.target;
@@ -61,27 +52,24 @@ class Paginition extends Component {
     let value = target.value;
     this.setState({
       [name]:value,
-      sumbitData:{
-        taiKhoan : this.state.taiKhoan,
-        hoTen : this.state.hoTen,
-        email: this.state.email,
-        soDt : this.state.soDt,
-        matKhau: this.state.matKhau,
-        maLoaiNguoiDung: this.state.maLoaiNguoiDung,
-        maNhom:"GP01",
-        [name]: value,
+      sumbitDataMovie:{
+        maPhim: this.state.maPhim,
+        tenPhim: this.state.tenPhim,
+        biDanh: this.state.biDanh,
+        trailer: this.state.trailer,
+        [name]:value,
       }
     },()=>{
       console.log(this.state);
-    });
+    })
   }
   handleDelete = e => {
     this.setState(
       {
-        taiKhoanDelete: e.target.value
+        maPhimDelete: e.target.value
       },
       () => {
-        this.props.deleteUser(this.state.taiKhoanDelete);
+        this.props.deleteMovie(this.state.maPhimDelete);
       }
     );
   };
@@ -92,30 +80,30 @@ class Paginition extends Component {
     e.preventDefault();
   }
   handleEdit= (e)=>{
-    // let hoTen = e.target.getAttribute("hoten");
-    // let email = e.target.getAttribute("email");
-    // let soDt = e.target.getAttribute("sodt");
-    // let matKhau = e.target.getAttribute("matkhau");
-    // let taiKhoan = e.target.value;
-    // let maLoaiNguoiDung = e.target.getAttribute("maloainguoidung");
-    //   this.setState({
-    //     taiKhoan,
-    //     email,
-    //     soDt,
-    //     matKhau,
-    //     hoTen,
-    //     maLoaiNguoiDung,
-    //     sumbitData:{
-    //         maNhom:"GP01",
-    //         taiKhoan,
-    //         email,
-    //         soDt,
-    //         matKhau,
-    //         hoTen,
-    //         maLoaiNguoiDung,
-    //     }
-    //   },console.log(this.state)
-    //   )
+    let tenPhim = e.target.getAttribute("tenphim");
+    let biDanh = e.target.getAttribute("bidanh");
+    let trailer = e.target.getAttribute("trailer");
+    let danhGia = e.target.getAttribute("danhgia");
+    let maPhim = e.target.value;
+      this.setState({
+        maPhim,
+        tenPhim,
+        biDanh,
+        trailer,
+        danhGia,
+        sumbitDataMovie:{
+          maPhim: this.state.maPhim,
+          tenPhim: this.state.tenPhim,
+          biDanh: this.state.biDanh,
+          trailer: this.state.trailer,
+          hinhAnh:"",
+          moTa:"",
+          maNhom:"GP01",
+          ngayKhơiChieu:"",
+          danhGia:0
+          }
+      },console.log(this.state)
+      )
   }
   receivedData() {
     axios
@@ -140,25 +128,25 @@ class Paginition extends Component {
                       <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column3">{pd.trailer}</td>
                       <td className="cell100 column4">{pd.hinhAnh}</td>
-                      <td className="cell100 column5">{pd.ngayKhoiChieu}</td>
+                      <td className="cell100 column5">{new Date(pd.ngayKhoiChieu).toDateString()}</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
                           value={pd.maPhim}
                           className="btn btnEdit btn-success"
-                          maloainguoidung = {pd.maLoaiNguoiDung}
-                          // hoten = {pd.hoTen}
-                          // email = {pd.email}
-                          // sodt ={pd.soDt}
-                          // matkhau ={pd.matKhau}
+                          tenphim = {pd.tenPhim}
+                          bidanh = {pd.biDanh}
+                          trailer ={pd.trailer}
+                          hinhanh ={pd.hinhAnh}
+                          ngaykhoichieu={pd.ngayKhoiChieu}
+                          danhgia ={pd.danhGia}
                           data-toggle="modal" data-target="#myModal"
                         >
                            <FontAwesomeIcon icon={faUserEdit} />
                         </button>
                         <button
-                          // onClick={this.handleDelete}
-                          // value={pd.taiKhoan}
-                          // maloainguoidung = {pd.maLoaiNguoiDung}  
+                          onClick={this.handleDelete}
+                          value={pd.maPhim}
                           className="btn btnDelete btn-danger"
                         >
                            <FontAwesomeIcon icon={faTrash} />
@@ -198,19 +186,25 @@ class Paginition extends Component {
                       <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column3">{pd.trailer}</td>
                       <td className="cell100 column4">{pd.hinhAnh}</td>
-                      <td className="cell100 column5">{pd.ngayKhoiChieu}</td>
+                      <td className="cell100 column5">{new Date(pd.ngayKhoiChieu).toDateString()}</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
-                          // value={pd.taiKhoan}
+                          value={pd.maPhim}
                           className="btn btnEdit btn-success"
-                          // maloainguoidung = {pd.maLoaiNguoiDung}
+                          tenphim = {pd.tenPhim}
+                          bidanh = {pd.biDanh}
+                          trailer ={pd.trailer}
+                          hinhanh ={pd.hinhAnh}
+                          ngaykhoichieu={pd.ngayKhoiChieu}
+                          danhgia ={pd.danhGia}
+                          className="btn btnEdit btn-success"
                         >
                            <FontAwesomeIcon icon={faUserEdit} />
                         </button>
                         <button
                           onClick={this.handleDelete}
-                          value={pd.taiKhoan}
+                          value={pd.maPhim}
                           className="btn btnDelete btn-danger"
                         >
                           <FontAwesomeIcon icon={faTrash} />
@@ -264,14 +258,14 @@ class Paginition extends Component {
   render() {
     return (
       <div>
-        <div className="limiter">
+        <div className="limiter MovieComponent">
           <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-2 my-2 my-md-0 col-md-10 navbar-search">
             <div className="input-group">
               <input
                 type="text"
                 className="form-control border-0 small"
                 onChange={this.handleChangeSearch}
-                placeholder="Search for..."
+                placeholder="Search movie by name"
                 aria-label="Search"
                 aria-describedby="basic-addon2"
               />
@@ -329,64 +323,86 @@ class Paginition extends Component {
             {/* Modal content*/}
             <div className="modal-content">
               <div className="modal-header">
-                <h4 className="modal-title">Edit User</h4>
+                <h4 className="modal-title">Edit Phim</h4>
               </div>
               <div className="modal-body">
               <form onSubmit={this.handleSubmitEdit}>
                         <div className="form-group">
-                          <label>Tài Khoản:</label>
+                          <label>Mã Phim:</label>
                           <input
                             type="text"
                             className="form-control"
                             name="taiKhoan"
-                            value={this.state.taiKhoan ? this.state.taiKhoan: ""}
+                            value={this.state.maPhim ? this.state.maPhim: ""}
                             onChange={this.handleChangeEdit}
-                            placeholder="Nhập Họ và Tên"
+                            placeholder="Nhập Mã Phim"
                           />
                         </div>
                         <div className="form-group">
-                          <label>Họ Tên:</label>
+                          <label>Tên Phim:</label>
                           <input
                             type="text"
                             className="form-control"
                             name="hoTen"
-                            value={this.state.hoTen ? this.state.hoTen: ""}
+                            value={this.state.tenPhim ? this.state.tenPhim: ""}
                             onChange={this.handleChangeEdit}
-                            placeholder="Nhập Họ và Tên"
+                            placeholder="Nhập Tên Phim"
                           />
                         </div>
                         <div className="form-group">
-                          <label>Password:</label>
+                          <label>Bí Danh:</label>
                           <input
-                            type="password"
+                            type="text"
                             className="form-control"
                             name="matKhau"
                             autoComplete="password"
-                            value={this.state.matKhau ? this.state.matKhau :""}
+                            value={this.state.biDanh ? this.state.biDanh :""}
                             onChange={this.handleChangeEdit }
-                            placeholder="Nhập Password"
+                            placeholder="Nhập Bí Danh Phim"
                           />
                         </div>
                         <div className="form-group">
-                          <label>Số Điện Thoại:</label>
+                          <label>Trailer:</label>
                           <input
                             type="text"
                             className="form-control"
                             name="soDt"
-                            value={this.state.soDt ? this.state.soDt :""}
+                            value={this.state.trailer ? this.state.trailer :""}
                             onChange={this.handleChangeEdit}
-                            placeholder="Nhập số điện thoại"
+                            placeholder="Nhập đường dẫn trailer Youtube"
                           />
                         </div>
                         <div className="form-group">
-                          <label>Email:</label>
+                          <label>Ngày Khởi Chiếu:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="soDt"
+                            value={this.state.ngayKhơiChieu ? this.state.ngayKhơiChieu :""}
+                            onChange={this.handleChangeEdit}
+                            placeholder="Thêm Ngày Khởi Chiếu"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Hình Ảnh:</label>
                           <input
                             type="email"
                             className="form-control"
                             name="email"
                             value={this.state.email ? this.state.email :""}
                             onChange={this.handleChangeEdit}
-                            placeholder="Nhập Email"
+                            placeholder="Chỉ được nhập link ảnh từ nguồn Khác"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Đánh Giá:</label>
+                          <input
+                            type="email"
+                            className="form-control"
+                            name="email"
+                            value={this.state.email ? this.state.email :""}
+                            onChange={this.handleChangeEdit}
+                            placeholder="Nhập đánh giá từ 1 đến 5"
                           />
                         </div>
                         <button
@@ -408,32 +424,17 @@ class Paginition extends Component {
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    keyWord: state.movieReducer.keyWord,
-    loading: state.movieReducer.loading,
-    userInformation: state.movieReducer.userInformation
-  };
-};
-
 const mapDispatchToProps = dispatch => {
   return {
-    getUserList: () => {
-      dispatch(action.actGetUserList());
-    },
     searchUser: id => {
       dispatch(action.actSearchUser(id));
     },
-    deleteUser: tk => {
-      dispatch(action.actDeleteUser(tk));
-    },
-    getUserInformation: tk =>{
-      dispatch(action.actLayThongTinUser(tk))
+    deleteMovie: movie => {
+      dispatch(action.actDeleteMovie(movie));
     },
     updateUser: tk =>{
       dispatch(action.actUpdateUserInformation(tk))
     }
   };
 };
-
-export default connect(mapStateToProps, mapDispatchToProps)(Paginition);
+export default connect(null, mapDispatchToProps)(Paginition);

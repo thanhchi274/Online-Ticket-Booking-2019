@@ -312,6 +312,28 @@ export const actDeleteUser = tk => {
       });
   };
 };
+export const actDeleteMovie = movie => {
+  return dispatch => {
+    const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+    Axios({
+      method: "DELETE",
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${movie}`,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(result => {
+        alert(result.data);
+        dispatch({
+          type: ActionTypes.DELETE_MOVIE
+        });
+      })
+      .catch(err => {
+        alert(err.response.data);
+        return err;
+      });
+  };
+};
 export const actThemNguoiDung = user =>{
   const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
   return dispatch => {
