@@ -127,7 +127,7 @@ class Login extends Component {
       <div className="container login-container d-flex">
         <SVGAdminLogin />
         <form onSubmit={this.handleSubmit}>
-          <h3>sign in</h3>
+          <h3>Chào Mừng Bạn</h3>
           <div
             className={this.state.input1}
             onFocus={this.handleClick}
@@ -147,7 +147,7 @@ class Login extends Component {
             </div>
           </div>
           {this.state.errors.taiKhoan ? (
-            <div style={{ color: "red" }}>{this.state.errors.taiKhoan}</div>
+            <div className="warning-text" style={{ color: "red" }}>{this.state.errors.taiKhoan}</div>
           ) : (
             ""
           )}
@@ -170,12 +170,13 @@ class Login extends Component {
             </div>
           </div>
           {this.state.errors.matKhau ? (
-            <div style={{ color: "red", marginBottom: "20px" }}>
+            <div className="warning-text" style={{ color: "red"}}>
               {this.state.errors.matKhau}
             </div>
           ) : (
             ""
           )}
+          <div className="btnAction d-flex">
           <button
             className="btn signin-btn mb-3"
             disabled={!this.state.formvalid}
@@ -190,11 +191,11 @@ class Login extends Component {
               fontWeight: "700"
             }}
           >
-            or
           </h5>
           <Link className="btn signup-btn" to="/sign-up">
             SIGN UP
           </Link>
+          </div>
         </form>
       </div>
     );
