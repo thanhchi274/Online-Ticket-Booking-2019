@@ -82,15 +82,21 @@ class Paginition extends Component {
       console.log(this.state);
     });
   }
-  handleDelete = e => {
-    this.setState(
-      {
-        taiKhoanDelete: e.target.value
-      },
-      () => {
-        this.props.deleteUser(this.state.taiKhoanDelete);
-      }
-    );
+handleDelete = async(e) => {
+    console.log(e.target.value)
+    try{
+      await this.setState(
+       {
+          taiKhoanDelete: e.target.value
+       },
+       () => {
+         this.props.deleteUser(this.state.taiKhoanDelete);
+       }
+     );
+    }
+    catch(err){
+      alert("Bạn thao tác quá nhanh, Xin thử lại")
+    }
   };
   handleSubmitEdit = e=>{
     this.setState({

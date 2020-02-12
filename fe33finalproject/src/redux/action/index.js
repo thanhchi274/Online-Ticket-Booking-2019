@@ -301,10 +301,10 @@ export const actDeleteUser = tk => {
         Authorization: `Bearer ${UserAdmin.accessToken}`
       }
     })
-      .then(result => {
+      .then(async result => {
         alert(result.data);
         dispatch({
-          type: ActionTypes.DELETE_USER
+          type:await ActionTypes.DELETE_USER
         });
       })
       .catch(err => {
