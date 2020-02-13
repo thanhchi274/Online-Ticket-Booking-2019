@@ -56,14 +56,25 @@ export default function ScrollableTabsButtonAutoBHD(props) {
 
   const renderHTML = () => {
     if (props.movie.lichChieu) {
+      // return props.movie.lichChieu.map((item, index) => {
+      //   return (
+      //     <Tab
+      //       key={index}
+      //       label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
+      //       {...a11yProps(index)}
+      //     />
+      //   );
+      // });
       return props.movie.lichChieu.map((item, index) => {
-        return (
-          <Tab
-            key={index}
-            label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-            {...a11yProps(index)}
-          />
-        );
+        if ((index + 1) % 6 === 0) {
+          return (
+            <Tab
+              key={index}
+              label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
+              {...a11yProps(index)}
+            />
+          );
+        }
       });
     }
   };

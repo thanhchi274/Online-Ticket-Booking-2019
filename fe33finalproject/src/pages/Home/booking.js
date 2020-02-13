@@ -44,7 +44,7 @@ class Booking extends Component {
           count: this.state.count + 1
         },
         () => {
-          console.log(this.state.valid);
+          console.log(this.state.danhSachVe);
         }
       );
     } else {
@@ -53,22 +53,22 @@ class Booking extends Component {
         {
           valid: true,
           count: this.state.count - 1,
-          tienVe: this.state.tienVe  -giaVe 
+          tienVe: this.state.tienVe - giaVe
         },
         () => {
-          console.log(this.state);
+          console.log(this.state.danhSachVe);
         }
       );
     }
   };
   timViTri = maGhe => {
     let viTri = -1;
-    return this.state.danhSachVe.map((item, index) => {
+    this.state.danhSachVe.map((item, index) => {
       if (item.maGhe === maGhe) {
         viTri = index;
       }
-      return viTri;
     });
+    return viTri;
   };
 
   xoaGhe = maGhe => {
@@ -78,7 +78,7 @@ class Booking extends Component {
     }
   };
 
-  handleSubmit = e => {
+  handleSubmit = () => {
     let ve = { ...this.state };
     if (this.state.valid === false) {
       this.props.bookingTicket(ve);
