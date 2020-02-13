@@ -57,15 +57,13 @@ export default function ScrollableTabsButtonAutoBHD(props) {
   const renderHTML = () => {
     if (props.movie.lichChieu) {
       return props.movie.lichChieu.map((item, index) => {
-        if (item.thongTinRap.tenHeThongRap === "BHD Star Cineplex") {
-          return (
-            <Tab
-              key={index}
-              label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
-              {...a11yProps(index)}
-            />
-          );
-        }
+        return (
+          <Tab
+            key={index}
+            label={new Date(item.ngayChieuGioChieu).toLocaleDateString()}
+            {...a11yProps(index)}
+          />
+        );
       });
     }
   };
@@ -73,27 +71,25 @@ export default function ScrollableTabsButtonAutoBHD(props) {
   const renderTime = () => {
     if (props.movie.lichChieu) {
       return props.movie.lichChieu.map((item, index) => {
-        if (item.thongTinRap.tenHeThongRap === "BHD Star Cineplex") {
-          return (
-            <TabPanel className="m-3" key={index} value={value} index={index}>
-              <h5>{item.thongTinRap.tenCumRap}</h5>
-              <div className="row" style={{ color: "grey" }}>
-                <div className="text-center">
-                  <h1>2D</h1>
-                  <p>DIGITAL</p>
-                </div>
-
-                <Link
-                  className="btn text-white ml-3"
-                  style={{ backgroundColor: "rgb(170, 170, 52)" }}
-                  to={`/dat-ve/${item.maLichChieu}`}
-                >
-                  {new Date(item.ngayChieuGioChieu).toLocaleTimeString()}
-                </Link>
+        return (
+          <TabPanel className="m-3" key={index} value={value} index={index}>
+            <h5>{item.thongTinRap.tenCumRap}</h5>
+            <div className="row" style={{ color: "grey" }}>
+              <div className="text-center">
+                <h1>2D</h1>
+                <p>DIGITAL</p>
               </div>
-            </TabPanel>
-          );
-        }
+
+              <Link
+                className="btn text-white ml-3"
+                style={{ backgroundColor: "rgb(170, 170, 52)" }}
+                to={`/dat-ve/${item.maLichChieu}`}
+              >
+                {new Date(item.ngayChieuGioChieu).toLocaleTimeString()}
+              </Link>
+            </div>
+          </TabPanel>
+        );
       });
     }
   };
