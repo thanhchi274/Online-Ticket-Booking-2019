@@ -18,9 +18,12 @@
     .modal{
         padding-top:10%;
         background-color: rgba(0,0,0,0.4);
+        input{
+            width: 450px;
+        }
         .btn-update{
             position: relative;
-            left:74%;
+            left:67%;
             color:white;
             -webkit-appearance: none;
             background: -webkit-gradient(to right, $green 0%, $sand 50%, $peach 100%);
@@ -48,6 +51,25 @@
                 animation-fill-mode: forwards;
                 -webkit-animation-fill-mode: forwards;
               }
+        }
+        .btn-cancel{
+            position: absolute;
+            left: 97%;
+            bottom: 96% ;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            top: -2%;
+            opacity: 1!important;
+            @extend .btn-update;
+            span{
+                position: relative;
+                top:-6px;
+                left:1px;
+                font-size:14px;
+                font-weight: 700;
+            }
         }
     }
     .comp{

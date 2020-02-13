@@ -42,7 +42,7 @@ export default function Sidebar() {
             aria-controls="collapseTwo"
           >
             <i className="fas fa-fw fa-cog" />
-            <span>User</span>
+            <span>Management</span>
           </a>
           <div
             id="collapseTwo"
@@ -55,8 +55,8 @@ export default function Sidebar() {
               <NavLink className="collapse-item" to="/quan-ly-user">
                 User Management
               </NavLink>
-              <NavLink className="collapse-item" to="#abc">
-                Upcoming...
+              <NavLink className="collapse-item" to="/quan-ly-movie">
+                Movie Management
               </NavLink>
             </div>
           </div>
@@ -82,14 +82,11 @@ export default function Sidebar() {
           >
             <div className="bg-white py-2 collapse-inner rounded">
               <h6 className="collapse-header">Actions:</h6>
-              <NavLink className="collapse-item" to="/quan-ly-movie">
-                Movie Management
-              </NavLink>
               <NavLink className="collapse-item" to="/up-anh">
                Upload Ảnh Phim
               </NavLink>
-              <a className="collapse-item" href="utilities-border.html">
-                Upcoming
+              <a className="collapse-item" href="/">
+               Direct to HomePage
               </a>
             </div>
           </div>

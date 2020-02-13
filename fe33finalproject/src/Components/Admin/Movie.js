@@ -15,7 +15,6 @@ class Paginition extends Component {
       perPage: 10,
       currentPage: 0,
       pageCount: 0,
-      searchData: [],
       keyWord: "",
       maPhimDelete: "",
       maPhim:"",
@@ -43,9 +42,6 @@ class Paginition extends Component {
       this.receivedData();
     }, 100);
   }
-
-  handleChangeSearch=(e)=>{
-  };
   handleChangeEdit =e =>{
     let target = e.target;
     let name  = target.name;
@@ -80,17 +76,12 @@ class Paginition extends Component {
     e.preventDefault();
   }
   handleEdit= (e)=>{
-    let tenPhim = e.target.getAttribute("tenphim");
-    let biDanh = e.target.getAttribute("bidanh");
-    let trailer = e.target.getAttribute("trailer");
-    let danhGia = e.target.getAttribute("danhgia");
-    let maPhim = e.target.value;
       this.setState({
-        maPhim,
-        tenPhim,
-        biDanh,
-        trailer,
-        danhGia,
+        maPhim:e.target.value,
+        tenPhim: e.target.getAttribute("tenphim"),
+        biDanh:e.target.getAttribute("bidanh"),
+        trailer:e.target.getAttribute("trailer"),
+        danhGia:e.target.getAttribute("danhgia"),
         sumbitDataMovie:{
           maPhim: this.state.maPhim,
           tenPhim: this.state.tenPhim,
@@ -198,7 +189,6 @@ class Paginition extends Component {
                           hinhanh ={pd.hinhAnh}
                           ngaykhoichieu={pd.ngayKhoiChieu}
                           danhgia ={pd.danhGia}
-                          className="btn btnEdit btn-success"
                         >
                            <FontAwesomeIcon icon={faUserEdit} />
                         </button>
@@ -259,18 +249,6 @@ class Paginition extends Component {
     return (
       <div>
         <div className="limiter MovieComponent">
-          <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-2 my-2 my-md-0 col-md-10 navbar-search">
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control border-0 small"
-                onChange={this.handleChangeSearch}
-                placeholder="Search movie by name"
-                aria-label="Search"
-                aria-describedby="basic-addon2"
-              />
-            </div>
-          </form>
           <div className="selectEntries d-flex">
             <span>Choose Display Entries</span>
             <select onChange={this.handlingChange}>
@@ -411,10 +389,8 @@ class Paginition extends Component {
                         >
                           Cập nhật
                         </button>
+                        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
                       </form>
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
               </div>
             </div>
           </div>
@@ -426,9 +402,6 @@ class Paginition extends Component {
 }
 const mapDispatchToProps = dispatch => {
   return {
-    searchUser: id => {
-      dispatch(action.actSearchUser(id));
-    },
     deleteMovie: movie => {
       dispatch(action.actDeleteMovie(movie));
     },

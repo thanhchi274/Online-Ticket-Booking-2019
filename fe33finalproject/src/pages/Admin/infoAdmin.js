@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import * as Action from "../../redux/action/index";
 import { connect } from "react-redux";
 import UserImage from "../../Components/UserImage";
-import SVGLoading from "../../Components/loading";
+import Skeleton from '@material-ui/lab/Skeleton';
 class Info extends Component {
   constructor(props) {
     super(props);
@@ -18,36 +18,22 @@ class Info extends Component {
       maLoaiNguoiDung: ""
     };
   }
-  componentDidUpdate() {
-    let user = { ...this.state };
-    this.props.getUserInformation(user);
-  }
-  componentDidMount() {
-    if (localStorage.getItem("UserAdmin")) {
-      let info = JSON.parse(localStorage.getItem("UserAdmin"));
-      let taiKhoan = info.taiKhoan;
-      this.setState({
-        taiKhoan
-      });
-    }
-    if (localStorage.getItem("UserInfo")) {
-      let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-      let UserHome = JSON.parse(localStorage.getItem("UserAdmin"));
-      let matKhau = UserInfo.matKhau;
-      let email = UserInfo.email;
-      let soDt = UserInfo.soDT;
-      let hoTen = UserInfo.hoTen;
-      let maNhom = UserHome.maNhom;
-      let maLoaiNguoiDung = UserHome.maLoaiNguoiDung;
-      this.setState({
-        matKhau,
-        email,
-        soDt,
-        hoTen,
-        maNhom,
-        maLoaiNguoiDung
-      });
-    }
+componentDidMount() {
+      let UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+      let taiKhoan = UserAdmin.taiKhoan;
+      this.props.getUserInformation({taiKhoan});
+      if(this.props.userInformation &&JSON.parse(localStorage.getItem("UserInfo"))){
+        let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
+          this.setState({
+            taiKhoan,
+            matKhau:UserInfo.matKhau,
+            email:UserInfo.email,
+            soDt:UserInfo.soDT,
+            hoTen:UserInfo.hoTen,
+            maNhom:UserAdmin.maNhom,
+            maLoaiNguoiDung:UserAdmin.maLoaiNguoiDung
+          });
+      }
   }
 
   handleChange = e => {
@@ -65,15 +51,7 @@ class Info extends Component {
   };
 
   renderHTML = () => {
-    let { loading } = this.props;
-    if (loading) {
-      return (
-        <div className="loading-spinner">
-          <SVGLoading />
-        </div>
-      );
-    }
-    let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
+    let {userInformation} =this.props
     return (
       <div
         className="info--admin"
@@ -87,27 +65,27 @@ class Info extends Component {
           <div className="info col-md-8">
             <div className="comp">
               <p>
-                Tài Khoản:<span>{UserInfo ? UserInfo.taiKhoan : ""}</span>
+                Tài Khoản:<span>{userInformation ? userInformation.taiKhoan : <Skeleton variant="text" width="250px" />}</span>
               </p>
             </div>
             <div className="comp ">
               <p>
-                Mật Khẩu:<span>{UserInfo ? UserInfo.matKhau : ""}</span>
+                Mật Khẩu:<span>{userInformation ? userInformation.matKhau : <Skeleton variant="text" width="250px" />}</span>
               </p>
             </div>
             <div className="comp">
               <p>
-                Họ và tên:<span>{UserInfo ? UserInfo.hoTen : ""}</span>
+                Họ và tên:<span>{userInformation ? userInformation.hoTen : <Skeleton variant="text" width="250px" />}</span>
               </p>
             </div>
             <div className="comp">
               <p>
-                Email: <span>{UserInfo ? UserInfo.email : ""}</span>
+                Email: <span>{userInformation ? userInformation.email : <Skeleton variant="text" width="250px" />}</span>
               </p>
             </div>
             <div className="comp ">
               <p>
-                Số điện thoại:<span>{UserInfo ? UserInfo.soDT : ""}</span>
+                Số điện thoại:<span>{userInformation ? userInformation.soDT : <Skeleton variant="text" width="250px" />}</span>
               </p>
             </div>
             <div>
@@ -125,19 +103,15 @@ class Info extends Component {
               <div className="modal" id="myModal1">
                 <div className="modal-dialog">
                   <div className="modal-content">
-                    {/* Modal Header */}
-                    <div className="modal-header">
-                      <h4 className="modal-title">UPDATE INFORMATION</h4>
-                      <button
-                        type="button"
-                        className="close"
-                        data-dismiss="modal"
-                      >
-                        ×
-                      </button>
-                    </div>
                     {/* Modal body */}
                     <div className="modal-body">
+                    <button
+                        type="button"
+                        className="close btn-cancel"
+                        data-dismiss="modal"
+                      >
+                        <span>x</span>
+                      </button>
                       <form onSubmit={this.handleSubmit}>
                         <div className="form-group">
                           <label>Họ Tên:</label>
@@ -189,6 +163,7 @@ class Info extends Component {
                         >
                           Cập nhật
                         </button>
+                        
                       </form>
                     </div>
                   </div>

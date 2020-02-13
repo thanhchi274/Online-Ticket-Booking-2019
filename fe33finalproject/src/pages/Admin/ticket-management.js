@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import * as Action from "../../redux/action/index";
 import { Redirect } from "react-router-dom";
-import SVGLoading from "../../Components/loading";
 class TicketManageMent extends Component {
   constructor(props) {
     super(props);
@@ -15,11 +14,8 @@ class TicketManageMent extends Component {
   async componentDidMount() {
     try{
       const taiKhoan = this.props.match.params.id;
-      console.log({taiKhoan})
-      let userInfo = this.props.userInformation
-      console.log(userInfo)
       let UserInfo = JSON.parse(localStorage.getItem("TicketManage"));
-      const group1 = _.groupBy(UserInfo.thongTinDatVe, "ngayDat");
+      const group1 =_.groupBy(UserInfo.thongTinDatVe, "ngayDat");
        let UserHome = JSON.parse(localStorage.getItem("UserHome"));
         this.props.getTicketManageUser({taiKhoan});
         this.setState({
@@ -87,12 +83,11 @@ class TicketManageMent extends Component {
                                             }
                                           </td>
                                           <td className="cell100 column2">
-                                            {new Date(
-                                              _.groupBy(
+                                            {new Date(_.groupBy(
                                                 UserData[value],
                                                 "ngayDat"
                                               )[item2][index2].ngayDat
-                                            ).toLocaleDateString()}
+                                            ).toLocaleDateString()}.
                                           </td>
                                           <td className="cell100 column3">
                                             {" "}
@@ -149,7 +144,7 @@ class TicketManageMent extends Component {
   }
 }
 const mapStateToProps = state => ({
-  userInformation: state.movieReducer.userInformation,
+  tickets: state.movieReducer.tickets,
 });
 const mapDispatchToProps = dispatch => {
   return {

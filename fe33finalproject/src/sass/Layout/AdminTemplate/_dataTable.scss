@@ -55,9 +55,6 @@
   
   .container-table100 {
     width: 100%;
-    // min-height: 100vh;
-    background: #fff;
-  
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -121,7 +118,7 @@
   
   .table100-body td {
     padding-top: 16px;
-    padding-bottom: 16px;
+    padding-bottom: 14px;
   }
   .MovieManagement{
     .column1 {
@@ -280,7 +277,7 @@
       font-size:18px!important;
       font-family: Helvetica;
       outline:none!important;
-       border:0px!important;
+      border:0px!important;
       border-radius: 0.75rem;
       box-shadow:  30px 30px 60px #d9d9d9, 
                   -30px -30px 60px #ffffff;
