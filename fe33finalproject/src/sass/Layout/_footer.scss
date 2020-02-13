@@ -14,7 +14,7 @@
       .footer_middle p {
         font-family: montserrat;
         font-size: 16px;
-        color: rgba(0, 0, 0, 0.5);
+        color: white;
       }
       
       ul.footer_list {
@@ -22,19 +22,23 @@
         padding-left: 0px;
       }
       ul.footer_list li {
-        color: rgba(0, 0, 0, 0.5);
+        color: white;
         line-height: 1.6;
         font-weight: 500;
+        font-size: 18px;
       }
       
       ul.footer_list li.phone {
-        font-size: 22px;
-          color: rgba(0, 0, 0, 1);
+        font-size: 15px;
+        font-weight: 400;
+          color: white;
+
       }
       
       ul.footer_list li a {
-        color: rgba(0, 0, 0, 0.5);
-        font-weight: 500;
+        color: white;
+        font-weight: 300;
+        font-size:18px;
         text-transform: none;
       }
       ul.footer_list a:hover {
@@ -52,6 +56,13 @@
       .footer_middle {
         text-align: center;
         padding: 0;
+        .hero-cta__input-wrap{
+          input{
+            &::placeholder{
+              color:white;
+            }
+          }
+        }
       }
       
       .footer-right h4, .footer-left h4 {
@@ -136,13 +147,13 @@
       
       .footer_copyright p {
         font-size: 12px;
-        color: rgba(0,0,0,0.5);
+        color:white;
       padding-top: 20px;
       }
       
       .footer__partners img {
-        float: right;
         margin: 10px auto;
+        margin-left:120px;
         max-width: 100%;
       }
 }

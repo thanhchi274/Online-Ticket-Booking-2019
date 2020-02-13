@@ -1,7 +1,5 @@
 import * as ActionTypes from "./../constants/ActionType.js";
 import Axios from "axios";
-import _ from "lodash";
-import { map, tail, times, uniq, groupBy } from "lodash";
 export const actGetListMovieAPI = () => {
   return dispatch => {
     Axios({
@@ -229,6 +227,26 @@ export const actLayThongTinUser = user => {
       });
   };
 };
+export const actQuanLyVeUser = user => {
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+      data: user
+    })
+      .then(async result => {
+        localStorage.setItem("TicketManage", JSON.stringify(result.data));
+        dispatch({
+          type: await ActionTypes.GET_TICKET_DETAIL,
+          tickets: await result.data
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
 export const actUpdateUserInformation = user => {
   const UserHome = JSON.parse(localStorage.getItem("UserHome"));
   return dispatch => {
@@ -303,10 +321,10 @@ export const actDeleteUser = tk => {
         Authorization: `Bearer ${UserAdmin.accessToken}`
       }
     })
-      .then(result => {
+      .then(async result => {
         alert(result.data);
         dispatch({
-          type: ActionTypes.DELETE_USER
+          type:await ActionTypes.DELETE_USER
         });
       })
       .catch(err => {
@@ -315,3 +333,45 @@ export const actDeleteUser = tk => {
       });
   };
 };
+export const actDeleteMovie = movie => {
+  return dispatch => {
+    const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+    Axios({
+      method: "DELETE",
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${movie}`,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(result => {
+        alert(result.data);
+        dispatch({
+          type: ActionTypes.DELETE_MOVIE
+        });
+      })
+      .catch(err => {
+        alert(err.response.data);
+        return err;
+      });
+  };
+};
+export const actThemNguoiDung = user =>{
+  const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(result => {
+        alert("Đăng kí thành công");
+        dispatch(result.data);
+      })
+      .catch(err => {
+        return err;
+      });
+  };
+}

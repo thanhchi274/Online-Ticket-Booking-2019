@@ -1,5 +1,7 @@
 .navbar--hidden {
+    @extend .navbar-expand;
     transform: translateX(16.4%)!important;
+    opacity: 0;
     .navbar-search{
         display: none!important;
     }
@@ -9,37 +11,11 @@
 }
 
 .navbar-expand{
-  z-index: 1001;
   padding-top:20px;
   position: fixed !important;
-  transition: all 0.3s;
+  opacity: 1;
+  transition: all 0.7s;
   transform: translateX(21%)!important;
-  top: 0;
-    // .navbar-search{
-    //     input{
-    //         background-color:white!important;
-    //         border-top-left-radius: 40px !important;
-    //         border-bottom-left-radius: 40px !important;
-    //         outline:none!important;
-    //         &:focus{
-    //             outline:none!important;
-    //             box-shadow: none!important;
-    //         }
-    //     }
-    //     .btnSearch{
-    //         border:none!important;
-    //         padding: 0 10px;
-    //         transition: all 0.2s;
-    //         border-top-right-radius: 40px !important;
-    //         border-bottom-right-radius: 40px !important;
-    //         background-color: #e3e3e3;
-    //         &:hover{
-    //             background: #e3e3e3;
-    //             box-shadow:  7px 7px 36px #cfcfcf, 
-    //              -7px -7px 36px #f7f7f7;
-    //         }
-    //     }
-    // }
     .navbar-nav{
         .dropdown-menu{
             width: 100px!important;

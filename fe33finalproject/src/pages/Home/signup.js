@@ -109,7 +109,7 @@ class Signup extends Component {
   renderHTML = () => {
     return (
       <div className="signup-container">
-        <h4>sign up</h4>
+        <h4>Register</h4>
         <div className="signup-content  row">
           <div className="signup-img col-sm-4">
             <img alt="hinhAnh123" src="https://cdn.jotfor.ms/images/podo-login-signup.png" />
@@ -122,11 +122,11 @@ class Signup extends Component {
                   <FontAwesomeIcon icon={faGlobe} />
                 </div>
                 <div className="input-user">
-                  <h5>username</h5>
                   <input
                     type="text"
                     className="input"
                     name="taiKhoan"
+                    placeholder="Nhập UserName"
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
                   />
@@ -140,15 +140,15 @@ class Signup extends Component {
                 ""
               )}
               <div className="input-div signup">
-                <div className="i">
+                <div className="i ">
                   <FontAwesomeIcon icon={faLock} />
                 </div>
                 <div>
-                  <h5>password</h5>
                   <input
                     className="input"
                     type="password"
                     name="matKhau"
+                    placeholder="Nhập Mật Khẩu"
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
                   />
@@ -166,11 +166,11 @@ class Signup extends Component {
                   <FontAwesomeIcon icon={faUser} />
                 </div>
                 <div className="input-user">
-                  <h5>fullname</h5>
                   <input
                     type="text"
                     className="input"
                     name="hoTen"
+                    placeholder="Nhập đầy đủ họ tên"
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
                   />
@@ -188,11 +188,11 @@ class Signup extends Component {
                   <FontAwesomeIcon icon={faPhone} />
                 </div>
                 <div className="input-user">
-                  <h5>phone</h5>
                   <input
                     type="text"
                     className="input"
                     name="soDT"
+                    placeholder="Nhập số điện thoại"
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
                   />
@@ -210,11 +210,11 @@ class Signup extends Component {
                   <FontAwesomeIcon icon={faEnvelope} />
                 </div>
                 <div className="input-user">
-                  <h5>email</h5>
                   <input
                     type="text"
                     className="input"
                     name="email"
+                    placeholder="Nhập email"
                     onChange={this.handleChange}
                     onBlur={this.handleBlur}
                   />

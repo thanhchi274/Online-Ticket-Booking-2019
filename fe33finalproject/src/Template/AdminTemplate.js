@@ -6,10 +6,8 @@ const AdminLayout =(props)=>{
     return (
       
       <div id="wrapper">
-      {/* Sidebar */}
       <NavBar /> 
       <SideBar />
-      {/* Content Wrapper */}
       <div id="content-wrapper" className="d-flex flex-column">
        
         <div id="content">

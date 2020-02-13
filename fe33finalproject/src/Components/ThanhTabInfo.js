@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import TicketHistory from "./ticketHistory";
 import TabThongTinTaiKhoan from "./TabThongTinTaiKhoan";
-
+import TabCapNhatUser from "./TabUpdateUser"
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -73,7 +73,7 @@ export default function FullWidthTabs() {
         >
           <Tab label="Thông tin tài khoản" {...a11yProps(0)} />
           <Tab label="Lịch sử giao dịch" {...a11yProps(1)} />
-          <Tab label="Thay đổi mật khẩu" {...a11yProps(2)} />
+          <Tab label="Cập Nhật Thông Tin" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <SwipeableViews
@@ -88,7 +88,7 @@ export default function FullWidthTabs() {
           <TicketHistory />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
-          Item Three
+          <TabCapNhatUser />
         </TabPanel>
       </SwipeableViews>
     </div>

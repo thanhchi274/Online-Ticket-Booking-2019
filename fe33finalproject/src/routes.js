@@ -8,6 +8,7 @@ import Info from "./pages/Home/info.js";
 import InfoAdmin from "./pages/Admin/infoAdmin";
 import UserManagement from "./pages/Admin/UserManagement";
 import MovieManagement from "./pages/Admin/MovieManagement";
+import UpAnhPhim from "./pages/Admin/UpAnh"
 import TicketManageMent from "./pages/Admin/ticket-management.js";
 const routeHome = [
   {
@@ -63,7 +64,12 @@ const routeAdmin = [
     component: MovieManagement
   },
   {
-    path: "/quan-ly-ve",
+    path: "/up-anh",
+    exact: false,
+    component: UpAnhPhim
+  },
+  {
+    path: "/quan-ly-ve/:id",
     exact: false,
     component: TicketManageMent
   }

@@ -123,8 +123,6 @@ export default class Dashboard extends Component {
               </div>
             </div>
             <div className="col-lg-6 mb-4">
-              {/* Illustrations */}
-              {/* Approach */}
               <div className="card shadow mb-4">
                 <div className="card-header py-3">
                   <h6 className="m-0 font-weight-bold text-primary">Development Approach</h6>
@@ -137,16 +135,8 @@ export default class Dashboard extends Component {
             </div>
           </div>
         </div>
-        {/* /.container-fluid */}
       </div>
-      {/* End of Main Content */}
-      {/* Footer */}
           <Footer />
-      {/* End of Footer */}
-    {/* End of Content Wrapper */}
-
-  {/* End of Page Wrapper */}
-  {/* Scroll to Top Button*/}
   <a className="scroll-to-top rounded" href="#page-top">
     <i className="fas fa-angle-up" />
   </a>

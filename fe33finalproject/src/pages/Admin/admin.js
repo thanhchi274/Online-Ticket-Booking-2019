@@ -32,20 +32,22 @@ class Admin extends Component {
                 type="text"
                 className="form-control"
                 name="taiKhoan"
+                placeholder="Mời bạn nhập tên tài khoản"
                 onChange={this.handleOnChange}
               />
             </div>
             <div className="form-group">
               <label htmlFor="">Password</label>
               <input
-                type="text"
+                type="password"
                 className="form-control"
                 name="matKhau"
+                placeholder="Mời bạn nhập mật khẩu"
                 onChange={this.handleOnChange}
               />
             </div>
-            <button type="submit" className="btn btn-success">
-              Login
+            <button type="submit" className="btn btnAdminlogin">
+              Đăng Nhập
             </button>
           </form>
         </div>
