@@ -198,7 +198,6 @@ class Paginition extends Component {
                           hinhanh ={pd.hinhAnh}
                           ngaykhoichieu={pd.ngayKhoiChieu}
                           danhgia ={pd.danhGia}
-                          className="btn btnEdit btn-success"
                         >
                            <FontAwesomeIcon icon={faUserEdit} />
                         </button>
