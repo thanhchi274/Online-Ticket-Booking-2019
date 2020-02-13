@@ -158,6 +158,7 @@ export const actGetRoomList = id => {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`
     })
       .then(result => {
+        console.log(result.data);
         dispatch({
           type: ActionTypes.GET_ROOM_LIST,
           room: result.data
@@ -384,7 +385,6 @@ export const actLayThongTinRap = () => {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap"
     })
       .then(result => {
-        console.log(result.data);
         dispatch({
           type: ActionTypes.GET_INFO_THEATER,
           theaterInfo: result.data
