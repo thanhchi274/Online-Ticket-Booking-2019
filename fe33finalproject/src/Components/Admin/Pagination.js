@@ -4,7 +4,11 @@ import axios from "axios";
 import * as action from "../../redux/action";
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserEdit,faTrash,faTicketAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUserEdit,
+  faTrash,
+  faTicketAlt
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 class Paginition extends Component {
   constructor(props) {
@@ -20,23 +24,23 @@ class Paginition extends Component {
       taiKhoanDelete: "",
       taiKhoan: "",
       matKhau: "",
-      email:"",
-      soDt:"",
-      hoTen:"",
-      sumbitData:{
-      taiKhoan: "",
-      matKhau: "",
-      email:"",
-      soDt:"",
-      hoTen:""
+      email: "",
+      soDt: "",
+      hoTen: "",
+      sumbitData: {
+        taiKhoan: "",
+        matKhau: "",
+        email: "",
+        soDt: "",
+        hoTen: ""
       },
-      addNewUserData:{
-        taiKhoan :"",
-        matKhau :"",
+      addNewUserData: {
+        taiKhoan: "",
+        matKhau: "",
         email: "",
         soDT: "",
         hoTen: "",
-        maLoaiNguoiDung:""
+        maLoaiNguoiDung: ""
       }
     };
     this.handlePageClick = this.handlePageClick.bind(this);
@@ -46,89 +50,98 @@ class Paginition extends Component {
       this.receivedData();
     }, 100);
   }
-  handleChangeSearch=(e)=>{
-    if(this.state.keyWord ===""){
+  handleChangeSearch = e => {
+    if (this.state.keyWord === "") {
       let keyWord = e.target.value;
       this.setState({
         keyWord,
-        searchData:""
-      })
-    }
-    else{
-      let keyWord = e.target.value
-      this.setState({
-        keyWord,
-        searchData: this.props.keyWord
-      },this.props.searchUser(keyWord))
+        searchData: ""
+      });
+    } else {
+      let keyWord = e.target.value;
+      this.setState(
+        {
+          keyWord,
+          searchData: this.props.keyWord
+        },
+        this.props.searchUser(keyWord)
+      );
     }
   };
-  handleChangeEdit =e =>{
+  handleChangeEdit = e => {
     let target = e.target;
-    let name  = target.name;
+    let name = target.name;
     let value = target.value;
-    this.setState({
-      [name]:value,
-      sumbitData:{
-        taiKhoan : this.state.taiKhoan,
-        hoTen : this.state.hoTen,
-        email: this.state.email,
-        soDt : this.state.soDt,
-        matKhau: this.state.matKhau,
-        maLoaiNguoiDung: this.state.maLoaiNguoiDung,
-        maNhom:"GP01",
+    this.setState(
+      {
         [name]: value,
+        sumbitData: {
+          taiKhoan: this.state.taiKhoan,
+          hoTen: this.state.hoTen,
+          email: this.state.email,
+          soDt: this.state.soDt,
+          matKhau: this.state.matKhau,
+          maLoaiNguoiDung: this.state.maLoaiNguoiDung,
+          maNhom: "GP01",
+          [name]: value
+        }
+      },
+      () => {
+        console.log(this.state);
       }
-    },()=>{
-      console.log(this.state);
-    });
-  }
-handleDelete = async(e) => {
-    console.log(e.target.value)
-    try{
+    );
+  };
+  handleDelete = async e => {
+    console.log(e.target.value);
+    try {
       await this.setState(
-       {
+        {
           taiKhoanDelete: e.target.value
-       },
-       () => {
-         this.props.deleteUser(this.state.taiKhoanDelete);
-       }
-     );
-    }
-    catch(err){
-      alert("Bạn thao tác quá nhanh, Xin thử lại")
+        },
+        () => {
+          this.props.deleteUser(this.state.taiKhoanDelete);
+        }
+      );
+    } catch (err) {
+      alert("Bạn thao tác quá nhanh, Xin thử lại");
     }
   };
-  handleSubmitEdit = e=>{
-    this.setState({
-      ...this.state.sumbitData,
-    }, this.props.updateUser(this.state.sumbitData))
+  handleSubmitEdit = e => {
+    this.setState(
+      {
+        ...this.state.sumbitData
+      },
+      this.props.updateUser(this.state.sumbitData)
+    );
     e.preventDefault();
-  }
-  handleEdit= (e)=>{
+  };
+  handleEdit = e => {
     let hoTen = e.target.getAttribute("hoten");
     let email = e.target.getAttribute("email");
     let soDt = e.target.getAttribute("sodt");
     let matKhau = e.target.getAttribute("matkhau");
     let taiKhoan = e.target.value;
     let maLoaiNguoiDung = e.target.getAttribute("maloainguoidung");
-      this.setState({
+    this.setState(
+      {
         taiKhoan,
         email,
         soDt,
         matKhau,
         hoTen,
         maLoaiNguoiDung,
-        sumbitData:{
-            maNhom:"GP01",
-            taiKhoan,
-            email,
-            soDt,
-            matKhau,
-            hoTen,
+        sumbitData: {
+          maNhom: "GP01",
+          taiKhoan,
+          email,
+          soDt,
+          matKhau,
+          hoTen
         }
-      },console.log(this.state)
-      )
-  }
+      },
+      console.log(this.state)
+    );
+  };
   receivedData() {
     axios
       .get(
@@ -141,7 +154,7 @@ handleDelete = async(e) => {
             this.state.offset,
             this.state.offset + this.state.perPage
           );
-          let postData = slice.map((pd, index) => 
+          let postData = slice.map((pd, index) => (
             <React.Fragment key={index}>
               <div className="table100-body js-pscroll">
                 <table>
@@ -158,22 +171,23 @@ handleDelete = async(e) => {
                           onClick={this.handleEdit}
                           value={pd.taiKhoan}
                           className="btn btnEdit btn-success"
-                          maloainguoidung = {pd.maLoaiNguoiDung}
-                          hoten = {pd.hoTen}
-                          email = {pd.email}
-                          sodt ={pd.soDt}
-                          matkhau ={pd.matKhau}
-                          data-toggle="modal" data-target="#myModal"
+                          maloainguoidung={pd.maLoaiNguoiDung}
+                          hoten={pd.hoTen}
+                          email={pd.email}
+                          sodt={pd.soDt}
+                          matkhau={pd.matKhau}
+                          data-toggle="modal"
+                          data-target="#myModal"
                         >
-                           <FontAwesomeIcon icon={faUserEdit} />
+                          <FontAwesomeIcon icon={faUserEdit} />
                         </button>
                         <button
                           onClick={this.handleDelete}
                           value={pd.taiKhoan}
-                          maloainguoidung = {pd.maLoaiNguoiDung}  
+                          maloainguoidung={pd.maLoaiNguoiDung}
                           className="btn btnDelete btn-danger"
                         >
-                           <FontAwesomeIcon icon={faTrash} />
+                          <FontAwesomeIcon icon={faTrash} />
                         </button>
                         <Link
                           to={`/quan-ly-ve/${pd.taiKhoan}`}
@@ -187,11 +201,12 @@ handleDelete = async(e) => {
                   </tbody>
                 </table>
               </div>
-            </React.Fragment>)
-              this.setState({
-                pageCount: Math.ceil(data.length / this.state.perPage),
-                postData
-              });
+            </React.Fragment>
+          ));
+          this.setState({
+            pageCount: Math.ceil(data.length / this.state.perPage),
+            postData
+          });
         }
         if (this.state.keyWord !== "") {
           const data = this.props.keyWord;
@@ -199,7 +214,7 @@ handleDelete = async(e) => {
             this.state.offset,
             this.state.offset + this.state.perPage
           );
-          let postData = slice.map((pd, index) => 
+          let postData = slice.map((pd, index) => (
             <React.Fragment key={index}>
               <div className="table100-body js-pscroll">
                 <table>
@@ -216,9 +231,9 @@ handleDelete = async(e) => {
                           onClick={this.handleEdit}
                           value={pd.taiKhoan}
                           className="btn btnEdit btn-success"
-                          maloainguoidung = {pd.maLoaiNguoiDung}
+                          maloainguoidung={pd.maLoaiNguoiDung}
                         >
-                           <FontAwesomeIcon icon={faUserEdit} />
+                          <FontAwesomeIcon icon={faUserEdit} />
                         </button>
                         <button
                           onClick={this.handleDelete}
@@ -231,16 +246,18 @@ handleDelete = async(e) => {
                           to={`/quan-ly-ve/${pd.taiKhoan}`}
                           value={pd.taiKhoan}
                           className="btn btnTicket btn-info"
-                          data-toggle="modal" data-target="#myModal"
+                          data-toggle="modal"
+                          data-target="#myModal"
                         >
-                         <FontAwesomeIcon icon={faTicketAlt} />
+                          <FontAwesomeIcon icon={faTicketAlt} />
                         </button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
-            </React.Fragment>)
+            </React.Fragment>
+          ));
           this.setState({
             pageCount: Math.ceil(data.length / this.state.perPage),
             postData
@@ -273,40 +290,44 @@ handleDelete = async(e) => {
       }
     );
   };
-  chooseMLND=(e)=>{
+  chooseMLND = e => {
     this.setState({
-      addNewUserData:{
+      addNewUserData: {
         ...this.state.addNewUserData,
         maLoaiNguoiDung: e.target.value
       }
-    })
-  }
-  handleAddUser=e=>{
+    });
+  };
+  handleAddUser = e => {
     let { name, value } = e.target;
-    this.setState({
-      [name]: value,
-      addNewUserData:{
-        maNhom:"GP01",
-        taiKhoan: this.state.taiKhoan,
-        email :this.state.email,
-        soDt: this.state.soDt,
-        matKhau : this.state.matKhau,
-        hoTen:this.state.hoTen
+    this.setState(
+      {
+        [name]: value,
+        addNewUserData: {
+          maNhom: "GP01",
+          taiKhoan: this.state.taiKhoan,
+          email: this.state.email,
+          soDt: this.state.soDt,
+          matKhau: this.state.matKhau,
+          hoTen: this.state.hoTen
+        }
+      },
+      () => {
+        console.log(this.state);
       }
-    },()=>{console.log(this.state)})
-  }
-  handleOnAddNew= (e)=>{
-    if(this.state.addNewUserData.maLoaiNguoiDung ===""){
+    );
+  };
+  handleOnAddNew = e => {
+    if (this.state.addNewUserData.maLoaiNguoiDung === "") {
       e.preventDefault();
-      
-      return alert("Chọn loại Người Dùng Trước")
-    }
-    else{
+
+      return alert("Chọn loại Người Dùng Trước");
+    } else {
       e.preventDefault();
-      console.log(this.state.addNewUserData)
-      this.props.addUser(this.state.addNewUserData)
+      console.log(this.state.addNewUserData);
+      this.props.addUser(this.state.addNewUserData);
     }
-  }
+  };
   render() {
     return (
       <div>
@@ -316,66 +337,72 @@ handleDelete = async(e) => {
               {/* Modal content*/}
               <div className="modal-content">
                 <div className="modal-body">
-                <form onSubmit={this.handleOnAddNew}>
-            <div className="form-group">
-              <label htmlFor="">Tài Khoản</label>
-              <input
-                type="text"
-                className="form-control"
-                name="taiKhoan"
-                onChange={this.handleAddUser}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Password</label>
-              <input
-                type="password"
-                className="form-control"
-                name="matKhau"
-                onChange={this.handleAddUser}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Họ Tên</label>
-              <input
-                type="text"
-                className="form-control"
-                name="hoTen"
-                onChange={this.handleAddUser}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Email</label>
-              <input
-                type="text"
-                className="form-control"
-                name="email"
-                onChange={this.handleAddUser}
-              />
-            </div>
-            <div className="form-group">
-              <label htmlFor="">Số Điện Thoại</label>
-              <input
-                type="text"
-                className="form-control"
-                name="soDt"
-                onChange={this.handleAddUser}
-              />
-            </div>
-  
-            <div className="form-group choiceTypeUser">
-                        <label>Mã Loại Người Dùng:</label>
-                        <select onChange={this.chooseMLND}>
-                            <option value="">Mời Bạn Chọn</option>
-                            <option value="KhachHang">Khách Hàng</option>
-                            <option value="QuanTri">Quản Trị</option>
-                          </select>
-                        </div>
-            <button type="submit" className="btnADDUSER">
-             Submit
-            </button>
-            <button type="button" className="btnCloseAddUser" data-dismiss="modal">Close</button>
-          </form>
+                  <form onSubmit={this.handleOnAddNew}>
+                    <div className="form-group">
+                      <label htmlFor="">Tài Khoản</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="taiKhoan"
+                        onChange={this.handleAddUser}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">Password</label>
+                      <input
+                        type="password"
+                        className="form-control"
+                        name="matKhau"
+                        onChange={this.handleAddUser}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">Họ Tên</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="hoTen"
+                        onChange={this.handleAddUser}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">Email</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="email"
+                        onChange={this.handleAddUser}
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label htmlFor="">Số Điện Thoại</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        name="soDt"
+                        onChange={this.handleAddUser}
+                      />
+                    </div>
+
+                    <div className="form-group choiceTypeUser">
+                      <label>Mã Loại Người Dùng:</label>
+                      <select onChange={this.chooseMLND}>
+                        <option value="">Mời Bạn Chọn</option>
+                        <option value="KhachHang">Khách Hàng</option>
+                        <option value="QuanTri">Quản Trị</option>
+                      </select>
+                    </div>
+                    <button type="submit" className="btnADDUSER">
+                      Submit
+                    </button>
+                    <button
+                      type="button"
+                      className="btnCloseAddUser"
+                      data-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
@@ -402,7 +429,13 @@ handleDelete = async(e) => {
               <option value={50}>50</option>
               <option value={100}>100</option>
             </select>
-            <button className="btnAddUser btn btn-success" data-toggle="modal" data-target="#myModalAdd">Add User</button>
+            <button
+              className="btnAddUser btn btn-success"
+              data-toggle="modal"
+              data-target="#myModalAdd"
+            >
+              Add User
+            </button>
           </div>
           <div className="container-table100">
             <div className="wrap-table100">
@@ -440,7 +473,7 @@ handleDelete = async(e) => {
             </div>
           </div>
         </div>
-          <div id="myModal" className="modal fade" role="dialog">
+        <div id="myModal" className="modal fade" role="dialog">
           <div className="modal-dialog">
             {/* Modal content*/}
             <div className="modal-content">
@@ -448,78 +481,80 @@ handleDelete = async(e) => {
                 <h4 className="modal-title">Edit User</h4>
               </div>
               <div className="modal-body">
-              <form onSubmit={this.handleSubmitEdit}>
-                        <div className="form-group">
-                          <label>Tài Khoản:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="taiKhoan"
-                            value={this.state.taiKhoan ? this.state.taiKhoan: ""}
-                            onChange={this.handleChangeEdit}
-                            placeholder="Nhập Họ và Tên"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Họ Tên:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="hoTen"
-                            value={this.state.hoTen ? this.state.hoTen: ""}
-                            onChange={this.handleChangeEdit}
-                            placeholder="Nhập Họ và Tên"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Password:</label>
-                          <input
-                            type="password"
-                            className="form-control"
-                            name="matKhau"
-                            autoComplete="password"
-                            value={this.state.matKhau ? this.state.matKhau :""}
-                            onChange={this.handleChangeEdit }
-                            placeholder="Nhập Password"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Số Điện Thoại:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="soDt"
-                            value={this.state.soDt ? this.state.soDt :""}
-                            onChange={this.handleChangeEdit}
-                            placeholder="Nhập số điện thoại"
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label>Email:</label>
-                          <input
-                            type="email"
-                            className="form-control"
-                            name="email"
-                            value={this.state.email ? this.state.email :""}
-                            onChange={this.handleChangeEdit}
-                            placeholder="Nhập Email"
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          className="btn btn-update btn-success"
-                        >
-                          Cập nhật
-                        </button>
-                      </form>
+                <form onSubmit={this.handleSubmitEdit}>
+                  <div className="form-group">
+                    <label>Tài Khoản:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="taiKhoan"
+                      value={this.state.taiKhoan ? this.state.taiKhoan : ""}
+                      onChange={this.handleChangeEdit}
+                      placeholder="Nhập Họ và Tên"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Họ Tên:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="hoTen"
+                      value={this.state.hoTen ? this.state.hoTen : ""}
+                      onChange={this.handleChangeEdit}
+                      placeholder="Nhập Họ và Tên"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Password:</label>
+                    <input
+                      type="password"
+                      className="form-control"
+                      name="matKhau"
+                      autoComplete="password"
+                      value={this.state.matKhau ? this.state.matKhau : ""}
+                      onChange={this.handleChangeEdit}
+                      placeholder="Nhập Password"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Số Điện Thoại:</label>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="soDt"
+                      value={this.state.soDt ? this.state.soDt : ""}
+                      onChange={this.handleChangeEdit}
+                      placeholder="Nhập số điện thoại"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label>Email:</label>
+                    <input
+                      type="email"
+                      className="form-control"
+                      name="email"
+                      value={this.state.email ? this.state.email : ""}
+                      onChange={this.handleChangeEdit}
+                      placeholder="Nhập Email"
+                    />
+                  </div>
+                  <button type="submit" className="btn btn-update btn-success">
+                    Cập nhật
+                  </button>
+                </form>
               </div>
               <div className="modal-footer">
-                <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                <button
+                  type="button"
+                  className="btn btn-default"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
               </div>
             </div>
           </div>
         </div>
-
       </div>
     );
   }
@@ -543,15 +578,15 @@ const mapDispatchToProps = dispatch => {
     deleteUser: tk => {
       dispatch(action.actDeleteUser(tk));
     },
-    getUserInformation: tk =>{
-      dispatch(action.actLayThongTinUser(tk))
+    getUserInformation: tk => {
+      dispatch(action.actLayThongTinUser(tk));
     },
-    updateUser: tk =>{
-      dispatch(action.actUpdateUserInformation(tk))
+    updateUser: tk => {
+      dispatch(action.actUpdateUserInformation(tk));
     },
-    addUser:(user)=>{
-      dispatch(action.actThemNguoiDung(user))
-  }
+    addUser: user => {
+      dispatch(action.actThemNguoiDung(user));
+    }
   };
 };
 
