@@ -186,7 +186,7 @@ class Paginition extends Component {
                           onClick={this.handleDelete}
                           value={pd.taiKhoan}
                           maloainguoidung={pd.maLoaiNguoiDung}
-                          className="btn btnDelete btn-danger"
+                          className="btn btnDelete btn-danger mx-1"
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
@@ -239,7 +239,7 @@ class Paginition extends Component {
                         <button
                           onClick={this.handleDelete}
                           value={pd.taiKhoan}
-                          className="btn btnDelete btn-danger"
+                          className="btn btnDelete btn-danger mx-1"
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
