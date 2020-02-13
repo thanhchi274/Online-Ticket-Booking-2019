@@ -324,7 +324,7 @@ export const actDeleteUser = tk => {
       .then(async result => {
         alert(result.data);
         dispatch({
-          type:await ActionTypes.DELETE_USER
+          type: await ActionTypes.DELETE_USER
         });
       })
       .catch(err => {
@@ -355,12 +355,13 @@ export const actDeleteMovie = movie => {
       });
   };
 };
-export const actThemNguoiDung = user =>{
+export const actThemNguoiDung = user => {
   const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
   return dispatch => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
       data: user,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`
@@ -374,4 +375,23 @@ export const actThemNguoiDung = user =>{
         return err;
       });
   };
-}
+};
+export const actLayThongTinRap = () => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap"
+    })
+      .then(result => {
+        console.log(result.data);
+        dispatch({
+          type: ActionTypes.GET_INFO_THEATER,
+          theaterInfo: result.data
+        });
+      })
+      .catch(err => {
+        return err.data;
+      });
+  };
+};

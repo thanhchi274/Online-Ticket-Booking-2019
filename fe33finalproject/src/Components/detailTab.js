@@ -52,7 +52,6 @@ export default function CenteredTabs(props) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-
   return (
     <Paper className={classes.root}>
       <Tabs
@@ -72,7 +71,7 @@ export default function CenteredTabs(props) {
         <Tab label="Đánh giá" {...a11yProps(2)} style={{ color: "white" }} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <VerticalTabs movie={props.movie} />
+        <VerticalTabs movie={props.movie} theaterInfo={props.theaterInfo} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div className="movie-info ">
@@ -86,8 +85,9 @@ export default function CenteredTabs(props) {
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-      <textarea rows="4" cols="110" name="comment" form="usrform">
-        Enter comment here...</textarea>
+        <textarea rows="4" cols="110" name="comment" form="usrform">
+          Enter comment here...
+        </textarea>
       </TabPanel>
     </Paper>
   );
