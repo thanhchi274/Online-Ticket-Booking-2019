@@ -204,3 +204,18 @@
     }
   }
 }
+.modalContent {
+  top: 40%;
+  left: 25%;
+  z-index: 2001;
+  position: fixed;
+  background-color: white;
+  padding: 40px;
+  color: black;
+  h5 {
+    margin-bottom: 20px;
+  }
+  .close-btn {
+    margin-left: 90%;
+  }
+}

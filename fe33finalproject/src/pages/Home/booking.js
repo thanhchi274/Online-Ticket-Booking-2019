@@ -14,8 +14,7 @@ class Booking extends Component {
       danhSachVe: [],
       taiKhoanNguoiDung: "",
       count: 1,
-      tienVe: 0,
-      valid: true
+      tienVe: [0]
     };
   }
   handleClick = e => {
@@ -29,7 +28,6 @@ class Booking extends Component {
     if (e.target.className === "chair m-1 chose") {
       this.setState(
         {
-          valid: false,
           maLichChieu,
           danhSachVe: [
             ...this.state.danhSachVe,
@@ -40,7 +38,7 @@ class Booking extends Component {
             }
           ],
           taiKhoanNguoiDung: userName.taiKhoan,
-          tienVe: giaVe * this.state.count,
+          tienVe: [giaVe],
           count: this.state.count + 1
         },
         () => {
@@ -51,7 +49,6 @@ class Booking extends Component {
       this.xoaGhe(maGhe);
       this.setState(
         {
-          valid: true,
           count: this.state.count - 1,
           tienVe: this.state.tienVe - giaVe
         },
@@ -78,12 +75,20 @@ class Booking extends Component {
     }
   };
 
+  handleTienVe = maGhe => {
+    let viTri = this.timViTri(maGhe);
+    if (viTri !== -1) {
+      return this.state.danhSachVe.reduce((starter, item) => {
+        console.log(starter);
+        return starter + item.giaVe;
+      }, 0);
+    }
+  };
+
   handleSubmit = () => {
     let ve = { ...this.state };
-    if (this.state.valid === false) {
+    if (this.state.danhSachVe.length !== 0) {
       this.props.bookingTicket(ve);
-    } else {
-      this.handleRemind();
     }
   };
 
@@ -126,7 +131,7 @@ class Booking extends Component {
     });
   };
   renderRemindHTML = () => {
-    if (this.state.valid === true) {
+    if (this.state.danhSachVe.length === 0) {
       return (
         <div
           className="modal fade"
