@@ -398,6 +398,29 @@ export const actThemNguoiDung = user => {
       });
   };
 };
+export const actThemMovie = user => {
+  const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhim",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(result => {
+        alert("Thêm Phim thành công");
+        window.location.reload();
+        dispatch(result.data);
+      })
+      .catch(err => {
+        console.log(err.response)
+        return err;
+      });
+  };
+};
 export const actLayThongTinRap = () => {
   return dispatch => {
     Axios({

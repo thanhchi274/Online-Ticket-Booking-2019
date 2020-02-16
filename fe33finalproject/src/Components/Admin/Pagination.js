@@ -334,7 +334,6 @@ class Paginition extends Component {
   handleOnAddNew = e => {
     if (this.state.addNewUserData.maLoaiNguoiDung === "") {
       e.preventDefault();
-
       return alert("Chọn loại Người Dùng Trước");
     } else {
       e.preventDefault();

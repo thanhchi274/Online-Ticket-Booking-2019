@@ -4,8 +4,7 @@ import axios from "axios";
 import * as action from "../../redux/action";
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserEdit,faTrash,faTicketAlt } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { faUserEdit,faTrash } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 class Paginition extends Component {
   _isMounted = false;
@@ -43,17 +42,15 @@ class Paginition extends Component {
   }
   componentDidMount() {
     this._isMounted = true;
-    setInterval(() => {
       this.receivedData();
-    }, 100);
   }
   componentWillUnmount() {
     this._isMounted = false;
   }
-  handleChangeEdit =e =>{
+ handleChangeEdit = async e =>{
     let target = e.target;
     let name  = target.name;
-    let value = target.value;
+    let value =await target.value;
     this.setState({
       [name]:value,
       sumbitDataMovie:{
@@ -69,6 +66,25 @@ class Paginition extends Component {
        [name]:value, 
       }
     })
+  }
+  handleChangeAdd= async e=>{
+    let target = e.target;
+    let name  = target.name;
+    let value =await target.value;
+    this.setState({
+      [name]:value,
+      sumbitDataMovie:{ 
+        maPhim: this.state.maPhim,
+        tenPhim: this.state.tenPhim,
+        biDanh: this.state.biDanh,
+        hinhAnh: this.state.hinhAnh,
+        trailer: this.state.trailer,
+        maNhom:"GP01",
+        ngayKhoiChieu:this.state.ngayKhoiChieu,
+        danhGia: this.state.danhGia,
+        moTa: this.state.moTa,
+      }
+    },()=>{console.log(this.state)})
   }
   handleDelete =async e => {
     try{
@@ -96,8 +112,21 @@ class Paginition extends Component {
     }
     e.preventDefault();
   }
-  handleEdit= (e)=>{
-    this.setState({
+  handleSubmitAdd = e=>{
+    console.log(this.state)
+    if(this.state.sumbitDataMovie.ngayKhoiChieu ===this.state.ngayKhoiChieu){
+      this.setState({
+        sumbitDataMovie:{
+          ...this.state.sumbitDataMovie,
+          ngayKhoiChieu:moment.utc(this.state.ngayKhoiChieu).format("DD/MM/YYYY")
+        }
+      },()=>{
+        this.props.addMovie(this.state.sumbitDataMovie)})
+    }
+    e.preventDefault();
+  }
+  handleEdit= async (e)=>{
+   await this.setState({
       maPhim:e.target.value,
       tenPhim: e.target.getAttribute("tenphim"),
       biDanh:e.target.getAttribute("bidanh"),
@@ -119,8 +148,6 @@ class Paginition extends Component {
           }
       }
       )
-  }
-  componentDidUpdate(){
   }
   receivedData =async()=> {
     await axios
@@ -216,6 +243,7 @@ class Paginition extends Component {
                           mota ={pd.moTa}
                           ngaykhoichieu={pd.ngayKhoiChieu}
                           danhgia ={pd.danhGia}
+                          data-toggle="modal" data-target="#myModal"
                         >
                            <FontAwesomeIcon icon={faUserEdit} />
                         </button>
@@ -279,7 +307,7 @@ class Paginition extends Component {
               <option value={50}>50</option>
               <option value={100}>100</option>
             </select>
-            <button className="btnAddPhim btn btn-success">Add Phim</button>
+            <button onClick={this.handleAdd}   data-toggle="modal" data-target="#ModalAdd" className="btnAddPhim btn btn-success">Add Phim</button>
           </div>
           <div className="container-table100">
             <div className="wrap-table100">
@@ -329,7 +357,7 @@ class Paginition extends Component {
                             type="text"
                             className="form-control"
                             name="maPhim"
-                            value={this.state.maPhim ? this.state.maPhim: ""}
+                            value={this.state.maPhim ? this.state.maPhim: "Loading"}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập Mã Phim"
                           />
@@ -340,7 +368,7 @@ class Paginition extends Component {
                             type="text"
                             className="form-control"
                             name="tenPhim"
-                            value={this.state.tenPhim ? this.state.tenPhim: ""}
+                            value={this.state.tenPhim ? this.state.tenPhim: "Loading"}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập Tên Phim"
                           />
@@ -352,7 +380,7 @@ class Paginition extends Component {
                             className="form-control"
                             name="biDanh"
                             autoComplete="password"
-                            value={this.state.biDanh ? this.state.biDanh :""}
+                            value={this.state.biDanh ? this.state.biDanh :"Loading"}
                             onChange={this.handleChangeEdit }
                             placeholder="Nhập Bí Danh Phim"
                           />
@@ -363,14 +391,14 @@ class Paginition extends Component {
                             type="text"
                             className="form-control"
                             name="trailer"
-                            value={this.state.trailer ? this.state.trailer :""}
+                            value={this.state.trailer ? this.state.trailer :"Loading"}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập đường dẫn trailer Youtube"
                           />
                         </div>
                         <div className="form-group">
                           <label>Ngày Khởi Chiếu:</label>
-                          <input type="date" className= "datePicker"  onChange={this.handleChangeEdit} value={this.state.ngayKhoiChieu ?moment.utc(this.state.ngayKhoiChieu).format("YYYY-MM-DD") :""} name="ngayKhoiChieu" id="ngayKhơiChieu"/>
+                          <input type="date" className= "datePicker"  onChange={this.handleChangeEdit} value={this.state.ngayKhoiChieu ?moment.utc(this.state.ngayKhoiChieu).format("YYYY-MM-DD") :"Loading"} name="ngayKhoiChieu" id="ngayKhơiChieu"/>
                         </div>
                         <div className="form-group">
                           <label>Hình Ảnh:</label>
@@ -378,7 +406,7 @@ class Paginition extends Component {
                             type="text"
                             className="form-control"
                             name="hinhAnh"
-                            value={this.state.hinhAnh ? this.state.hinhAnh :""}
+                            value={this.state.hinhAnh ? this.state.hinhAnh :"Loading"}
                             onChange={this.handleChangeEdit}
                             placeholder="Chỉ được nhập link ảnh từ nguồn Khác"
                           />
@@ -389,7 +417,7 @@ class Paginition extends Component {
                             type="text"
                             className="form-control"
                             name="danhGia"
-                            value={this.state.danhGia ? this.state.danhGia :""}
+                            value={this.state.danhGia ? this.state.danhGia :"Loading"}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập đánh giá từ 1 đến 5"
                           />
@@ -406,7 +434,104 @@ class Paginition extends Component {
             </div>
           </div>
         </div>
-
+        <div id="ModalAdd" className="modal fade" role="dialog">
+          <div className="modal-dialog">
+            {/* Modal content*/}
+            <div className="modal-content editMovie">
+                  <h2>Add phim</h2>
+              <div className="modal-body">
+              <form onSubmit={this.handleSubmitAdd}>
+                        <div className="form-group">
+                          <label>Mã Phim:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="maPhim"
+                          
+                            onChange={this.handleChangeAdd}
+                            placeholder="Nhập Mã Phim"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Tên Phim:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="tenPhim"
+                           
+                            onChange={this.handleChangeAdd}
+                            placeholder="Nhập Tên Phim"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Bí Danh:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="biDanh"
+                            autoComplete="password"
+                          
+                            onChange={this.handleChangeAdd}
+                            placeholder="Nhập Bí Danh Phim"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Trailer:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="trailer"
+                           
+                            onChange={this.handleChangeAdd}
+                            placeholder="Nhập đường dẫn trailer Youtube"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Ngày Khởi Chiếu:</label>
+                          <input type="date" className= "datePicker"  onChange={this.handleChangeAdd} value={this.state.ngayKhoiChieu ?(this.state.ngayKhoiChieu) : ""} name="ngayKhoiChieu" id="ngayKhoiChieu"/>
+                        </div>
+                        <div className="form-group">
+                          <label>Hình Ảnh:</label>
+                          <input
+                            type="file"
+                            className="form-control"
+                            name="hinhAnh"
+                            onChange={this.handleChangeAdd}
+                            placeholder="Chỉ được nhập link ảnh từ nguồn Khác"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Đánh Giá:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="danhGia"
+                            onChange={this.handleChangeAdd}
+                            placeholder="Nhập đánh giá từ 1 đến 5"
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label>Mô Tả:</label>
+                          <input
+                            type="text"
+                            className="form-control"
+                            name="moTa"
+                            onChange={this.handleChangeAdd}
+                            placeholder="Nhập Mô Tả Phim"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          className="btn btn-update btn-success"
+                        >
+                          Cập nhật
+                        </button>
+                        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+                      </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -418,6 +543,9 @@ const mapDispatchToProps = dispatch => {
     },
     updateMovie: tk =>{
       dispatch(action.actUpdateMovie(tk))
+    },
+    addMovie: tk =>{
+      dispatch(action.actThemMovie(tk))
     }
   };
 };

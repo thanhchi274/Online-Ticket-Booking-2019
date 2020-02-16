@@ -34,6 +34,9 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.UPDATE_MOVIE: {
       return { ...state};
     }
+    case ActionType.ADD_MOVIE: {
+      return { ...state};
+    }
     case ActionType.GET_USER_INFORMATION: {
       state.userInformation = action.userInformation;
       return { ...state, loading: false };
