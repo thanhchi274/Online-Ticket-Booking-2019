@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import UserImage from "../../Components/UserImage";
 import ThanhTabInfo from "../../Components/ThanhTabInfo";
 
 class Info extends Component {
@@ -11,8 +10,7 @@ class Info extends Component {
         <div className="info-cover">
           <div className="detail-info">
             <div className="ava">
-              {/*<UserImage />*/}
-              <img src="./ava.png" />
+              <img src="https://divineshop.vn/image/avatar/default.png?rand=963987" />
             </div>
             <div className="general">
               <h5>{UserHome.hoTen}</h5>
