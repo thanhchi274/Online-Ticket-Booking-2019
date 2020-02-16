@@ -18,6 +18,28 @@ export const actGetListMovieAPI = () => {
       });
   };
 };
+export const actUpdateMovie = user => {
+  const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+  return async dispatch => {
+    Axios({
+      method: "POST",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhim",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(async result => {
+        alert("Cập Nhật Thành Công")
+        dispatch(await result.data);
+      })
+      .catch(err => {
+        console.log(err)
+        return err;
+      });
+  };
+};
 export const actGetUserList = () => {
   return dispatch => {
     Axios({
@@ -187,7 +209,6 @@ export const actGetDateTimeMovie = id => {
   };
 };
 export const actDatVe = user => {
-  // http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe
   const UserHome = JSON.parse(localStorage.getItem("UserHome"));
   return dispatch => {
     Axios({

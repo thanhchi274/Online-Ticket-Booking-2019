@@ -6,7 +6,9 @@ import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit,faTrash,faTicketAlt } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import moment from "moment";
 class Paginition extends Component {
+  _isMounted = false;
   constructor(props) {
     super(props);
     this.state = {
@@ -17,19 +19,21 @@ class Paginition extends Component {
       pageCount: 0,
       keyWord: "",
       maPhimDelete: "",
-      maPhim:"",
+      maPhim:0,
       tenPhim: "",
       biDanh: "",
       trailer:"",
+      moTa:"",
+      danhGia:0,
       hinhAnh:"",
       ngayKhoiChieu:"",
       sumbitDataMovie:{
-      maPhim:"",
+      maPhim:0,
       tenPhim: "",
       biDanh: "",
       trailer:"",
-      hinhAnh:"",
       moTa:"",
+      hinhAnh:"",
       maNhom:"GP01",
       ngayKhoiChieu:"",
       danhGia:0
@@ -38,9 +42,13 @@ class Paginition extends Component {
     this.handlePageClick = this.handlePageClick.bind(this);
   }
   componentDidMount() {
+    this._isMounted = true;
     setInterval(() => {
       this.receivedData();
     }, 100);
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
   }
   handleChangeEdit =e =>{
     let target = e.target;
@@ -52,63 +60,82 @@ class Paginition extends Component {
         maPhim: this.state.maPhim,
         tenPhim: this.state.tenPhim,
         biDanh: this.state.biDanh,
+        hinhAnh: this.state.hinhAnh,
         trailer: this.state.trailer,
-        [name]:value,
+        maNhom:"GP01",
+        ngayKhoiChieu:this.state.ngayKhoiChieu,
+        danhGia: this.state.danhGia,
+        moTa: this.state.moTa,
+       [name]:value, 
       }
-    },()=>{
-      console.log(this.state);
     })
   }
-  handleDelete = e => {
-    this.setState(
-      {
-        maPhimDelete: e.target.value
-      },
-      () => {
-        this.props.deleteMovie(this.state.maPhimDelete);
-      }
-    );
+  handleDelete =async e => {
+    try{
+     await this.setState(
+        {
+          maPhimDelete: e.target.value
+        },
+        () => {
+          this.props.deleteMovie(this.state.maPhimDelete);
+        }
+      );
+    }
+    catch(err){
+      alert("Bạn thao tác quá nhanh, xin vui lòng thử lại")
+    }
   };
   handleSubmitEdit = e=>{
-    this.setState({
-      ...this.state.sumbitData,
-    }, this.props.updateUser(this.state.sumbitData))
+    if(this.state.sumbitDataMovie.ngayKhoiChieu ===this.state.ngayKhoiChieu){
+      this.setState({
+        sumbitDataMovie:{
+          ...this.state.sumbitDataMovie,
+          ngayKhoiChieu:moment.utc(this.state.ngayKhoiChieu).format("DD/MM/YYYY")
+        }
+      },()=>{this.props.updateMovie(this.state.sumbitDataMovie)})
+    }
     e.preventDefault();
   }
   handleEdit= (e)=>{
-      this.setState({
-        maPhim:e.target.value,
-        tenPhim: e.target.getAttribute("tenphim"),
-        biDanh:e.target.getAttribute("bidanh"),
-        trailer:e.target.getAttribute("trailer"),
-        danhGia:e.target.getAttribute("danhgia"),
+    this.setState({
+      maPhim:e.target.value,
+      tenPhim: e.target.getAttribute("tenphim"),
+      biDanh:e.target.getAttribute("bidanh"),
+      trailer:e.target.getAttribute("trailer"),
+      danhGia:e.target.getAttribute("danhgia"),
+      hinhAnh: e.target.getAttribute("hinhanh"),
+      moTa : e.target.getAttribute("moTa"),
+        ngayKhoiChieu:new Date(e.target.getAttribute("ngayKhoiChieu")).toISOString().slice(0,10),
         sumbitDataMovie:{
           maPhim: this.state.maPhim,
           tenPhim: this.state.tenPhim,
           biDanh: this.state.biDanh,
           trailer: this.state.trailer,
-          hinhAnh:"",
-          moTa:"",
+          hinhAnh:this.state.hinhAnh,
           maNhom:"GP01",
-          ngayKhơiChieu:"",
-          danhGia:0
+          moTa: this.state.moTa,
+          ngayKhoiChieu:moment.utc(e.target.getAttribute("ngayKhoiChieu")).format("DD-MM-YYYY"),
+          danhGia:this.state.danhGia,
           }
-      },console.log(this.state)
+      }
       )
   }
-  receivedData() {
-    axios
+  componentDidUpdate(){
+  }
+  receivedData =async()=> {
+    await axios
       .get(
         `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01`
       )
-      .then(res => {
+      .then(async res => {
         if (this.state.keyWord === "") {
-          const data = res.data;
+       const data =await res.data;
           const slice = data.slice(
             this.state.offset,
             this.state.offset + this.state.perPage
           );
           let postData = slice.map((pd, index) => 
+          
             <React.Fragment key={index}>
               <div className="table100-body js-pscroll">
                 <table>
@@ -119,7 +146,10 @@ class Paginition extends Component {
                       <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column3">{pd.trailer}</td>
                       <td className="cell100 column4">{pd.hinhAnh}</td>
-                      <td className="cell100 column5">{new Date(pd.ngayKhoiChieu).toDateString()}</td>
+                      <td className="cell100 column5">{
+
+                        new Date(pd.ngayKhoiChieu).toDateString()
+                        }</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
@@ -129,6 +159,7 @@ class Paginition extends Component {
                           bidanh = {pd.biDanh}
                           trailer ={pd.trailer}
                           hinhanh ={pd.hinhAnh}
+                          mota ={pd.moTa}
                           ngaykhoichieu={pd.ngayKhoiChieu}
                           danhgia ={pd.danhGia}
                           data-toggle="modal" data-target="#myModal"
@@ -142,26 +173,21 @@ class Paginition extends Component {
                         >
                            <FontAwesomeIcon icon={faTrash} />
                         </button>
-                        <Link
-                          to="/quan-ly-ve"
-                          value={pd.taiKhoan}
-                          className="btn btnTicket btn-info"
-                        >
-                          <FontAwesomeIcon icon={faTicketAlt} />
-                        </Link>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </React.Fragment>)
+            if(this._isMounted){
               this.setState({
                 pageCount: Math.ceil(data.length / this.state.perPage),
                 postData
               });
+            }
         }
         if (this.state.keyWord !== "") {
-          const data = this.props.keyWord;
+          const data =await this.props.keyWord;
           const slice = data.slice(
             this.state.offset,
             this.state.offset + this.state.perPage
@@ -177,7 +203,7 @@ class Paginition extends Component {
                       <td className="cell100 column6">{pd.biDanh}</td>
                       <td className="cell100 column3">{pd.trailer}</td>
                       <td className="cell100 column4">{pd.hinhAnh}</td>
-                      <td className="cell100 column5">{new Date(pd.ngayKhoiChieu).toDateString()}</td>
+                      <td className="cell100 column5">{new Date(pd.ngayKhoiChieu).toISOString().slice(0,10)}</td>
                       <td className="cell100 column7">
                         <button
                           onClick={this.handleEdit}
@@ -187,6 +213,7 @@ class Paginition extends Component {
                           bidanh = {pd.biDanh}
                           trailer ={pd.trailer}
                           hinhanh ={pd.hinhAnh}
+                          mota ={pd.moTa}
                           ngaykhoichieu={pd.ngayKhoiChieu}
                           danhgia ={pd.danhGia}
                         >
@@ -199,24 +226,18 @@ class Paginition extends Component {
                         >
                           <FontAwesomeIcon icon={faTrash} />
                         </button>
-                        <button
-                          to="/quan-ly-ve"
-                          value={pd.taiKhoan}
-                          className="btn btnTicket btn-info"
-                          data-toggle="modal" data-target="#myModal"
-                        >
-                         <FontAwesomeIcon icon={faTicketAlt} />
-                        </button>
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
             </React.Fragment>)
-          this.setState({
-            pageCount: Math.ceil(data.length / this.state.perPage),
-            postData
-          });
+            if(this._isMounted){
+              this.setState({
+                pageCount: Math.ceil(data.length / this.state.perPage),
+                postData
+              });
+            }
         }
       });
   }
@@ -299,10 +320,7 @@ class Paginition extends Component {
           <div id="myModal" className="modal fade" role="dialog">
           <div className="modal-dialog">
             {/* Modal content*/}
-            <div className="modal-content">
-              <div className="modal-header">
-                <h4 className="modal-title">Edit Phim</h4>
-              </div>
+            <div className="modal-content editMovie">
               <div className="modal-body">
               <form onSubmit={this.handleSubmitEdit}>
                         <div className="form-group">
@@ -310,7 +328,7 @@ class Paginition extends Component {
                           <input
                             type="text"
                             className="form-control"
-                            name="taiKhoan"
+                            name="maPhim"
                             value={this.state.maPhim ? this.state.maPhim: ""}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập Mã Phim"
@@ -321,7 +339,7 @@ class Paginition extends Component {
                           <input
                             type="text"
                             className="form-control"
-                            name="hoTen"
+                            name="tenPhim"
                             value={this.state.tenPhim ? this.state.tenPhim: ""}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập Tên Phim"
@@ -332,7 +350,7 @@ class Paginition extends Component {
                           <input
                             type="text"
                             className="form-control"
-                            name="matKhau"
+                            name="biDanh"
                             autoComplete="password"
                             value={this.state.biDanh ? this.state.biDanh :""}
                             onChange={this.handleChangeEdit }
@@ -344,7 +362,7 @@ class Paginition extends Component {
                           <input
                             type="text"
                             className="form-control"
-                            name="soDt"
+                            name="trailer"
                             value={this.state.trailer ? this.state.trailer :""}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập đường dẫn trailer Youtube"
@@ -352,22 +370,15 @@ class Paginition extends Component {
                         </div>
                         <div className="form-group">
                           <label>Ngày Khởi Chiếu:</label>
-                          <input
-                            type="text"
-                            className="form-control"
-                            name="soDt"
-                            value={this.state.ngayKhơiChieu ? this.state.ngayKhơiChieu :""}
-                            onChange={this.handleChangeEdit}
-                            placeholder="Thêm Ngày Khởi Chiếu"
-                          />
+                          <input type="date" className= "datePicker"  onChange={this.handleChangeEdit} value={this.state.ngayKhoiChieu ?moment.utc(this.state.ngayKhoiChieu).format("YYYY-MM-DD") :""} name="ngayKhoiChieu" id="ngayKhơiChieu"/>
                         </div>
                         <div className="form-group">
                           <label>Hình Ảnh:</label>
                           <input
-                            type="email"
+                            type="text"
                             className="form-control"
-                            name="email"
-                            value={this.state.email ? this.state.email :""}
+                            name="hinhAnh"
+                            value={this.state.hinhAnh ? this.state.hinhAnh :""}
                             onChange={this.handleChangeEdit}
                             placeholder="Chỉ được nhập link ảnh từ nguồn Khác"
                           />
@@ -375,10 +386,10 @@ class Paginition extends Component {
                         <div className="form-group">
                           <label>Đánh Giá:</label>
                           <input
-                            type="email"
+                            type="text"
                             className="form-control"
-                            name="email"
-                            value={this.state.email ? this.state.email :""}
+                            name="danhGia"
+                            value={this.state.danhGia ? this.state.danhGia :""}
                             onChange={this.handleChangeEdit}
                             placeholder="Nhập đánh giá từ 1 đến 5"
                           />
@@ -405,8 +416,8 @@ const mapDispatchToProps = dispatch => {
     deleteMovie: movie => {
       dispatch(action.actDeleteMovie(movie));
     },
-    updateUser: tk =>{
-      dispatch(action.actUpdateUserInformation(tk))
+    updateMovie: tk =>{
+      dispatch(action.actUpdateMovie(tk))
     }
   };
 };

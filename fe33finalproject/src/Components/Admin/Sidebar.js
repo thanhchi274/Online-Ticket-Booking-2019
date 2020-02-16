@@ -93,41 +93,7 @@ export default function Sidebar() {
         </li>
         {/* Divider */}
         <hr className="sidebar-divider" />
-        {/* Heading */}
-        <div className="sidebar-heading">Addons</div>
         {/* Nav Item - Pages Collapse Menu */}
-        <li className="nav-item">
-          <a
-            className="nav-link collapsed"
-            href="#abc"
-            data-toggle="collapse"
-            data-target="#collapsePages"
-            aria-expanded="true"
-            aria-controls="collapsePages"
-          >
-            <i className="fas fa-fw fa-folder" />
-            <span>More Action</span>
-          </a>
-          <div
-            id="collapsePages"
-            className="collapse"
-            aria-labelledby="headingPages"
-            data-parent="#accordionSidebar"
-          >
-            <div className="bg-white py-2 collapse-inner rounded">
-              <h6 className="collapse-header">Create Movie Schedule</h6>
-              <a className="collapse-item" href="login.html">
-                Schedule Theater System{" "}
-              </a>
-              <a className="collapse-item" href="register.html">
-                Schedule Cinema
-              </a>
-              <a className="collapse-item" href="forgot-password.html">
-                User Information
-              </a>
-            </div>
-          </div>
-        </li>
       </ul>
     </>
   );
