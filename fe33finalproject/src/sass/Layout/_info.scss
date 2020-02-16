@@ -1,18 +1,29 @@
-.userInformation{
-  margin-top: 40px;
-  .comp{
+.userInformation {
+  width: 40%;
+  .comp {
     line-height: 1.4;
-    p{
-      font-size:20px;
+    p {
+      font-size: 20px;
       font-weight: 300;
     }
-    span{
+    span {
       font-weight: 700;
     }
   }
 }
+.info_cover {
+  display: flex;
+  margin-left: 260px;
+}
+.updateInfo {
+  color: #007bff;
+  cursor: pointer;
+  margin-top: 100px;
+  margin-left: 200px;
+}
 .info-user {
   .info-cover {
+    position: relative;
     background-color: white;
     background-image: url("../../banner.png");
     height: 300px;
@@ -24,9 +35,9 @@
       align-items: center;
       padding-top: 190px;
       padding-left: 50px;
-      .general{
-        color:white;
-        font-size:20px;
+      .general {
+        color: white;
+        font-size: 20px;
         font-weight: 700;
       }
       .ava {
@@ -39,29 +50,44 @@
         height: 150px;
         border-radius: 50%;
         margin-right: 50px;
+        img {
+          width: 100%;
+        }
+      }
+    }
+    .topic-info {
+      position: absolute;
+      width: 60%;
+      font-weight: 600;
+      top: 103%;
+      left: 0;
+      margin-left: 25%;
+      .topic-info_detail {
+        border-right: 1px solid #eee;
+        height: 30px;
       }
     }
   }
 }
-  form{
-    margin: 0 auto;
-    width: 500px!important;
-    .form-group{
-      label{
-        font-size: 16px;
-        font-weight: 700;
-      }
-      input{
-        border:none;
-        border-radius: 0;
-        outline: none;
-        border-bottom: 2px solid black;
-        transition: all 0.2s;
-        &:focus{
-          outline: none!important;
-          border-bottom: 2px solid #1feb6d;
-          box-shadow: none;
-        }
+form {
+  margin: 40px auto;
+  width: 500px !important;
+  .form-group {
+    label {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    input {
+      border: none;
+      border-radius: 0;
+      outline: none;
+      border-bottom: 2px solid black;
+      transition: all 0.2s;
+      &:focus {
+        outline: none !important;
+        border-bottom: 2px solid #1feb6d;
+        box-shadow: none;
       }
     }
   }
+}

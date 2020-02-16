@@ -23,19 +23,18 @@ export const actUpdateMovie = user => {
   return async dispatch => {
     Axios({
       method: "POST",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhim",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhim",
       data: user,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`
       }
     })
       .then(async result => {
-        alert("Cập Nhật Thành Công")
+        alert("Cập Nhật Thành Công");
         dispatch(await result.data);
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
         return err;
       });
   };
@@ -403,8 +402,7 @@ export const actThemMovie = user => {
   return dispatch => {
     Axios({
       method: "POST",
-      url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhim",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhim",
       data: user,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`
@@ -416,8 +414,28 @@ export const actThemMovie = user => {
         dispatch(result.data);
       })
       .catch(err => {
-        console.log(err.response)
+        console.log(err.response);
         return err;
+      });
+  };
+};
+
+export const actthemHinhAnhPhim = hinhAnh => {
+  const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/UploadHinhAnhPhim",
+      data: hinhAnh,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(result => {
+        return result.data;
+      })
+      .catch(err => {
+        return err.data;
       });
   };
 };
