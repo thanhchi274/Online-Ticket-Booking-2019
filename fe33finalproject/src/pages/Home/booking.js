@@ -14,7 +14,9 @@ class Booking extends Component {
       danhSachVe: [],
       taiKhoanNguoiDung: "",
       count: 1,
-      tienVe: [0]
+      tienVe: 0,
+      paid: false,
+      payStyle: "zalopay"
     };
   }
   handleClick = e => {
@@ -38,7 +40,7 @@ class Booking extends Component {
             }
           ],
           taiKhoanNguoiDung: userName.taiKhoan,
-          tienVe: [giaVe],
+          tienVe: giaVe,
           count: this.state.count + 1
         },
         () => {
@@ -58,6 +60,7 @@ class Booking extends Component {
       );
     }
   };
+
   timViTri = maGhe => {
     let viTri = -1;
     this.state.danhSachVe.map((item, index) => {
@@ -67,6 +70,8 @@ class Booking extends Component {
     });
     return viTri;
   };
+
+  tinhTienVe = () => {};
 
   xoaGhe = maGhe => {
     let viTri = this.timViTri(maGhe);
@@ -87,7 +92,7 @@ class Booking extends Component {
 
   handleSubmit = () => {
     let ve = { ...this.state };
-    if (this.state.danhSachVe.length !== 0) {
+    if (this.state.danhSachVe.length !== 0 && this.state.paid === true) {
       this.props.bookingTicket(ve);
     }
   };
@@ -153,6 +158,105 @@ class Booking extends Component {
           </div>
         </div>
       );
+    } else {
+      switch (this.state.payStyle) {
+        case "zalopay":
+          return (
+            <div
+              className="modal fade"
+              id="modelId"
+              tabIndex={-1}
+              role="dialog"
+              aria-labelledby="modelTitleId"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog" role="document">
+                <div className="modal-content payStyles">
+                  <div className="modal-body">
+                    <div className=" errNoti row">
+                      <FontAwesomeIcon className="circleTimes" icon={faTimes} />
+                      <h4>Mã zalopay</h4>
+                    </div>
+                  </div>
+                  <div className="modal-footer">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => {
+                        this.setState({ paid: true });
+                      }}
+                    >
+                      Đóng
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        case "momo":
+          return (
+            <div
+              className="modal fade"
+              id="modelId"
+              tabIndex={-1}
+              role="dialog"
+              aria-labelledby="modelTitleId"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog" role="document">
+                <div className="modal-content payStyles">
+                  <div className="modal-body">
+                    <div className=" errNoti row">
+                      <img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.15752-9/86969607_2592060907738901_7392232684623233024_n.jpg?_nc_cat=111&_nc_ohc=rXRWI-3efysAX9x72Jn&_nc_ht=scontent-hkg3-2.xx&oh=2514b0089c43a46c313103dab319d42c&oe=5EC2AC9A" />
+                      <h4>Vui lòng quét mã để hoàn tất thanh toán</h4>
+                    </div>
+                  </div>
+                  <div className="modal-footer">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => {
+                        this.setState({ paid: true });
+                      }}
+                    >
+                      Đóng
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        case "card":
+          return (
+            <div
+              className="modal fade"
+              id="modelId"
+              tabIndex={-1}
+              role="dialog"
+              aria-labelledby="modelTitleId"
+              aria-hidden="true"
+            >
+              <div className="modal-dialog" role="document">
+                <div className="modal-content payStyles">
+                  <div className="modal-body">
+                    <div className=" errNoti row">
+                      <FontAwesomeIcon className="circleTimes" icon={faTimes} />
+                      <h4>Mã card</h4>
+                    </div>
+                  </div>
+                  <div className="modal-footer">
+                    <button
+                      className="btn btn-danger"
+                      onClick={() => {
+                        this.setState({ paid: true });
+                      }}
+                    >
+                      Đóng
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+      }
     }
   };
   handleRemind = () => {
@@ -170,6 +274,11 @@ class Booking extends Component {
         {this.renderRemindHTML()}
       </div>
     );
+  };
+  setPay = e => {
+    this.setState({
+      payStyle: e.target.value
+    });
   };
   render() {
     let { room, loading } = this.props;
@@ -256,7 +365,7 @@ class Booking extends Component {
             <hr />
             <div className="checkType">
               <h5>Hình thức thanh toán</h5>
-              <form className="container">
+              <form className="container" onChange={this.setPay.bind(this)}>
                 <div className="row align-items-center payStyle">
                   <input
                     type="radio"
@@ -302,20 +411,6 @@ class Booking extends Component {
                 </div>
               </form>
             </div>
-            {/*<button
-              className="btnBook"
-              data-toggle="modal"
-              data-target="#BookingModal"
-              data-dismiss="modal"
-              aria-label="Close"
-              onClick={
-                (this.state.valid = false
-                  ? this.handleSubmit
-                  : this.handleRemind)
-              }
-            >
-              Đặt vé
-            </button>*/}
             {this.handleRemind()}
           </div>
         </div>
