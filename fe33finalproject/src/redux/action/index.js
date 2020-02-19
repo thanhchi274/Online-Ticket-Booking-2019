@@ -464,14 +464,30 @@ export const actLayNhanXet = id => {
       method: "GET",
       url: `https://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${id}`
     })
-      .then(result => {
+      .then(async result => {
         dispatch({
-          type: ActionTypes.GET_COMMENT,
-          comment: result.data
+          type: await ActionTypes.GET_COMMENT,
+          comment: await result.data
         });
       })
       .catch(err => {
         console.log(err.data);
+      });
+  };
+};
+
+export const actNhanXet = comment => {
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url: "https://5dce9e0375f9360014c25fe6.mockapi.io/api/comment",
+      data: comment
+    })
+      .then(result => {
+        dispatch(result.data);
+      })
+      .catch(err => {
+        return err.data;
       });
   };
 };

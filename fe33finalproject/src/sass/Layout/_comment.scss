@@ -1,0 +1,25 @@
+.commentList {
+  width: 50%;
+  background-color: white;
+  margin: 20px auto;
+  padding: 20px;
+  .headerComment {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h5 {
+      font-weight: 600;
+    }
+    .guest_intro {
+      display: flex;
+      align-items: center;
+      .guest_ava {
+        width: 10%;
+      }
+    }
+  }
+}
+.commentArea {
+  width: 60%;
+  margin: 0 200px;
+}
