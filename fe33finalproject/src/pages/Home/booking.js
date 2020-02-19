@@ -15,7 +15,6 @@ class Booking extends Component {
       taiKhoanNguoiDung: "",
       count: 1,
       tienVe: 0,
-      paid: false,
       payStyle: "zalopay"
     };
   }
@@ -92,7 +91,7 @@ class Booking extends Component {
 
   handleSubmit = () => {
     let ve = { ...this.state };
-    if (this.state.danhSachVe.length !== 0 && this.state.paid === true) {
+    if (this.state.danhSachVe.length !== 0) {
       this.props.bookingTicket(ve);
     }
   };
@@ -172,19 +171,23 @@ class Booking extends Component {
             >
               <div className="modal-dialog" role="document">
                 <div className="modal-content payStyles">
+                  <div className="modal-header">
+                    <h5>Thanh toán zalopay</h5>
+                  </div>
                   <div className="modal-body">
                     <div className=" errNoti row">
-                      <FontAwesomeIcon className="circleTimes" icon={faTimes} />
-                      <h4>Mã zalopay</h4>
+                      <img src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/86977583_2651059108511383_5143827256606457856_n.jpg?_nc_cat=107&_nc_ohc=ogOA-E8yXMkAX9UhCFk&_nc_ht=scontent.fsgn3-1.fna&oh=4b7dc1aa1e1dc90e2fb2e48d56116c92&oe=5EF560CC" />
+                      <h4>Vui lòng quét mã zalopay để hoàn tất thanh toán</h4>
                     </div>
                   </div>
                   <div className="modal-footer">
                     <button
-                      className="btn btn-danger"
-                      onClick={() => {
-                        this.setState({ paid: true });
-                      }}
+                      className="btn btn-success"
+                      onClick={this.handleSubmit}
                     >
+                      Hoàn tất
+                    </button>
+                    <button className="btn btn-danger" data-dismiss="modal">
                       Đóng
                     </button>
                   </div>
@@ -204,19 +207,23 @@ class Booking extends Component {
             >
               <div className="modal-dialog" role="document">
                 <div className="modal-content payStyles">
+                  <div className="modal-header">
+                    <h5>Thanh toán momo</h5>
+                  </div>
                   <div className="modal-body">
                     <div className=" errNoti row">
                       <img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.15752-9/86969607_2592060907738901_7392232684623233024_n.jpg?_nc_cat=111&_nc_ohc=rXRWI-3efysAX9x72Jn&_nc_ht=scontent-hkg3-2.xx&oh=2514b0089c43a46c313103dab319d42c&oe=5EC2AC9A" />
-                      <h4>Vui lòng quét mã để hoàn tất thanh toán</h4>
+                      <h4>Vui lòng quét mã momo để hoàn tất thanh toán</h4>
                     </div>
                   </div>
                   <div className="modal-footer">
                     <button
-                      className="btn btn-danger"
-                      onClick={() => {
-                        this.setState({ paid: true });
-                      }}
+                      className="btn btn-success"
+                      onClick={this.handleSubmit}
                     >
+                      Hoàn tất
+                    </button>
+                    <button className="btn btn-danger" data-dismiss="modal">
                       Đóng
                     </button>
                   </div>
@@ -236,6 +243,9 @@ class Booking extends Component {
             >
               <div className="modal-dialog" role="document">
                 <div className="modal-content payStyles">
+                  <div className="modal-header">
+                    <h5>Thanh toán bằng thẻ VISA/MASTERCARD</h5>
+                  </div>
                   <div className="modal-body">
                     <div className=" errNoti row">
                       <FontAwesomeIcon className="circleTimes" icon={faTimes} />
@@ -244,11 +254,12 @@ class Booking extends Component {
                   </div>
                   <div className="modal-footer">
                     <button
-                      className="btn btn-danger"
-                      onClick={() => {
-                        this.setState({ paid: true });
-                      }}
+                      className="btn btn-success"
+                      onClick={this.handleSubmit}
                     >
+                      Hoàn tất
+                    </button>
+                    <button className="btn btn-danger" data-dismiss="modal">
                       Đóng
                     </button>
                   </div>
@@ -265,7 +276,6 @@ class Booking extends Component {
         <button
           type="button"
           className=" btnBook"
-          onClick={this.handleSubmit}
           data-toggle="modal"
           data-target="#modelId"
         >
@@ -299,28 +309,25 @@ class Booking extends Component {
           <CountDown />
           <div className="row">
             <h3 className="mr-2 tenCumRap">
-              Tên cụm rạp:{" "}
               <span>
                 {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}
               </span>{" "}
             </h3>
           </div>
           <div className="row">
-            <h3 className="mr-2 tenRap">
-              Tên rạp:{" "}
-              <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""} </span>
-            </h3>
-          </div>
-          <div className="row">
             <h3 className="mr-2 tenPhim">
-              Tên phim:
               <span>{room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}</span>
             </h3>
           </div>
           <div className="row">
             <h3 className="mr-2 suatChieu">
-              Suất chiếu:
-              <span>{room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}</span>
+              <span>
+                {room.thongTinPhim ? room.thongTinPhim.ngayChieu : ""} -{" "}
+              </span>
+              <span>
+                {room.thongTinPhim ? room.thongTinPhim.gioChieu : ""} -{" "}
+              </span>
+              <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""}</span>
             </h3>
           </div>
           <div className="seat-choosing">
