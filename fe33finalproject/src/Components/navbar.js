@@ -13,7 +13,7 @@ export default class Navbar extends Component {
 
   scrollToMovie = () => {
     window.scroll({
-      top: 970,
+      top: 750,
       left: 0,
       behavior: "smooth"
     });
@@ -41,11 +41,10 @@ export default class Navbar extends Component {
   // Remove the event listener when the component is unmount.
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
-
   }
   logout = () => {
     localStorage.clear("token");
-    localStorage.removeItem("UserInfo")
+    localStorage.removeItem("UserInfo");
     this.setState({ navigate: true });
   };
 

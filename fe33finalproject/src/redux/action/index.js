@@ -457,3 +457,21 @@ export const actLayThongTinRap = () => {
       });
   };
 };
+
+export const actLayNhanXet = id => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url: `https://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${id}`
+    })
+      .then(result => {
+        dispatch({
+          type: ActionTypes.GET_COMMENT,
+          comment: result.data
+        });
+      })
+      .catch(err => {
+        console.log(err.data);
+      });
+  };
+};

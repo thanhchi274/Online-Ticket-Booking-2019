@@ -97,7 +97,11 @@ class DetailMovie extends Component {
           </div>
         </div>
         <div className="row tabs" id="section2">
-          <FullWidthTabs movie={movie} ticket={this.state.bookTicket} />
+          <FullWidthTabs
+            movie={movie}
+            ticket={this.state.bookTicket}
+            id={this.props.match.params.id}
+          />
           {/*<VerticalTabs />*/}
         </div>
       </div>

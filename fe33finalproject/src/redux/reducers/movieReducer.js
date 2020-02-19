@@ -14,7 +14,8 @@ let initialState = {
   keyWord: [],
   news: data,
   tickets: {},
-  theaterInfo: []
+  theaterInfo: [],
+  comment: []
 };
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -32,10 +33,10 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: false };
     }
     case ActionType.UPDATE_MOVIE: {
-      return { ...state};
+      return { ...state };
     }
     case ActionType.ADD_MOVIE: {
-      return { ...state};
+      return { ...state };
     }
     case ActionType.GET_USER_INFORMATION: {
       state.userInformation = action.userInformation;
@@ -51,6 +52,11 @@ const movieReducer = (state = initialState, action) => {
     }
     case ActionType.GET_INFORMATION_THEATER_DATETIME: {
       state.theaterDateInformation = action.theaterDateInformation;
+      return { ...state };
+    }
+    case ActionType.GET_COMMENT: {
+      console.log(action);
+      state.comment = action.comment;
       return { ...state };
     }
     case ActionType.BOOKING_MOVIE: {
