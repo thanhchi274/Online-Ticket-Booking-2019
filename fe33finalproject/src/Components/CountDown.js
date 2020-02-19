@@ -32,9 +32,12 @@ function CountDown() {
       return <Completionist />;
     }
     return (
-      <span>
-        Thời gian còn lại: {minutes}:{seconds}
-      </span>
+      <div>
+        <p className="timeLabel">Thời gian giữ ghế</p>
+        <h1 className="timeCount">
+          {minutes}:{seconds}
+        </h1>
+      </div>
     );
   };
   return (
