@@ -10,7 +10,10 @@ class Info extends Component {
         <div className="info-cover">
           <div className="detail-info">
             <div className="ava">
-              <img src="https://divineshop.vn/image/avatar/default.png?rand=963987" />
+              <img
+                alt="avatar"
+                src="https://divineshop.vn/image/avatar/default.png?rand=963987"
+              />
             </div>
             <div className="general">
               <h5>{UserHome.hoTen}</h5>

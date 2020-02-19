@@ -55,7 +55,6 @@ const movieReducer = (state = initialState, action) => {
       return { ...state };
     }
     case ActionType.GET_COMMENT: {
-      console.log(action);
       state.comment = action.comment;
       return { ...state };
     }
