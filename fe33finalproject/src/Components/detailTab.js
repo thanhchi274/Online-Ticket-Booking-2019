@@ -9,6 +9,7 @@ import Box from "@material-ui/core/Box";
 import VerticalTabs from "./lich-chieu";
 
 import RatingStar from "./RatingMovie";
+import CommentList from "./commentList";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -85,9 +86,7 @@ export default function CenteredTabs(props) {
         </div>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <textarea rows="4" cols="110" name="comment" form="usrform">
-          Enter comment here...
-        </textarea>
+        <CommentList id={props.id} />
       </TabPanel>
     </Paper>
   );

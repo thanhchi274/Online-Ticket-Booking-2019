@@ -39,7 +39,7 @@ class Booking extends Component {
             }
           ],
           taiKhoanNguoiDung: userName.taiKhoan,
-          tienVe: giaVe,
+          tienVe: parseInt(this.state.tienVe) + parseInt(giaVe),
           count: this.state.count + 1
         },
         () => {
@@ -70,22 +70,10 @@ class Booking extends Component {
     return viTri;
   };
 
-  tinhTienVe = () => {};
-
   xoaGhe = maGhe => {
     let viTri = this.timViTri(maGhe);
     if (viTri !== -1) {
       this.state.danhSachVe.splice(viTri, 1);
-    }
-  };
-
-  handleTienVe = maGhe => {
-    let viTri = this.timViTri(maGhe);
-    if (viTri !== -1) {
-      return this.state.danhSachVe.reduce((starter, item) => {
-        console.log(starter);
-        return starter + item.giaVe;
-      }, 0);
     }
   };
 
@@ -178,6 +166,7 @@ class Booking extends Component {
                     <div className=" errNoti row">
                       <img src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/86977583_2651059108511383_5143827256606457856_n.jpg?_nc_cat=107&_nc_ohc=ogOA-E8yXMkAX9UhCFk&_nc_ht=scontent.fsgn3-1.fna&oh=4b7dc1aa1e1dc90e2fb2e48d56116c92&oe=5EF560CC" />
                       <h4>Vui lòng quét mã zalopay để hoàn tất thanh toán</h4>
+                      <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
                     </div>
                   </div>
                   <div className="modal-footer">
@@ -214,6 +203,7 @@ class Booking extends Component {
                     <div className=" errNoti row">
                       <img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.15752-9/86969607_2592060907738901_7392232684623233024_n.jpg?_nc_cat=111&_nc_ohc=rXRWI-3efysAX9x72Jn&_nc_ht=scontent-hkg3-2.xx&oh=2514b0089c43a46c313103dab319d42c&oe=5EC2AC9A" />
                       <h4>Vui lòng quét mã momo để hoàn tất thanh toán</h4>
+                      <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
                     </div>
                   </div>
                   <div className="modal-footer">
@@ -248,8 +238,8 @@ class Booking extends Component {
                   </div>
                   <div className="modal-body">
                     <div className=" errNoti row">
-                      <FontAwesomeIcon className="circleTimes" icon={faTimes} />
                       <h4>Mã card</h4>
+                      <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
                     </div>
                   </div>
                   <div className="modal-footer">
