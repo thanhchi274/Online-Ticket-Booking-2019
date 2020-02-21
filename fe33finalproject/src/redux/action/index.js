@@ -462,7 +462,7 @@ export const actLayNhanXet = id => {
   return dispatch => {
     Axios({
       method: "GET",
-      url: `https://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${id}`
+      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${id}`
     })
       .then(async result => {
         dispatch({
@@ -476,18 +476,19 @@ export const actLayNhanXet = id => {
   };
 };
 
-export const actNhanXet = comment => {
+export const actNhanXet = nhanXet => {
   return dispatch => {
     Axios({
       method: "POST",
-      url: "https://5dce9e0375f9360014c25fe6.mockapi.io/api/comment",
-      data: comment
+      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment`,
+      data: nhanXet
     })
-      .then(result => {
+      .then(async result => {
+        alert("nhận xét thành công");
         dispatch(result.data);
       })
       .catch(err => {
-        return err.data;
+        console.log(err.data);
       });
   };
 };

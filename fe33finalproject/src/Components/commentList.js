@@ -7,43 +7,48 @@ class CommentList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nhanXet: "",
-      danhGia: "",
-      danhSachComment: []
+      maPhim: "",
+      danhSachComment: [
+        {
+          hoTen: "",
+          nhanXet: "",
+          danhGia: ""
+        }
+      ]
     };
   }
   componentDidMount() {
     const id = this.props.id;
+    this.setState({
+      maPhim: id
+    });
     this.props.actGetCommentList(id);
   }
 
   handleChange = e => {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
-    this.setState(
-      {
-        [name]: value
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    let { name, value } = e.target;
+    this.setState({
+      [name]: value
+    });
   };
 
-  handleComment = () => {
-    const UserHome = JSON.parse(localStorage.getItem("UserHome"));
-    this.setState({
-      maPhim: this.props.id,
-      danhSachComment: [
-        ...this.state.danhSachComment,
-        {
-          hoTen: UserHome.hoTen,
-          nhanXet: this.state.nhanXet,
-          danhGia: this.state.danhGia
-        }
-      ]
-    });
+  handleComment = e => {
+    e.preventDefault();
+    const home = JSON.parse(localStorage.getItem("UserHome"));
+    this.setState(
+      {
+        danhSachComment: [
+          {
+            hoTen: home.hoTen,
+            nhanXet: this.state.nhanXet,
+            danhGia: this.state.danhGia
+          }
+        ]
+      },
+      () => {
+        this.props.actComment(this.state);
+      }
+    );
   };
 
   renderHTML = () => {
@@ -78,22 +83,21 @@ class CommentList extends Component {
   render() {
     return (
       <div className="container">
-        <div className="commentForm">
-          <textarea
+        <form className="commentForm" onSubmit={this.handleComment}>
+          <input
             name="nhanXet"
+            type="text"
             className="commentArea"
             placeholder="Write some comment..."
             onChange={this.handleChange}
-          ></textarea>
+          ></input>
           <input
             onChange={this.handleChange}
             name="danhGia"
             type="text"
           ></input>
-          <button className="btn btn-success" onClick={this.handleComment}>
-            Nhận xét
-          </button>
-        </div>
+          <button className="btn btn-success">Nhận xét</button>
+        </form>
         {this.renderHTML()}
       </div>
     );
@@ -107,8 +111,8 @@ const mapDispatchToProps = dispatch => {
     actGetCommentList: id => {
       dispatch(action.actLayNhanXet(id));
     },
-    actComment: user => {
-      dispatch(action.actNhanXet(user));
+    actComment: comment => {
+      dispatch(action.actNhanXet(comment));
     }
   };
 };
