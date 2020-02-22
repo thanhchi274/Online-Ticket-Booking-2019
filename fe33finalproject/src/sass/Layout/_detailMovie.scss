@@ -173,3 +173,41 @@
 .theaterIcon {
   width: 43%;
 }
+.commentForm {
+  margin: 0 auto;
+  width: 90% !important;
+  height: 100% !important;
+}
+.MuiRating-label {
+  font-size: 40px;
+}
+.commentArea {
+  height: 70px;
+  width: 100% !important;
+  margin: 0 !important;
+}
+.upComment {
+  background-color: white;
+  width: 80%;
+  border-radius: 5px;
+  margin: 0 auto;
+  h1 {
+    text-align: center;
+    font-weight: 500;
+    color: #aaaa34;
+  }
+}
+.commentBtn {
+  padding: 10px 50px;
+  border-radius: 50px;
+  color: white;
+  background-color: #aaaa34;
+  border: none;
+  margin: 10px 83%;
+  &:focus {
+    outline: none;
+  }
+}
+.ratingComment {
+  margin: 0 330px;
+}
