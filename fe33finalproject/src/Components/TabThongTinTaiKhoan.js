@@ -45,15 +45,17 @@ class DetailInfo extends Component {
     let taiKhoan = UserHome.taiKhoan;
     this.props.getUserInformation({ taiKhoan });
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-    this.setState({
-      taiKhoan: UserInfo.taiKhoan,
-      matKhau: UserInfo.matKhau,
-      email: UserInfo.email,
-      soDt: UserInfo.soDT,
-      hoTen: UserInfo.hoTen,
-      maNhom: UserHome.maNhom,
-      maLoaiNguoiDung: UserHome.maLoaiNguoiDung
-    });
+    if (this.props.getUserInformation(taiKhoan)) {
+      this.setState({
+        taiKhoan: UserInfo.taiKhoan,
+        matKhau: UserInfo.matKhau,
+        email: UserInfo.email,
+        soDt: UserInfo.soDT,
+        hoTen: UserInfo.hoTen,
+        maNhom: UserHome.maNhom,
+        maLoaiNguoiDung: UserHome.maLoaiNguoiDung
+      });
+    }
   }
   renderButton = () => {
     if (this.state.clicked === true) {

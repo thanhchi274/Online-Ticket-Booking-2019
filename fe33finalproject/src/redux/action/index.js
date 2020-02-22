@@ -72,7 +72,7 @@ export const actGetListMovieUpcomingAPI = () => {
         });
       })
       .catch(err => {
-        console.log(err);
+        return err;
       });
   };
 };
@@ -83,7 +83,6 @@ export const actGetDetailMovieAPI = id => {
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`
     })
       .then(async result => {
-        console.log(result.data);
         dispatch({
           type: await ActionTypes.GET_DETAIL_MOVIE,
           movie: await result.data
@@ -476,19 +475,18 @@ export const actLayNhanXet = id => {
   };
 };
 
-export const actNhanXet = nhanXet => {
+export const actNhanXet = (nhanXet, id) => {
   return dispatch => {
     Axios({
       method: "POST",
-      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment`,
+      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${id}/danhSachComment`,
       data: nhanXet
     })
       .then(async result => {
-        alert("nhận xét thành công");
         dispatch(result.data);
       })
       .catch(err => {
-        console.log(err.data);
+        return err;
       });
   };
 };
