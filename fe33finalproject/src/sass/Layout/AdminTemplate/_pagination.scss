@@ -1,4 +1,8 @@
 
+
+ #myModal{
+    background-color: rgba(0,0,0,0.25);
+}
 .limiter{
     .navbar-search{
         margin:0 !important;
@@ -131,6 +135,7 @@
 
 }
 .modalEditUser{
+    background-color: rgba(0,0,0,0.25);
     .btnADDEdit{
         background:transparent;
         position: relative;
@@ -157,5 +162,8 @@
     .btnCloseEditUser{
         @extend .btnADDEdit;
         left:20%;
+    }
+    .form-group{
+        width: 450px!important;
     }
 }

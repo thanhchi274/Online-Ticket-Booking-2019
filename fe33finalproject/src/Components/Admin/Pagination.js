@@ -92,25 +92,11 @@ class Paginition extends Component {
           maNhom: "GP01",
           [name]: value
         }
-      },
-      () => {
-        console.log(this.state);
       }
     );
   };
-  handleDelete = async e => {
-    try {
-      await this.setState(
-        {
-          taiKhoanDelete: e.target.value
-        },
-        () => {
-          this.props.deleteUser(this.state.taiKhoanDelete);
-        }
-      );
-    } catch (err) {
-      alert("Bạn thao tác quá nhanh, Xin thử lại");
-    }
+  handleDelete = e => {
+      return (e.target.value!=="")?( this.props.deleteUser(e.target.value)):console.log("Thao tác quá nhanh")
   };
   handleSubmitEdit = e => {
     this.setState(
@@ -144,8 +130,7 @@ class Paginition extends Component {
           matKhau,
           hoTen
         }
-      },
-      console.log(this.state)
+      }
     );
   };
  async receivedData() {
@@ -338,7 +323,6 @@ class Paginition extends Component {
       return alert("Chọn loại Người Dùng Trước");
     } else {
       e.preventDefault();
-      console.log(this.state.addNewUserData);
       this.props.addUser(this.state.addNewUserData);
     }
   };
