@@ -21,10 +21,11 @@ class TabUpdateUser extends Component {
     e.preventDefault();
     let updatedUser = { ...this.state };
     let taiKhoan = this.state.taiKhoan;
+    console.log(updatedUser);
 
     if (this.state.matKhauCu === UserInfo.matKhau) {
-      this.props.updateUser(updatedUser);
-      window.location.reload();
+      // this.props.updateUser(updatedUser);
+      console.log(updatedUser);
     } else {
       alert("sai mk cũ");
     }
@@ -41,9 +42,14 @@ class TabUpdateUser extends Component {
     let target = e.target;
     let name = target.name;
     let value = target.value;
-    this.setState({
-      [name]: value
-    });
+    this.setState(
+      {
+        [name]: value
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   };
   componentDidMount() {
     let UserHome = JSON.parse(localStorage.getItem("UserHome"));

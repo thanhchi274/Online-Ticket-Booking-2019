@@ -21,14 +21,13 @@ class DetailInfo extends Component {
     e.preventDefault();
     let updatedUser = { ...this.state };
     let taiKhoan = this.state.taiKhoan;
-    this.props.updateUser(updatedUser);
+    // this.props.updateUser(updatedUser);
     this.setState(
       {
         ...this.state
       },
       () => {
         this.props.getUserInformation({ taiKhoan });
-        window.location.reload();
       }
     );
   };
@@ -45,7 +44,7 @@ class DetailInfo extends Component {
     let taiKhoan = UserHome.taiKhoan;
     this.props.getUserInformation({ taiKhoan });
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-    if (this.props.getUserInformation(taiKhoan)) {
+    if (UserInfo && UserHome) {
       this.setState({
         taiKhoan: UserInfo.taiKhoan,
         matKhau: UserInfo.matKhau,
