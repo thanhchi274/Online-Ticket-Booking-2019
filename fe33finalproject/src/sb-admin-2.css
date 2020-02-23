@@ -2308,7 +2308,7 @@ textarea.form-control.is-invalid {
     }
     .form-inline .custom-select,
     .form-inline .input-group {
-         width:40rem!important;
+         width:20rem!important;
     }
     .form-inline .form-check {
         display: flex;

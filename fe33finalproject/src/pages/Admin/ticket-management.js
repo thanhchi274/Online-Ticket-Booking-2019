@@ -14,10 +14,9 @@ class TicketManageMent extends Component {
   async componentDidMount() {
     try{
       const taiKhoan = this.props.match.params.id;
+      this.props.getTicketManageUser({taiKhoan});
       let UserInfo = JSON.parse(localStorage.getItem("TicketManage"));
       const group1 =_.groupBy(UserInfo.thongTinDatVe, "ngayDat");
-       let UserHome = JSON.parse(localStorage.getItem("UserHome"));
-        this.props.getTicketManageUser({taiKhoan});
         this.setState({
           taiKhoan,
           movieData: group1,
@@ -25,8 +24,8 @@ class TicketManageMent extends Component {
           email:UserInfo.email,
           soDt:UserInfo.soDT,
           hoTen:UserInfo.hoTen,
-          maNhom:UserHome.maNhom,
-          maLoaiNguoiDung:UserHome.maLoaiNguoiDung,
+          maNhom:UserInfo.maNhom,
+          
         });
     }
     catch(err){
@@ -35,6 +34,7 @@ class TicketManageMent extends Component {
    }
   render() {
     let UserData = this.state.movieData;
+    console.log(UserData)
     return (
       <div className="container-table100" style={{ width: "100%" }}>
         <div className="wrap-table100">

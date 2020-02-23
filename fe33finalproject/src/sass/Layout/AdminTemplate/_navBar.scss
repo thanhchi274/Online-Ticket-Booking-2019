@@ -14,13 +14,12 @@
   padding-top:20px;
   position: fixed !important;
   opacity: 1;
-  transition: all 0.7s;
   transform: translateX(21%)!important;
     .navbar-nav{
         .dropdown-menu{
             width: 100px!important;
             .dropdown-item{
-                padding: 4px 8px 8px 20px!important;
+                padding: 4px 8px 4px 20px!important;
                 svg{
                     margin-right:10px;
                 }
@@ -37,11 +36,17 @@
           }
         .nav-item{
             .dropdown-toggle{
-                border-radius: 1rem;
+                border-radius: 73px;
                 height: 2.5rem!important;
+                background: #ffffff;
+                box-shadow:  5px 5px 10px #cccccc, 
+                             -5px -5px 10px #ffffff;
+             transition: all 0.2s;
                 &:hover{
-                box-shadow:  7px 7px 36px #cfcfcf, 
-                 -7px -7px 36px #f7f7f7!important;
+                    border-radius: 73px;
+                    background: #ffffff;
+                    box-shadow: inset -5px -5px 10px #cccccc, 
+                                inset 5px 5px 10px #ffffff;
                 }
             }
         }

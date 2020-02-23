@@ -36,7 +36,6 @@ export default class Navbar extends Component {
           <button id="sidebarToggleTop" className="btn btn-link d-md-none rounded-circle mr-3">
             <i className="fa fa-bars" />
           </button>
-          {/* <SearchBar /> */}
           <UserNavBar />
         </nav>
         </>

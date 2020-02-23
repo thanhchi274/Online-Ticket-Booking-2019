@@ -18,12 +18,12 @@ class Info extends Component {
       maLoaiNguoiDung: ""
     };
   }
-componentDidMount() {
+  componentDidMount() {
       let UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
       let taiKhoan = UserAdmin.taiKhoan;
       this.props.getUserInformation({taiKhoan});
       if(this.props.userInformation &&JSON.parse(localStorage.getItem("UserInfo"))){
-        let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
+      let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
           this.setState({
             taiKhoan,
             matKhau:UserInfo.matKhau,
@@ -48,6 +48,9 @@ componentDidMount() {
     e.preventDefault();
     let updatedUser = { ...this.state };
     this.props.updateUser(updatedUser);
+    let UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+    let taiKhoan = UserAdmin.taiKhoan;
+    this.props.getUserInformation({taiKhoan});
   };
 
   renderHTML = () => {
@@ -57,7 +60,7 @@ componentDidMount() {
         className="info--admin"
         style={{ backgroundColor: "white", opacity: "1" }}
       >
-        <h1>THÔNG TIN TÀI KHOẢN</h1>
+        <h1 className="h1-admin" style={{fontWeight:"700"}}>THÔNG TIN TÀI KHOẢN</h1>
         <div className="container row d-flex">
           <div className="avatar col-md-4 ">
             <UserImage />
@@ -92,7 +95,7 @@ componentDidMount() {
               {/* Button to Open the Modal */}
               <button
                 type="button"
-                className="btn btn-update btn-info "
+                className="btn btn-update-admin "
                 data-toggle="modal"
                 data-target="#myModal1"
                 onClick={this.handleClick}

@@ -10,7 +10,7 @@ import Swiper from "swiper";
 
 class MovieAvailable extends Component {
   componentDidMount() {
-    var swiper = new Swiper(".swiper-container", {
+    new Swiper(".swiper-container", {
       effect: "coverflow",
       loop: true,
       centeredSlides: true,
@@ -40,7 +40,7 @@ class MovieAvailable extends Component {
       return (
         <div key={index} className="swiper-slide">
           <div className="imgBx">
-            <img className="container-fluid" src={movie.hinhAnh} />
+            <img className="container-fluid" alt="MovieAvailable" src={movie.hinhAnh} />
           </div>
           <div
             className="carousel-detail"
@@ -59,9 +59,7 @@ class MovieAvailable extends Component {
       <div>
         <div className="swiper-container ">
           <div className="swiper-wrapper">{this.renderHTML()}</div>
-          {/* Add Pagination */}
           <div className="swiper-pagination" />
-          {/* Add Arrows */}
           <div className="swiper-button-next" />
           <div className="swiper-button-prev" />
         </div>
