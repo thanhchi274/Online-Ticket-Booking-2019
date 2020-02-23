@@ -491,3 +491,18 @@ export const actNhanXet = (nhanXet, id) => {
       });
   };
 };
+export const actxoaComment = (maPhim, maComment) => {
+  return dispatch => {
+    Axios({
+      method: "DELETE",
+      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${maPhim}/danhSachComment/${maComment}`
+    })
+      .then(result => {
+        alert("xóa thành công");
+        dispatch(result.data);
+      })
+      .catch(err => {
+        return err;
+      });
+  };
+};
