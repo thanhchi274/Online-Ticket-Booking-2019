@@ -265,7 +265,8 @@
     background-color: #cccccc;
   }
   .selectEntries{
-    padding-left:40px;
+    padding-left:15px!important;
+    height:45px;
     span{
       font-family: Helvetica;
       font-size: 20px;
@@ -279,11 +280,29 @@
       outline:none!important;
       border:0px!important;
       border-radius: 0.75rem;
-      box-shadow:  30px 30px 60px #d9d9d9, 
-                  -30px -30px 60px #ffffff;
+      background: linear-gradient(145deg, #e6e6e6, #ffffff);
+      box-shadow:  5px 5px 7px #d4d4d4, 
+                   -5px -5px 7px #ffffff;
+    &:hover{
+      box-shadow: inset 5px 5px 7px #d4d4d4, 
+            inset -5px -5px 7px #ffffff;
+    }
     }
     .btnAddUser{
       position: relative!important;
-      left:55%;
+      left:-10%;
+      width: 140px;
+       border-radius: 73px;
+        
+                background: #ffffff;
+                box-shadow:  5px 5px 10px #cccccc, 
+                             -5px -5px 10px #ffffff;
+                 transition: all 0.2s;
+                &:hover{
+                    border-radius: 73px;
+                    background: #ffffff;
+                    box-shadow: inset -5px -5px 10px #cccccc, 
+                                inset 5px 5px 10px #ffffff;
+                }
     }
   }

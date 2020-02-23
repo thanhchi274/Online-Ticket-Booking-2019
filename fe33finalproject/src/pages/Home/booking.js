@@ -62,12 +62,14 @@ class Booking extends Component {
 
   timViTri = maGhe => {
     let viTri = -1;
-    this.state.danhSachVe.map((item, index) => {
+   return this.state.danhSachVe.map((item, index) => {
       if (item.maGhe === maGhe) {
-        viTri = index;
+      return viTri = index;
+      }
+      else{
+        return viTri;
       }
     });
-    return viTri;
   };
 
   xoaGhe = maGhe => {
@@ -164,7 +166,7 @@ class Booking extends Component {
                   </div>
                   <div className="modal-body">
                     <div className=" errNoti row">
-                      <img src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/86977583_2651059108511383_5143827256606457856_n.jpg?_nc_cat=107&_nc_ohc=ogOA-E8yXMkAX9UhCFk&_nc_ht=scontent.fsgn3-1.fna&oh=4b7dc1aa1e1dc90e2fb2e48d56116c92&oe=5EF560CC" />
+                      <img alt="ZaloPay" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/86977583_2651059108511383_5143827256606457856_n.jpg?_nc_cat=107&_nc_ohc=ogOA-E8yXMkAX9UhCFk&_nc_ht=scontent.fsgn3-1.fna&oh=4b7dc1aa1e1dc90e2fb2e48d56116c92&oe=5EF560CC" />
                       <h4>Vui lòng quét mã zalopay để hoàn tất thanh toán</h4>
                       <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
                     </div>
@@ -201,7 +203,7 @@ class Booking extends Component {
                   </div>
                   <div className="modal-body">
                     <div className=" errNoti row">
-                      <img src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.15752-9/86969607_2592060907738901_7392232684623233024_n.jpg?_nc_cat=111&_nc_ohc=rXRWI-3efysAX9x72Jn&_nc_ht=scontent-hkg3-2.xx&oh=2514b0089c43a46c313103dab319d42c&oe=5EC2AC9A" />
+                      <img alt="Momo" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.15752-9/86969607_2592060907738901_7392232684623233024_n.jpg?_nc_cat=111&_nc_ohc=rXRWI-3efysAX9x72Jn&_nc_ht=scontent-hkg3-2.xx&oh=2514b0089c43a46c313103dab319d42c&oe=5EC2AC9A" />
                       <h4>Vui lòng quét mã momo để hoàn tất thanh toán</h4>
                       <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
                     </div>
@@ -257,6 +259,8 @@ class Booking extends Component {
               </div>
             </div>
           );
+          default:
+          return console.log("Do not Touch")
       }
     }
   };

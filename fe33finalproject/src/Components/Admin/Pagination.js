@@ -5,6 +5,7 @@ import * as action from "../../redux/action";
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Skeleton from '@material-ui/lab/Skeleton';
+import SelectEntriesOption from "./SelectEntriesOption"
 import {
   faUserEdit,
   faTrash,
@@ -91,25 +92,11 @@ class Paginition extends Component {
           maNhom: "GP01",
           [name]: value
         }
-      },
-      () => {
-        console.log(this.state);
       }
     );
   };
-  handleDelete = async e => {
-    try {
-      await this.setState(
-        {
-          taiKhoanDelete: e.target.value
-        },
-        () => {
-          this.props.deleteUser(this.state.taiKhoanDelete);
-        }
-      );
-    } catch (err) {
-      alert("Bạn thao tác quá nhanh, Xin thử lại");
-    }
+  handleDelete = e => {
+      return (e.target.value!=="")?( this.props.deleteUser(e.target.value)):console.log("Thao tác quá nhanh")
   };
   handleSubmitEdit = e => {
     this.setState(
@@ -143,8 +130,7 @@ class Paginition extends Component {
           matKhau,
           hoTen
         }
-      },
-      console.log(this.state)
+      }
     );
   };
  async receivedData() {
@@ -337,7 +323,6 @@ class Paginition extends Component {
       return alert("Chọn loại Người Dùng Trước");
     } else {
       e.preventDefault();
-      console.log(this.state.addNewUserData);
       this.props.addUser(this.state.addNewUserData);
     }
   };
@@ -421,7 +406,11 @@ class Paginition extends Component {
             </div>
           </div>
 
-          <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-2 my-2 my-md-0 col-md-10 navbar-search">
+          <div className="selectEntries d-flex mr-5">
+            <select onChange={this.handlingChange}>
+            <SelectEntriesOption />
+            </select>
+            <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-2 col-md-9 navbar-search">
             <div className="input-group">
               <input
                 type="text"
@@ -433,17 +422,8 @@ class Paginition extends Component {
               />
             </div>
           </form>
-          <div className="selectEntries d-flex">
-            <span>Choose Display Entries</span>
-            <select onChange={this.handlingChange}>
-              <option value={10}>Select entries:</option>
-              <option value={10}>10 </option>
-              <option value={20}>20</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
-            </select>
             <button
-              className="btnAddUser btn btn-success"
+              className="btnAddUser btn "
               data-toggle="modal"
               data-target="#myModalAdd"
             >
@@ -486,13 +466,10 @@ class Paginition extends Component {
             </div>
           </div>
         </div>
-        <div id="myModal" className="modal fade" role="dialog">
+        <div id="myModal" className="modal modalEditUser fade" role="dialog">
           <div className="modal-dialog">
             {/* Modal content*/}
             <div className="modal-content">
-              <div className="modal-header">
-                <h4 className="modal-title">Edit User</h4>
-              </div>
               <div className="modal-body">
                 <form onSubmit={this.handleSubmitEdit}>
                   <div className="form-group">
@@ -501,7 +478,7 @@ class Paginition extends Component {
                       type="text"
                       className="form-control"
                       name="taiKhoan"
-                      value={this.state.taiKhoan ? this.state.taiKhoan : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={this.state.taiKhoan!=="" ? this.state.taiKhoan : <Skeleton animation="wave" variant="text" width="250px" />}
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Họ và Tên"
                     />
@@ -512,7 +489,7 @@ class Paginition extends Component {
                       type="text"
                       className="form-control"
                       name="hoTen"
-                      value={this.state.hoTen ? this.state.hoTen : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={this.state.hoTen!=="" ? this.state.hoTen : <Skeleton animation="wave" variant="text" width="250px" />}
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Họ và Tên"
                     />
@@ -524,7 +501,7 @@ class Paginition extends Component {
                       className="form-control"
                       name="matKhau"
                       autoComplete="password"
-                      value={this.state.matKhau ? this.state.matKhau : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={this.state.matKhau!=="" ? this.state.matKhau : <Skeleton animation="wave" variant="text" width="250px" />}
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Password"
                     />
@@ -535,7 +512,7 @@ class Paginition extends Component {
                       type="text"
                       className="form-control"
                       name="soDt"
-                      value={this.state.soDt ? this.state.soDt : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={this.state.soDt!=="" ? this.state.soDt : <Skeleton animation="wave" variant="text" width="250px" />}
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập số điện thoại"
                     />
@@ -546,24 +523,22 @@ class Paginition extends Component {
                       type="email"
                       className="form-control"
                       name="email"
-                      value={this.state.email ? this.state.email : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={this.state.email!=="" ? this.state.email : <Skeleton animation="wave" variant="text" width="250px" />}
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Email"
                     />
                   </div>
-                  <button type="submit" className="btn btn-update btn-success">
-                    Cập nhật
+                  <button type="submit" className="btn btn-update btnADDEdit">
+                    Submit
                   </button>
-                </form>
-              </div>
-              <div className="modal-footer">
-                <button
+                  <button
                   type="button"
-                  className="btn btn-default"
+                  className="btn btnCloseEditUser"
                   data-dismiss="modal"
                 >
-                  Close
+                  Cancle
                 </button>
+                </form>
               </div>
             </div>
           </div>

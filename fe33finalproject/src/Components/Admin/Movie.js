@@ -6,6 +6,9 @@ import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
+import Skeleton from '@material-ui/lab/Skeleton';
+import TableMovieHead from "./TableHead";
+import SelectEntriesOption from "./SelectEntriesOption"
 class Paginition extends Component {
   _isMounted = false;
   constructor(props) {
@@ -43,6 +46,9 @@ class Paginition extends Component {
   componentDidMount() {
     this._isMounted = true;
     this.receivedData();
+    if(this.handleDelete){
+      this.receivedData();
+    }
   }
   componentWillUnmount() {
     this._isMounted = false;
@@ -76,7 +82,6 @@ class Paginition extends Component {
     let target = e.target;
     let name = target.name;
     let value = await target.value;
-    let newURL = window.location.pathname;
     this.setState(
       {
         [name]: value,
@@ -84,7 +89,7 @@ class Paginition extends Component {
           maPhim: this.state.maPhim,
           tenPhim: this.state.tenPhim,
           biDanh: this.state.biDanh,
-          hinhAnh: newURL,
+          hinhAnh: this.state.hinhAnh,
           trailer: this.state.trailer,
           maNhom: "GP01",
           ngayKhoiChieu: this.state.ngayKhoiChieu,
@@ -97,20 +102,15 @@ class Paginition extends Component {
       }
     );
   };
-  handleDelete = async e => {
-    try {
-      await this.setState(
+  handleDelete = e => {
+   this.setState(
         {
           maPhimDelete: e.target.value
         },
         () => {
           this.props.deleteMovie(this.state.maPhimDelete);
-        }
-      );
-    } catch (err) {
-      alert("Bạn thao tác quá nhanh, xin vui lòng thử lại");
-    }
-  };
+        });}
+
   handleSubmitEdit = e => {
     if (this.state.sumbitDataMovie.ngayKhoiChieu === this.state.ngayKhoiChieu) {
       this.setState(
@@ -205,7 +205,7 @@ class Paginition extends Component {
                         <button
                           onClick={this.handleEdit}
                           value={pd.maPhim}
-                          className="btn btnEdit btn-success"
+                          className="btn btnEdit mx-1 btn-success"
                           tenphim={pd.tenPhim}
                           bidanh={pd.biDanh}
                           trailer={pd.trailer}
@@ -263,7 +263,7 @@ class Paginition extends Component {
                         <button
                           onClick={this.handleEdit}
                           value={pd.maPhim}
-                          className="btn btnEdit btn-success"
+                          className="btn btnEdit mx-1 btn-success"
                           tenphim={pd.tenPhim}
                           bidanh={pd.biDanh}
                           trailer={pd.trailer}
@@ -329,19 +329,14 @@ class Paginition extends Component {
       <div>
         <div className="limiter MovieComponent">
           <div className="selectEntries d-flex">
-            <span>Choose Display Entries</span>
             <select onChange={this.handlingChange}>
-              <option value={10}>Select entries:</option>
-              <option value={10}>10 </option>
-              <option value={20}>20</option>
-              <option value={50}>50</option>
-              <option value={100}>100</option>
+            <SelectEntriesOption />
             </select>
             <button
               onClick={this.handleAdd}
               data-toggle="modal"
               data-target="#ModalAdd"
-              className="btnAddPhim btn btn-success"
+              className="btnAddPhim btn"
             >
               Add Phim
             </button>
@@ -349,21 +344,9 @@ class Paginition extends Component {
           <div className="container-table100">
             <div className="wrap-table100">
               <div className="table100 ver2 m-b-110">
-                <div className="table100-head">
-                  <table>
-                    <thead>
-                      <tr className="row100 head MovieManagement">
-                        <th className="cell100 column1">Mã Phim</th>
-                        <th className="cell100 column2">Tên Phim</th>
-                        <th className="cell100 column6">Bí Danh</th>
-                        <th className="cell100 column3">Trailer</th>
-                        <th className="cell100 column4">Hình Ảnh</th>
-                        <th className="cell100 column5">Ngày Khởi Chiếu</th>
-                        <th className="cell100 column7">Action</th>
-                      </tr>
-                    </thead>
-                  </table>
-                </div>
+                <TableMovieHead column1 ={"Mã Phim"} column2 ={"Tên Phim"} column6 ={"Bí Danh"} column3 ={"Trailer"}
+                  column4 = {"Hình Ảnh"} column5 ="Ngày khởi Chiếu"
+                />
                 {this.state.postData}
               </div>
               <ReactPaginate
@@ -389,7 +372,7 @@ class Paginition extends Component {
               <div className="modal-body">
                 <form
                   onSubmit={this.handleSubmitEdit}
-                  enctype="multipart/form-data"
+                  encType="multipart/form-data"
                   action="/upload/image"
                 >
                   <div className="form-group">
@@ -398,7 +381,7 @@ class Paginition extends Component {
                       type="text"
                       className="form-control"
                       name="maPhim"
-                      value={this.state.maPhim ? this.state.maPhim : "Loading"}
+                      value={this.state.maPhim!=="" ? this.state.maPhim :<Skeleton animation="wave" variant="text" width="400px" />}
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Mã Phim"
                     />
@@ -410,7 +393,7 @@ class Paginition extends Component {
                       className="form-control"
                       name="tenPhim"
                       value={
-                        this.state.tenPhim ? this.state.tenPhim : "Loading"
+                        this.state.tenPhim!=="" ? this.state.tenPhim : <Skeleton animation="wave" variant="text" width="400px" />
                       }
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Tên Phim"
@@ -423,7 +406,7 @@ class Paginition extends Component {
                       className="form-control"
                       name="biDanh"
                       autoComplete="password"
-                      value={this.state.biDanh ? this.state.biDanh : "Loading"}
+                      value={this.state.biDanh!=="" ? this.state.biDanh :<Skeleton animation="wave" variant="text" width="400px" />}
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Bí Danh Phim"
                     />
@@ -435,7 +418,7 @@ class Paginition extends Component {
                       className="form-control"
                       name="trailer"
                       value={
-                        this.state.trailer ? this.state.trailer : "Loading"
+                        this.state.trailer!=="" ? this.state.trailer : <Skeleton animation="wave" variant="text" width="400px" />
                       }
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập đường dẫn trailer Youtube"
@@ -465,7 +448,7 @@ class Paginition extends Component {
                       className="form-control"
                       name="hinhAnh"
                       value={
-                        this.state.hinhAnh ? this.state.hinhAnh : "Loading"
+                        this.state.hinhAnh!=="" ? this.state.hinhAnh : <Skeleton animation="wave" variant="text" width="400px" />
                       }
                       onChange={this.handleChangeEdit}
                       placeholder="Chỉ được nhập link ảnh từ nguồn Khác"
@@ -478,21 +461,21 @@ class Paginition extends Component {
                       className="form-control"
                       name="danhGia"
                       value={
-                        this.state.danhGia ? this.state.danhGia : "Loading"
+                        this.state.danhGia!=="" ? this.state.danhGia : <Skeleton animation="wave" variant="text" width="250px" />
                       }
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập đánh giá từ 1 đến 5"
                     />
                   </div>
                   <button type="submit" className="btn btn-update btn-success">
-                    Cập nhật
+                Submit
                   </button>
                   <button
                     type="button"
                     className="btn btn-default"
                     data-dismiss="modal"
                   >
-                    Close
+                   Cancel
                   </button>
                 </form>
               </div>
@@ -503,7 +486,6 @@ class Paginition extends Component {
           <div className="modal-dialog">
             {/* Modal content*/}
             <div className="modal-content editMovie">
-              <h2>Add phim</h2>
               <div className="modal-body">
                 <form onSubmit={this.handleSubmitAdd}>
                   <div className="form-group">
@@ -590,15 +572,15 @@ class Paginition extends Component {
                       placeholder="Nhập Mô Tả Phim"
                     />
                   </div>
-                  <button type="submit" className="btn btn-update btn-success">
-                    Cập nhật
+                  <button type="submit" className="btn btn-update btnADDMovie">
+                    Submit
                   </button>
                   <button
                     type="button"
-                    className="btn btn-default"
+                    className="btn btnCloseMovie"
                     data-dismiss="modal"
                   >
-                    Close
+                    Cancle
                   </button>
                 </form>
               </div>

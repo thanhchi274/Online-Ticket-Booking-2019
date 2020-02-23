@@ -256,7 +256,8 @@ export const actQuanLyVeUser = user => {
       data: user
     })
       .then(async result => {
-        localStorage.setItem("TicketManage", JSON.stringify(result.data));
+        console.log(result.data)
+       localStorage.setItem("TicketManage", JSON.stringify(result.data));
         dispatch({
           type: await ActionTypes.GET_TICKET_DETAIL,
           tickets: await result.data
@@ -354,7 +355,7 @@ export const actDeleteUser = tk => {
   };
 };
 export const actDeleteMovie = movie => {
-  return dispatch => {
+  return async dispatch => {
     const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
     Axios({
       method: "DELETE",
@@ -363,10 +364,10 @@ export const actDeleteMovie = movie => {
         Authorization: `Bearer ${UserAdmin.accessToken}`
       }
     })
-      .then(result => {
+      .then( async result => {
         alert(result.data);
         dispatch({
-          type: ActionTypes.DELETE_MOVIE
+          type: await ActionTypes.DELETE_MOVIE
         });
       })
       .catch(err => {

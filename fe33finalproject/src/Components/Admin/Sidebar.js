@@ -14,24 +14,13 @@ export default function Sidebar() {
           <div className="sidebar-brand-icon rotate-n-15">
             <i className="fas fa-laugh-wink" />
           </div>
-          <div className="sidebar-brand-text mx-3">
-            Movie Theater Management
+          <div className="sidebar-brand-text mx-4">
+            Admin Page
           </div>
         </NavLink>
         {/* Divider */}
         <hr className="sidebar-divider my-0" />
-        {/* Nav Item - Dashboard */}
-        <li className="nav-item active">
-          <NavLink className="nav-link" to="/dashboard">
-            <i className="fas fa-fw fa-tachometer-alt" />
-            <span>Dashboard</span>
-          </NavLink>
-        </li>
-        {/* Divider */}
-        <hr className="sidebar-divider" />
-        {/* Heading */}
         <div className="sidebar-heading">SYSTEM MANAGEMENT</div>
-        {/* Nav Item - Pages Collapse Menu */}
         <li className="nav-item">
           <a
             className="nav-link collapsed"
@@ -42,7 +31,7 @@ export default function Sidebar() {
             aria-controls="collapseTwo"
           >
             <i className="fas fa-fw fa-cog" />
-            <span>Management</span>
+            <span>Action</span>
           </a>
           <div
             id="collapseTwo"
@@ -51,39 +40,12 @@ export default function Sidebar() {
             data-parent="#accordionSidebar"
           >
             <div className="bg-white py-2 collapse-inner rounded">
-              <h6 className="collapse-header">Actions:</h6>
+              <h6 className="collapse-header">Direct to:</h6>
               <NavLink className="collapse-item" to="/quan-ly-user">
                 User Management
               </NavLink>
               <NavLink className="collapse-item" to="/quan-ly-movie">
                 Movie Management
-              </NavLink>
-            </div>
-          </div>
-        </li>
-        {/* Nav Item - Utilities Collapse Menu */}
-        <li className="nav-item">
-          <a
-            className="nav-link collapsed"
-            href="#abc"
-            data-toggle="collapse"
-            data-target="#collapseUtilities"
-            aria-expanded="true"
-            aria-controls="collapseUtilities"
-          >
-            <i className="fas fa-fw fa-wrench" />
-            <span>Movie</span>
-          </a>
-          <div
-            id="collapseUtilities"
-            className="collapse"
-            aria-labelledby="headingUtilities"
-            data-parent="#accordionSidebar"
-          >
-            <div className="bg-white py-2 collapse-inner rounded">
-              <h6 className="collapse-header">Actions:</h6>
-              <NavLink className="collapse-item" to="/up-anh">
-               Upload Ảnh Phim
               </NavLink>
               <a className="collapse-item" href="/">
                Direct to HomePage
@@ -91,9 +53,6 @@ export default function Sidebar() {
             </div>
           </div>
         </li>
-        {/* Divider */}
-        <hr className="sidebar-divider" />
-        {/* Nav Item - Pages Collapse Menu */}
       </ul>
     </>
   );

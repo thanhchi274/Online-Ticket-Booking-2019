@@ -19,7 +19,7 @@ class DetailInfo extends Component {
   }
   handleSubmit = e => {
     e.preventDefault();
-    let updatedUser = { ...this.state };
+    // let updatedUser = { ...this.state };
     let taiKhoan = this.state.taiKhoan;
     this.props.updateUser(updatedUser);
     this.setState(
