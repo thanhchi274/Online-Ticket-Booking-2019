@@ -211,3 +211,45 @@
 .ratingComment {
   margin: 0 330px;
 }
+.deleteButton {
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  margin-left: 85%;
+  width: 15%;
+  z-index: 3;
+  p {
+    margin: 0;
+    transform: translateX(-200%);
+    transition: 0.5s all;
+    color: white;
+    background-color: red;
+    border-radius: 10px;
+    padding: 2px 10px;
+    z-index: 0;
+    cursor: pointer;
+  }
+  &:hover {
+    svg {
+      transform: rotate(45deg);
+    }
+    p {
+      transform: translateX(0);
+    }
+  }
+}
+.deleteIcon {
+  color: red;
+  font-weight: 400;
+  font-size: 20px;
+  width: 100%;
+  transition: 0.5s all;
+  transform: rotate(-45deg);
+  z-index: 0;
+}
+// .rotateDeleteIcon {
+//   transform: rotate(45deg);
+//   p {
+//     transform: translateX(0);
+//   }
+// }

@@ -4,7 +4,8 @@ import * as action from "../redux/action";
 import Rating from "@material-ui/lab/Rating";
 // import Rate from "../Components/ratingComment";
 import Box from "@material-ui/core/Box";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBan } from "@fortawesome/free-solid-svg-icons";
 class CommentList extends Component {
   constructor(props) {
     super(props);
@@ -50,11 +51,16 @@ class CommentList extends Component {
         this.props.actComment(this.state, this.state.maPhim);
       }
     );
-
     this.props.actGetCommentList(id);
+  };
+  handleDelete = e => {
+    const commentId = e.target.getAttribute("value");
+    const id = this.props.id;
+    this.props.actxoaComment(id, commentId);
   };
 
   renderHTML = () => {
+    const home = JSON.parse(localStorage.getItem("UserHome"));
     if (this.props.comment.danhSachComment) {
       return this.props.comment.danhSachComment.map((item, index) => {
         return (
@@ -77,6 +83,18 @@ class CommentList extends Component {
             <hr />
             <div className="contentComment">
               <p>{item.nhanXet}</p>
+            </div>
+            <div className="deleteButton">
+              <p value={item.id} onClick={this.handleDelete}>
+                Xóa
+              </p>
+              <FontAwesomeIcon className="deleteIcon" icon={faBan} />
+              {/* <button
+                className="btn btn-danger"
+                onClick={this.handleDelete}
+              >
+                xóa
+             </button>*/}
             </div>
           </div>
         );
@@ -132,6 +150,9 @@ const mapDispatchToProps = dispatch => {
     },
     actComment: (comment, id) => {
       dispatch(action.actNhanXet(comment, id));
+    },
+    actxoaComment: (maPhim, maComment) => {
+      dispatch(action.actxoaComment(maPhim, maComment));
     }
   };
 };

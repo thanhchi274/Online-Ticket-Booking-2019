@@ -21,10 +21,11 @@ class DetailInfo extends Component {
     e.preventDefault();
     let updatedUser = { ...this.state };
     let taiKhoan = this.state.taiKhoan;
-    // this.props.updateUser(updatedUser);
+    this.props.updateUser(updatedUser);
     this.setState(
       {
-        ...this.state
+        ...this.state,
+        clicked: false
       },
       () => {
         this.props.getUserInformation({ taiKhoan });
@@ -41,9 +42,9 @@ class DetailInfo extends Component {
   };
   componentDidMount() {
     let UserHome = JSON.parse(localStorage.getItem("UserHome"));
+    let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
     let taiKhoan = UserHome.taiKhoan;
     this.props.getUserInformation({ taiKhoan });
-    let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
     if (UserInfo && UserHome) {
       this.setState({
         taiKhoan: UserInfo.taiKhoan,
@@ -63,7 +64,7 @@ class DetailInfo extends Component {
           <button
             type="submit"
             className="btn btn-update btn-success"
-            onClick={this.handleClick}
+            onClick={this.handleSubmit}
           >
             Cập nhật
           </button>

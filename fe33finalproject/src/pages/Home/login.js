@@ -147,7 +147,9 @@ class Login extends Component {
             </div>
           </div>
           {this.state.errors.taiKhoan ? (
-            <div className="warning-text" style={{ color: "red" }}>{this.state.errors.taiKhoan}</div>
+            <div className="warning-text" style={{ color: "red" }}>
+              {this.state.errors.taiKhoan}
+            </div>
           ) : (
             ""
           )}
@@ -170,31 +172,30 @@ class Login extends Component {
             </div>
           </div>
           {this.state.errors.matKhau ? (
-            <div className="warning-text" style={{ color: "red"}}>
+            <div className="warning-text" style={{ color: "red" }}>
               {this.state.errors.matKhau}
             </div>
           ) : (
             ""
           )}
           <div className="btnAction d-flex">
-          <button
-            className="btn signin-btn mb-3"
-            disabled={!this.state.formvalid}
-          >
-            SIGN IN
-          </button>
-          <h5
-            style={{
-              color: "black",
-              textTransform: "uppercase",
-              fontSize: "16px",
-              fontWeight: "700"
-            }}
-          >
-          </h5>
-          <Link className="btn signup-btn" to="/sign-up">
-            SIGN UP
-          </Link>
+            <button
+              className="btn signin-btn mb-3"
+              disabled={!this.state.formvalid}
+            >
+              SIGN IN
+            </button>
+            <h5
+              style={{
+                color: "black",
+                textTransform: "uppercase",
+                fontSize: "16px",
+                fontWeight: "700"
+              }}
+            ></h5>
+            <Link className="btn signup-btn" to="/sign-up">
+              SIGN UP
+            </Link>
           </div>
         </form>
       </div>

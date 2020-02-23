@@ -24,7 +24,7 @@ class TabUpdateUser extends Component {
     console.log(updatedUser);
 
     if (this.state.matKhauCu === UserInfo.matKhau) {
-      // this.props.updateUser(updatedUser);
+      this.props.updateUser(updatedUser);
       console.log(updatedUser);
     } else {
       alert("sai mk cũ");
