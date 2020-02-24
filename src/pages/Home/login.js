@@ -185,14 +185,6 @@ class Login extends Component {
             >
               SIGN IN
             </button>
-            <h5
-              style={{
-                color: "black",
-                textTransform: "uppercase",
-                fontSize: "16px",
-                fontWeight: "700"
-              }}
-            ></h5>
             <Link className="btn signup-btn" to="/sign-up">
               SIGN UP
             </Link>

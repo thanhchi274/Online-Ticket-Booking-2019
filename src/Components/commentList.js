@@ -6,6 +6,7 @@ import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan } from "@fortawesome/free-solid-svg-icons";
+
 class CommentList extends Component {
   constructor(props) {
     super(props);
@@ -20,14 +21,12 @@ class CommentList extends Component {
   }
   componentDidMount() {
     const id = this.props.id;
-    const home = JSON.parse(localStorage.getItem("UserHome"));
     this.props.actGetCommentList(id);
     this.setState({
-      maPhim: id,
-      hoTen: home.hoTen
+      maPhim: id
     });
   }
-  componentWillUpdate() {
+  UNSAFE_componentWillUpdate() {
     const id = this.props.id;
     this.props.actGetCommentList(id);
   }
@@ -39,28 +38,76 @@ class CommentList extends Component {
   };
 
   handleComment = e => {
-    const id = this.props.id;
+    const home = JSON.parse(localStorage.getItem("UserHome"));
     e.preventDefault();
-    this.setState(
-      {
-        maPhim: this.state.maPhim,
-        nhanXet: this.state.nhanXet,
-        danhGia: this.state.value
-      },
-      () => {
-        this.props.actComment(this.state, this.state.maPhim);
-      }
-    );
-    this.props.actGetCommentList(id);
+    if (home) {
+      this.setState(
+        {
+          hoTen: home.hoTen,
+          maPhim: this.state.maPhim,
+          nhanXet: this.state.nhanXet,
+          danhGia: this.state.value
+        },
+        () => {
+          this.props.actComment(this.state, this.state.maPhim);
+        }
+      );
+    }
   };
   handleDelete = e => {
     const commentId = e.target.getAttribute("value");
     const id = this.props.id;
     this.props.actxoaComment(id, commentId);
   };
+  renderModalErr = () => {
+    const home = JSON.parse(localStorage.getItem("UserHome"));
+    if (!home) {
+      return (
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex={-1}
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h2 className="modal-title" id="exampleModalLabel">
+                  Thông báo
+                </h2>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div className="modal-body">
+                Bạn phải đăng nhập để thực hiện hành động này
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  className="book-btn"
+                  onClick={() => {
+                    window.location.href = "/login";
+                  }}
+                >
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+  };
 
   renderHTML = () => {
-    const home = JSON.parse(localStorage.getItem("UserHome"));
     if (this.props.comment.danhSachComment) {
       return this.props.comment.danhSachComment.map((item, index) => {
         return (
@@ -131,8 +178,16 @@ class CommentList extends Component {
               placeholder="Hãy cho mọi người biết suy nghĩ của bạn về bộ phim"
               onChange={this.handleChange}
             ></input>
-
-            <button className="commentBtn">Đăng</button>
+            <div className="modaSwitchlLogin">
+              <button
+                className="commentBtn"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Đăng
+              </button>
+              {this.renderModalErr()}
+            </div>
           </form>
         </div>
         {this.renderHTML()}

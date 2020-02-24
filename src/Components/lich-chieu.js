@@ -68,7 +68,9 @@ function VerticalTabs(props) {
         return (
           <Tab
             key={index}
-            label={<img src={item.logo} className="theaterIcon" />}
+            label={
+              <img src={item.logo} alt="logo rạp" className="theaterIcon" />
+            }
             id={item.maHeThongRap}
             {...a11yProps(index)}
           />
