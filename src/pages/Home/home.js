@@ -6,6 +6,8 @@ import Carousel from "./../../Components/carousel";
 import HomeTool from "../../Components/home-tool";
 import MovieAvailable from "../../Components/MovieAvailable";
 import Footer from "../../Components/footer";
+import LazyLoad from "react-lazyload";
+import SmallSpinner from "../../Components/smallSpinner";
 class Home extends Component {
   componentDidMount() {
     this.props.setLoading();
@@ -23,7 +25,10 @@ class Home extends Component {
     return (
       <>
         <div>
-          <Carousel />
+          <div className="carousel">
+            <Carousel />
+            <HomeTool movieDate={this.props.movieDate} />
+          </div>
           <div>
             <nav className="first-navs">
               <div
@@ -56,14 +61,15 @@ class Home extends Component {
               </div>
             </nav>
             <div className="tab-content nav-tabContent" id="section1">
-              <>
-                <MovieAvailable />
-              </>
+              <LazyLoad once={true} offset="300" height="600">
+                {loading ? <SmallSpinner /> : <MovieAvailable />}
+              </LazyLoad>
             </div>
           </div>
-          <HomeTool movieDate={this.props.movieDate} />
         </div>
-        <Footer />
+        <LazyLoad offset="1200">
+          <Footer />
+        </LazyLoad>
       </>
     );
   }

@@ -6,6 +6,7 @@ import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBan } from "@fortawesome/free-solid-svg-icons";
+import SmallSpinner from "./smallSpinner";
 
 class CommentList extends Component {
   constructor(props) {
@@ -136,16 +137,16 @@ class CommentList extends Component {
                 Xóa
               </p>
               <FontAwesomeIcon className="deleteIcon" icon={faBan} />
-              {/* <button
-                className="btn btn-danger"
-                onClick={this.handleDelete}
-              >
-                xóa
-             </button>*/}
             </div>
           </div>
         );
       });
+    } else {
+      return (
+        <div className="loading-spinner">
+          <SmallSpinner />
+        </div>
+      );
     }
   };
   render() {
