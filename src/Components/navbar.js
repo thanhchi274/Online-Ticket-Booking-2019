@@ -99,33 +99,40 @@ export default class Navbar extends Component {
   render() {
     return (
       <>
-        <nav className="navbar-expand-md">
+        <nav className="navbar-expand-md justify-content-between">
           <div
             className={
               !this.state.visible
                 ? " header navbar"
-                : "header navbar--hidden-main row"
+                : "header navbar--hidden-main row "
             }
           >
-            <div className="col-sm-4  ">
+            <div className="col-sm-4">
               <Link
-                className="logo-title d-flex"
+                className="logo-title d-flex align-items-center"
                 onClick={this.scrollToTop}
                 to="/"
               >
                 <img
-                  className="img-fluid mx-4"
-                  src="https://i.ibb.co/MMDksvw/icons8-movie-ticket.png"
+                  className="img-fluid "
+                  src="./logoMovies.png"
                   alt="icons8-movie-ticket"
                   border={0}
-                  width={50}
-                  height={100}
+                  width="20%"
                 />
-                <p className="logo-name">MOVIE THEATER</p>
+                {/*<img
+                  className="img-fluid"
+                  src="./contentMoviesLogo.png"
+                  alt="content logo"
+                />*/}
+                <div className="logo-content">
+                  <h5 className="logo_topContent">Cyber</h5>
+                  <h5 className="logo_bottomContent">Movies</h5>
+                </div>
               </Link>
             </div>
 
-            <div className="col-sm-4 nav-menu ">
+            <div className="col-sm-3 nav-menu ">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -159,12 +166,10 @@ export default class Navbar extends Component {
                       Movie
                     </Link>
                   </li>
+
+                  {this.renderHTML()}
                 </ul>
               </div>
-            </div>
-
-            <div className="col-sm-3 d-flex justify-content-center nav-logout">
-              {this.renderHTML()}
             </div>
           </div>
           {/* Toggler/collapsibe Button */}

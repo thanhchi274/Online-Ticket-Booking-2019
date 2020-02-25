@@ -40,7 +40,11 @@ class MovieAvailable extends Component {
       return (
         <div key={index} className="swiper-slide">
           <div className="imgBx">
-            <img className="container-fluid" alt="MovieAvailable" src={movie.hinhAnh} />
+            <img
+              className="container-fluid"
+              alt="MovieAvailable"
+              src={movie.hinhAnh}
+            />
           </div>
           <div
             className="carousel-detail"
