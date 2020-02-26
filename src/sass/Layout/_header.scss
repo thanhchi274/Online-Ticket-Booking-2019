@@ -32,9 +32,6 @@
     .logo_topContent {
       font-size: 28px;
     }
-    .logo_bottomContent {
-      font-size: 20px;
-    }
   }
   .logined {
     width: 100px;
@@ -91,23 +88,27 @@
     }
   }
   .active {
-    font-size: 22px !important;
-    color: white !important;
-    font-weight: 700;
+    font-weight: 400;
     border-radius: 30px;
-    background: #2196f3;
-    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    color: #2196f3;
+    text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
   }
   .nav-link {
-    color: #03ffd2;
+    color: #2196f3;
+    font-weight: 600;
     margin: 0 10px;
     font-size: 20px;
     transition: 0.2s;
     &:hover {
-      border-radius: 30px;
-      background: #2196f3;
-      box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+      color: #2196f3;
+      text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
     }
+  }
+  .nav-drop {
+    font-weight: 600;
+    margin: 5px 10px;
+    font-size: 20px;
+    transition: 0.2s;
   }
   .dropdown {
     .dropdown-toggle {
