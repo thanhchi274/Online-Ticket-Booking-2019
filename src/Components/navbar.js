@@ -25,6 +25,13 @@ export default class Navbar extends Component {
       behavior: "smooth"
     });
   };
+  scrollToFooter = () => {
+    window.scroll({
+      top: 1400,
+      left: 0,
+      behavior: "smooth"
+    });
+  };
   handleScroll = () => {
     const { prevScrollpos } = this.state;
     const currentScrollPos = window.pageYOffset;
@@ -57,8 +64,8 @@ export default class Navbar extends Component {
     }
     if (localStorage.getItem("UserHome")) {
       return (
-        <ul className="navbar-nav ">
-          <li className=" nav-item nav-link">
+        <ul className="navbar-nav">
+          <li className=" nav-item nav-drop">
             <div className="dropdown">
               <button
                 type="button"
@@ -115,24 +122,18 @@ export default class Navbar extends Component {
               >
                 <img
                   className="img-fluid "
-                  src="./logoMovies.png"
+                  src="../logoMovies.png"
                   alt="icons8-movie-ticket"
                   border={0}
                   width="20%"
                 />
-                {/*<img
-                  className="img-fluid"
-                  src="./contentMoviesLogo.png"
-                  alt="content logo"
-                />*/}
                 <div className="logo-content">
-                  <h5 className="logo_topContent">Cyber</h5>
-                  <h5 className="logo_bottomContent">Movies</h5>
+                  <h5 className="logo_topContent">Cyber Movies</h5>
                 </div>
               </Link>
             </div>
 
-            <div className="col-sm-3 nav-menu ">
+            <div className="col-sm-4 nav-menu ">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -151,6 +152,7 @@ export default class Navbar extends Component {
                       activeClassName="active"
                       exact
                       className="nav-link"
+                      onClick={this.scrollToTop}
                       to="/"
                     >
                       Home
@@ -158,7 +160,6 @@ export default class Navbar extends Component {
                   </li>
                   <li className="nav-item">
                     <Link
-                      activeclassname="active"
                       className="nav-link"
                       onClick={this.scrollToMovie}
                       to=""
@@ -166,7 +167,15 @@ export default class Navbar extends Component {
                       Movie
                     </Link>
                   </li>
-
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      onClick={this.scrollToFooter}
+                      to=""
+                    >
+                      Subscribe
+                    </Link>
+                  </li>
                   {this.renderHTML()}
                 </ul>
               </div>

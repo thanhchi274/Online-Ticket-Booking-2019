@@ -67,9 +67,7 @@ class Home extends Component {
             </div>
           </div>
         </div>
-        <LazyLoad offset="1200">
-          <Footer />
-        </LazyLoad>
+        <Footer />
       </>
     );
   }
