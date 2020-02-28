@@ -9,7 +9,6 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import ModalVideo from "react-modal-video";
 import FullWidthTabs from "../../Components/detailTab";
 import AnchorLink from "react-anchor-link-smooth-scroll";
-// import { Link } from "react-router-dom";
 class DetailMovie extends Component {
   constructor() {
     super();
@@ -31,6 +30,7 @@ class DetailMovie extends Component {
     const id = this.props.match.params.id;
     this.props.setLoading();
     this.props.getdetailMovie(id);
+    this.props.getMovieDateTime(id);
   }
   render() {
     let { loading, movie } = this.props;
@@ -102,7 +102,6 @@ class DetailMovie extends Component {
             ticket={this.state.bookTicket}
             id={this.props.match.params.id}
           />
-          {/*<VerticalTabs />*/}
         </div>
       </div>
     );
@@ -119,6 +118,9 @@ const mapDispatchToProps = dispatch => {
     },
     setLoading: () => {
       dispatch(Action.actLoading());
+    },
+    getMovieDateTime:(ve)=>{
+      dispatch(Action.actGetDateTimeMovie(ve))
     }
   };
 };

@@ -5,10 +5,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import ScrollableTabsButtonAutoBHD from "./dateShowBHD";
 import { connect } from "react-redux";
 import * as Action from "../redux/action";
-
+import ScrollDateTime from "./NgayPhimRender"
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -43,20 +42,25 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
     display: "flex",
-    height: 224
+    height: 540,
+
   },
   tabs: {
-    borderRight: `1px solid ${theme.palette.divider}`
+    borderRight: `1px solid ${theme.palette.divider}`,
+    width:200
   }
 }));
 
 function VerticalTabs(props) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
-
+  const [rap,setRap]= React.useState("BHD");
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
+const handleClick =(event,newValue)=>{
+  setRap(event.target.id)
+}
 
   useEffect(() => {
     props.getTheaterInfo();
@@ -68,10 +72,7 @@ function VerticalTabs(props) {
         return (
           <Tab
             key={index}
-            label={
-              <img src={item.logo} alt="logo rạp" className="theaterIcon" />
-            }
-            id={item.maHeThongRap}
+            label={<img id={item.maHeThongRap} src={item.logo} onClick={handleClick} className="theaterIcon" />}
             {...a11yProps(index)}
           />
         );
@@ -80,11 +81,12 @@ function VerticalTabs(props) {
   };
 
   const renderRapContent = () => {
-    if (props.movie.lichChieu) {
-      return props.movie.lichChieu.map((item, index) => {
+    console.log(rap)
+    if (props.theaterInfo) {
+      return props.theaterInfo.map((item, index) => {
         return (
           <TabPanel key={index} value={value} index={index}>
-            {<ScrollableTabsButtonAutoBHD movie={props.movie} />}
+            {<ScrollDateTime id={props.id} maRap={rap} />}
           </TabPanel>
         );
       });
@@ -98,7 +100,6 @@ function VerticalTabs(props) {
         variant="scrollable"
         value={value}
         onChange={handleChange}
-        aria-label="Vertical tabs example"
         className={classes.tabs}
       >
         {renderRap()}
