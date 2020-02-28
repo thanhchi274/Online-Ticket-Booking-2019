@@ -24,13 +24,14 @@
   top: 0;
   .logo-title {
     text-align: center;
-    color: yellow;
+
     font-family: "Pacifico";
     &:hover {
       text-decoration: none;
     }
     .logo_topContent {
       font-size: 28px;
+      color: yellow;
     }
   }
   .logined {
@@ -59,7 +60,7 @@
     border: 1px solid #2196f3;
     background-color: #2196f3;
     border-radius: 30px;
-    color: white;
+    color: white !important;
     transition: 0.5s;
     &:hover {
       color: white !important;
@@ -102,6 +103,11 @@
     &:hover {
       color: #2196f3;
       text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    }
+  }
+  .loginBtn {
+    .active {
+      box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
     }
   }
   .nav-drop {
