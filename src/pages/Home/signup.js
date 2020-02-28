@@ -112,11 +112,15 @@ class Signup extends Component {
         <h4>Register</h4>
         <div className="signup-content  row">
           <div className="signup-img col-sm-4">
-            <img alt="hinhAnh123" src="https://cdn.jotfor.ms/images/podo-login-signup.png" />
+            <img
+              alt="hinhAnh123"
+              src="https://cdn.jotfor.ms/images/podo-login-signup.png"
+            />
             <p>hi there, wanna book your movie tickets, register now</p>
           </div>
           <div className="signUp-form col-sm-8">
             <form onSubmit={this.handleSubmit}>
+              <div className="row"></div>
               <div className="input-div signup">
                 <div className="i">
                   <FontAwesomeIcon icon={faGlobe} />

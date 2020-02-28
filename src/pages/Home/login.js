@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faUser,
+  faLock,
+  faEye,
+  faEyeSlash
+} from "@fortawesome/free-solid-svg-icons";
 import * as action from "../../redux/action";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
@@ -23,7 +28,9 @@ class Login extends Component {
       matKhau: "",
       formvalid: false,
       tkValid: false,
-      mkValid: false
+      mkValid: false,
+      show: faEye,
+      type: "password"
     };
   }
   handleClick = e => {
@@ -122,6 +129,25 @@ class Login extends Component {
       formvalid: this.state.tkValid && this.state.mkValid
     });
   };
+  handleShowPassword = e => {
+    e.target.classList.toggle("hide");
+    console.log(e.target.classList);
+    if (
+      e.target.classList.value ===
+        "svg-inline--fa fa-eye fa-w-18 PassIcon hide" ||
+      e.target.classList.value === "hide"
+    ) {
+      this.setState({
+        type: "text",
+        show: faEyeSlash
+      });
+    } else {
+      this.setState({
+        type: "password",
+        show: faEye
+      });
+    }
+  };
   renderHTML = () => {
     return (
       <div className="container login-container d-flex">
@@ -163,21 +189,29 @@ class Login extends Component {
             </div>
             <div>
               <h5>Password</h5>
-              <input
-                className="input"
-                type="password"
-                name="matKhau"
-                onChange={this.handleChange}
-              />
+              <div className="inputAr">
+                <input
+                  className="input"
+                  type={this.state.type}
+                  name="matKhau"
+                  onChange={this.handleChange}
+                />
+                {this.state.matKhau ? (
+                  <FontAwesomeIcon
+                    className="PassIcon"
+                    icon={this.state.show}
+                    onClick={this.handleShowPassword}
+                  />
+                ) : null}
+              </div>
             </div>
           </div>
           {this.state.errors.matKhau ? (
-            <div className="warning-text" style={{ color: "red" }}>
-              {this.state.errors.matKhau}
-            </div>
+            <div className="warning-text">{this.state.errors.matKhau}</div>
           ) : (
             ""
           )}
+
           <div className="btnAction d-flex">
             <button
               className="btn signin-btn mb-3"

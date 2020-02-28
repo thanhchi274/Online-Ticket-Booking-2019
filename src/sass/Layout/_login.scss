@@ -2,35 +2,41 @@
   text-align: center;
   padding: 30px 0;
   margin: 100px 0;
-  margin-top: 16vh!important;
+  margin-top: 16vh !important;
   background-color: #fff;
   margin: 0 auto;
-  width: 900px!important;
+  width: 900px !important;
   border-radius: 69px;
   background: linear-gradient(145deg, #0e0e4a, #101058);
-  box-shadow:  34px 34px 69px #090930, 
-               -34px -34px 69px #151574;
+  box-shadow: 34px 34px 69px #090930, -34px -34px 69px #151574;
   svg {
     width: 450px;
     height: 400px;
   }
   form {
-    width: 700px;
+    width: 600px !important;
   }
-  .warning-text{
+  .warning-text {
     font-size: 18px;
     font-weight: 700;
-    
+  }
+  h3 {
+    text-transform: uppercase;
+    color: #03ffd2;
+    font-weight: 900 !important;
+    letter-spacing: 4px;
+    font-size: 2rem !important;
+    transform: translateX(-30%);
   }
 }
-.btnAction{
+.btnAction {
   position: relative;
-  left:22%;
+  left: 22%;
   .signin-btn {
-    opacity: 1!important;
+    opacity: 1 !important;
     width: 150px;
-    background-color:transparent;
-    color:#03ffd2;
+    background-color: transparent;
+    color: #03ffd2;
     font-weight: 700;
     border-radius: 70px;
     border: 2px solid #03ffd2;
@@ -38,18 +44,18 @@
     font-size: 20px !important;
     margin: 30px 0 10px 30px;
     &:hover {
-      background:linear-gradient(145deg, #14d280, #18f998);
-      color:white;
+      background: linear-gradient(145deg, #14d280, #18f998);
+      color: white;
       border: 2px solid #03ffd2;
     }
   }
   .signup-btn {
     @extend .signin-btn;
-    color:#e8e111;
+    color: #e8e111;
     height: 50px;
-    border-color:#e8e111;
-    border:2px solid #e8e111;
-    &:hover{
+    border-color: #e8e111;
+    border: 2px solid #e8e111;
+    &:hover {
       border: 2px solid #e8e111;
       background: linear-gradient(145deg, #e6de00, #e8e111);
     }
@@ -58,6 +64,25 @@
 .input-div div {
   position: relative;
   height: 45px;
+  input {
+    width: 290px;
+  }
+}
+.inputAr {
+  position: relative;
+  width: 280px;
+  .PassIcon {
+    position: absolute;
+    cursor: pointer;
+    height: 100%;
+    top: 0;
+    right: 0;
+    color: white;
+  }
+}
+.warning-text {
+  color: red;
+  margin-left: 50px;
 }
 
 .input-div h5 {
@@ -75,14 +100,6 @@
   transform: translateY(-200%);
   font-size: 15px;
 }
-h3 {
-  text-transform: uppercase;
-  color: #03ffd2;
-  font-weight: 900 !important;
-  letter-spacing: 4px;
-  font-size: 2rem !important;
-  transform: translateX(-30%);
-}
 
 .i {
   display: flex;
@@ -97,7 +114,7 @@ h3 {
   display: grid;
   grid-template-columns: 20% 40%;
   margin: 25px 300px;
-  margin-bottom:10px!important;
+  margin-bottom: 10px !important;
   margin-left: 150px;
   padding: 5px 0;
   border-bottom: 1px solid #d9d9d9;
@@ -139,8 +156,7 @@ h3 {
   background: transparent;
   padding: 0.5rem 0.7rem;
   font-size: 1.2rem;
-  color:white
-  
+  color: white;
 }
 
 .signup h5 {
@@ -148,9 +164,10 @@ h3 {
   font-size: 15px;
 }
 @-webkit-keyframes autofill {
-  0%,100% {
-      color: #666;
-      background: transparent;
+  0%,
+  100% {
+    color: #666;
+    background: transparent;
   }
 }
 

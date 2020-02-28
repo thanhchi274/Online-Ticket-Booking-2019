@@ -95,7 +95,7 @@ export default class Navbar extends Component {
       );
     } else {
       return (
-        <ul className="navbar-nav">
+        <ul className="navbar-nav loginBtn">
           <NavLink activeClassName="active" className="btn-login" to="/login">
             Login
           </NavLink>
