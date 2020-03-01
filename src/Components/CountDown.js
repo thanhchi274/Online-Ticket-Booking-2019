@@ -5,7 +5,7 @@ function CountDown() {
 
   useEffect(() => {
     setTimeout(() => {
-      setRedirect(true); // Probably need to set redirect based on some condition
+      setRedirect(true);
     }, 300000);
   }, []);
   if (redirect)

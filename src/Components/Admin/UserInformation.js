@@ -25,13 +25,11 @@ import React, { Component } from 'react'
           return (
             <ul className="navbar-nav ml-auto col-md-2">
             <div className="topbar-divider d-none d-sm-block" />
-            {/* Nav Item - User Information */}
             <li className="nav-item dropdown no-arrow">
               <a className="nav-link dropdown-toggle" href="\a" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span className="mr-2 d-none d-lg-inline text-gray-800 small">{obj.hoTen}</span>
                 <FontAwesomeIcon icon={faUser} />
               </a>
-              {/* Dropdown - User Information */}
               <div className="dropdown-menu dropdown-menu-right shadow " aria-labelledby="userDropdown">
                 <Link className="dropdown-item" to="/infoAdmin">
                 <FontAwesomeIcon icon={faUser} />

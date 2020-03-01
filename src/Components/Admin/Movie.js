@@ -2,13 +2,13 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 import * as action from "../../redux/action";
-import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 import Skeleton from '@material-ui/lab/Skeleton';
 import TableMovieHead from "./TableHead";
 import SelectEntriesOption from "./SelectEntriesOption"
+import Pagination from '@material-ui/lab/Pagination';
 class Paginition extends Component {
   _isMounted = false;
   constructor(props) {
@@ -41,7 +41,7 @@ class Paginition extends Component {
         danhGia: 0
       }
     };
-    this.handlePageClick = this.handlePageClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
     this._isMounted = true;
@@ -299,31 +299,41 @@ class Paginition extends Component {
         }
       });
   };
-  handlePageClick = e => {
-    const selectedPage = e.selected;
-    const offset = selectedPage * this.state.perPage;
-
-    this.setState(
-      {
-        currentPage: selectedPage,
-        offset: offset
-      },
-      () => {
-        this.receivedData();
-      }
-    );
-  };
+  handleChange = e => {
+    const selectedPage = parseInt(e.target.innerHTML)
+    console.log(selectedPage)
+    const offset = (selectedPage-1) * this.state.perPage;
+    if(selectedPage===1){
+      this.setState(
+        {
+          currentPage: 0,
+          offset: 0
+        },
+        () => {
+          this.receivedData();
+        }
+      );
+    }
+    else{
+      this.setState(
+        {
+          currentPage: selectedPage,
+          offset,
+        },
+        () => {
+          this.receivedData();
+        }
+      );
+    }
+    };
   handlingChange = e => {
     let perPage = e.target.value;
-    this.setState(
-      {
+    this.setState({
         perPage
       },
       () => {
         this.receivedData();
-      }
-    );
-  };
+      })};
   render() {
     return (
       <div>
@@ -348,20 +358,8 @@ class Paginition extends Component {
                   column4 = {"Hình Ảnh"} column5 ="Ngày khởi Chiếu"
                 />
                 {this.state.postData}
+              <Pagination onChange={this.handleChange} pages={this.state.postData} containerclassname={"pagination"} subcontainerclassname={"pages pagination"} count={this.state.pageCount} color="secondary" hidePrevButton hideNextButton/>
               </div>
-              <ReactPaginate
-                previousLabel={"Prev"}
-                nextLabel={"Next"}
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={this.state.pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={this.handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"active"}
-              />
             </div>
           </div>
         </div>
@@ -580,7 +578,7 @@ class Paginition extends Component {
                     className="btn btnCloseMovie"
                     data-dismiss="modal"
                   >
-                    Cancle
+                    Cancel
                   </button>
                 </form>
               </div>

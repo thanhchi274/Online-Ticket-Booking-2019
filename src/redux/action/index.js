@@ -40,7 +40,7 @@ export const actUpdateMovie = user => {
   };
 };
 export const actGetUserList = () => {
-  return dispatch => {
+  return async dispatch => {
     Axios({
       method: "GET",
       url:
@@ -48,8 +48,8 @@ export const actGetUserList = () => {
     })
       .then(async result => {
         dispatch({
-          type: await ActionTypes.GET_USER_LIST,
-          userList: await result.data
+          type:await  ActionTypes.GET_USER_LIST,
+          userList:await  result.data
         });
       })
       .catch(err => {
