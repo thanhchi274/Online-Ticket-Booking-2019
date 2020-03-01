@@ -150,80 +150,84 @@ class Login extends Component {
   };
   renderHTML = () => {
     return (
-      <div className="container login-container d-flex">
-        <SVGAdminLogin />
-        <form onSubmit={this.handleSubmit}>
-          <h3>Chào Mừng Bạn</h3>
-          <div
-            className={this.state.input1}
-            onFocus={this.handleClick}
-            onBlur={this.handleBlur}
-          >
-            <div className="i">
-              <FontAwesomeIcon icon={faUser} />
-            </div>
-            <div className="input-user">
-              <h5>UserName</h5>
-              <input
-                type="text"
-                className="input"
-                name="taiKhoan"
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          {this.state.errors.taiKhoan ? (
-            <div className="warning-text" style={{ color: "red" }}>
-              {this.state.errors.taiKhoan}
-            </div>
-          ) : (
-            ""
-          )}
-          <div
-            className={this.state.input2}
-            onFocus={this.handleClick}
-            onBlur={this.handleBlur}
-          >
-            <div className="i">
-              <FontAwesomeIcon icon={faLock} />
-            </div>
-            <div>
-              <h5>Password</h5>
-              <div className="inputAr">
+      <div className="container login-container row">
+        <div className="col-sm-6 login_img">
+          <SVGAdminLogin />
+        </div>
+        <div className="formDangNhap col-sm-5">
+          <h3>Đăng nhập</h3>
+          <form onSubmit={this.handleSubmit}>
+            <div
+              className={this.state.input1}
+              onFocus={this.handleClick}
+              onBlur={this.handleBlur}
+            >
+              <div className="i">
+                <FontAwesomeIcon icon={faUser} />
+              </div>
+              <div className="input-user">
+                <h5>UserName</h5>
                 <input
+                  type="text"
                   className="input"
-                  type={this.state.type}
-                  name="matKhau"
+                  name="taiKhoan"
                   onChange={this.handleChange}
                 />
-                {this.state.matKhau ? (
-                  <FontAwesomeIcon
-                    className="PassIcon"
-                    icon={this.state.show}
-                    onClick={this.handleShowPassword}
-                  />
-                ) : null}
               </div>
             </div>
-          </div>
-          {this.state.errors.matKhau ? (
-            <div className="warning-text">{this.state.errors.matKhau}</div>
-          ) : (
-            ""
-          )}
-
-          <div className="btnAction d-flex">
-            <button
-              className="btn signin-btn mb-3"
-              disabled={!this.state.formvalid}
+            {this.state.errors.taiKhoan ? (
+              <div className="warning-text" style={{ color: "red" }}>
+                {this.state.errors.taiKhoan}
+              </div>
+            ) : (
+              ""
+            )}
+            <div
+              className={this.state.input2}
+              onFocus={this.handleClick}
+              onBlur={this.handleBlur}
             >
-              SIGN IN
-            </button>
-            <Link className="btn signup-btn" to="/sign-up">
-              SIGN UP
-            </Link>
-          </div>
-        </form>
+              <div className="i">
+                <FontAwesomeIcon icon={faLock} />
+              </div>
+              <div>
+                <h5>Password</h5>
+                <div className="inputAr">
+                  <input
+                    className="input"
+                    type={this.state.type}
+                    name="matKhau"
+                    onChange={this.handleChange}
+                  />
+                  {this.state.matKhau ? (
+                    <FontAwesomeIcon
+                      className="PassIcon"
+                      icon={this.state.show}
+                      onClick={this.handleShowPassword}
+                    />
+                  ) : null}
+                </div>
+              </div>
+            </div>
+            {this.state.errors.matKhau ? (
+              <div className="warning-text">{this.state.errors.matKhau}</div>
+            ) : (
+              ""
+            )}
+
+            <div className="btnAction d-flex">
+              <button
+                className="btn signin-btn mb-3"
+                disabled={!this.state.formvalid}
+              >
+                SIGN IN
+              </button>
+              <Link className="btn signup-btn" to="/sign-up">
+                SIGN UP
+              </Link>
+            </div>
+          </form>
+        </div>
       </div>
     );
   };

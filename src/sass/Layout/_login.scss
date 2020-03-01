@@ -1,11 +1,8 @@
 .login-container {
   text-align: center;
-  padding: 30px 0;
-  margin: 100px 0;
-  margin-top: 16vh !important;
+  padding: 30px;
   background-color: #fff;
-  margin: 0 auto;
-  width: 900px !important;
+  margin: 16vh 200px !important;
   border-radius: 69px;
   background: linear-gradient(145deg, #0e0e4a, #101058);
   box-shadow: 34px 34px 69px #090930, -34px -34px 69px #151574;
@@ -13,51 +10,57 @@
     width: 450px;
     height: 400px;
   }
-  form {
-    width: 600px !important;
+
+  .formDangNhap {
+    margin-top: 40px;
+    form {
+      margin-right: 30%;
+    }
+
+    h3 {
+      text-transform: uppercase;
+      color: #03ffd2;
+      font-weight: 900 !important;
+      letter-spacing: 4px;
+      font-size: 2rem !important;
+    }
   }
+
   .warning-text {
     font-size: 18px;
     font-weight: 700;
+    margin-left: 0 !important;
   }
-  h3 {
-    text-transform: uppercase;
-    color: #03ffd2;
-    font-weight: 900 !important;
-    letter-spacing: 4px;
-    font-size: 2rem !important;
-    transform: translateX(-30%);
-  }
-}
-.btnAction {
-  position: relative;
-  left: 22%;
-  .signin-btn {
-    opacity: 1 !important;
-    width: 150px;
-    background-color: transparent;
-    color: #03ffd2;
-    font-weight: 700;
-    border-radius: 70px;
-    border: 2px solid #03ffd2;
-    transition: all 0.2s;
-    font-size: 20px !important;
-    margin: 30px 0 10px 30px;
-    &:hover {
-      background: linear-gradient(145deg, #14d280, #18f998);
-      color: white;
+  .btnAction {
+    position: relative;
+    left: 5%;
+    .signin-btn {
+      opacity: 1 !important;
+      width: 150px;
+      background-color: transparent;
+      color: #03ffd2;
+      font-weight: 700;
+      border-radius: 70px;
       border: 2px solid #03ffd2;
+      transition: all 0.2s;
+      font-size: 20px !important;
+      margin: 30px 0 10px 30px;
+      &:hover {
+        background: linear-gradient(145deg, #14d280, #18f998);
+        color: white;
+        border: 2px solid #03ffd2;
+      }
     }
-  }
-  .signup-btn {
-    @extend .signin-btn;
-    color: #e8e111;
-    height: 50px;
-    border-color: #e8e111;
-    border: 2px solid #e8e111;
-    &:hover {
+    .signup-btn {
+      @extend .signin-btn;
+      color: #e8e111;
+      height: 50px;
+      border-color: #e8e111;
       border: 2px solid #e8e111;
-      background: linear-gradient(145deg, #e6de00, #e8e111);
+      &:hover {
+        border: 2px solid #e8e111;
+        background: linear-gradient(145deg, #e6de00, #e8e111);
+      }
     }
   }
 }
@@ -65,12 +68,12 @@
   position: relative;
   height: 45px;
   input {
-    width: 290px;
+    width: 358px;
   }
 }
 .inputAr {
   position: relative;
-  width: 280px;
+  width: 358px;
   .PassIcon {
     position: absolute;
     cursor: pointer;
@@ -110,12 +113,11 @@
 
 .input-div {
   position: relative;
-  width: 60%;
+  width: 90%;
   display: grid;
   grid-template-columns: 20% 40%;
-  margin: 25px 300px;
+  margin: 25px 0;
   margin-bottom: 10px !important;
-  margin-left: 150px;
   padding: 5px 0;
   border-bottom: 1px solid #d9d9d9;
   transition: 0.3s;

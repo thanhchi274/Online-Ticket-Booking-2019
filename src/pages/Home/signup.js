@@ -30,7 +30,8 @@ class Signup extends Component {
       mkValid: false,
       tenValid: false,
       dtValid: false,
-      emailValid: false
+      emailValid: false,
+      noti: "hi there, wanna book your movie tickets, register now"
     };
   }
 
@@ -40,18 +41,18 @@ class Signup extends Component {
     let message = value === "";
     switch (name) {
       case "taiKhoan":
-        message = value === "" ? "Tài khoản không được rỗng" : "";
+        message = value === "" ? "Tài khoản không được rỗng nha" : "";
         tkValid = message ? false : true;
         if (value && value.length < 8) {
           tkValid = false;
-          message = "Tên tài khoản phải có it nhất 8 kí tự";
+          message = "Tên tài khoản phải có it nhất 8 kí tự bạn nha";
         }
         break;
       case "matKhau":
-        message = value === "" ? "Mật khẩu không được rỗng" : "";
+        message = value === "" ? "Mật khẩu không được rỗng nha" : "";
         break;
       case "hoTen":
-        message = value === "" ? "Họ tên không được rỗng" : "";
+        message = value === "" ? "Họ tên không được rỗng nha" : "";
         tenValid = message ? false : true;
         if (value && value.length < 4) {
           tenValid = false;
@@ -59,7 +60,7 @@ class Signup extends Component {
         }
         break;
       case "soDT":
-        message = value === "" ? "Số điện thoại không được rỗng" : "";
+        message = value === "" ? "Số điện thoại không được rỗng nha" : "";
         dtValid = message ? false : true;
         if (value && value.length < 11) {
           dtValid = false;
@@ -67,11 +68,11 @@ class Signup extends Component {
         }
         break;
       case "email":
-        message = value === "" ? "email không được rỗng" : "";
+        message = value === "" ? "email không được rỗng nha" : "";
         emailValid = message ? false : true;
         if (!value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i)) {
           emailValid = false;
-          message = "Vui lòng điền đúng định dạng email";
+          message = "Điền đúng định dạng email đi kìa bạn ơi";
         }
         break;
       default:
@@ -86,6 +87,16 @@ class Signup extends Component {
       dtValid,
       emailValid
     });
+
+    if (message !== "") {
+      this.setState({
+        noti: message
+      });
+    } else {
+      this.setState({
+        noti: "OK ^.^"
+      });
+    }
   };
 
   handleChange = e => {
@@ -101,24 +112,27 @@ class Signup extends Component {
     user.maNhom = "GP01";
     user.maLoaiNguoiDung = "KhachHang";
     if ((tkValid, mkValid, dtValid, tenValid, emailValid === true)) {
-      this.props.signup(user, this.props.history);
-    } else {
-      alert("Vui lòng điền đầy đủ thông tin");
+      this.setState({
+        noti: "Chúc mừng bạn đã đăng kí thành công"
+      });
+      setTimeout(() => {
+        this.props.signup(user, this.props.history);
+      }, 2000);
     }
   };
   renderHTML = () => {
     return (
       <div className="signup-container">
-        <h4>Register</h4>
-        <div className="signup-content  row">
-          <div className="signup-img col-sm-4">
+        <div className="signup-content row">
+          <div className="signup-img col-sm-5">
             <img
               alt="hinhAnh123"
               src="https://cdn.jotfor.ms/images/podo-login-signup.png"
             />
-            <p>hi there, wanna book your movie tickets, register now</p>
+            <p>{this.state.noti}</p>
           </div>
-          <div className="signUp-form col-sm-8">
+          <div className="signUp-form col-sm-5">
+            <h4>Register</h4>
             <form onSubmit={this.handleSubmit}>
               <div className="row"></div>
               <div className="input-div signup">
@@ -136,13 +150,6 @@ class Signup extends Component {
                   />
                 </div>
               </div>
-              {this.state.errors.taiKhoan ? (
-                <div className="errorNoti" style={{ color: "red" }}>
-                  {this.state.errors.taiKhoan}
-                </div>
-              ) : (
-                ""
-              )}
               <div className="input-div signup">
                 <div className="i ">
                   <FontAwesomeIcon icon={faLock} />
@@ -158,13 +165,6 @@ class Signup extends Component {
                   />
                 </div>
               </div>
-              {this.state.errors.matKhau ? (
-                <div className="errorNoti" style={{ color: "red" }}>
-                  {this.state.errors.matKhau}
-                </div>
-              ) : (
-                ""
-              )}
               <div className="input-div signup">
                 <div className="i">
                   <FontAwesomeIcon icon={faUser} />
@@ -180,13 +180,6 @@ class Signup extends Component {
                   />
                 </div>
               </div>
-              {this.state.errors.hoTen ? (
-                <div className="errorNoti" style={{ color: "red" }}>
-                  {this.state.errors.hoTen}
-                </div>
-              ) : (
-                ""
-              )}
               <div className="input-div signup">
                 <div className="i">
                   <FontAwesomeIcon icon={faPhone} />
@@ -202,13 +195,6 @@ class Signup extends Component {
                   />
                 </div>
               </div>
-              {this.state.errors.soDT ? (
-                <div className="errorNoti" style={{ color: "red" }}>
-                  {this.state.errors.soDT}
-                </div>
-              ) : (
-                ""
-              )}
               <div className="input-div signup">
                 <div className="i">
                   <FontAwesomeIcon icon={faEnvelope} />
@@ -224,13 +210,6 @@ class Signup extends Component {
                   />
                 </div>
               </div>
-              {this.state.errors.email ? (
-                <div className="errorNoti" style={{ color: "red" }}>
-                  {this.state.errors.email}
-                </div>
-              ) : (
-                ""
-              )}
               <button className="btn signup-btn">SIGN UP</button>
             </form>
           </div>

@@ -1,5 +1,9 @@
 .navbar-expand-md {
   height: 100px !important;
+  .logo {
+    padding: 0 !important;
+    text-align: left;
+  }
 }
 .navbar--hidden-main {
   @extend .navbar;
@@ -11,10 +15,7 @@
   margin: 0 !important;
 }
 .navbar {
-  #collapsibleNavbar {
-    transform: translateX(-12%);
-  }
-  height: 99px;
+  height: 95px;
   background-color: #0c0c4a;
   z-index: 1001;
   width: 100%;
@@ -53,80 +54,91 @@
     position: relative;
     text-align: center;
   }
-  .btn-login {
-    padding: 10px 24px;
-    font-size: 18px;
-    margin-left: 40px;
-    border: 1px solid #2196f3;
-    background-color: #2196f3;
-    border-radius: 30px;
-    color: white !important;
-    transition: 0.5s;
+  .logined_button {
+    color: yellow !important;
+    &:focus {
+      outline: none !important;
+    }
+  }
+  .signin_link {
+    padding: 0 20px;
+    .userIcon {
+      width: 45px;
+      height: 45px;
+      border: 1px solid yellow;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 40px;
+      color: yellow;
+    }
+    h5 {
+      color: yellow;
+      margin: 0 10px;
+    }
+
     &:hover {
-      color: white !important;
-      text-decoration: none !important;
-      box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+      text-decoration: none;
     }
   }
-  .nav-logout {
-    margin-left: 40px;
-  }
-  .logo-name {
-    margin-top: 1em;
-    color: #fff;
-    font-weight: 700;
-    font-size: 18px;
-  }
-  .dropdown-menu {
-    border: none;
-    border-radius: 0.5rem;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-    a {
-      padding: 8px 0 8px 20px;
-      &:hover {
-        font-weight: 700;
-      }
+}
+.nav-logout {
+  margin-left: 40px;
+}
+.logo-name {
+  margin-top: 1em;
+  color: #fff;
+  font-weight: 700;
+  font-size: 18px;
+}
+.dropdown-menu {
+  border: none;
+  border-radius: 0.5rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  a {
+    padding: 8px 0 8px 20px;
+    &:hover {
+      font-weight: 700;
     }
   }
-  .active {
-    font-weight: 400;
-    border-radius: 30px;
+}
+.active {
+  font-weight: 400;
+  border-radius: 30px;
+  color: #2196f3;
+  text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+}
+.nav-link {
+  color: yellow;
+  font-weight: 600;
+  margin: 0 10px;
+  font-size: 20px;
+  transition: 0.2s;
+  &:hover {
     color: #2196f3;
     text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
   }
-  .nav-link {
-    color: #2196f3;
-    font-weight: 600;
-    margin: 0 10px;
-    font-size: 20px;
-    transition: 0.2s;
-    &:hover {
-      color: #2196f3;
-      text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
-    }
+}
+.loginBtn {
+  .active {
+    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
   }
-  .loginBtn {
-    .active {
-      box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
-    }
+}
+.nav-drop {
+  font-weight: 600;
+  margin: 5px 10px;
+  font-size: 20px;
+  transition: 0.2s;
+}
+.dropdown {
+  .dropdown-toggle {
+    background-color: transparent !important;
+    border: none;
+    color: white;
   }
-  .nav-drop {
-    font-weight: 600;
-    margin: 5px 10px;
-    font-size: 20px;
-    transition: 0.2s;
+  .user_icon {
+    margin-right: 10px;
   }
-  .dropdown {
-    .dropdown-toggle {
-      background-color: transparent !important;
-      border: none;
-      color: white;
-    }
-    .user_icon {
-      margin-right: 10px;
-    }
-  }
-  button:focus {
-    outline: none;
-  }
+}
+button:focus {
+  outline: none;
 }

@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../../redux/action";
-import * as Icon from "@material-ui/icons"
-import * as Core from "@material-ui/core"
-import {Pagination,Alert, AlertTitle } from '@material-ui/lab/'
-import SelectEntriesOption from "./SelectEntriesOption"
-import IconButton from '@material-ui/core/IconButton';
+import * as Icon from "@material-ui/icons";
+import * as Core from "@material-ui/core";
+import { Pagination, Alert, AlertTitle } from "@material-ui/lab/";
+import SelectEntriesOption from "./SelectEntriesOption";
+import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
-import TableHeadUserTable from "../Admin/TableHeadUser"
-import ModalEditUser from "../Admin/ModalEditUser"
+import TableHeadUserTable from "../Admin/TableHeadUser";
+import ModalEditUser from "../Admin/ModalEditUser";
 class Paginition extends Component {
   _isMounted = false;
   constructor(props) {
@@ -17,11 +17,11 @@ class Paginition extends Component {
       offset: 0,
       data: [],
       perPage: 10,
-      dataUser:[],
+      dataUser: [],
       currentPage: 0,
       pageCount: 0,
       keyWord: "",
-      loaded:false,
+      loaded: false,
       taiKhoanDelete: "",
       taiKhoan: "",
       matKhau: "",
@@ -48,106 +48,129 @@ class Paginition extends Component {
   }
   componentDidMount() {
     this._isMounted = true;
-    this.props.getUserList()
+    this.props.getUserList();
   }
-  componentWillReceiveProps(){
-    setTimeout(()=>{
-      if((this.state.dataUser != this.props.userList)){
-        this.props.getUserList()
-        this.setState({
-          dataUser:this.props.userList
-        },()=>{this.receivedData()})
+  componentWillReceiveProps() {
+    setTimeout(() => {
+      if (this.state.dataUser != this.props.userList) {
+        this.props.getUserList();
+        this.setState(
+          {
+            dataUser: this.props.userList
+          },
+          () => {
+            this.receivedData();
+          }
+        );
       }
-    },3000)
+    }, 3000);
   }
   componentWillUnmount() {
     this._isMounted = false;
   }
   handleChangeSearch = e => {
-    if(e.target.value!==""){
+    if (e.target.value !== "") {
+      this.setState(
+        {
+          keyWord: e.target.value
+        },
+        () => this.props.searchUser(this.state.keyWord)
+      );
+    } else {
       this.setState({
-        keyWord:e.target.value,
-      },()=> this.props.searchUser(this.state.keyWord))
-    }
-    else{
-      this.setState({
-        keyWord:"",
-        offset:0
-      })
+        keyWord: "",
+        offset: 0
+      });
     }
   };
   handleDelete = event => {
-    event.persist()
-    this._isLoaded =true;
-    const eventValue = event.target.value
-    this.setState({
-      taiKhoanDelete:eventValue
-    },()=>{
-      this.props.deleteUser(eventValue)}
-  )
+    event.persist();
+    this._isLoaded = true;
+    const eventValue = event.target.value;
+    this.setState(
+      {
+        taiKhoanDelete: eventValue
+      },
+      () => {
+        this.props.deleteUser(eventValue);
+      }
+    );
   };
-  handleEdit = (event)=> {
-    event.persist()
+  handleEdit = event => {
+    event.persist();
     let taiKhoan = event.target.value;
-    this.setState({
-      taiKhoan,
-    },()=> this.props.getUserInformation({taiKhoan}))
+    this.setState(
+      {
+        taiKhoan
+      },
+      () => this.props.getUserInformation({ taiKhoan })
+    );
   };
- async receivedData() {
-   console.log(this.state)
-  if(await this.props.userList){
-    const data = (this.state.keyWord==="")?(await this.state.dataUser):(await this.props.keyWord)
-        const slice = data.slice(
-          this.state.offset,
-          this.state.offset + this.state.perPage
-        );
-        let postData = slice.map((pd, index) => (
-          <React.Fragment key={index}>
-            <div className="table100-body js-pscroll">
-              <table>
-                <tbody>
-                  <tr className="row100 body">
-                    <td className="cell100 column1">{pd.taiKhoan}</td>
-                    <td className="cell100 column2">{pd.hoTen}</td>
-                    <td className="cell100 column3">{pd.email}</td>
-                    <td className="cell100 column4">{pd.soDt}</td>
-                    <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
-                    <td className="cell100 column6">{pd.matKhau}</td>
-                    <td className="cell100 column7">
-                    <IconButton onClick={this.handleEdit} value={pd.taiKhoan} data-toggle="modal" data-target="#myModal" aria-label="Add">
-                       <Icon.Edit/>
-                     </IconButton>
-                      <IconButton onClick={this.handleDelete} value={pd.taiKhoan} aria-label="delete">
-                       <Icon.Delete/>
-                     </IconButton>
-                      <Link
-                        to={`/quan-ly-ve/${pd.taiKhoan}`}
-                        value={pd.taiKhoan}
-                      >
-                        <IconButton>
-                       <Icon.ArrowForward />
-                     </IconButton>
-                      </Link>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </React.Fragment>
-        ));
-        if (this._isMounted) {
-          this.setState({
-            pageCount: Math.ceil(data.length / this.state.perPage),
-            postData,
-            loaded:true
-          });
-        }
-  }
+  async receivedData() {
+    console.log(this.state);
+    if (await this.props.userList) {
+      const data =
+        this.state.keyWord === ""
+          ? await this.state.dataUser
+          : await this.props.keyWord;
+      const slice = data.slice(
+        this.state.offset,
+        this.state.offset + this.state.perPage
+      );
+      let postData = slice.map((pd, index) => (
+        <React.Fragment key={index}>
+          <div className="table100-body js-pscroll">
+            <table>
+              <tbody>
+                <tr className="row100 body">
+                  <td className="cell100 column1">{pd.taiKhoan}</td>
+                  <td className="cell100 column2">{pd.hoTen}</td>
+                  <td className="cell100 column3">{pd.email}</td>
+                  <td className="cell100 column4">{pd.soDt}</td>
+                  <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
+                  <td className="cell100 column6">{pd.matKhau}</td>
+                  <td className="cell100 column7">
+                    <IconButton
+                      onClick={this.handleEdit}
+                      value={pd.taiKhoan}
+                      data-toggle="modal"
+                      data-target="#myModal"
+                      aria-label="Add"
+                    >
+                      <Icon.Edit />
+                    </IconButton>
+                    <IconButton
+                      onClick={this.handleDelete}
+                      value={pd.taiKhoan}
+                      aria-label="delete"
+                    >
+                      <Icon.Delete />
+                    </IconButton>
+                    <Link to={`/quan-ly-ve/${pd.taiKhoan}`} value={pd.taiKhoan}>
+                      <IconButton>
+                        <Icon.ArrowForward />
+                      </IconButton>
+                    </Link>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </React.Fragment>
+      ));
+      if (this._isMounted) {
+        this.setState({
+          pageCount: Math.ceil(data.length / this.state.perPage),
+          postData,
+          loaded: true
+        });
+      }
+    }
   }
   handleChange = e => {
     const selectedPage = parseInt(e.target.innerHTML);
-    const offset = (selectedPage-1) * this.state.perPage;
-    if(selectedPage===1){
+    const offset = (selectedPage - 1) * this.state.perPage;
+    if (selectedPage === 1) {
       this.setState(
         {
           currentPage: 0,
@@ -157,8 +180,7 @@ class Paginition extends Component {
           this.receivedData();
         }
       );
-    }
-    else{
+    } else {
       this.setState(
         {
           currentPage: selectedPage,
@@ -213,12 +235,11 @@ class Paginition extends Component {
       e.preventDefault();
       return (
         <Alert severity="warning">
-        <AlertTitle>Warning</AlertTitle>
-        Chọn Người Dùng Trước
-      </Alert>
-      )
-    } 
-    else {
+          <AlertTitle>Warning</AlertTitle>
+          Chọn Người Dùng Trước
+        </Alert>
+      );
+    } else {
       e.preventDefault();
       this.props.addUser(this.state.addNewUserData);
     }
@@ -303,34 +324,44 @@ class Paginition extends Component {
           </div>
           <div className="selectEntries d-flex">
             <select className="mr-5" onChange={this.handlingChange}>
-            <SelectEntriesOption />
+              <SelectEntriesOption />
             </select>
-          <Core.FormControl>
-        <Core.InputLabel htmlFor="input-with-icon-adornment">Search User</Core.InputLabel>
-        <Core.Input
-          id="input-with-icon-adornment"
-          onChange={this.handleChangeSearch}
-          startAdornment={
-            <Core.InputAdornment position="start">
-              <Icon.AccountCircle />
-            </Core.InputAdornment>
-          }
-        />
-      </Core.FormControl>
+            <Core.FormControl>
+              <Core.InputLabel htmlFor="input-with-icon-adornment">
+                Search User
+              </Core.InputLabel>
+              <Core.Input
+                id="input-with-icon-adornment"
+                onChange={this.handleChangeSearch}
+                startAdornment={
+                  <Core.InputAdornment position="start">
+                    <Icon.AccountCircle />
+                  </Core.InputAdornment>
+                }
+              />
+            </Core.FormControl>
           </div>
           <div className="container-table100">
             <div className="wrap-table100">
               <div className="table100 ver2 m-b-110">
-               <TableHeadUserTable/> 
+                <TableHeadUserTable />
                 {this.state.postData}
                 <div className="d-flex">
-                <Pagination onChange={this.handleChange} pages={this.state.postData} count={this.state.pageCount-1} color="secondary" hidePrevButton hideNextButton size="large"/>
+                  <Pagination
+                    onChange={this.handleChange}
+                    pages={this.state.postData}
+                    count={this.state.pageCount - 1}
+                    color="secondary"
+                    hidePrevButton
+                    hideNextButton
+                    size="large"
+                  />
                 </div>
               </div>
             </div>
           </div>
         </div>
-          <ModalEditUser idUser ={this.state.taiKhoan}/>
+        <ModalEditUser idUser={this.state.taiKhoan} />
       </div>
     );
   }
@@ -338,7 +369,7 @@ class Paginition extends Component {
 const mapStateToProps = state => {
   return {
     keyWord: state.movieReducer.keyWord,
-    userList:state.movieReducer.userList,
+    userList: state.movieReducer.userList,
     loading: state.movieReducer.loading,
     userInformation: state.movieReducer.userInformation
   };

@@ -69,7 +69,7 @@ export default class Navbar extends Component {
             <div className="dropdown">
               <button
                 type="button"
-                className="dropdown-toggle"
+                className="dropdown-toggle logined_button"
                 data-toggle="dropdown"
               >
                 <FontAwesomeIcon className="user_icon" icon={faUser} />
@@ -95,11 +95,16 @@ export default class Navbar extends Component {
       );
     } else {
       return (
-        <ul className="navbar-nav loginBtn">
-          <NavLink activeClassName="active" className="btn-login" to="/login">
-            Login
-          </NavLink>
-        </ul>
+        <NavLink
+          activeClassName="active"
+          className="signin_link row align-items-center"
+          to="/login"
+        >
+          <div className="userIcon">
+            <FontAwesomeIcon className="login_icon" icon={faUser} />
+          </div>
+          <h5 className="signin_content">Đăng nhập</h5>
+        </NavLink>
       );
     }
   }
@@ -114,7 +119,7 @@ export default class Navbar extends Component {
                 : "header navbar--hidden-main row "
             }
           >
-            <div className="col-sm-4">
+            <div className="logo">
               <Link
                 className="logo-title d-flex align-items-center"
                 onClick={this.scrollToTop}
@@ -125,11 +130,8 @@ export default class Navbar extends Component {
                   src="../logoMovies.png"
                   alt="icons8-movie-ticket"
                   border={0}
-                  width="20%"
+                  width="50%"
                 />
-                <div className="logo-content">
-                  <h5 className="logo_topContent">Cyber Movies</h5>
-                </div>
               </Link>
             </div>
 
@@ -176,10 +178,10 @@ export default class Navbar extends Component {
                       Subscribe
                     </Link>
                   </li>
-                  {this.renderHTML()}
                 </ul>
               </div>
             </div>
+            {this.renderHTML()}
           </div>
           {/* Toggler/collapsibe Button */}
         </nav>
