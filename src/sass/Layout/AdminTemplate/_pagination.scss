@@ -4,6 +4,13 @@
     background-color: rgba(0,0,0,0.25);
 }
 .limiter{
+    .btnADDUSER{
+        width: 50px!important;
+        height: 50px!important;
+        position: relative;
+        right:-28%;
+        margin-top:-10px;
+    }
     .navbar-search{
         margin:0 !important;
         height: 10px!important;
@@ -31,40 +38,10 @@
             }
         }
     }
-}
-.pagination{
-    margin-top:30px;
-    justify-content: flex-end;
-    li{
-        padding: 0 5px;
-        a{ 
-            color:#4e73df!important;
-            border:none!important;
-            border-radius: 50%;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
-            &:hover{
-                box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22)
-            }
-           
-        }
-        &:focus{
-            outline:none!important;
-        }
-    }
-    .active{
-        a{
-            color: white!important;
-            background-color: #000!important;
-        }
-    }
-    .previous{
-        a{
-            border-radius: 18%!important;
-        }
-    }
-    .next{
-       @extend .previous
+    .MuiPagination-root{
+        position:relative;
+        left:70%;
+        margin:20px;
     }
 }
 .choiceTypeUser{
@@ -96,13 +73,15 @@
 #myModalAdd{
     background-color: rgba(0,0,0,0.25);
     padding-top:2vh;
-    
     .form-group{
         input{
             width: 460px;
         }
     }
-    .btnADDUSER{
+    select:focus{
+        outline:none
+    }
+    .btnCloseAddUser{
         background:transparent;
         position: relative;
         right:5%;
@@ -124,12 +103,6 @@
           box-shadow: inset 5px 5px 7px #354e98, 
           inset -5px -5px 7px #6798ff;
         }
-    }
-    select:focus{
-        outline:none
-    }
-    .btnCloseAddUser{
-        @extend .btnADDUSER;
         left:20%;
     }
 

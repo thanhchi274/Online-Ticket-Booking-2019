@@ -9,7 +9,6 @@ import Box from "@material-ui/core/Box";
 import VerticalTabs from "./lich-chieu";
 import RatingStar from "./RatingMovie";
 import CommentList from "./commentList";
-
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 

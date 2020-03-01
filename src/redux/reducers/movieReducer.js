@@ -1,5 +1,4 @@
 import * as ActionType from "./../constants/ActionType";
-import data from "../../data.json";
 let initialState = {
   listMovie: [],
   listMovieUpcoming: [],
@@ -12,7 +11,6 @@ let initialState = {
   userList: [],
   userInformation: {},
   keyWord: [],
-  news: data,
   tickets: {},
   theaterInfo: [],
   comment: []
@@ -24,9 +22,8 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, loading: false };
     }
     case ActionType.GET_USER_LIST: {
-      console.log(action);
       state.userList = action.userList;
-      return { ...state, loading: false };
+      return { ...state};
     }
     case ActionType.GET_DETAIL_MOVIE: {
       state.movie = action.movie;

@@ -1,17 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import axios from "axios";
 import * as action from "../../redux/action";
-import ReactPaginate from "react-paginate";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Skeleton from "@material-ui/lab/Skeleton";
+import * as Icon from "@material-ui/icons";
+import * as Core from "@material-ui/core";
+import { Pagination, Alert, AlertTitle } from "@material-ui/lab/";
 import SelectEntriesOption from "./SelectEntriesOption";
-import {
-  faUserEdit,
-  faTrash,
-  faTicketAlt
-} from "@fortawesome/free-solid-svg-icons";
+import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
+import TableHeadUserTable from "../Admin/TableHeadUser";
+import ModalEditUser from "../Admin/ModalEditUser";
 class Paginition extends Component {
   _isMounted = false;
   constructor(props) {
@@ -20,10 +17,11 @@ class Paginition extends Component {
       offset: 0,
       data: [],
       perPage: 10,
+      dataUser: [],
       currentPage: 0,
       pageCount: 0,
-      searchData: [],
       keyWord: "",
+      loaded: false,
       taiKhoanDelete: "",
       taiKhoan: "",
       matKhau: "",
@@ -46,239 +44,153 @@ class Paginition extends Component {
         maLoaiNguoiDung: ""
       }
     };
-    this.handlePageClick = this.handlePageClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   componentDidMount() {
     this._isMounted = true;
-    setInterval(() => {
-      this.receivedData();
-    }, 100);
+    this.props.getUserList();
+  }
+  componentWillReceiveProps() {
+    setTimeout(() => {
+      if (this.state.dataUser != this.props.userList) {
+        this.props.getUserList();
+        this.setState(
+          {
+            dataUser: this.props.userList
+          },
+          () => {
+            this.receivedData();
+          }
+        );
+      }
+    }, 3000);
   }
   componentWillUnmount() {
     this._isMounted = false;
   }
   handleChangeSearch = e => {
-    if (this.state.keyWord === "") {
-      let keyWord = e.target.value;
-      this.setState({
-        keyWord,
-        searchData: ""
-      });
-    } else {
-      let keyWord = e.target.value;
+    if (e.target.value !== "") {
       this.setState(
         {
-          keyWord,
-          searchData: this.props.keyWord
+          keyWord: e.target.value
         },
-        this.props.searchUser(keyWord)
+        () => this.props.searchUser(this.state.keyWord)
       );
+    } else {
+      this.setState({
+        keyWord: "",
+        offset: 0
+      });
     }
   };
-  handleChangeEdit = e => {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
-    this.setState({
-      [name]: value,
-      sumbitData: {
-        taiKhoan: this.state.taiKhoan,
-        hoTen: this.state.hoTen,
-        email: this.state.email,
-        soDt: this.state.soDt,
-        matKhau: this.state.matKhau,
-        maLoaiNguoiDung: this.state.maLoaiNguoiDung,
-        maNhom: "GP01",
-        [name]: value
-      }
-    });
-  };
-  handleDelete = e => {
-    return e.target.value !== ""
-      ? this.props.deleteUser(e.target.value)
-      : console.log("Thao tác quá nhanh");
-  };
-  handleSubmitEdit = e => {
+  handleDelete = event => {
+    event.persist();
+    this._isLoaded = true;
+    const eventValue = event.target.value;
     this.setState(
       {
-        ...this.state.sumbitData
-      },
-      this.props.updateUser(this.state.sumbitData)
-    );
-    e.preventDefault();
-  };
-  handleEdit = e => {
-    let hoTen = e.target.getAttribute("hoten");
-    let email = e.target.getAttribute("email");
-    let soDt = e.target.getAttribute("sodt");
-    let matKhau = e.target.getAttribute("matkhau");
-    let taiKhoan = e.target.value;
-    let maLoaiNguoiDung = e.target.getAttribute("maloainguoidung");
-    this.setState({
-      taiKhoan,
-      email,
-      soDt,
-      matKhau,
-      hoTen,
-      maLoaiNguoiDung,
-      sumbitData: {
-        maNhom: "GP01",
-        taiKhoan,
-        email,
-        soDt,
-        matKhau,
-        hoTen
-      }
-    });
-  };
-  async receivedData() {
-    try {
-      axios
-        .get(
-          `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`
-        )
-        .then(async res => {
-          if (this.state.keyWord === "") {
-            const data = await res.data;
-            const slice = data.slice(
-              this.state.offset,
-              this.state.offset + this.state.perPage
-            );
-            let postData = slice.map((pd, index) => (
-              <React.Fragment key={index}>
-                <div className="table100-body js-pscroll">
-                  <table>
-                    <tbody>
-                      <tr className="row100 body">
-                        <td className="cell100 column1">{pd.taiKhoan}</td>
-                        <td className="cell100 column2">{pd.hoTen}</td>
-                        <td className="cell100 column3">{pd.email}</td>
-                        <td className="cell100 column4">{pd.soDt}</td>
-                        <td className="cell100 column5">
-                          {pd.maLoaiNguoiDung}
-                        </td>
-                        <td className="cell100 column6">{pd.matKhau}</td>
-                        <td className="cell100 column7">
-                          <button
-                            onClick={this.handleEdit}
-                            value={pd.taiKhoan}
-                            className="btn btnEdit btn-success"
-                            maloainguoidung={pd.maLoaiNguoiDung}
-                            hoten={pd.hoTen}
-                            email={pd.email}
-                            sodt={pd.soDt}
-                            matkhau={pd.matKhau}
-                            data-toggle="modal"
-                            data-target="#myModal"
-                          >
-                            <FontAwesomeIcon icon={faUserEdit} />
-                          </button>
-                          <button
-                            onClick={this.handleDelete}
-                            value={pd.taiKhoan}
-                            maloainguoidung={pd.maLoaiNguoiDung}
-                            className="btn btnDelete btn-danger mx-1"
-                          >
-                            <FontAwesomeIcon icon={faTrash} />
-                          </button>
-                          <Link
-                            to={`/quan-ly-ve/${pd.taiKhoan}`}
-                            value={pd.taiKhoan}
-                            className="btn btnTicket btn-info"
-                          >
-                            <FontAwesomeIcon icon={faTicketAlt} />
-                          </Link>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </React.Fragment>
-            ));
-            if (this._isMounted) {
-              this.setState({
-                pageCount: Math.ceil(data.length / this.state.perPage),
-                postData
-              });
-            }
-          }
-          if (this.state.keyWord !== "") {
-            const data = await this.props.keyWord;
-            const slice = data.slice(
-              this.state.offset,
-              this.state.offset + this.state.perPage
-            );
-            let postData = slice.map((pd, index) => (
-              <React.Fragment key={index}>
-                <div className="table100-body js-pscroll">
-                  <table>
-                    <tbody>
-                      <tr className="row100 body">
-                        <td className="cell100 column1">{pd.taiKhoan}</td>
-                        <td className="cell100 column2">{pd.hoTen}</td>
-                        <td className="cell100 column3">{pd.email}</td>
-                        <td className="cell100 column4">{pd.soDt}</td>
-                        <td className="cell100 column5">
-                          {pd.maLoaiNguoiDung}
-                        </td>
-                        <td className="cell100 column6">{pd.matKhau}</td>
-                        <td className="cell100 column7">
-                          <button
-                            onClick={this.handleEdit}
-                            value={pd.taiKhoan}
-                            className="btn btnEdit btn-success"
-                            maloainguoidung={pd.maLoaiNguoiDung}
-                          >
-                            <FontAwesomeIcon icon={faUserEdit} />
-                          </button>
-                          <button
-                            onClick={this.handleDelete}
-                            value={pd.taiKhoan}
-                            className="btn btnDelete btn-danger mx-1"
-                          >
-                            <FontAwesomeIcon icon={faTrash} />
-                          </button>
-                          <button
-                            to={`/quan-ly-ve/${pd.taiKhoan}`}
-                            value={pd.taiKhoan}
-                            className="btn btnTicket btn-info"
-                            data-toggle="modal"
-                            data-target="#myModal"
-                          >
-                            <FontAwesomeIcon icon={faTicketAlt} />
-                          </button>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-              </React.Fragment>
-            ));
-            if (this._isMounted) {
-              this.setState({
-                pageCount: Math.ceil(data.length / this.state.perPage),
-                postData
-              });
-            }
-          }
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  handlePageClick = e => {
-    const selectedPage = e.selected;
-    const offset = selectedPage * this.state.perPage;
-
-    this.setState(
-      {
-        currentPage: selectedPage,
-        offset: offset
+        taiKhoanDelete: eventValue
       },
       () => {
-        this.receivedData();
+        this.props.deleteUser(eventValue);
       }
     );
+  };
+  handleEdit = event => {
+    event.persist();
+    let taiKhoan = event.target.value;
+    this.setState(
+      {
+        taiKhoan
+      },
+      () => this.props.getUserInformation({ taiKhoan })
+    );
+  };
+  async receivedData() {
+    console.log(this.state);
+    if (await this.props.userList) {
+      const data =
+        this.state.keyWord === ""
+          ? await this.state.dataUser
+          : await this.props.keyWord;
+      const slice = data.slice(
+        this.state.offset,
+        this.state.offset + this.state.perPage
+      );
+      let postData = slice.map((pd, index) => (
+        <React.Fragment key={index}>
+          <div className="table100-body js-pscroll">
+            <table>
+              <tbody>
+                <tr className="row100 body">
+                  <td className="cell100 column1">{pd.taiKhoan}</td>
+                  <td className="cell100 column2">{pd.hoTen}</td>
+                  <td className="cell100 column3">{pd.email}</td>
+                  <td className="cell100 column4">{pd.soDt}</td>
+                  <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
+                  <td className="cell100 column6">{pd.matKhau}</td>
+                  <td className="cell100 column7">
+                    <IconButton
+                      onClick={this.handleEdit}
+                      value={pd.taiKhoan}
+                      data-toggle="modal"
+                      data-target="#myModal"
+                      aria-label="Add"
+                    >
+                      <Icon.Edit />
+                    </IconButton>
+                    <IconButton
+                      onClick={this.handleDelete}
+                      value={pd.taiKhoan}
+                      aria-label="delete"
+                    >
+                      <Icon.Delete />
+                    </IconButton>
+                    <Link to={`/quan-ly-ve/${pd.taiKhoan}`} value={pd.taiKhoan}>
+                      <IconButton>
+                        <Icon.ArrowForward />
+                      </IconButton>
+                    </Link>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </React.Fragment>
+      ));
+      if (this._isMounted) {
+        this.setState({
+          pageCount: Math.ceil(data.length / this.state.perPage),
+          postData,
+          loaded: true
+        });
+      }
+    }
+  }
+  handleChange = e => {
+    const selectedPage = parseInt(e.target.innerHTML);
+    const offset = (selectedPage - 1) * this.state.perPage;
+    if (selectedPage === 1) {
+      this.setState(
+        {
+          currentPage: 0,
+          offset: 0
+        },
+        () => {
+          this.receivedData();
+        }
+      );
+    } else {
+      this.setState(
+        {
+          currentPage: selectedPage,
+          offset: offset
+        },
+        () => {
+          this.receivedData();
+        }
+      );
+    }
   };
   handlingChange = e => {
     let perPage = e.target.value;
@@ -321,7 +233,12 @@ class Paginition extends Component {
   handleOnAddNew = e => {
     if (this.state.addNewUserData.maLoaiNguoiDung === "") {
       e.preventDefault();
-      return alert("Chọn loại Người Dùng Trước");
+      return (
+        <Alert severity="warning">
+          <AlertTitle>Warning</AlertTitle>
+          Chọn Người Dùng Trước
+        </Alert>
+      );
     } else {
       e.preventDefault();
       this.props.addUser(this.state.addNewUserData);
@@ -333,7 +250,6 @@ class Paginition extends Component {
         <div className="limiter">
           <div id="myModalAdd" className="modal fade" role="dialog">
             <div className="modal-dialog">
-              {/* Modal content*/}
               <div className="modal-content">
                 <div className="modal-body">
                   <form onSubmit={this.handleOnAddNew}>
@@ -406,194 +322,46 @@ class Paginition extends Component {
               </div>
             </div>
           </div>
-
-          <div className="selectEntries d-flex mr-5">
-            <select onChange={this.handlingChange}>
+          <div className="selectEntries d-flex">
+            <select className="mr-5" onChange={this.handlingChange}>
               <SelectEntriesOption />
             </select>
-            <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-2 col-md-9 navbar-search">
-              <div className="input-group">
-                <input
-                  type="text"
-                  className="form-control border-0 small"
-                  onChange={this.handleChangeSearch}
-                  placeholder="Search for..."
-                  aria-label="Search"
-                  aria-describedby="basic-addon2"
-                />
-              </div>
-            </form>
-            <button
-              className="btnAddUser btn "
-              data-toggle="modal"
-              data-target="#myModalAdd"
-            >
-              Add User
-            </button>
+            <Core.FormControl>
+              <Core.InputLabel htmlFor="input-with-icon-adornment">
+                Search User
+              </Core.InputLabel>
+              <Core.Input
+                id="input-with-icon-adornment"
+                onChange={this.handleChangeSearch}
+                startAdornment={
+                  <Core.InputAdornment position="start">
+                    <Icon.AccountCircle />
+                  </Core.InputAdornment>
+                }
+              />
+            </Core.FormControl>
           </div>
           <div className="container-table100">
             <div className="wrap-table100">
               <div className="table100 ver2 m-b-110">
-                <div className="table100-head">
-                  <table>
-                    <thead>
-                      <tr className="row100 head">
-                        <th className="cell100 column1">Tài Khoản</th>
-                        <th className="cell100 column2">Họ Tên</th>
-                        <th className="cell100 column3">Email</th>
-                        <th className="cell100 column4">Số ĐT</th>
-                        <th className="cell100 column5">Type</th>
-                        <th className="cell100 column6">Mật khẩu</th>
-                        <th className="cell100 column7">Action</th>
-                      </tr>
-                    </thead>
-                  </table>
-                </div>
+                <TableHeadUserTable />
                 {this.state.postData}
-              </div>
-              <ReactPaginate
-                previousLabel={"Prev"}
-                nextLabel={"Next"}
-                breakLabel={"..."}
-                breakClassName={"break-me"}
-                pageCount={this.state.pageCount}
-                marginPagesDisplayed={2}
-                pageRangeDisplayed={5}
-                onPageChange={this.handlePageClick}
-                containerClassName={"pagination"}
-                subContainerClassName={"pages pagination"}
-                activeClassName={"active"}
-              />
-            </div>
-          </div>
-        </div>
-        <div id="myModal" className="modal modalEditUser fade" role="dialog">
-          <div className="modal-dialog">
-            {/* Modal content*/}
-            <div className="modal-content">
-              <div className="modal-body">
-                <form onSubmit={this.handleSubmitEdit}>
-                  <div className="form-group">
-                    <label>Tài Khoản:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="taiKhoan"
-                      value={
-                        this.state.taiKhoan !== "" ? (
-                          this.state.taiKhoan
-                        ) : (
-                          <Skeleton
-                            animation="wave"
-                            variant="text"
-                            width="250px"
-                          />
-                        )
-                      }
-                      onChange={this.handleChangeEdit}
-                      placeholder="Nhập Họ và Tên"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Họ Tên:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="hoTen"
-                      value={
-                        this.state.hoTen !== "" ? (
-                          this.state.hoTen
-                        ) : (
-                          <Skeleton
-                            animation="wave"
-                            variant="text"
-                            width="250px"
-                          />
-                        )
-                      }
-                      onChange={this.handleChangeEdit}
-                      placeholder="Nhập Họ và Tên"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Password:</label>
-                    <input
-                      type="password"
-                      className="form-control"
-                      name="matKhau"
-                      autoComplete="password"
-                      value={
-                        this.state.matKhau !== "" ? (
-                          this.state.matKhau
-                        ) : (
-                          <Skeleton
-                            animation="wave"
-                            variant="text"
-                            width="250px"
-                          />
-                        )
-                      }
-                      onChange={this.handleChangeEdit}
-                      placeholder="Nhập Password"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Số Điện Thoại:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="soDt"
-                      value={
-                        this.state.soDt !== "" ? (
-                          this.state.soDt
-                        ) : (
-                          <Skeleton
-                            animation="wave"
-                            variant="text"
-                            width="250px"
-                          />
-                        )
-                      }
-                      onChange={this.handleChangeEdit}
-                      placeholder="Nhập số điện thoại"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Email:</label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      name="email"
-                      value={
-                        this.state.email !== "" ? (
-                          this.state.email
-                        ) : (
-                          <Skeleton
-                            animation="wave"
-                            variant="text"
-                            width="250px"
-                          />
-                        )
-                      }
-                      onChange={this.handleChangeEdit}
-                      placeholder="Nhập Email"
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-update btnADDEdit">
-                    Submit
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btnCloseEditUser"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                </form>
+                <div className="d-flex">
+                  <Pagination
+                    onChange={this.handleChange}
+                    pages={this.state.postData}
+                    count={this.state.pageCount - 1}
+                    color="secondary"
+                    hidePrevButton
+                    hideNextButton
+                    size="large"
+                  />
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <ModalEditUser idUser={this.state.taiKhoan} />
       </div>
     );
   }
@@ -601,16 +369,13 @@ class Paginition extends Component {
 const mapStateToProps = state => {
   return {
     keyWord: state.movieReducer.keyWord,
+    userList: state.movieReducer.userList,
     loading: state.movieReducer.loading,
     userInformation: state.movieReducer.userInformation
   };
 };
-
 const mapDispatchToProps = dispatch => {
   return {
-    getUserList: () => {
-      dispatch(action.actGetUserList());
-    },
     searchUser: id => {
       dispatch(action.actSearchUser(id));
     },
@@ -620,13 +385,12 @@ const mapDispatchToProps = dispatch => {
     getUserInformation: tk => {
       dispatch(action.actLayThongTinUser(tk));
     },
-    updateUser: tk => {
-      dispatch(action.actUpdateUserInformation(tk));
-    },
     addUser: user => {
       dispatch(action.actThemNguoiDung(user));
+    },
+    getUserList: () => {
+      dispatch(action.actGetUserList());
     }
   };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(Paginition);

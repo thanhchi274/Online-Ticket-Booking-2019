@@ -3,7 +3,6 @@ import Slider from "react-slick";
 import { NavLink } from "react-router-dom";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
-// import HomeTool from "./home-tool";
 function NextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -63,7 +62,6 @@ class Carousel extends Component {
           </NavLink>
             </div>
           </Slider>
-          {/* <HomeTool movie={this.props}/> */}
           </div>
         );
     }

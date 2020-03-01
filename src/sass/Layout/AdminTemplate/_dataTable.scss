@@ -112,13 +112,12 @@
     width: 20%;
   }
   .table100-head th {
-    padding-top: 18px;
-    padding-bottom: 18px;
+    padding-top:10px;
   }
   
   .table100-body td {
-    padding-top: 16px;
-    padding-bottom: 14px;
+    padding-top: 13px;
+    padding-bottom: 12px;
   }
   .MovieManagement{
     .column1 {
@@ -206,6 +205,13 @@
   .table100-body {
     max-height: 585px;
     overflow: auto;
+    .column7{
+      button{
+        span{
+          pointer-events: none;
+        }
+      }
+    }
   }
   
   /*==================================================================
