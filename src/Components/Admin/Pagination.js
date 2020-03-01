@@ -4,8 +4,8 @@ import axios from "axios";
 import * as action from "../../redux/action";
 import ReactPaginate from "react-paginate";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Skeleton from '@material-ui/lab/Skeleton';
-import SelectEntriesOption from "./SelectEntriesOption"
+import Skeleton from "@material-ui/lab/Skeleton";
+import SelectEntriesOption from "./SelectEntriesOption";
 import {
   faUserEdit,
   faTrash,
@@ -79,24 +79,24 @@ class Paginition extends Component {
     let target = e.target;
     let name = target.name;
     let value = target.value;
-    this.setState(
-      {
-        [name]: value,
-        sumbitData: {
-          taiKhoan: this.state.taiKhoan,
-          hoTen: this.state.hoTen,
-          email: this.state.email,
-          soDt: this.state.soDt,
-          matKhau: this.state.matKhau,
-          maLoaiNguoiDung: this.state.maLoaiNguoiDung,
-          maNhom: "GP01",
-          [name]: value
-        }
+    this.setState({
+      [name]: value,
+      sumbitData: {
+        taiKhoan: this.state.taiKhoan,
+        hoTen: this.state.hoTen,
+        email: this.state.email,
+        soDt: this.state.soDt,
+        matKhau: this.state.matKhau,
+        maLoaiNguoiDung: this.state.maLoaiNguoiDung,
+        maNhom: "GP01",
+        [name]: value
       }
-    );
+    });
   };
   handleDelete = e => {
-      return (e.target.value!=="")?( this.props.deleteUser(e.target.value)):console.log("Thao tác quá nhanh")
+    return e.target.value !== ""
+      ? this.props.deleteUser(e.target.value)
+      : console.log("Thao tác quá nhanh");
   };
   handleSubmitEdit = e => {
     this.setState(
@@ -114,156 +114,157 @@ class Paginition extends Component {
     let matKhau = e.target.getAttribute("matkhau");
     let taiKhoan = e.target.value;
     let maLoaiNguoiDung = e.target.getAttribute("maloainguoidung");
-    this.setState(
-      {
+    this.setState({
+      taiKhoan,
+      email,
+      soDt,
+      matKhau,
+      hoTen,
+      maLoaiNguoiDung,
+      sumbitData: {
+        maNhom: "GP01",
         taiKhoan,
         email,
         soDt,
         matKhau,
-        hoTen,
-        maLoaiNguoiDung,
-        sumbitData: {
-          maNhom: "GP01",
-          taiKhoan,
-          email,
-          soDt,
-          matKhau,
-          hoTen
-        }
+        hoTen
       }
-    );
+    });
   };
- async receivedData() {
-   try{
-     axios
-       .get(
-         `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`
-       )
-       .then(async res => {
-         if (this.state.keyWord === "") {
-         const data =await res.data;
-           const slice = data.slice(
-             this.state.offset,
-             this.state.offset + this.state.perPage
-           );
-         let postData = slice.map((pd, index) => (
-             <React.Fragment key={index}>
-               <div className="table100-body js-pscroll">
-                 <table>
-                   <tbody>
-                     <tr className="row100 body">
-                       <td className="cell100 column1">{pd.taiKhoan}</td>
-                       <td className="cell100 column2">{pd.hoTen}</td>
-                       <td className="cell100 column3">{pd.email}</td>
-                       <td className="cell100 column4">{pd.soDt}</td>
-                       <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
-                       <td className="cell100 column6">{pd.matKhau}</td>
-                       <td className="cell100 column7">
-                         <button
-                           onClick={this.handleEdit}
-                           value={pd.taiKhoan}
-                           className="btn btnEdit btn-success"
-                           maloainguoidung={pd.maLoaiNguoiDung}
-                           hoten={pd.hoTen}
-                           email={pd.email}
-                           sodt={pd.soDt}
-                           matkhau={pd.matKhau}
-                           data-toggle="modal"
-                           data-target="#myModal"
-                         >
-                           <FontAwesomeIcon icon={faUserEdit} />
-                         </button>
-                         <button
-                           onClick={this.handleDelete}
-                           value={pd.taiKhoan}
-                           maloainguoidung={pd.maLoaiNguoiDung}
-                           className="btn btnDelete btn-danger mx-1"
-                         >
-                           <FontAwesomeIcon icon={faTrash} />
-                         </button>
-                         <Link
-                           to={`/quan-ly-ve/${pd.taiKhoan}`}
-                           value={pd.taiKhoan}
-                           className="btn btnTicket btn-info"
-                         >
-                           <FontAwesomeIcon icon={faTicketAlt} />
-                         </Link>
-                       </td>
-                     </tr>
-                   </tbody>
-                 </table>
-               </div>
-             </React.Fragment>
-           ));
-           if (this._isMounted) {
-             this.setState({
-               pageCount: Math.ceil(data.length / this.state.perPage),
-               postData
-             });
-           }
-         }
-         if (this.state.keyWord !== "") {
-           const data = await this.props.keyWord;
-           const slice = data.slice(
-             this.state.offset,
-             this.state.offset + this.state.perPage
-           );
-           let postData = slice.map((pd, index) => (
-             <React.Fragment key={index}>
-               <div className="table100-body js-pscroll">
-                 <table>
-                   <tbody>
-                     <tr className="row100 body">
-                       <td className="cell100 column1">{pd.taiKhoan}</td>
-                       <td className="cell100 column2">{pd.hoTen}</td>
-                       <td className="cell100 column3">{pd.email}</td>
-                       <td className="cell100 column4">{pd.soDt}</td>
-                       <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
-                       <td className="cell100 column6">{pd.matKhau}</td>
-                       <td className="cell100 column7">
-                         <button
-                           onClick={this.handleEdit}
-                           value={pd.taiKhoan}
-                           className="btn btnEdit btn-success"
-                           maloainguoidung={pd.maLoaiNguoiDung}
-                         >
-                           <FontAwesomeIcon icon={faUserEdit} />
-                         </button>
-                         <button
-                           onClick={this.handleDelete}
-                           value={pd.taiKhoan}
-                           className="btn btnDelete btn-danger mx-1"
-                         >
-                           <FontAwesomeIcon icon={faTrash} />
-                         </button>
-                         <button
-                           to={`/quan-ly-ve/${pd.taiKhoan}`}
-                           value={pd.taiKhoan}
-                           className="btn btnTicket btn-info"
-                           data-toggle="modal"
-                           data-target="#myModal"
-                         >
-                           <FontAwesomeIcon icon={faTicketAlt} />
-                         </button>
-                       </td>
-                     </tr>
-                   </tbody>
-                 </table>
-               </div>
-             </React.Fragment>
-           ));
-           if (this._isMounted) {
-             this.setState({
-               pageCount: Math.ceil(data.length / this.state.perPage),
-               postData
-             });
-           }
-         }
-       });
-   }
-   catch(err){
-     console.log(err)
-   }
+  async receivedData() {
+    try {
+      axios
+        .get(
+          `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01`
+        )
+        .then(async res => {
+          if (this.state.keyWord === "") {
+            const data = await res.data;
+            const slice = data.slice(
+              this.state.offset,
+              this.state.offset + this.state.perPage
+            );
+            let postData = slice.map((pd, index) => (
+              <React.Fragment key={index}>
+                <div className="table100-body js-pscroll">
+                  <table>
+                    <tbody>
+                      <tr className="row100 body">
+                        <td className="cell100 column1">{pd.taiKhoan}</td>
+                        <td className="cell100 column2">{pd.hoTen}</td>
+                        <td className="cell100 column3">{pd.email}</td>
+                        <td className="cell100 column4">{pd.soDt}</td>
+                        <td className="cell100 column5">
+                          {pd.maLoaiNguoiDung}
+                        </td>
+                        <td className="cell100 column6">{pd.matKhau}</td>
+                        <td className="cell100 column7">
+                          <button
+                            onClick={this.handleEdit}
+                            value={pd.taiKhoan}
+                            className="btn btnEdit btn-success"
+                            maloainguoidung={pd.maLoaiNguoiDung}
+                            hoten={pd.hoTen}
+                            email={pd.email}
+                            sodt={pd.soDt}
+                            matkhau={pd.matKhau}
+                            data-toggle="modal"
+                            data-target="#myModal"
+                          >
+                            <FontAwesomeIcon icon={faUserEdit} />
+                          </button>
+                          <button
+                            onClick={this.handleDelete}
+                            value={pd.taiKhoan}
+                            maloainguoidung={pd.maLoaiNguoiDung}
+                            className="btn btnDelete btn-danger mx-1"
+                          >
+                            <FontAwesomeIcon icon={faTrash} />
+                          </button>
+                          <Link
+                            to={`/quan-ly-ve/${pd.taiKhoan}`}
+                            value={pd.taiKhoan}
+                            className="btn btnTicket btn-info"
+                          >
+                            <FontAwesomeIcon icon={faTicketAlt} />
+                          </Link>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </React.Fragment>
+            ));
+            if (this._isMounted) {
+              this.setState({
+                pageCount: Math.ceil(data.length / this.state.perPage),
+                postData
+              });
+            }
+          }
+          if (this.state.keyWord !== "") {
+            const data = await this.props.keyWord;
+            const slice = data.slice(
+              this.state.offset,
+              this.state.offset + this.state.perPage
+            );
+            let postData = slice.map((pd, index) => (
+              <React.Fragment key={index}>
+                <div className="table100-body js-pscroll">
+                  <table>
+                    <tbody>
+                      <tr className="row100 body">
+                        <td className="cell100 column1">{pd.taiKhoan}</td>
+                        <td className="cell100 column2">{pd.hoTen}</td>
+                        <td className="cell100 column3">{pd.email}</td>
+                        <td className="cell100 column4">{pd.soDt}</td>
+                        <td className="cell100 column5">
+                          {pd.maLoaiNguoiDung}
+                        </td>
+                        <td className="cell100 column6">{pd.matKhau}</td>
+                        <td className="cell100 column7">
+                          <button
+                            onClick={this.handleEdit}
+                            value={pd.taiKhoan}
+                            className="btn btnEdit btn-success"
+                            maloainguoidung={pd.maLoaiNguoiDung}
+                          >
+                            <FontAwesomeIcon icon={faUserEdit} />
+                          </button>
+                          <button
+                            onClick={this.handleDelete}
+                            value={pd.taiKhoan}
+                            className="btn btnDelete btn-danger mx-1"
+                          >
+                            <FontAwesomeIcon icon={faTrash} />
+                          </button>
+                          <button
+                            to={`/quan-ly-ve/${pd.taiKhoan}`}
+                            value={pd.taiKhoan}
+                            className="btn btnTicket btn-info"
+                            data-toggle="modal"
+                            data-target="#myModal"
+                          >
+                            <FontAwesomeIcon icon={faTicketAlt} />
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </React.Fragment>
+            ));
+            if (this._isMounted) {
+              this.setState({
+                pageCount: Math.ceil(data.length / this.state.perPage),
+                postData
+              });
+            }
+          }
+        });
+    } catch (err) {
+      console.log(err);
+    }
   }
   handlePageClick = e => {
     const selectedPage = e.selected;
@@ -408,20 +409,20 @@ class Paginition extends Component {
 
           <div className="selectEntries d-flex mr-5">
             <select onChange={this.handlingChange}>
-            <SelectEntriesOption />
+              <SelectEntriesOption />
             </select>
             <form className="d-none d-sm-inline-block form-inline mr-auto ml-md-2 col-md-9 navbar-search">
-            <div className="input-group">
-              <input
-                type="text"
-                className="form-control border-0 small"
-                onChange={this.handleChangeSearch}
-                placeholder="Search for..."
-                aria-label="Search"
-                aria-describedby="basic-addon2"
-              />
-            </div>
-          </form>
+              <div className="input-group">
+                <input
+                  type="text"
+                  className="form-control border-0 small"
+                  onChange={this.handleChangeSearch}
+                  placeholder="Search for..."
+                  aria-label="Search"
+                  aria-describedby="basic-addon2"
+                />
+              </div>
+            </form>
             <button
               className="btnAddUser btn "
               data-toggle="modal"
@@ -478,7 +479,17 @@ class Paginition extends Component {
                       type="text"
                       className="form-control"
                       name="taiKhoan"
-                      value={this.state.taiKhoan!=="" ? this.state.taiKhoan : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={
+                        this.state.taiKhoan !== "" ? (
+                          this.state.taiKhoan
+                        ) : (
+                          <Skeleton
+                            animation="wave"
+                            variant="text"
+                            width="250px"
+                          />
+                        )
+                      }
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Họ và Tên"
                     />
@@ -489,7 +500,17 @@ class Paginition extends Component {
                       type="text"
                       className="form-control"
                       name="hoTen"
-                      value={this.state.hoTen!=="" ? this.state.hoTen : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={
+                        this.state.hoTen !== "" ? (
+                          this.state.hoTen
+                        ) : (
+                          <Skeleton
+                            animation="wave"
+                            variant="text"
+                            width="250px"
+                          />
+                        )
+                      }
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Họ và Tên"
                     />
@@ -501,7 +522,17 @@ class Paginition extends Component {
                       className="form-control"
                       name="matKhau"
                       autoComplete="password"
-                      value={this.state.matKhau!=="" ? this.state.matKhau : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={
+                        this.state.matKhau !== "" ? (
+                          this.state.matKhau
+                        ) : (
+                          <Skeleton
+                            animation="wave"
+                            variant="text"
+                            width="250px"
+                          />
+                        )
+                      }
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Password"
                     />
@@ -512,7 +543,17 @@ class Paginition extends Component {
                       type="text"
                       className="form-control"
                       name="soDt"
-                      value={this.state.soDt!=="" ? this.state.soDt : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={
+                        this.state.soDt !== "" ? (
+                          this.state.soDt
+                        ) : (
+                          <Skeleton
+                            animation="wave"
+                            variant="text"
+                            width="250px"
+                          />
+                        )
+                      }
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập số điện thoại"
                     />
@@ -523,7 +564,17 @@ class Paginition extends Component {
                       type="email"
                       className="form-control"
                       name="email"
-                      value={this.state.email!=="" ? this.state.email : <Skeleton animation="wave" variant="text" width="250px" />}
+                      value={
+                        this.state.email !== "" ? (
+                          this.state.email
+                        ) : (
+                          <Skeleton
+                            animation="wave"
+                            variant="text"
+                            width="250px"
+                          />
+                        )
+                      }
                       onChange={this.handleChangeEdit}
                       placeholder="Nhập Email"
                     />
@@ -532,12 +583,12 @@ class Paginition extends Component {
                     Submit
                   </button>
                   <button
-                  type="button"
-                  className="btn btnCloseEditUser"
-                  data-dismiss="modal"
-                >
-                  Cancle
-                </button>
+                    type="button"
+                    className="btn btnCloseEditUser"
+                    data-dismiss="modal"
+                  >
+                    Cancel
+                  </button>
                 </form>
               </div>
             </div>
