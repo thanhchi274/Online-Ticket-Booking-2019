@@ -1,6 +1,6 @@
-import React from 'react'
+import React,{memo} from 'react'
 
-export default function SelectEntriesOption() {
+function SelectEntriesOption() {
     return (
         <>
             <option value={10}>Select entries:</option>
@@ -11,3 +11,4 @@ export default function SelectEntriesOption() {
         </>
     )
 }
+export default memo(SelectEntriesOption)

@@ -1,6 +1,6 @@
-import React from "react";
+import React,{memo} from "react";
 import { NavLink } from "react-router-dom";
-export default function Sidebar() {
+function Sidebar() {
   return (
     <>
       <ul
@@ -57,3 +57,4 @@ export default function Sidebar() {
     </>
   );
 }
+export default memo(Sidebar)

@@ -21,20 +21,12 @@ class Paginition extends Component {
       currentPage: 0,
       pageCount: 0,
       keyWord: "",
-      loaded:false,
       taiKhoanDelete: "",
       taiKhoan: "",
       matKhau: "",
       email: "",
       soDt: "",
       hoTen: "",
-      sumbitData: {
-        taiKhoan: "",
-        matKhau: "",
-        email: "",
-        soDt: "",
-        hoTen: ""
-      },
       addNewUserData: {
         taiKhoan: "",
         matKhau: "",
@@ -50,16 +42,13 @@ class Paginition extends Component {
     this._isMounted = true;
     this.props.getUserList()
   }
-  componentWillReceiveProps(){
-    setTimeout(()=>{
-      if((this.state.dataUser != this.props.userList)){
-        this.props.getUserList()
+  componentWillReceiveProps(nextProps){
+      if((nextProps.userList !== this.props.userList)){ 
         this.setState({
-          dataUser:this.props.userList
+          dataUser:this.props.userList,
         },()=>{this.receivedData()})
       }
-    },3000)
-  }
+}
   componentWillUnmount() {
     this._isMounted = false;
   }
@@ -76,15 +65,21 @@ class Paginition extends Component {
       })
     }
   };
-  handleDelete = event => {
+  handleDelete =async event => {
     event.persist()
-    this._isLoaded =true;
     const eventValue = event.target.value
+    this.props.deleteUser(eventValue);
     this.setState({
       taiKhoanDelete:eventValue
-    },()=>{
-      this.props.deleteUser(eventValue)}
-  )
+    },()=>{this.props.getUserList()
+    })
+    await this.props.getUserList()
+    if(this.props.userList){
+      let a =this.props.userList
+      this.setState({
+        dataUser:a
+      })
+    }
   };
   handleEdit = (event)=> {
     event.persist()
@@ -93,11 +88,10 @@ class Paginition extends Component {
       taiKhoan,
     },()=> this.props.getUserInformation({taiKhoan}))
   };
- async receivedData() {
-   console.log(this.state)
-  if(await this.props.userList){
+
+ async receivedData() {  
     const data = (this.state.keyWord==="")?(await this.state.dataUser):(await this.props.keyWord)
-        const slice = data.slice(
+        const slice =await data.slice(
           this.state.offset,
           this.state.offset + this.state.perPage
         );
@@ -139,10 +133,8 @@ class Paginition extends Component {
           this.setState({
             pageCount: Math.ceil(data.length / this.state.perPage),
             postData,
-            loaded:true
           });
         }
-  }
   }
   handleChange = e => {
     const selectedPage = parseInt(e.target.innerHTML);
@@ -359,7 +351,7 @@ const mapDispatchToProps = dispatch => {
     },
     getUserList: () => {
       dispatch(action.actGetUserList());
-    }
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Paginition);

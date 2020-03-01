@@ -12,6 +12,10 @@ import * as action from "../../redux/action";
           hoTen: "",
         };
       }
+    
+    componentDidUpdate(){
+    console.log(this.props.idUser)
+    }
     handleChangeEdit = e => {
         let target = e.target;
         let name = target.name;
@@ -26,9 +30,9 @@ import * as action from "../../redux/action";
         e.preventDefault();
         this.setState(
           {
-            ...this.state.sumbitData
+            ...this.state
           },
-          this.props.updateUser(this.state.sumbitData)
+          this.props.updateUser(this.state)
         );
       };
     render() {
@@ -122,11 +126,11 @@ const mapStateToProps = state => {
   };
   const mapDispatchToProps = dispatch => {
     return {
-      getUserInformation: tk => {
-        dispatch(action.actLayThongTinUser(tk));
-      },
       updateUser: tk => {
         dispatch(action.actUpdateUserInformation(tk));
+      },
+      getUserInformation: tk => {
+        dispatch(action.actLayThongTinUser(tk));
       },
     };
   };

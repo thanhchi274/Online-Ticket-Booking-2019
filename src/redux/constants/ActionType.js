@@ -8,6 +8,7 @@ export const GET_USER_INFORMATION = "GET_USER_INFORMATION";
 export const GET_USER_LIST = "GET_USER_LIST";
 export const GET_ROOM_LIST = "GET_ROOM_LIST";
 export const LOADING = "LOADING";
+export const DELETED = "DELETED";
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const SIGNUP = "SIGNUP";
