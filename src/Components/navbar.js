@@ -100,10 +100,10 @@ export default class Navbar extends Component {
           className="signin_link row align-items-center"
           to="/login"
         >
-          <div className="userIcon">
+          <div className="userIcon desktop">
             <FontAwesomeIcon className="login_icon" icon={faUser} />
           </div>
-          <h5 className="signin_content">Đăng nhập</h5>
+          {/*<h5 className="signin_content">Đăng nhập</h5>*/}
         </NavLink>
       );
     }
@@ -111,12 +111,12 @@ export default class Navbar extends Component {
   render() {
     return (
       <>
-        <nav className="navbar-expand-md justify-content-between">
+        <nav className="navbar-expand-md justify-content-between desktop">
           <div
             className={
               !this.state.visible
                 ? " header navbar"
-                : "header navbar--hidden-main row "
+                : "header navbar--hidden-main row"
             }
           >
             <div className="logo">
@@ -135,7 +135,7 @@ export default class Navbar extends Component {
               </Link>
             </div>
 
-            <div className="col-sm-4 nav-menu ">
+            <div className="col-sm-7 nav-menu ">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -178,12 +178,16 @@ export default class Navbar extends Component {
                       Subscribe
                     </Link>
                   </li>
+                  <li className="nav-item">
+                    <Link className="nav-link" to="">
+                      News
+                    </Link>
+                  </li>
                 </ul>
               </div>
             </div>
             {this.renderHTML()}
           </div>
-          {/* Toggler/collapsibe Button */}
         </nav>
       </>
     );
