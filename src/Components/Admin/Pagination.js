@@ -9,6 +9,7 @@ import IconButton from "@material-ui/core/IconButton";
 import { Link } from "react-router-dom";
 import TableHeadUserTable from "../Admin/TableHeadUser";
 import ModalEditUser from "../Admin/ModalEditUser";
+import ModalAddUser from "../Admin/ModalAddUser"
 class Paginition extends Component {
   _isMounted = false;
   constructor(props) {
@@ -24,9 +25,9 @@ class Paginition extends Component {
       taiKhoanDelete: "",
       taiKhoan: "",
       matKhau: "",
-      email: "",
-      soDt: "",
-      hoTen: "",
+      check:false,
+      typeUser: "",
+      maLoaiNguoiDung:"",
       addNewUserData: {
         taiKhoan: "",
         matKhau: "",
@@ -42,8 +43,8 @@ class Paginition extends Component {
     this._isMounted = true;
     this.props.getUserList();
   }
-  componentWillReceiveProps() {
-      if (this.state.dataUser != this.props.userList) {
+  componentWillReceiveProps(nextProps) {
+      if ((this.state.dataUser != this.props.userList)&&(this.state.keyWord ==="")) {
         this.setState(
           {
             dataUser: this.props.userList
@@ -52,6 +53,13 @@ class Paginition extends Component {
             this.receivedData();
           }
         );
+      }
+      else if(this.state.keyWord !==""){
+        this.setState({
+          dataUser:nextProps.keyWord
+        },()=>{
+          this.receivedData();
+        })
       }
   }
   componentWillUnmount() {
@@ -90,10 +98,13 @@ class Paginition extends Component {
   };
   handleEdit = event => {
     event.persist();
+    let typeuser= event.target.getAttribute("typeuser")
     let taiKhoan = event.target.value;
     this.setState(
       {
-        taiKhoan
+        taiKhoan,
+        check:true,
+        maLoaiNguoiDung: typeuser
       },
       () => this.props.getUserInformation({ taiKhoan })
     );
@@ -118,7 +129,7 @@ class Paginition extends Component {
                     <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
                     <td className="cell100 column6">{pd.matKhau}</td>
                     <td className="cell100 column7">
-                    <IconButton onClick={this.handleEdit} value={pd.taiKhoan} data-toggle="modal" data-target="#myModal" aria-label="Add">
+                    <IconButton onClick={this.handleEdit} typeuser={pd.maLoaiNguoiDung} value={pd.taiKhoan} data-toggle="modal" data-target="#myModal" aria-label="Add">
                        <Icon.Edit/>
                      </IconButton>
                       <IconButton onClick={this.handleDelete} value={pd.taiKhoan} aria-label="delete">
@@ -182,125 +193,11 @@ class Paginition extends Component {
       }
     );
   };
-  chooseMLND = e => {
-    this.setState({
-      addNewUserData: {
-        ...this.state.addNewUserData,
-        maLoaiNguoiDung: e.target.value
-      }
-    });
-  };
-  handleAddUser = e => {
-    let { name, value } = e.target;
-    this.setState(
-      {
-        [name]: value,
-        addNewUserData: {
-          maNhom: "GP01",
-          taiKhoan: this.state.taiKhoan,
-          email: this.state.email,
-          soDt: this.state.soDt,
-          matKhau: this.state.matKhau,
-          hoTen: this.state.hoTen
-        }
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
-  };
-  handleOnAddNew = e => {
-    if (this.state.addNewUserData.maLoaiNguoiDung === "") {
-      e.preventDefault();
-      return (
-        <Alert severity="warning">
-          <AlertTitle>Warning</AlertTitle>
-          Chọn Người Dùng Trước
-        </Alert>
-      );
-    } else {
-      e.preventDefault();
-      this.props.addUser(this.state.addNewUserData);
-    }
-  };
   render() {
     return (
       <div>
         <div className="limiter">
-          <div id="myModalAdd" className="modal fade" role="dialog">
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-body">
-                  <form onSubmit={this.handleOnAddNew}>
-                    <div className="form-group">
-                      <label htmlFor="">Tài Khoản</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="taiKhoan"
-                        onChange={this.handleAddUser}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">Password</label>
-                      <input
-                        type="password"
-                        className="form-control"
-                        name="matKhau"
-                        onChange={this.handleAddUser}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">Họ Tên</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="hoTen"
-                        onChange={this.handleAddUser}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">Email</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="email"
-                        onChange={this.handleAddUser}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label htmlFor="">Số Điện Thoại</label>
-                      <input
-                        type="text"
-                        className="form-control"
-                        name="soDt"
-                        onChange={this.handleAddUser}
-                      />
-                    </div>
-
-                    <div className="form-group choiceTypeUser">
-                      <label>Mã Loại Người Dùng:</label>
-                      <select onChange={this.chooseMLND}>
-                        <option value="">Mời Bạn Chọn</option>
-                        <option value="KhachHang">Khách Hàng</option>
-                        <option value="QuanTri">Quản Trị</option>
-                      </select>
-                    </div>
-                    <button type="submit" className="btnADDUSER">
-                      Submit
-                    </button>
-                    <button
-                      type="button"
-                      className="btnCloseAddUser"
-                      data-dismiss="modal"
-                    >
-                      Close
-                    </button>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
+      <ModalAddUser />
           <div className="selectEntries d-flex">
             <select className="mr-5" onChange={this.handlingChange}>
               <SelectEntriesOption />
@@ -340,7 +237,7 @@ class Paginition extends Component {
             </div>
           </div>
         </div>
-        <ModalEditUser idUser={this.state.taiKhoan} />
+       {this.state.check ? <ModalEditUser typeUser={this.state.maLoaiNguoiDung} idUser={this.state.taiKhoan} />:null}
       </div>
     );
   }

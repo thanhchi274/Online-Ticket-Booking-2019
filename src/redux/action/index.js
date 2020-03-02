@@ -296,6 +296,29 @@ export const actUpdateUserInformation = user => {
       });
   };
 };
+export const actUpdateUserAdminOnly = user => {
+  const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+  return dispatch => {
+    Axios({
+      method: "PUT",
+      url:
+        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+      data: user,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(result => {
+        setTimeout(function() {
+          alert("Cập nhật thành công");
+        }, 500);
+        dispatch(result.data);
+      })
+      .catch(err => {
+        return err;
+      });
+  };
+};
 export const actUpdateUserAdminInformation = user => {
   const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
   return dispatch => {

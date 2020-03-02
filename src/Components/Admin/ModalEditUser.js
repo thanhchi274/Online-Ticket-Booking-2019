@@ -10,11 +10,22 @@ import * as action from "../../redux/action";
           email: "",
           soDt: "",
           hoTen: "",
+          maLoaiNguoiDung:"",
+          maNhom:"GP01"
         };
       }
-    
-    componentDidUpdate(){
-    console.log(this.props.idUser)
+    componentWillReceiveProps(nextProps){
+      if(nextProps.idUser !==""){
+        let user = nextProps.userInformation
+        this.setState({
+          maLoaiNguoiDung:nextProps.typeUser,
+          taiKhoan: nextProps.idUser,
+          matKhau :user.matKhau,
+          email: user.email,
+          soDt: user.soDT,
+          hoTen: user.hoTen
+        })
+      }
     }
     handleChangeEdit = e => {
         let target = e.target;
@@ -23,7 +34,7 @@ import * as action from "../../redux/action";
         this.setState(
             {
             [name]:value,
-            },()=>console.log(this.state)
+            }
           );
       };
       handleSubmitEdit = e => {
@@ -32,11 +43,10 @@ import * as action from "../../redux/action";
           {
             ...this.state
           },
-          this.props.updateUser(this.state)
+        ()=> this.props.updateUserAdminOnly(this.state)
         );
       };
     render() {
-        let user =this.props.userInformation
         return (
             <div id="myModal" className="modal modalEditUser fade" role="dialog">
             <div className="modal-dialog">
@@ -51,7 +61,7 @@ import * as action from "../../redux/action";
                         type="text"
                         className="form-control"
                         name="taiKhoan"
-                        value={user? user.taiKhoan : "Loading"}
+                        value={this.state.taiKhoan}
                         onChange={this.handleChangeEdit}
                         placeholder="Nhập Họ và Tên"
                       />
@@ -62,7 +72,7 @@ import * as action from "../../redux/action";
                         type="text"
                         className="form-control"
                         name="hoTen"
-                        value={user ? user.hoTen : "Loading"}
+                        value={this.state.hoTen}
                         onChange={this.handleChangeEdit}
                         placeholder="Nhập Họ và Tên"
                       />
@@ -74,7 +84,7 @@ import * as action from "../../redux/action";
                         className="form-control"
                         name="matKhau"
                         autoComplete="password"
-                        value={user? user.matKhau : "Loading"}
+                        value={this.state.matKhau}
                         onChange={this.handleChangeEdit}
                         placeholder="Nhập Password"
                       />
@@ -85,7 +95,7 @@ import * as action from "../../redux/action";
                         type="text"
                         className="form-control"
                         name="soDt"
-                        value={user ? user.soDT :"Loading"}
+                        value={this.state.soDt}
                         onChange={this.handleChangeEdit}
                         placeholder="Nhập số điện thoại"
                       />
@@ -96,7 +106,7 @@ import * as action from "../../redux/action";
                         type="email"
                         className="form-control"
                         name="email"
-                        value={user? user.email : "Loading"}
+                        value={this.state.email}
                         onChange={this.handleChangeEdit}
                         placeholder="Nhập Email"
                       />
@@ -126,8 +136,8 @@ const mapStateToProps = state => {
   };
   const mapDispatchToProps = dispatch => {
     return {
-      updateUser: tk => {
-        dispatch(action.actUpdateUserInformation(tk));
+      updateUserAdminOnly: tk => {
+        dispatch(action.actUpdateUserAdminOnly(tk));
       },
       getUserInformation: tk => {
         dispatch(action.actLayThongTinUser(tk));

@@ -14,7 +14,7 @@ class TicketManageMent extends Component {
   async componentDidMount() {
     try{
       const taiKhoan = this.props.match.params.id;
-      this.props.getTicketManageUser({taiKhoan});
+      await this.props.getTicketManageUser({taiKhoan});
       let UserInfo = JSON.parse(localStorage.getItem("TicketManage"));
       const group1 =_.groupBy(UserInfo.thongTinDatVe, "ngayDat");
         this.setState({
@@ -34,7 +34,6 @@ class TicketManageMent extends Component {
    }
   render() {
     let UserData = this.state.movieData;
-    console.log(UserData)
     return (
       <div className="container-table100" style={{ width: "100%" }}>
         <div className="wrap-table100">

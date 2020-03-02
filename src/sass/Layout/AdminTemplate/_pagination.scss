@@ -105,7 +105,10 @@
         }
         left:20%;
     }
-
+    .SumbitAddUser{
+        @extend .btnCloseAddUser;
+        left:-5%;
+    }
 }
 .modalEditUser{
     background-color: rgba(0,0,0,0.25);
