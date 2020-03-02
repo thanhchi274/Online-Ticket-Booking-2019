@@ -21,20 +21,12 @@ class Paginition extends Component {
       currentPage: 0,
       pageCount: 0,
       keyWord: "",
-      loaded: false,
       taiKhoanDelete: "",
       taiKhoan: "",
       matKhau: "",
       email: "",
       soDt: "",
       hoTen: "",
-      sumbitData: {
-        taiKhoan: "",
-        matKhau: "",
-        email: "",
-        soDt: "",
-        hoTen: ""
-      },
       addNewUserData: {
         taiKhoan: "",
         matKhau: "",
@@ -51,9 +43,7 @@ class Paginition extends Component {
     this.props.getUserList();
   }
   componentWillReceiveProps() {
-    setTimeout(() => {
       if (this.state.dataUser != this.props.userList) {
-        this.props.getUserList();
         this.setState(
           {
             dataUser: this.props.userList
@@ -63,7 +53,6 @@ class Paginition extends Component {
           }
         );
       }
-    }, 3000);
   }
   componentWillUnmount() {
     this._isMounted = false;
@@ -83,18 +72,21 @@ class Paginition extends Component {
       });
     }
   };
-  handleDelete = event => {
-    event.persist();
-    this._isLoaded = true;
-    const eventValue = event.target.value;
-    this.setState(
-      {
-        taiKhoanDelete: eventValue
-      },
-      () => {
-        this.props.deleteUser(eventValue);
-      }
-    );
+  handleDelete =async event => {
+    event.persist()
+    const eventValue = event.target.value
+    this.props.deleteUser(eventValue);
+    this.setState({
+      taiKhoanDelete:eventValue
+    },()=>{this.props.getUserList()
+    })
+    await this.props.getUserList()
+    if(this.props.userList){
+      let a =this.props.userList
+      this.setState({
+        dataUser:a
+      },()=>{this.props.getUserList()})
+    }
   };
   handleEdit = event => {
     event.persist();
@@ -106,66 +98,53 @@ class Paginition extends Component {
       () => this.props.getUserInformation({ taiKhoan })
     );
   };
-  async receivedData() {
-    console.log(this.state);
-    if (await this.props.userList) {
-      const data =
-        this.state.keyWord === ""
-          ? await this.state.dataUser
-          : await this.props.keyWord;
-      const slice = data.slice(
-        this.state.offset,
-        this.state.offset + this.state.perPage
-      );
-      let postData = slice.map((pd, index) => (
-        <React.Fragment key={index}>
-          <div className="table100-body js-pscroll">
-            <table>
-              <tbody>
-                <tr className="row100 body">
-                  <td className="cell100 column1">{pd.taiKhoan}</td>
-                  <td className="cell100 column2">{pd.hoTen}</td>
-                  <td className="cell100 column3">{pd.email}</td>
-                  <td className="cell100 column4">{pd.soDt}</td>
-                  <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
-                  <td className="cell100 column6">{pd.matKhau}</td>
-                  <td className="cell100 column7">
-                    <IconButton
-                      onClick={this.handleEdit}
-                      value={pd.taiKhoan}
-                      data-toggle="modal"
-                      data-target="#myModal"
-                      aria-label="Add"
-                    >
-                      <Icon.Edit />
-                    </IconButton>
-                    <IconButton
-                      onClick={this.handleDelete}
-                      value={pd.taiKhoan}
-                      aria-label="delete"
-                    >
-                      <Icon.Delete />
-                    </IconButton>
-                    <Link to={`/quan-ly-ve/${pd.taiKhoan}`} value={pd.taiKhoan}>
-                      <IconButton>
-                        <Icon.ArrowForward />
-                      </IconButton>
-                    </Link>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </React.Fragment>
-      ));
-      if (this._isMounted) {
-        this.setState({
-          pageCount: Math.ceil(data.length / this.state.perPage),
-          postData,
-          loaded: true
-        });
-      }
-    }
+
+ async receivedData() {  
+    const data = (this.state.keyWord==="")?(await this.state.dataUser):(await this.props.keyWord)
+        const slice =await data.slice(
+          this.state.offset,
+          this.state.offset + this.state.perPage
+        );
+        let postData = slice.map((pd, index) => (
+          <React.Fragment key={index}>
+            <div className="table100-body js-pscroll">
+              <table>
+                <tbody>
+                  <tr className="row100 body">
+                    <td className="cell100 column1">{pd.taiKhoan}</td>
+                    <td className="cell100 column2">{pd.hoTen}</td>
+                    <td className="cell100 column3">{pd.email}</td>
+                    <td className="cell100 column4">{pd.soDt}</td>
+                    <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
+                    <td className="cell100 column6">{pd.matKhau}</td>
+                    <td className="cell100 column7">
+                    <IconButton onClick={this.handleEdit} value={pd.taiKhoan} data-toggle="modal" data-target="#myModal" aria-label="Add">
+                       <Icon.Edit/>
+                     </IconButton>
+                      <IconButton onClick={this.handleDelete} value={pd.taiKhoan} aria-label="delete">
+                       <Icon.Delete/>
+                     </IconButton>
+                      <Link
+                        to={`/quan-ly-ve/${pd.taiKhoan}`}
+                        value={pd.taiKhoan}
+                      >
+                        <IconButton>
+                       <Icon.ArrowForward />
+                     </IconButton>
+                      </Link>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </React.Fragment>
+        ));
+        if (this._isMounted) {
+          this.setState({
+            pageCount: Math.ceil(data.length / this.state.perPage),
+            postData,
+          });
+        }
   }
   handleChange = e => {
     const selectedPage = parseInt(e.target.innerHTML);
@@ -390,7 +369,7 @@ const mapDispatchToProps = dispatch => {
     },
     getUserList: () => {
       dispatch(action.actGetUserList());
-    }
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Paginition);

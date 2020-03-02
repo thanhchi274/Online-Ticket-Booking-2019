@@ -72,7 +72,7 @@ const handleClick =(event,newValue)=>{
         return (
           <Tab
             key={index}
-            label={<img id={item.maHeThongRap} src={item.logo} onClick={handleClick} className="theaterIcon" />}
+            label={<img id={item.maHeThongRap} src={item.logo} onClick={handleClick} className="theaterIcon" alt="theater-Icon" />}
             {...a11yProps(index)}
           />
         );

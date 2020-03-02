@@ -6,6 +6,7 @@ let initialState = {
   movieDate: [],
   theaterDateInformation: [],
   loading: false,
+  deleted:false,
   listMovieCarousel: [],
   room: {},
   userList: [],
@@ -23,7 +24,7 @@ const movieReducer = (state = initialState, action) => {
     }
     case ActionType.GET_USER_LIST: {
       state.userList = action.userList;
-      return { ...state};
+      return { ...state, deleted:false};
     }
     case ActionType.GET_DETAIL_MOVIE: {
       state.movie = action.movie;
@@ -75,6 +76,9 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.LOADING: {
       return { ...state, loading: true };
     }
+    case ActionType.DELETED:{
+      return {...state,deleted:true}
+    }
     case ActionType.LOGIN:
       return { ...state };
     case ActionType.LOGOUT:
@@ -90,7 +94,7 @@ const movieReducer = (state = initialState, action) => {
       state.keyWord = action.keyWord;
       return { ...state };
     case ActionType.DELETE_USER:
-      return { ...state };
+      return { ...state};
     case ActionType.DELETE_MOVIE:
       return { ...state };
     default:

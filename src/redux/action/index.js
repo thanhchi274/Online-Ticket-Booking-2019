@@ -98,6 +98,11 @@ export const actLoading = () => {
     type: ActionTypes.LOADING
   };
 };
+export const actDeleteCheck = () => {
+  return {
+    type: ActionTypes.DELETED
+  };
+};
 export const actCheckAuthentication = history => {
   if (localStorage.getItem("UserHome") === null) {
     return history.push("/");

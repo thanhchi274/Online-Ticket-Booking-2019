@@ -1,7 +1,7 @@
-import React from 'react'
+import React,{memo} from 'react'
 import * as Icon from "@material-ui/icons"
 import IconButton from '@material-ui/core/IconButton';
-export default function TableHeadMovie() {
+function TableHeadMovie() {
     return (
         <div className="table100-head">
         <table>
@@ -24,3 +24,4 @@ export default function TableHeadMovie() {
       </div>
     )
 }
+export default memo(TableHeadMovie)

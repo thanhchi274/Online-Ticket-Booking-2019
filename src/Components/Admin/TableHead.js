@@ -1,6 +1,6 @@
-import React from 'react'
+import React,{memo} from 'react'
 
-export default function TableMovieHead(props) {
+ function TableMovieHead(props) {
     return (
         <div className="table100-head">
         <table>
@@ -19,3 +19,4 @@ export default function TableMovieHead(props) {
       </div>
     )
 }
+export default memo(TableMovieHead)

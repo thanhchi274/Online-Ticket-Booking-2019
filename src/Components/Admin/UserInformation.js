@@ -27,7 +27,7 @@ import React, { Component } from 'react'
             <div className="topbar-divider d-none d-sm-block" />
             <li className="nav-item dropdown no-arrow">
               <a className="nav-link dropdown-toggle" href="\a" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span className="mr-2 d-none d-lg-inline text-gray-800 small">{obj.hoTen}</span>
+                <span className="mr-2 d-none d-lg-inline text-dark small">{obj.hoTen}</span>
                 <FontAwesomeIcon icon={faUser} />
               </a>
               <div className="dropdown-menu dropdown-menu-right shadow " aria-labelledby="userDropdown">
