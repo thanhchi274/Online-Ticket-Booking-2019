@@ -45,9 +45,10 @@ class Paginition extends Component {
   }
   componentWillReceiveProps(nextProps) {
       if ((this.state.dataUser != this.props.userList)&&(this.state.keyWord ==="")) {
+        
         this.setState(
           {
-            dataUser: this.props.userList
+            dataUser: nextProps.userList
           },
           () => {
             this.receivedData();

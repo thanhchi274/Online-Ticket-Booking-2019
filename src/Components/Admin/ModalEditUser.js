@@ -23,29 +23,28 @@ import * as action from "../../redux/action";
           matKhau :user.matKhau,
           email: user.email,
           soDt: user.soDT,
-          hoTen: user.hoTen
+          hoTen: user.hoTen,
+          maNhom:"GP01"
         })
       }
     }
     handleChangeEdit = e => {
-        let target = e.target;
-        let name = target.name;
-        let value = target.value;
+        let {name, value}= e.target
         this.setState(
             {
             [name]:value,
             }
           );
       };
-      handleSubmitEdit = e => {
+      handleSubmitEdit =async e => {
         e.preventDefault();
-        this.setState(
-          {
-            ...this.state
-          },
-        ()=> this.props.updateUserAdminOnly(this.state)
-        );
+        let user = this.state
+        this.props.updateUserAdminOnly(user)
+        await this.props.getUserList()
       };
+      componentDidUpdate(){
+        console.log(this.state)
+      }
     render() {
         return (
             <div id="myModal" className="modal modalEditUser fade" role="dialog">
@@ -141,6 +140,9 @@ const mapStateToProps = state => {
       },
       getUserInformation: tk => {
         dispatch(action.actLayThongTinUser(tk));
+      },
+      getUserList: () => {
+        dispatch(action.actGetUserList());
       },
     };
   };

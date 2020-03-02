@@ -11,11 +11,14 @@ class ModalAddUser extends Component {
           email: "",
           soDt: "",
           hoTen: "",
+          maNhom:"GP01"
         };
       }
-      handleOnAddNew = e => {
-        if (this.state.addNewUserData.maLoaiNguoiDung === "") {
-          e.preventDefault();
+      componentDidUpdate(){
+        console.log(this.state)
+      }
+      handleSumbitAddUser =async e => {
+        if (this.state.maLoaiNguoiDung === "") {
           return (
             <Alert severity="warning">
               <AlertTitle>Warning</AlertTitle>
@@ -24,36 +27,25 @@ class ModalAddUser extends Component {
           );
         } else {
           e.preventDefault();
-          this.props.addUser(this.state.addNewUserData);
+          let user =this.state
+          this.props.addUser(user);
+          await this.props.getUserList()
         }
       };
-      handleAddUser = e => {
+      handleChangeAddUser = e => {
         let { name, value } = e.target;
         this.setState(
           {
             [name]: value,
-            addNewUserData: {
-              maNhom: "GP01",
-              taiKhoan: this.state.taiKhoan,
-              email: this.state.email,
-              soDt: this.state.soDt,
-              matKhau: this.state.matKhau,
-              hoTen: this.state.hoTen
-            }
-          },
-          () => {
-            console.log(this.state);
           }
         );
       };
     
       chooseMLND = e => {
         this.setState({
-          addNewUserData: {
-            ...this.state.addNewUserData,
             maLoaiNguoiDung: e.target.value
           }
-        });
+        );
       };
     render() {
         return (
@@ -61,14 +53,14 @@ class ModalAddUser extends Component {
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-body">
-                  {/* <form onSubmit={this.handleOnAddNew}> */}
+                  <form onSubmit={this.handleSumbitAddUser}>
                     <div className="form-group">
                       <label htmlFor="">Tài Khoản</label>
                       <input
                         type="text"
                         className="form-control"
                         name="taiKhoan"
-                        // onChange={this.handleAddUser}
+                        onChange={this.handleChangeAddUser}
                       />
                     </div>
                     <div className="form-group">
@@ -77,7 +69,7 @@ class ModalAddUser extends Component {
                         type="password"
                         className="form-control"
                         name="matKhau"
-                        // onChange={this.handleAddUser}
+                        onChange={this.handleChangeAddUser}
                       />
                     </div>
                     <div className="form-group">
@@ -86,7 +78,7 @@ class ModalAddUser extends Component {
                         type="text"
                         className="form-control"
                         name="hoTen"
-                        // onChange={this.handleAddUser}
+                        onChange={this.handleChangeAddUser}
                       />
                     </div>
                     <div className="form-group">
@@ -95,7 +87,7 @@ class ModalAddUser extends Component {
                         type="text"
                         className="form-control"
                         name="email"
-                        // onChange={this.handleAddUser}
+                        onChange={this.handleChangeAddUser}
                       />
                     </div>
                     <div className="form-group">
@@ -104,14 +96,14 @@ class ModalAddUser extends Component {
                         type="text"
                         className="form-control"
                         name="soDt"
-                        // onChange={this.handleAddUser}
+                        onChange={this.handleChangeAddUser}
                       />
                     </div>
 
                     <div className="form-group choiceTypeUser">
                       <label>Mã Loại Người Dùng:</label>
                       <select 
-                    //   onChange={this.chooseMLND}
+                      onChange={this.chooseMLND}
                       >
                         <option value="">Mời Bạn Chọn</option>
                         <option value="KhachHang">Khách Hàng</option>
@@ -128,7 +120,7 @@ class ModalAddUser extends Component {
                     >
                       Close
                     </button>
-                  {/* </form> */}
+                  </form>
                 </div>
               </div>
             </div>
@@ -136,31 +128,14 @@ class ModalAddUser extends Component {
         )
     }
 }
-const mapStateToProps = state => {
-  return {
-    keyWord: state.movieReducer.keyWord,
-    userList: state.movieReducer.userList,
-    loading: state.movieReducer.loading,
-    userInformation: state.movieReducer.userInformation
-  };
-};
 const mapDispatchToProps = dispatch => {
   return {
-    searchUser: id => {
-      dispatch(action.actSearchUser(id));
-    },
-    deleteUser: tk => {
-      dispatch(action.actDeleteUser(tk));
-    },
-    getUserInformation: tk => {
-      dispatch(action.actLayThongTinUser(tk));
-    },
-    addUser: user => {
-      dispatch(action.actThemNguoiDung(user));
-    },
     getUserList: () => {
       dispatch(action.actGetUserList());
     },
+    addUser: user => {
+      dispatch(action.actThemNguoiDung(user));
+    }
   };
 };
-export default connect(mapStateToProps,mapDispatchToProps)(ModalAddUser)
+export default connect(null,mapDispatchToProps)(ModalAddUser)
