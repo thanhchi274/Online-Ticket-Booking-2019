@@ -151,7 +151,7 @@ class Login extends Component {
   renderHTML = () => {
     return (
       <div className="container login-container row">
-        <div className="col-sm-6 login_img">
+        <div className="col-sm-6 login_img desktop">
           <SVGAdminLogin />
         </div>
         <div className="formDangNhap col-sm-5">
