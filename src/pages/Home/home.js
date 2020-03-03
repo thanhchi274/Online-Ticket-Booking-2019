@@ -8,6 +8,7 @@ import MovieAvailable from "../../Components/Home/MainPage/MovieAvailable";
 import Footer from "../../Components/footer";
 import LazyLoad from "react-lazyload";
 import SmallSpinner from "../../Components/Home/DetailMoviePage/smallSpinner";
+import MobileMovieSlider from "../../Components/Home/Mobile/mobile-movieSlider";
 class Home extends Component {
   componentDidMount() {
     this.props.setLoading();
@@ -29,41 +30,30 @@ class Home extends Component {
             <Carousel />
             <HomeTool movieDate={this.props.movieDate} />
           </div>
-          <div>
-            <nav className="first-navs">
-              <div
-                className="nav nav-tabs mt-5 d-flex mb-2 pt-2"
-                id="nav-tab"
-                role="tablist"
+          <div className="mt-5">
+            <h3
+              className="now_title"
+              style={{
+                textTransform: "uppercase",
+                color: "yellow",
+                textShadow: "0 0 10px yellow, 0 0 40px yellow, 0 0 80px yellow",
+                textAlign: "center"
+              }}
+            >
+              Now available
+            </h3>
+            <div className="tab-content nav-tabContent desktop" id="section1">
+              <LazyLoad
+                className="desktop"
+                once={true}
+                offset="300"
+                height="600"
               >
-                <a
-                  className="nav-item nav-link active"
-                  id="nav-home-tab"
-                  data-toggle="tab"
-                  href="#nav-home"
-                  role="tab"
-                  aria-controls="nav-dang-chieu"
-                  aria-selected="true"
-                >
-                  Đang Chiếu
-                </a>
-                <a
-                  className="nav-item nav-link"
-                  id="nav-profile-tab"
-                  data-toggle="tab"
-                  href="#nav-profile"
-                  role="tab"
-                  aria-controls="nav-sap-chieu"
-                  aria-selected="false"
-                >
-                  Sắp Chiếu
-                </a>
-              </div>
-            </nav>
-            <div className="tab-content nav-tabContent" id="section1">
-              <LazyLoad once={true} offset="300" height="600">
                 {loading ? <SmallSpinner /> : <MovieAvailable />}
               </LazyLoad>
+            </div>
+            <div className="tab-content nav-tabContent mobile" id="section1">
+              {loading ? <SmallSpinner /> : <MobileMovieSlider />}
             </div>
           </div>
         </div>
