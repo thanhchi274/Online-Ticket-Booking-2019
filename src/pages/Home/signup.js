@@ -8,7 +8,7 @@ import {
   faGlobe
 } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
-import * as action from "../../redux/action";
+import * as action from "../../Store/action";
 
 class Signup extends Component {
   constructor(props) {

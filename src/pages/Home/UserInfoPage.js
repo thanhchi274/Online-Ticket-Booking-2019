@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import ThanhTabInfo from "../../Components/ThanhTabInfo";
+import UserInformationTab from "../../Components/Home/UserPage/UserInformationTab";
 import Skeleton from "@material-ui/lab/Skeleton";
 class Info extends Component {
   renderHTML = () => {
@@ -49,7 +49,7 @@ class Info extends Component {
           </div>
         </div>
         <div className="detail-info">
-          <ThanhTabInfo />
+          <UserInformationTab />
         </div>
       </div>
     );

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import UserNavBar from "../../Components/Admin/UserInformation"
+import UserNavBar from "./UserInformation"
 export default class Navbar extends Component {
     constructor(props) {
         super(props);

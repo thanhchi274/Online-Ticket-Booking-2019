@@ -6,8 +6,8 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { connect } from "react-redux";
-import * as Action from "../redux/action";
-import ScrollDateTime from "./NgayPhimRender"
+import * as Action from "../../../Store/action";
+import DayofMovie from "./DayofMovie"
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -81,12 +81,11 @@ const handleClick =(event,newValue)=>{
   };
 
   const renderRapContent = () => {
-    console.log(rap)
     if (props.theaterInfo) {
       return props.theaterInfo.map((item, index) => {
         return (
           <TabPanel key={index} value={value} index={index}>
-            {<ScrollDateTime id={props.id} maRap={rap} />}
+            {<DayofMovie id={props.id} maRap={rap} />}
           </TabPanel>
         );
       });

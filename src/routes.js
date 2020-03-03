@@ -1,14 +1,13 @@
 import Home from "./pages/Home/home.js";
 import DetailMovie from "./pages/Home/detailMovie.js";
-import Login from "./pages/Home/login";
-import Signup from "./pages/Home/signup.js";
-import Booking from "./pages/Home/booking";
-import Info from "./pages/Home/info.js";
+import UserLoginPage from "./pages/Home/login";
+import UserSignupPage from "./pages/Home/signup.js";
+import BookingMovie from "./pages/Home/booking";
+import UserInfoPage from "./pages/Home/UserInfoPage.js";
 import Dashboard from "./pages/Admin/dashboard.js";
 import InfoAdmin from "./pages/Admin/infoAdmin";
 import UserManagement from "./pages/Admin/UserManagement";
 import MovieManagement from "./pages/Admin/MovieManagement";
-import UpAnhPhim from "./pages/Admin/UpAnh"
 import TicketManageMent from "./pages/Admin/ticket-management.js";
 const routeHome = [
   {
@@ -24,22 +23,22 @@ const routeHome = [
   {
     path: "/login",
     exact: false,
-    component: Login
+    component: UserLoginPage
   },
   {
     path: "/sign-up",
     exact: false,
-    component: Signup
+    component: UserSignupPage
   },
   {
     path: "/dat-ve/:id",
     exact: false,
-    component: Booking
+    component: BookingMovie
   },
   {
     path: "/info",
     exact: false,
-    component: Info
+    component: UserInfoPage
   }
 ];
 const routeAdmin = [
@@ -62,11 +61,6 @@ const routeAdmin = [
     path: "/quan-ly-movie",
     exact: false,
     component: MovieManagement
-  },
-  {
-    path: "/up-anh",
-    exact: false,
-    component: UpAnhPhim
   },
   {
     path: "/quan-ly-ve/:id",

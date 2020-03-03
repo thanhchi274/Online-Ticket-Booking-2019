@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as Action from "../redux/action/index";
+import * as Action from "../../../Store/action/index";
 class TabUpdateUser extends Component {
   constructor(props) {
     super(props);

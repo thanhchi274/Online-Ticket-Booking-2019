@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { Date } from "prismic-reactjs";
-import Rating from "./RatingMovie";
+import Rating from "../../RatingMovie";
 import * as Moment from "moment";
 import { Link } from "react-router-dom";
 

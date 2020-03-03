@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import * as Action from "../../redux/action/index";
+import * as Action from "../../Store/action/index";
 import { Redirect } from "react-router-dom";
 class TicketManageMent extends Component {
   constructor(props) {

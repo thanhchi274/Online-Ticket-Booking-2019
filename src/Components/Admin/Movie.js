@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-import * as action from "../../redux/action";
+import * as action from "../../Store/action";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 import moment from "moment";
 import Skeleton from '@material-ui/lab/Skeleton';
-import TableMovieHead from "./TableHead";
+import TableMovieHead from "./TableandSideBar/TableHead";
 import SelectEntriesOption from "./SelectEntriesOption"
 import Pagination from '@material-ui/lab/Pagination';
 class Paginition extends Component {

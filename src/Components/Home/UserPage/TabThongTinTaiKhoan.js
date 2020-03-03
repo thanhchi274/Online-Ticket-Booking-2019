@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { connect } from "react-redux";
-import * as Action from "../redux/action/index";
+import * as Action from "../../../Store/action/index";
 class DetailInfo extends Component {
   constructor(props) {
     super(props);

@@ -1,7 +1,7 @@
 import React from 'react'
 import {Route, Redirect} from "react-router-dom";
-import NavBar from "../Components/Admin/NavBar";
-import SideBar from "../Components/Admin/Sidebar"
+import NavBar from "../Components/Admin/NavigationAdminTemplate";
+import SideBar from "../Components/Admin/TableandSideBar/Sidebar"
 const AdminLayout =(props)=>{
     return (
       

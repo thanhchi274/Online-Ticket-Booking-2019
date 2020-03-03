@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from "react-redux";
-import * as action from "../../redux/action";
+import * as action from "../../../Store/action";
 import {  Alert, AlertTitle } from "@material-ui/lab/";
 class ModalAddUser extends Component {
     constructor(props) {

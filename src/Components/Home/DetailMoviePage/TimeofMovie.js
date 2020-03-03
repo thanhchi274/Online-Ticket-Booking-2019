@@ -1,7 +1,7 @@
 import React from 'react'
 import _ from 'lodash';
 import { Link } from "react-router-dom";
-export default function GioPhimRender(props) {
+export default function TimeofMovie(props) {
     const renderGioChieu = ()=>{
         if(props.LichChieu){
             const LichChieuPhim = props.LichChieu

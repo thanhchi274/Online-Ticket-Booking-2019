@@ -1,6 +1,6 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Navbar from "../Components/navbar";
+import Navbar from "../Components/NavigationHomeTemplate";
 import MobileHeader from "../Components/Home/Mobile/mobile-header";
 
 const HomeLayout = props => {

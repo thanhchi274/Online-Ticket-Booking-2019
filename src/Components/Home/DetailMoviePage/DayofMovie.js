@@ -4,10 +4,10 @@ import 'antd/dist/antd.css';
 import { Tabs } from 'antd';
 import { connect } from "react-redux";
 import _ from 'lodash'
-import GioPhimRender from './GioPhimRender';
+import TimeofMovie from './TimeofMovie';
 const { TabPane } = Tabs;
 
-class SlidingTabsDemo extends React.Component {
+class DayofMovie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,6 +21,9 @@ class SlidingTabsDemo extends React.Component {
         idPhim: this.props.id,
         maRap:this.props.maRap
       })
+  }
+  componentWillReceiveProps(nextProps){
+    console.log(nextProps)
   }
   handleModeChange = e => {
     const mode = e.target.value;
@@ -57,7 +60,7 @@ class SlidingTabsDemo extends React.Component {
                             Object.keys(filteredArr).map((dateMovie,indexDateMovie)=>{
                              return ( 
                                  <TabPane key={new Date(filteredArr[dateMovie].ngayChieuGioChieu).toLocaleDateString()} tab={new Date(filteredArr[dateMovie].ngayChieuGioChieu).toLocaleDateString()}>
-                                 <GioPhimRender LichChieu ={objLichChieu} ngayChieu = {this.state.ngayChieu} />
+                                 <TimeofMovie LichChieu ={objLichChieu} ngayChieu = {this.state.ngayChieu} />
                                  </TabPane>
                                     )})}
                                  </Tabs>
@@ -82,4 +85,4 @@ class SlidingTabsDemo extends React.Component {
 const mapStateToProps = state => ({
     movieDate: state.movieReducer.movieDate
   });
-export default connect(mapStateToProps, null)(SlidingTabsDemo);
+export default connect(mapStateToProps, null)(DayofMovie);

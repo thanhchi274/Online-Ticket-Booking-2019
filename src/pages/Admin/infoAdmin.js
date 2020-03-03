@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import * as Action from "../../redux/action/index";
+import * as Action from "../../Store/action/index";
 import { connect } from "react-redux";
-import UserImage from "../../Components/UserImage";
+import UserImage from "../../Components/Home/SVG/UserImage";
 import Skeleton from '@material-ui/lab/Skeleton';
 class Info extends Component {
   constructor(props) {

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import * as action from "../../redux/action";
+import * as action from "../../Store/action";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
-import CountDown from "../../Components/CountDown";
+import CountDown from "../../Components/Home/BookingPage/countDown";
 class Booking extends Component {
   constructor(props) {
     super(props);

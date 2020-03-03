@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import * as Action from "../redux/action/index.js";
+import * as Action from "../../../Store/action/index";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { Link } from "react-router-dom";
@@ -13,6 +13,9 @@ class HomeTool extends Component {
       ngayChieu: [],
       maPhim: ""
     };
+  }
+  componentDidUpdate(){
+    console.log(this.props.movieDate.heThongRapChieu)
   }
   renderDanhSachPhim = () => {
     return this.props.listMovie.map((MovieList, index) => {

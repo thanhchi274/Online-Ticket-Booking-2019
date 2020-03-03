@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import SVGLoading from "../../Components/loading";
-import * as Action from "../../redux/action/index";
-import Carousel from "./../../Components/carousel";
-import HomeTool from "../../Components/home-tool";
-import MovieAvailable from "../../Components/MovieAvailable";
+import * as Action from "../../Store/action/index";
+import Carousel from "../../Components/Home/MainPage/carousel";
+import HomeTool from "../../Components/Home/MainPage/home-tool";
+import MovieAvailable from "../../Components/Home/MainPage/MovieAvailable";
 import Footer from "../../Components/footer";
 import LazyLoad from "react-lazyload";
-import SmallSpinner from "../../Components/smallSpinner";
+import SmallSpinner from "../../Components/Home/DetailMoviePage/smallSpinner";
 class Home extends Component {
   componentDidMount() {
     this.props.setLoading();

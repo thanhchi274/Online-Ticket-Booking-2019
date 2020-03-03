@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as action from "../redux/action";
+import * as action from "../../../Store/action";
 import Rating from "@material-ui/lab/Rating";
 // import Rate from "../Components/ratingComment";
 import Box from "@material-ui/core/Box";

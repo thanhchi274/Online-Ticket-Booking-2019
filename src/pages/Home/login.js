@@ -6,10 +6,10 @@ import {
   faEye,
   faEyeSlash
 } from "@fortawesome/free-solid-svg-icons";
-import * as action from "../../redux/action";
+import * as action from "../../Store/action";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import SVGAdminLogin from "../../Components/userLoginImage";
+import SVGAdminLogin from "../../Components/Home/SVG/userLoginImage";
 class Login extends Component {
   constructor(props) {
     super(props);

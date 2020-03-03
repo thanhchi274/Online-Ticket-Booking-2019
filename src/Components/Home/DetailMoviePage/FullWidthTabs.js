@@ -6,8 +6,8 @@ import Tab from "@material-ui/core/Tab";
 import PropTypes from "prop-types";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import VerticalTabs from "./lich-chieu";
-import RatingStar from "./RatingMovie";
+import VerticalTabsDateTime from "./VerticalTabsDateTime";
+import RatingStar from "../../RatingMovie";
 import CommentList from "./commentList";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -70,7 +70,7 @@ export default function CenteredTabs(props) {
         <Tab label="Đánh giá" {...a11yProps(2)} style={{ color: "white" }} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <VerticalTabs DateTime={props.DateTime} movie={props.movie} id={props.id} theaterInfo={props.theaterInfo} />
+        <VerticalTabsDateTime DateTime={props.DateTime} movie={props.movie} id={props.id} theaterInfo={props.theaterInfo} />
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div className="movie-info ">

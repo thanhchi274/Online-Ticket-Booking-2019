@@ -13,7 +13,7 @@ import "slick-carousel/slick/slick-theme.css";
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import { Provider } from "react-redux";
-import rootReducer from "./redux/reducers/rootReducer.js";
+import rootReducer from "./Store/reducers/rootReducer.js";
 const composeEnhancers =
   window.__REDUX_DEVTOOLS_EXTENSION__COMPOSE__ || compose;
 const store = createStore(

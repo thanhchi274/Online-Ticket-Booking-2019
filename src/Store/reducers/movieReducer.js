@@ -1,4 +1,4 @@
-import * as ActionType from "./../constants/ActionType";
+import * as ActionType from "../constants/ActionType";
 let initialState = {
   listMovie: [],
   listMovieUpcoming: [],
@@ -7,7 +7,6 @@ let initialState = {
   theaterDateInformation: [],
   loading: false,
   deleted:false,
-  listMovieCarousel: [],
   room: {},
   userList: [],
   userInformation: {},

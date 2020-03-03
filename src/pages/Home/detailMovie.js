@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as Action from "./../../redux/action/index.js";
+import * as Action from "./../../Store/action/index.js";
 import SVGLoading from "../../Components/loading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import ModalVideo from "react-modal-video";
-import FullWidthTabs from "../../Components/detailTab";
+import FullWidthTabs from "../../Components/Home/DetailMoviePage/FullWidthTabs";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 class DetailMovie extends Component {
   constructor() {

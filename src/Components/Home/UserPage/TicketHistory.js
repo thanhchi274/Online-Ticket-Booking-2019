@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import _ from "lodash";
-import * as Action from "../redux/action/index";
+import * as Action from "../../../Store/action/index";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 class TicketHistory extends Component {
