@@ -11,7 +11,7 @@ let initialState = {
   userList: [],
   userInformation: {},
   keyWord: [],
-  tickets: {},
+  tickets: [],
   theaterInfo: [],
   comment: []
 };

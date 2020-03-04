@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from "react-redux";
 import * as action from "../../../Store/action";
  class ModalEditUser extends Component {
+   _edited =false
     constructor(props) {
         super(props);
         this.state = {
@@ -27,6 +28,12 @@ import * as action from "../../../Store/action";
           maNhom:"GP01"
         })
       }
+      if(this._edited){
+        this.props.getUserList()
+      }
+    }
+    handleClose =e =>{
+      this.props.getUserList()
     }
     handleChangeEdit = e => {
         let {name, value}= e.target
@@ -36,15 +43,12 @@ import * as action from "../../../Store/action";
             }
           );
       };
-      handleSubmitEdit =async e => {
+      handleSubmitEdit = async e => {
         e.preventDefault();
         let user = this.state
-        this.props.updateUserAdminOnly(user)
-        await this.props.getUserList()
+        await this.props.updateUserAdminOnly(user)
+        this._edited = true;
       };
-      componentDidUpdate(){
-        console.log(this.state)
-      }
     render() {
         return (
             <div id="myModal" className="modal modalEditUser fade" role="dialog">
@@ -117,6 +121,7 @@ import * as action from "../../../Store/action";
                     type="button"
                     className="btn btnCloseEditUser"
                     data-dismiss="modal"
+                    onClick={this.handleClose}
                   >
                     Cancel
                   </button>

@@ -260,12 +260,10 @@ export const actQuanLyVeUser = user => {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
       data: user
     })
-      .then(async result => {
-        console.log(result.data)
-       localStorage.setItem("TicketManage", JSON.stringify(result.data));
+      .then( result => {
         dispatch({
-          type: await ActionTypes.GET_TICKET_DETAIL,
-          tickets: await result.data
+          type:  ActionTypes.GET_TICKET_DETAIL,
+          tickets:  result.data
         });
       })
       .catch(err => {

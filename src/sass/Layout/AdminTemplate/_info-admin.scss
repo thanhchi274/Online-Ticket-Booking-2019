@@ -13,19 +13,19 @@
     }
     border-radius: 50px;
     background: #969da2;
-    box-shadow:  20px 20px 60px #80858a, 
-                -20px -20px 60px #adb5ba;
+    box-shadow:  20px 20px 60px $info-admin-box-shadow-color, 
+                -20px -20px 60px $info-admin-color-box-shadow-color-lighter;
     .btn-update-admin{
         border-radius: 73px; 
         outline:none!important;
-        background: #ffffff;
-    box-shadow:  5px 5px 10px #cccccc, 
+        background: $white;
+    box-shadow:  5px 5px 10px $info-admin-btn-update-admin-box-shadow-color, 
       -5px -5px 10px #ffffff;
        transition: all 0.2s;
        &:hover{
-        background: #ffffff;
-        box-shadow: inset -5px -5px 10px #cccccc, 
-        inset 5px 5px 10px #ffffff;
+        background: $white;
+        box-shadow: inset -5px -5px 10px $info-admin-btn-update-admin-box-shadow-color, 
+        inset 5px 5px 10px $white;
        }
        &:focus{
            outline: none !important;
@@ -33,19 +33,19 @@
     }
     .modal{
         padding-top:10%;
-        background-color: rgba(0,0,0,0.4);
+        background-color: $dark-04;
         input{
             width: 450px;
         }
         .btn-update{
             position: relative;
             left:67%;
-            color:white;
+            color:$white;
             -webkit-appearance: none;
             background: -webkit-gradient(to right, $green 0%, $sand 50%, $peach 100%);
             background: linear-gradient(to right, $green 0%, $sand 50%, $peach 100%);
             background-size: 500%;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+            box-shadow: 0 0.5rem 1rem $dark-lightness;
             cursor: pointer;
             border: none;
             border-radius: 5rem;

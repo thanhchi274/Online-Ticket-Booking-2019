@@ -1,8 +1,22 @@
 $green: #a2ccb6;
 $light-peach: #ffecd9;
 $peach: #ee786e;
+$red: #f03f42;
 $sand: #fceeb5;
 $white: #fff;
+$white-darker: #e3e3e3;
+$white-darker-2: #cfcfcf;
+$white-lighter: #f7f7f7;
+$white-cream: #cccccc;
+$info-admin-box-shadow-color: #80858a;
+$info-admin-color-box-shadow-color-lighter: #adb5ba;
+$info-admin-btn-update-admin-box-shadow-color: #cccccc;
+$dark-lightness: rgba(0, 0, 0, 0.15);
+$dark-04: rgba(0,0,0,0.4);
+$dark-19: rgba(0,0,0,0.19);
+$dark-23: rgba(0,0,0,0.23);
+$dark-25: rgba(0,0,0,0.25);
+
 @mixin breakpoint($class) {
     @if $class == xs {
       @media (max-width: 767px) { @content; }

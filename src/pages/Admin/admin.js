@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "../../Store/action/index";
-import LoginAdminSVG from "../../Components/Home/SVG/loginAdminSVG";
+import LoginAdminSVG from "../../Asset/SVG/loginAdminSVG";
 class Admin extends Component {
   constructor(props) {
     super(props);

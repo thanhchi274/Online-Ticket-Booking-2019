@@ -30,7 +30,7 @@
         position: relative;
         right:5%;
         width: 150px;
-        color:white;
+        color:$white;
         background: linear-gradient(145deg, #4668c9, #537bef);
         font-weight: 700;
         border-radius: 70px;
@@ -42,7 +42,7 @@
         -2px -2px 3px #5781fa;
         &:hover {
           background:linear-gradient(180deg, #4e73df 10%, #224abe 100%);
-          color:white;
+          color:$white;
           border: 2px solid #4e73df;
           box-shadow: inset 5px 5px 7px #354e98, 
           inset -5px -5px 7px #6798ff;

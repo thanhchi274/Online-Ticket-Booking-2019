@@ -9,7 +9,7 @@ import {
 import * as action from "../../Store/action";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
-import SVGAdminLogin from "../../Components/Home/SVG/userLoginImage";
+import SVGAdminLogin from "../../Asset/SVG/userLoginImage";
 class Login extends Component {
   constructor(props) {
     super(props);

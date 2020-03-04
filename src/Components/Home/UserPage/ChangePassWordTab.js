@@ -21,13 +21,10 @@ class TabUpdateUser extends Component {
     e.preventDefault();
     let updatedUser = { ...this.state };
     let taiKhoan = this.state.taiKhoan;
-    console.log(updatedUser);
-
     if (this.state.matKhauCu === UserInfo.matKhau) {
       this.props.updateUser(updatedUser);
-      console.log(updatedUser);
     } else {
-      alert("sai mk cũ");
+      alert("Sai Mật Khẩu Cũ");
     }
     this.setState(
       {
@@ -45,9 +42,6 @@ class TabUpdateUser extends Component {
     this.setState(
       {
         [name]: value
-      },
-      () => {
-        console.log(this.state);
       }
     );
   };

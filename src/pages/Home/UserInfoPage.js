@@ -2,6 +2,14 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import UserInformationTab from "../../Components/Home/UserPage/UserInformationTab";
 import Skeleton from "@material-ui/lab/Skeleton";
+
+const AvatarUser = () => (
+    <div className="ava">
+              <img alt="avatar" src="https://divineshop.vn/image/avatar/default.png?rand=963987" />
+            </div>
+);
+
+
 class Info extends Component {
   renderHTML = () => {
     let UserHome = JSON.parse(localStorage.getItem("UserHome"));
@@ -9,12 +17,7 @@ class Info extends Component {
       <div className="container info-user">
         <div className="info-cover">
           <div className="detail-info">
-            <div className="ava">
-              <img
-                alt="avatar"
-                src="https://divineshop.vn/image/avatar/default.png?rand=963987"
-              />
-            </div>
+            <AvatarUser></AvatarUser>
             <div className="general">
               <h5>
                 {UserHome ? (

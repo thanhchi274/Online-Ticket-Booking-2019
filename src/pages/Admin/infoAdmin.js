@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import * as Action from "../../Store/action/index";
 import { connect } from "react-redux";
-import UserImage from "../../Components/Home/SVG/UserImage";
+import UserImage from "../../Asset/SVG/UserImage";
 import Skeleton from '@material-ui/lab/Skeleton';
 class Info extends Component {
   constructor(props) {
@@ -37,9 +37,7 @@ class Info extends Component {
   }
 
   handleChange = e => {
-    let target = e.target;
-    let name = target.name;
-    let value = target.value;
+    let {name,value}= e.target
     this.setState({
       [name]: value
     });
@@ -92,7 +90,6 @@ class Info extends Component {
               </p>
             </div>
             <div>
-              {/* Button to Open the Modal */}
               <button
                 type="button"
                 className="btn btn-update-admin "
@@ -102,7 +99,6 @@ class Info extends Component {
               >
                 CHỈNH SỬA TÀI KHOẢN
               </button>
-              {/* The Modal */}
               <div className="modal" id="myModal1">
                 <div className="modal-dialog">
                   <div className="modal-content">

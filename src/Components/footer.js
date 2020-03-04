@@ -1,8 +1,7 @@
-import React from 'react'
-
-export default function footer() {
+import React, {memo} from 'react'
+function footer() {
     return (
-      <div className="footer">
+  <div className="footer">
   <div className="container">
     <div className="footer_trust_top">
       <div className="trustlogos" />
@@ -49,5 +48,5 @@ export default function footer() {
   </div>
   </div>
   )
-
 }
+export default memo(footer)

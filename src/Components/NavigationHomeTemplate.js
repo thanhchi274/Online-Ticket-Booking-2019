@@ -10,28 +10,13 @@ export default class Navbar extends Component {
       visibleNavBar: true
     };
   }
-
-  scrollToMovie = () => {
+  scrollTo = (top,left)=>{
     window.scroll({
-      top: 750,
-      left: 0,
+      top: top,
+      left: left,
       behavior: "smooth"
     });
-  };
-  scrollToTop = () => {
-    window.scroll({
-      top: 0,
-      left: 0,
-      behavior: "smooth"
-    });
-  };
-  scrollToFooter = () => {
-    window.scroll({
-      top: 1400,
-      left: 0,
-      behavior: "smooth"
-    });
-  };
+  }
   handleScroll = () => {
     const { prevScrollpos } = this.state;
     const currentScrollPos = window.pageYOffset;
@@ -44,10 +29,8 @@ export default class Navbar extends Component {
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
-
-  // Remove the event listener when the component is unmount.
   componentWillUnmount() {
-    window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("scroll", this.scrollTo);
   }
   logout = () => {
     localStorage.clear("token");
@@ -103,7 +86,6 @@ export default class Navbar extends Component {
           <div className="userIcon desktop">
             <FontAwesomeIcon className="login_icon" icon={faUser} />
           </div>
-          {/*<h5 className="signin_content">Đăng nhập</h5>*/}
         </NavLink>
       );
     }
@@ -122,7 +104,7 @@ export default class Navbar extends Component {
             <div className="logo">
               <Link
                 className="logo-title d-flex align-items-center"
-                onClick={this.scrollToTop}
+                onClick={()=>this.scrollTo(0,0)}
                 to="/"
               >
                 <img
@@ -154,7 +136,7 @@ export default class Navbar extends Component {
                       activeClassName="active"
                       exact
                       className="nav-link"
-                      onClick={this.scrollToTop}
+                      onClick={()=>this.scrollTo(0,0)}
                       to="/"
                     >
                       Home
@@ -163,7 +145,7 @@ export default class Navbar extends Component {
                   <li className="nav-item">
                     <Link
                       className="nav-link"
-                      onClick={this.scrollToMovie}
+                      onClick={()=>this.scrollTo(750,0)}
                       to=""
                     >
                       Movie
@@ -172,7 +154,7 @@ export default class Navbar extends Component {
                   <li className="nav-item">
                     <Link
                       className="nav-link"
-                      onClick={this.scrollToFooter}
+                      onClick={()=>this.scrollTo(1400,0)}
                       to=""
                     >
                       Subscribe

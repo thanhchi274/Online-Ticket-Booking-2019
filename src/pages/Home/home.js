@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import SVGLoading from "../../Components/loading";
 import * as Action from "../../Store/action/index";
 import Carousel from "../../Components/Home/MainPage/carousel";
-import HomeTool from "../../Components/Home/MainPage/home-tool";
+import HomeTool from "../../Components/Home/Home-tool/home-tool";
 import MovieAvailable from "../../Components/Home/MainPage/MovieAvailable";
 import Footer from "../../Components/footer";
 import LazyLoad from "react-lazyload";
@@ -46,7 +46,6 @@ class Home extends Component {
               <LazyLoad
                 className="desktop"
                 once={true}
-                offset="300"
                 height="600"
               >
                 {loading ? <SmallSpinner /> : <MovieAvailable />}

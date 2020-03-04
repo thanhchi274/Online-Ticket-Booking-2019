@@ -9,6 +9,25 @@ import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import ModalVideo from "react-modal-video";
 import FullWidthTabs from "../../Components/Home/DetailMoviePage/FullWidthTabs";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+
+const DetailMovieDescription = (props) => (
+  <div className="table detail-description">
+            <p className="title-description">
+              <strong>Tên phim: {props.movie.tenPhim}</strong>
+            </p>
+            <p className="title-description">
+              <strong>
+                Ngày chiếu:{" "}
+                {new Date(props.movie.ngayKhoiChieu).toLocaleDateString()}
+              </strong>
+            </p>
+            <p className="title-description mt-5">
+              <AnchorLink href="#section2" className="book-btn mr-4">
+                đặt vé
+              </AnchorLink>
+            </p>
+          </div>
+);
 class DetailMovie extends Component {
   constructor() {
     super();
@@ -49,15 +68,8 @@ class DetailMovie extends Component {
           onClose={() => this.setState({ isOpen: false })}
           isOpen={this.state.isOpen}
         />
-        <div className="detail-movie-intro">
-          <LazyLoadImage
-            className="detail-movie-intro-image"
-            src={movie.hinhAnh}
-            effect="blur"
-            alt="Card"
-            height={100}
-            width={300}
-          />
+         <div className="detail-movie-intro">
+          <LazyLoadImage className="detail-movie-intro-image" src={this.props.hinhAnh} effect="blur" alt="Card" height={100} width={300} />
         </div>
         <div className="row">
           <div className="col-sm-4 img-movie ">
@@ -78,22 +90,7 @@ class DetailMovie extends Component {
             </button>
           </div>
           <div className="col-sm-8">
-            <div className="table detail-description">
-              <p className="title-description">
-                <strong>Tên phim: {movie.tenPhim}</strong>
-              </p>
-              <p className="title-description">
-                <strong>
-                  Ngày chiếu:{" "}
-                  {new Date(movie.ngayKhoiChieu).toLocaleDateString()}
-                </strong>
-              </p>
-              <p className="title-description mt-5">
-                <AnchorLink href="#section2" className="book-btn mr-4">
-                  đặt vé
-                </AnchorLink>
-              </p>
-            </div>
+            <DetailMovieDescription movie={movie}></DetailMovieDescription>
           </div>
         </div>
         <div className="row tabs" id="section2">

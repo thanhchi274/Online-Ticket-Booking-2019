@@ -14,9 +14,6 @@ class ModalAddUser extends Component {
           maNhom:"GP01"
         };
       }
-      componentDidUpdate(){
-        console.log(this.state)
-      }
       handleSumbitAddUser =async e => {
         if (this.state.maLoaiNguoiDung === "") {
           return (

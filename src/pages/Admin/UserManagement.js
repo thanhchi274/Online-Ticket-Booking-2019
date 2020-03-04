@@ -24,18 +24,9 @@ class UserManagement extends Component {
       keyWord: "",
       taiKhoanDelete: "",
       taiKhoan: "",
-      matKhau: "",
       check:false,
       typeUser: "",
       maLoaiNguoiDung:"",
-      addNewUserData: {
-        taiKhoan: "",
-        matKhau: "",
-        email: "",
-        soDT: "",
-        hoTen: "",
-        maLoaiNguoiDung: ""
-      }
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -45,7 +36,6 @@ class UserManagement extends Component {
   }
   componentWillReceiveProps(nextProps) {
       if ((this.state.dataUser !== this.props.userList)&&(this.state.keyWord ==="")) {
-        
         this.setState(
           {
             dataUser: nextProps.userList
@@ -117,38 +107,38 @@ class UserManagement extends Component {
           this.state.offset,
           this.state.offset + this.state.perPage
         );
+        const MainTable = (props) => (
+          <div className="table100-body js-pscroll">
+                    <table>
+                      <tbody>
+                        <tr className="row100 body">
+                          <td className="cell100 column1">{props.pd.taiKhoan}</td>
+                          <td className="cell100 column2">{props.pd.hoTen}</td>
+                          <td className="cell100 column3">{props.pd.email}</td>
+                          <td className="cell100 column4">{props.pd.soDt}</td>
+                          <td className="cell100 column5">{props.pd.maLoaiNguoiDung}</td>
+                          <td className="cell100 column6">{props.pd.matKhau}</td>
+                          <td className="cell100 column7">
+                          <IconButton onClick={this.handleEdit} typeuser={props.pd.maLoaiNguoiDung} value={props.pd.taiKhoan} data-toggle="modal" data-target="#myModal" aria-label="Add">
+                             <Icon.Edit />
+                           </IconButton>
+                            <IconButton onClick={this.handleDelete} value={props.pd.taiKhoan} aria-label="delete">
+                             <Icon.Delete />
+                           </IconButton>
+                            <Link to={`/quan-ly-ve/${props.pd.taiKhoan}`} value={props.pd.taiKhoan}>
+                              <IconButton>
+                             <Icon.ArrowForward />
+                           </IconButton>
+                            </Link>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+      );      
         let postData = slice.map((pd, index) => (
           <React.Fragment key={index}>
-            <div className="table100-body js-pscroll">
-              <table>
-                <tbody>
-                  <tr className="row100 body">
-                    <td className="cell100 column1">{pd.taiKhoan}</td>
-                    <td className="cell100 column2">{pd.hoTen}</td>
-                    <td className="cell100 column3">{pd.email}</td>
-                    <td className="cell100 column4">{pd.soDt}</td>
-                    <td className="cell100 column5">{pd.maLoaiNguoiDung}</td>
-                    <td className="cell100 column6">{pd.matKhau}</td>
-                    <td className="cell100 column7">
-                    <IconButton onClick={this.handleEdit} typeuser={pd.maLoaiNguoiDung} value={pd.taiKhoan} data-toggle="modal" data-target="#myModal" aria-label="Add">
-                       <Icon.Edit/>
-                     </IconButton>
-                      <IconButton onClick={this.handleDelete} value={pd.taiKhoan} aria-label="delete">
-                       <Icon.Delete/>
-                     </IconButton>
-                      <Link
-                        to={`/quan-ly-ve/${pd.taiKhoan}`}
-                        value={pd.taiKhoan}
-                      >
-                        <IconButton>
-                       <Icon.ArrowForward />
-                     </IconButton>
-                      </Link>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+           <MainTable pd={pd}></MainTable>
           </React.Fragment>
         ));
         if (this._isMounted) {
@@ -198,7 +188,7 @@ class UserManagement extends Component {
     return (
       <div>
         <div className="limiter">
-      <ModalAddUser />
+        <ModalAddUser />
           <div className="selectEntries d-flex">
             <select className="mr-5" onChange={this.handlingChange}>
               <SelectEntriesOption />

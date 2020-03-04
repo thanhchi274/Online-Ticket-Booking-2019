@@ -3,6 +3,36 @@ import * as Action from "../../../Store/action/index";
 import { connect } from "react-redux";
 import _ from "lodash";
 import { Link } from "react-router-dom";
+
+const ButtonBooking = (props) => (
+    <Link className="btn-datve btn btn-primary" to={`/dat-ve/${props.maPhim}`}>
+            Mua vé ngay
+          </Link>
+);
+const DanhSachRap = (props) => (
+    <select className="form-control selectChoice" onChange={props.handlingChangeTheater}>
+          <option>Chọn Rạp</option>
+          {props.renderDanhSachRap()}
+        </select>
+);
+const DanhSachPhim = (props) => (
+    <select value={props.movieName} className="form-control selectChoice" onChange={props.handlingChange}>
+          <option>Chọn phim </option>
+          {props.renderDanhSachPhim()}
+        </select>
+);
+const DanhSachNgayXem = (props) => (
+    <select className="form-control selectChoice" onChange={props.handlinTest}>
+          <option>Ngày Xem</option>
+          {props.renderDanhSachRap() ? props.renderNgayXem() : null}
+        </select>
+);
+const DanhSachLichChieu = (props) => (
+    <select className="form-control selectChoice" onChange={props.handlinTest2}>
+          <option>Suất Chiếu</option>
+          {props.renderNgayXem() ? props.renderGioChieu() : null}
+        </select>
+);
 class HomeTool extends Component {
   constructor(props) {
     super(props);
@@ -13,9 +43,6 @@ class HomeTool extends Component {
       ngayChieu: [],
       maPhim: ""
     };
-  }
-  componentDidUpdate(){
-    console.log(this.props.movieDate.heThongRapChieu)
   }
   renderDanhSachPhim = () => {
     return this.props.listMovie.map((MovieList, index) => {
@@ -51,7 +78,6 @@ class HomeTool extends Component {
         ? Object.keys(renderData).map((value, index) => {
             return typeof renderData[value].cumRapChieu == "object" ? (
               <React.Fragment key={index}>
-                {" "}
                 {Object.keys(renderData[value].cumRapChieu).map(
                   (item1, indexTheater) => {
                     const objLichChieu =
@@ -187,42 +213,12 @@ class HomeTool extends Component {
   render() {
     return (
       <div className="wrapper home-tool desktop">
-        <select
-          value={this.movieName}
-          className="form-control selectChoice"
-          onChange={this.handlingChange}
-        >
-          <option>Chọn phim </option>
-          {this.renderDanhSachPhim()}
-        </select>
-        <select
-          className="form-control selectChoice"
-          onChange={this.handlingChangeTheater}
-        >
-          <option>Chọn Rạp</option>
-          {this.renderDanhSachRap()}
-        </select>
-        <select
-          className="form-control selectChoice"
-          onChange={this.handlinTest}
-        >
-          <option>Ngày Xem</option>
-          {this.renderDanhSachRap() ? this.renderNgayXem() : null}
-        </select>
-        <select
-          className="form-control selectChoice"
-          onChange={this.handlinTest2}
-        >
-          <option>Suất Chiếu</option>
-          {this.renderNgayXem() ? this.renderGioChieu() : null}
-        </select>
+        <DanhSachPhim movieName={this.movieName} handlingChange={this.handlingChange} renderDanhSachPhim={this.renderDanhSachPhim}></DanhSachPhim>
+        <DanhSachRap handlingChangeTheater={this.handlingChangeTheater} renderDanhSachRap={this.renderDanhSachRap}></DanhSachRap>
+        <DanhSachNgayXem handlinTest={this.handlinTest} renderDanhSachRap={this.renderDanhSachRap} renderNgayXem={this.renderNgayXem}></DanhSachNgayXem>
+        <DanhSachLichChieu handlinTest2={this.handlinTest2} renderNgayXem={this.renderNgayXem} renderGioChieu={this.renderGioChieu}></DanhSachLichChieu>
         {this.state.maPhim !== "" ? (
-          <Link
-            className="btn-datve btn btn-primary"
-            to={`/dat-ve/${this.state.maPhim}`}
-          >
-            Mua vé ngay
-          </Link>
+        <ButtonBooking maPhim={this.state.maPhim}></ButtonBooking>
         ) : (
           <Link className="btn-datve btn btn-primary" disabled to={"/"}>
             Mua vé ngay

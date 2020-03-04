@@ -22,18 +22,9 @@ class DayofMovie extends React.Component {
         maRap:this.props.maRap
       })
   }
-  componentWillReceiveProps(nextProps){
-    console.log(nextProps)
-  }
-  handleModeChange = e => {
-    const mode = e.target.value;
-    this.setState({ mode });
-  };
   handleChange= e=>{
       this.setState({
           ngayChieu:e
-      },()=>{
-          console.log(this.state)
       })
   }
   renderNgayChieu(){
@@ -43,7 +34,6 @@ class DayofMovie extends React.Component {
         return typeof(renderNgayChieu)=="object"?(
           Object.keys(renderNgayChieu).map((value,index)=>{
             return(
-              (typeof(renderNgayChieu[value].cumRapChieu)=="object")?(
               <React.Fragment key={index}> {
                 Object.keys(renderNgayChieu[value].cumRapChieu).map((item1,indexTheater)=>{
                     const objLichChieu = renderNgayChieu[value].cumRapChieu[item1].lichChieuPhim
@@ -65,21 +55,17 @@ class DayofMovie extends React.Component {
                                     )})}
                                  </Tabs>
                           )})}
-              </React.Fragment>):null
-            )})):null
+              </React.Fragment>
+            )})
+            ):null
       }
   }
   render() {
-      if( this.props.movieDate){
           return (
             <div>
-          {this.renderNgayChieu()}
+          {this.props.movieDate?this.renderNgayChieu():null}
             </div>
           );
-      }
-      else{
-          console.log("123")
-      }
   }
 }
 const mapStateToProps = state => ({
