@@ -1,183 +1,181 @@
-@media only screen and(min-width: 1200px) {
-  .login-container {
-    text-align: center;
-    padding: 30px;
-    background-color: #fff;
-    margin: 16vh 200px !important;
-    border-radius: 69px;
-    background: linear-gradient(145deg, #0e0e4a, #101058);
-    box-shadow: 34px 34px 69px #090930, -34px -34px 69px #151574;
-    svg {
-      width: 450px;
-      height: 400px;
+.login-container {
+  text-align: center;
+  padding: 30px;
+  background-color: #fff;
+  margin: 16vh 200px !important;
+  border-radius: 69px;
+  background: linear-gradient(145deg, #0e0e4a, #101058);
+  box-shadow: 34px 34px 69px #090930, -34px -34px 69px #151574;
+  svg {
+    width: 450px;
+    height: 400px;
+  }
+
+  .formDangNhap {
+    margin-top: 40px;
+    form {
+      margin-right: 30%;
     }
 
-    .formDangNhap {
-      margin-top: 40px;
-      form {
-        margin-right: 30%;
-      }
+    h3 {
+      text-transform: uppercase;
+      color: #03ffd2;
+      font-weight: 900 !important;
+      letter-spacing: 4px;
+      font-size: 2rem !important;
+    }
+  }
 
-      h3 {
-        text-transform: uppercase;
-        color: #03ffd2;
-        font-weight: 900 !important;
-        letter-spacing: 4px;
-        font-size: 2rem !important;
-      }
-    }
-
-    .warning-text {
-      font-size: 18px;
-      font-weight: 700;
-      margin-left: 0 !important;
-    }
-    .btnAction {
-      position: relative;
-      left: 5%;
-      .signin-btn {
-        opacity: 1 !important;
-        width: 150px;
-        background-color: transparent;
-        color: #03ffd2;
-        font-weight: 700;
-        border-radius: 70px;
-        border: 2px solid #03ffd2;
-        transition: all 0.2s;
-        font-size: 20px !important;
-        margin: 30px 0 10px 30px;
-        &:hover {
-          background: linear-gradient(145deg, #14d280, #18f998);
-          color: white;
-          border: 2px solid #03ffd2;
-        }
-      }
-      .signup-btn {
-        @extend .signin-btn;
-        color: #e8e111;
-        height: 50px;
-        border-color: #e8e111;
-        border: 2px solid #e8e111;
-        &:hover {
-          border: 2px solid #e8e111;
-          background: linear-gradient(145deg, #e6de00, #e8e111);
-        }
-      }
-    }
-  }
-  .input-div div {
-    position: relative;
-    height: 45px;
-    input {
-      width: 358px;
-    }
-  }
-  .inputAr {
-    position: relative;
-    width: 358px;
-    .PassIcon {
-      position: absolute;
-      cursor: pointer;
-      height: 100%;
-      top: 0;
-      right: 0;
-      color: white;
-    }
-  }
   .warning-text {
-    color: red;
-  }
-
-  .input-div h5 {
-    position: absolute;
-    left: 10px;
-    top: 50%;
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 700;
-    transform: translateY(-50%);
-    color: white;
-    transition: 0.3s;
+    margin-left: 0 !important;
   }
-
-  .input-div.focus h5 {
-    transform: translateY(-200%);
-    font-size: 15px;
-  }
-
-  .i {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #03ffd2;
-  }
-
-  .input-div {
+  .btnAction {
     position: relative;
-    width: 90%;
-    display: grid;
-    grid-template-columns: 20% 40%;
-    margin: 25px 0;
-    margin-bottom: 10px !important;
-    padding: 5px 0;
-    border-bottom: 1px solid #d9d9d9;
-    transition: 0.3s;
-    z-index: 1001;
-  }
-  .input-div::before,
-  .input-div::after {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    width: 0;
-    height: 2px;
-    background-color: rgb(170, 170, 52);
-    transition: 0.3s;
-  }
-  .input-div::after {
-    right: 50%;
-  }
-  .input-div::before {
-    left: 50%;
-  }
-
-  .input-div.focus:before,
-  .input-div.focus:after {
-    width: 50%;
-  }
-  .input-div.focus .i {
-    color: #2196f3;
-  }
-  .input-div input {
-    width: 200%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    border: none;
-    outline: none;
-    background: transparent;
-    padding: 0.5rem 0.7rem;
-    font-size: 1.2rem;
-    color: white;
-  }
-
-  .signup h5 {
-    transform: translateY(-200%);
-    font-size: 15px;
-  }
-  @-webkit-keyframes autofill {
-    0%,
-    100% {
-      color: #666;
-      background: transparent;
+    left: 5%;
+    .signin-btn {
+      opacity: 1 !important;
+      width: 150px;
+      background-color: transparent;
+      color: #03ffd2;
+      font-weight: 700;
+      border-radius: 70px;
+      border: 2px solid #03ffd2;
+      transition: all 0.2s;
+      font-size: 20px !important;
+      margin: 30px 0 10px 30px;
+      &:hover {
+        background: linear-gradient(145deg, #14d280, #18f998);
+        color: white;
+        border: 2px solid #03ffd2;
+      }
+    }
+    .signup-btn {
+      @extend .signin-btn;
+      color: #e8e111;
+      height: 50px;
+      border-color: #e8e111;
+      border: 2px solid #e8e111;
+      &:hover {
+        border: 2px solid #e8e111;
+        background: linear-gradient(145deg, #e6de00, #e8e111);
+      }
     }
   }
-
-  input:-webkit-autofill {
-    -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
-    -webkit-animation-name: autofill;
-    -webkit-animation-fill-mode: both;
+}
+.input-div div {
+  position: relative;
+  height: 45px;
+  input {
+    width: 358px;
   }
+}
+.inputAr {
+  position: relative;
+  width: 358px;
+  .PassIcon {
+    position: absolute;
+    cursor: pointer;
+    height: 100%;
+    top: 0;
+    right: 0;
+    color: white;
+  }
+}
+.warning-text {
+  color: red;
+}
+
+.input-div h5 {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  font-size: 16px;
+  font-weight: 700;
+  transform: translateY(-50%);
+  color: white;
+  transition: 0.3s;
+}
+
+.input-div.focus h5 {
+  transform: translateY(-200%);
+  font-size: 15px;
+}
+
+.i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #03ffd2;
+}
+
+.input-div {
+  position: relative;
+  width: 90%;
+  display: grid;
+  grid-template-columns: 20% 40%;
+  margin: 25px 0;
+  margin-bottom: 10px !important;
+  padding: 5px 0;
+  border-bottom: 1px solid #d9d9d9;
+  transition: 0.3s;
+  z-index: 1001;
+}
+.input-div::before,
+.input-div::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background-color: rgb(170, 170, 52);
+  transition: 0.3s;
+}
+.input-div::after {
+  right: 50%;
+}
+.input-div::before {
+  left: 50%;
+}
+
+.input-div.focus:before,
+.input-div.focus:after {
+  width: 50%;
+}
+.input-div.focus .i {
+  color: #2196f3;
+}
+.input-div input {
+  width: 200%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0.5rem 0.7rem;
+  font-size: 1.2rem;
+  color: white;
+}
+
+.signup h5 {
+  transform: translateY(-200%);
+  font-size: 15px;
+}
+@-webkit-keyframes autofill {
+  0%,
+  100% {
+    color: #666;
+    background: transparent;
+  }
+}
+
+input:-webkit-autofill {
+  -webkit-animation-delay: 1s; /* Safari support - any positive time runs instantly */
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
 }
 
 @media (max-width: 768px) and (min-width: 320px) {
