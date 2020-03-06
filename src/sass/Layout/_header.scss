@@ -163,7 +163,7 @@ button:focus {
     text-align: center;
     position: fixed;
     z-index: 2001;
-    width: 80%;
+    width: 50%;
     height: 100%;
     top: 0;
     left: 0;
@@ -174,7 +174,7 @@ button:focus {
       border-bottom: 1px solid rgba(white, 0.5);
       padding: 20px 0;
       a {
-        font-size: 25px;
+        font-size: 20px;
       }
       &:last-child {
         border-bottom: none;
@@ -195,7 +195,7 @@ button:focus {
     }
   }
   .menu {
-    transform: translateX(-5%);
+    transform: translateX(-10%);
   }
   .mobilecontainer {
     display: inline-block;
