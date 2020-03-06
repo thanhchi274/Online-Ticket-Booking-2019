@@ -3,29 +3,29 @@ import Countdown from "react-countdown";
 function CountDown() {
   const [redirect, setRedirect] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setRedirect(true);
-    }, 300000);
-  }, []);
-  if (redirect)
-    return (
-      <div className="modalContent">
-        <h5>
-          Thời gian giữ ghế của bạn đã kết thúc, vui lòng thực hiện lại quá
-          trình đặt vé
-        </h5>
-        <hr />
-        <span
-          className="btn btn-danger close-btn"
-          onClick={() => {
-            window.location.reload();
-          }}
-        >
-          Đóng
-        </span>
-      </div>
-    );
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setRedirect(true);
+  //   }, 300000);
+  // }, []);
+  // if (redirect)
+  //   return (
+  //     <div className="modalContent">
+  //       <h5>
+  //         Thời gian giữ ghế của bạn đã kết thúc, vui lòng thực hiện lại quá
+  //         trình đặt vé
+  //       </h5>
+  //       <hr />
+  //       <span
+  //         className="btn btn-danger close-btn"
+  //         onClick={() => {
+  //           window.location.reload();
+  //         }}
+  //       >
+  //         Đóng
+  //       </span>
+  //     </div>
+  //   );
   const Completionist = () => <span>You are good to go!</span>;
   const rendered = ({ minutes, seconds, completed }) => {
     if (completed) {
@@ -40,10 +40,10 @@ function CountDown() {
       </div>
     );
   };
-  return (
-    <div className="countdown">
-      <Countdown date={Date.now() + 300000} renderer={rendered} />
-    </div>
-  );
+  // return (
+  // <div className="countdown">
+  //   <Countdown date={Date.now() + 300000} renderer={rendered} />
+  // </div>
+  // );
 }
 export default memo(CountDown);

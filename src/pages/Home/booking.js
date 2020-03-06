@@ -27,49 +27,37 @@ class Booking extends Component {
     let maGhe = e.target.getAttribute("maghe");
     let maLichChieu = thongTinPhim.maLichChieu;
     if (e.target.className === "chair m-1 chose") {
-      this.setState(
-        {
-          maLichChieu,
-          danhSachVe: [
-            ...this.state.danhSachVe,
-            {
-              tenGhe,
-              maGhe,
-              giaVe
-            }
-          ],
-          taiKhoanNguoiDung: userName.taiKhoan,
-          tienVe: parseInt(this.state.tienVe) + parseInt(giaVe),
-          count: this.state.count + 1
-        },
-        () => {
-          console.log(this.state.danhSachVe);
-        }
-      );
+      this.setState({
+        maLichChieu,
+        danhSachVe: [
+          ...this.state.danhSachVe,
+          {
+            tenGhe,
+            maGhe,
+            giaVe
+          }
+        ],
+        taiKhoanNguoiDung: userName.taiKhoan,
+        tienVe: parseInt(this.state.tienVe) + parseInt(giaVe),
+        count: this.state.count + 1
+      });
     } else {
       this.xoaGhe(maGhe);
-      this.setState(
-        {
-          count: this.state.count - 1,
-          tienVe: this.state.tienVe - giaVe
-        },
-        () => {
-          console.log(this.state.danhSachVe);
-        }
-      );
+      this.setState({
+        count: this.state.count - 1,
+        tienVe: this.state.tienVe - giaVe
+      });
     }
   };
 
   timViTri = maGhe => {
     let viTri = -1;
-   return this.state.danhSachVe.map((item, index) => {
+    this.state.danhSachVe.map((item, index) => {
       if (item.maGhe === maGhe) {
-      return viTri = index;
-      }
-      else{
-        return viTri;
+        return (viTri = index);
       }
     });
+    return viTri;
   };
 
   xoaGhe = maGhe => {
@@ -127,21 +115,12 @@ class Booking extends Component {
   renderRemindHTML = () => {
     if (this.state.danhSachVe.length === 0) {
       return (
-        <div
-          className="modal fade"
-          id="modelId"
-          tabIndex={-1}
-          role="dialog"
-          aria-labelledby="modelTitleId"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-body">
-                <div className=" errNoti row">
-                  <FontAwesomeIcon className="circleTimes" icon={faTimes} />
-                  <h4>Vui lòng chọn ghế</h4>
-                </div>
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-body">
+              <div className=" errNoti row">
+                <FontAwesomeIcon className="circleTimes" icon={faTimes} />
+                <h4>Vui lòng chọn ghế</h4>
               </div>
             </div>
           </div>
@@ -151,116 +130,91 @@ class Booking extends Component {
       switch (this.state.payStyle) {
         case "zalopay":
           return (
-            <div
-              className="modal fade"
-              id="modelId"
-              tabIndex={-1}
-              role="dialog"
-              aria-labelledby="modelTitleId"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog" role="document">
-                <div className="modal-content payStyles">
-                  <div className="modal-header">
-                    <h5>Thanh toán zalopay</h5>
+            <div className="modal-dialog" role="document">
+              <div className="modal-content payStyles">
+                <div className="modal-header">
+                  <h5>Thanh toán zalopay</h5>
+                </div>
+                <div className="modal-body">
+                  <div className=" errNoti row">
+                    <img
+                      alt="ZaloPay"
+                      src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/86977583_2651059108511383_5143827256606457856_n.jpg?_nc_cat=107&_nc_ohc=ogOA-E8yXMkAX9UhCFk&_nc_ht=scontent.fsgn3-1.fna&oh=4b7dc1aa1e1dc90e2fb2e48d56116c92&oe=5EF560CC"
+                    />
+                    <h4>Vui lòng quét mã zalopay để hoàn tất thanh toán</h4>
+                    <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
                   </div>
-                  <div className="modal-body">
-                    <div className=" errNoti row">
-                      <img alt="ZaloPay" src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/86977583_2651059108511383_5143827256606457856_n.jpg?_nc_cat=107&_nc_ohc=ogOA-E8yXMkAX9UhCFk&_nc_ht=scontent.fsgn3-1.fna&oh=4b7dc1aa1e1dc90e2fb2e48d56116c92&oe=5EF560CC" />
-                      <h4>Vui lòng quét mã zalopay để hoàn tất thanh toán</h4>
-                      <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
-                    </div>
-                  </div>
-                  <div className="modal-footer">
-                    <button
-                      className="btn btn-success"
-                      onClick={this.handleSubmit}
-                    >
-                      Hoàn tất
-                    </button>
-                    <button className="btn btn-danger" data-dismiss="modal">
-                      Đóng
-                    </button>
-                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    className="btn btn-success"
+                    onClick={this.handleSubmit}
+                  >
+                    Hoàn tất
+                  </button>
+                  <button className="btn btn-danger" data-dismiss="modal">
+                    Đóng
+                  </button>
                 </div>
               </div>
             </div>
           );
         case "momo":
           return (
-            <div
-              className="modal fade"
-              id="modelId"
-              tabIndex={-1}
-              role="dialog"
-              aria-labelledby="modelTitleId"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog" role="document">
-                <div className="modal-content payStyles">
-                  <div className="modal-header">
-                    <h5>Thanh toán momo</h5>
+            <div className="modal-dialog" role="document">
+              <div className="modal-content payStyles">
+                <div className="modal-header">
+                  <h5>Thanh toán momo</h5>
+                </div>
+                <div className="modal-body">
+                  <div className=" errNoti row">
+                    <img
+                      alt="Momo"
+                      src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.15752-9/86969607_2592060907738901_7392232684623233024_n.jpg?_nc_cat=111&_nc_ohc=rXRWI-3efysAX9x72Jn&_nc_ht=scontent-hkg3-2.xx&oh=2514b0089c43a46c313103dab319d42c&oe=5EC2AC9A"
+                    />
+                    <h4>Vui lòng quét mã momo để hoàn tất thanh toán</h4>
+                    <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
                   </div>
-                  <div className="modal-body">
-                    <div className=" errNoti row">
-                      <img alt="Momo" src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.15752-9/86969607_2592060907738901_7392232684623233024_n.jpg?_nc_cat=111&_nc_ohc=rXRWI-3efysAX9x72Jn&_nc_ht=scontent-hkg3-2.xx&oh=2514b0089c43a46c313103dab319d42c&oe=5EC2AC9A" />
-                      <h4>Vui lòng quét mã momo để hoàn tất thanh toán</h4>
-                      <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
-                    </div>
-                  </div>
-                  <div className="modal-footer">
-                    <button
-                      className="btn btn-success"
-                      onClick={this.handleSubmit}
-                    >
-                      Hoàn tất
-                    </button>
-                    <button className="btn btn-danger" data-dismiss="modal">
-                      Đóng
-                    </button>
-                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button
+                    className="btn btn-success"
+                    onClick={this.handleSubmit}
+                  >
+                    Hoàn tất
+                  </button>
+                  <button className="btn btn-danger" data-dismiss="modal">
+                    Đóng
+                  </button>
                 </div>
               </div>
             </div>
           );
         case "card":
           return (
-            <div
-              className="modal fade"
-              id="modelId"
-              tabIndex={-1}
-              role="dialog"
-              aria-labelledby="modelTitleId"
-              aria-hidden="true"
-            >
-              <div className="modal-dialog" role="document">
-                <div className="modal-content payStyles">
-                  <div className="modal-header">
-                    <h5>Thanh toán bằng thẻ VISA/MASTERCARD</h5>
+            <div className="modal-dialog" role="document">
+              <div className="modal-content payStyles">
+                <div className="modal-header">
+                  <h5>Thanh toán bằng thẻ VISA/MASTERCARD</h5>
+                </div>
+                <div className="modal-body">
+                  <div className=" errNoti row">
+                    <h4>
+                      Hình thức thanh toán hiện tại vẫn chưa hỗ trợ, bạn vui
+                      lòng chọn hình thức thanh toán khác
+                    </h4>
                   </div>
-                  <div className="modal-body">
-                    <div className=" errNoti row">
-                      <h4>Mã card</h4>
-                      <h4>Tổng số tiền cần thanh toán: {this.state.tienVe}</h4>
-                    </div>
-                  </div>
-                  <div className="modal-footer">
-                    <button
-                      className="btn btn-success"
-                      onClick={this.handleSubmit}
-                    >
-                      Hoàn tất
-                    </button>
-                    <button className="btn btn-danger" data-dismiss="modal">
-                      Đóng
-                    </button>
-                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button className="btn btn-danger" data-dismiss="modal">
+                    Đóng
+                  </button>
                 </div>
               </div>
             </div>
           );
-          default:
-          return console.log("Do not Touch")
+        default:
+          return console.log("Do not Touch");
       }
     }
   };
@@ -271,11 +225,20 @@ class Booking extends Component {
           type="button"
           className=" btnBook"
           data-toggle="modal"
-          data-target="#modelId"
+          data-target="#exampleModal"
         >
           Đặt vé
         </button>
-        {this.renderRemindHTML()}
+        <div
+          className="modal fade"
+          id="exampleModal"
+          tabIndex={-1}
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          {this.renderRemindHTML()}
+        </div>
       </div>
     );
   };
@@ -366,51 +329,53 @@ class Booking extends Component {
             <hr />
             <div className="checkType">
               <h5>Hình thức thanh toán</h5>
-              <form className="container" onChange={this.setPay.bind(this)}>
-                <div className="row align-items-center payStyle">
-                  <input
-                    type="radio"
-                    name="pay"
-                    value="zalopay"
-                    defaultChecked
-                  />
-                  <img
-                    className="paymentMethod--img"
-                    src="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw"
-                    srcSet="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s360-rw 2x"
-                    aria-hidden="true"
-                    alt="Ảnh bìa"
-                    itemProp="image"
-                    data-atf="false"
-                    data-iml="1314.2249999946216"
-                  ></img>
-                  <p>Thanh toán qua Zalo PAY</p>
-                </div>
-                <div className="row align-items-center payStyle">
-                  <input type="radio" name="pay" value="momo" />
-                  <img
-                    className="paymentMethod--img"
-                    src="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s180-rw"
-                    srcSet="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s360-rw 2x"
-                    aria-hidden="true"
-                    alt="Ảnh bìa"
-                    itemProp="image"
-                    data-atf="false"
-                    data-iml="37830.04499999515"
-                  ></img>
-                  <p>Thanh toán bằng ví điện tử MOMO</p>
-                </div>
-                <div className="row align-items-center payStyle">
-                  <input type="radio" name="pay" value="card" />
-                  <img
-                    className="paymentMethod--img"
-                    src="https://anh4.com/images/2020/02/02/OfruP.png"
-                    alt="OfruP.png"
-                    border={0}
-                  />
-                  <p>Thanh toán qua thẻ VISA/MASTERCARD</p>
-                </div>
-              </form>
+              {this.state.danhSachVe.length !== 0 ? (
+                <form className="container" onChange={this.setPay.bind(this)}>
+                  <div className="row align-items-center payStyle">
+                    <input
+                      type="radio"
+                      name="pay"
+                      value="zalopay"
+                      defaultChecked
+                    />
+                    <img
+                      className="paymentMethod--img"
+                      src="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw"
+                      srcSet="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s360-rw 2x"
+                      aria-hidden="true"
+                      alt="Ảnh bìa"
+                      itemProp="image"
+                      data-atf="false"
+                      data-iml="1314.2249999946216"
+                    ></img>
+                    <p>Thanh toán qua Zalo PAY</p>
+                  </div>
+                  <div className="row align-items-center payStyle">
+                    <input type="radio" name="pay" value="momo" />
+                    <img
+                      className="paymentMethod--img"
+                      src="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s180-rw"
+                      srcSet="https://lh3.googleusercontent.com/MrBpQdI1sB8c2LUomM6wQfpIx3yuV2usmHY-rVM6J5jiQ_VXEm81vuv7sHPfi78SwQM=s360-rw 2x"
+                      aria-hidden="true"
+                      alt="Ảnh bìa"
+                      itemProp="image"
+                      data-atf="false"
+                      data-iml="37830.04499999515"
+                    ></img>
+                    <p>Thanh toán bằng ví điện tử MOMO</p>
+                  </div>
+                  <div className="row align-items-center payStyle">
+                    <input type="radio" name="pay" value="card" />
+                    <img
+                      className="paymentMethod--img"
+                      src="https://anh4.com/images/2020/02/02/OfruP.png"
+                      alt="OfruP.png"
+                      border={0}
+                    />
+                    <p>Thanh toán qua thẻ VISA/MASTERCARD</p>
+                  </div>
+                </form>
+              ) : null}
             </div>
             {this.handleRemind()}
           </div>
