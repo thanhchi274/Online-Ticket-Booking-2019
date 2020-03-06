@@ -33,7 +33,9 @@
   }
   .btnAction {
     position: relative;
-    left: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     .signin-btn {
       opacity: 1 !important;
       width: 150px;
@@ -44,7 +46,6 @@
       border: 2px solid #03ffd2;
       transition: all 0.2s;
       font-size: 20px !important;
-      margin: 30px 0 10px 30px;
       &:hover {
         background: linear-gradient(145deg, #14d280, #18f998);
         color: white;
@@ -67,13 +68,10 @@
 .input-div div {
   position: relative;
   height: 45px;
-  input {
-    width: 358px;
-  }
 }
 .inputAr {
   position: relative;
-  width: 358px;
+  width: 200%;
   .PassIcon {
     position: absolute;
     cursor: pointer;
@@ -182,18 +180,23 @@ input:-webkit-autofill {
   .login-container {
     margin-left: 0 !important;
     .formDangNhap {
-      margin-top: 40px;
       form {
+        padding: 0;
+        width: 100% !important;
         .input-div {
-          width: 85%;
+          width: 100%;
         }
-        .warning-text {
-          width: 90%;
+        .inputAr {
+          width: 200%;
         }
       }
-    }
-    .inputAr {
-      width: 330px;
+      .btnAction {
+        width: 100%;
+        margin: 20px auto;
+        .signin-btn {
+          margin: 0;
+        }
+      }
     }
   }
 }

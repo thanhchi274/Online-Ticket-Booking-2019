@@ -1,4 +1,4 @@
-import React,{memo} from "react";
+import React, { memo } from "react";
 
 function footer() {
   return (
@@ -28,7 +28,7 @@ function footer() {
               </li>
             </ul>
           </div>
-          <div className="col-xs-12 col-md-6 col-md-pull-3 footer_middle">
+          <div className="col-xs-12 col-md-6 col-md-pull-3 footer_middle desktop">
             <h4>
               Be the first to know about <strong>Movie Theater</strong>
             </h4>
@@ -36,7 +36,7 @@ function footer() {
               Subscribe to get exclusive offers on the world’s greatest movie
               news.
             </p>
-            <form className="hero-cta__form">
+            <form className="hero-cta__form ">
               <div className="elcontainer">
                 <div className="inner-wrap submit-container">
                   <div className="hero-cta__input-wrap">
@@ -84,4 +84,4 @@ function footer() {
     </div>
   );
 }
-export default memo(footer)
+export default memo(footer);
