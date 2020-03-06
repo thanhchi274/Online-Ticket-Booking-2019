@@ -105,7 +105,7 @@ export default class MobileHeader extends Component {
   render() {
     const home = localStorage.getItem("UserHome");
     return (
-      <nav className="mobile_header row align-items-center justify-content-between mobile">
+      <nav className="mobile_header mobile">
         <div className="logo_mobile mobile col-3">
           <Link className="logo-img" onClick={this.scrollToTop} to="/">
             <img
