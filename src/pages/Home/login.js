@@ -215,9 +215,9 @@ class Login extends Component {
               ""
             )}
 
-            <div className="btnAction d-flex">
+            <div className="btnAction">
               <button
-                className="btn signin-btn mb-3"
+                className="btn signin-btn"
                 disabled={!this.state.formvalid}
               >
                 SIGN IN
