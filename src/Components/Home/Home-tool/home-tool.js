@@ -4,11 +4,6 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import { Link } from "react-router-dom";
 
-const ButtonBooking = (props) => (
-    <Link className="btn-datve btn btn-primary" to={`/dat-ve/${props.maPhim}`}>
-            Mua vé ngay
-          </Link>
-);
 const DanhSachRap = (props) => (
     <select className="form-control selectChoice" onChange={props.handlingChangeTheater}>
           <option>Chọn Rạp</option>
@@ -16,19 +11,19 @@ const DanhSachRap = (props) => (
         </select>
 );
 const DanhSachPhim = (props) => (
-    <select value={props.movieName} className="form-control selectChoice" onChange={props.handlingChange}>
+    <select value={props.movieName} className="form-control selectChoice" onChange={props.handleChangeListMovie}>
           <option>Chọn phim </option>
           {props.renderDanhSachPhim()}
         </select>
 );
 const DanhSachNgayXem = (props) => (
-    <select className="form-control selectChoice" onChange={props.handlinTest}>
+    <select className="form-control selectChoice" onChange={props.handleChangeDay}>
           <option>Ngày Xem</option>
           {props.renderDanhSachRap() ? props.renderNgayXem() : null}
         </select>
 );
 const DanhSachLichChieu = (props) => (
-    <select className="form-control selectChoice" onChange={props.handlinTest2}>
+    <select className="form-control selectChoice" onChange={props.handleChangeTime}>
           <option>Suất Chiếu</option>
           {props.renderNgayXem() ? props.renderGioChieu() : null}
         </select>
@@ -38,11 +33,17 @@ class HomeTool extends Component {
     super(props);
     this.state = {
       id: "",
-      maHeThongRap: "",
-      homeToolData: [],
+      maCumRap: "",
       ngayChieu: [],
-      maPhim: ""
+      maPhim: "",
+      maLichChieu:""
     };
+  }
+  componentDidMount(){
+    this._isMounted = true;
+  }
+  componentWillMount(){
+   return this.props.movieDate
   }
   renderDanhSachPhim = () => {
     return this.props.listMovie.map((MovieList, index) => {
@@ -56,135 +57,89 @@ class HomeTool extends Component {
   };
   renderDanhSachRap = () => {
     if (this.props.movieDate.heThongRapChieu) {
-      return this.props.movieDate.heThongRapChieu.map((item, index) => {
-        return (
-          <React.Fragment key={index}>
-            <option value={item.maHeThongRap}>{item.tenHeThongRap}</option>
-          </React.Fragment>
-        );
-      });
-    }
+      return this.props.movieDate.heThongRapChieu.map((heThongRapChieu, index) => {
+        return heThongRapChieu.cumRapChieu.map((cumRapChieu, index) => {
+          return (
+            <React.Fragment key={index}>
+            <option value={cumRapChieu.maCumRap}>{cumRapChieu.tenCumRap}</option>
+          </React.Fragment>);
+    })})}
     if (this.state.id !== "") {
       this.props.getMovieDateTime(this.state.id);
     }
   };
   renderNgayXem = () => {
-    if (this.props.movieDate) {
-      let data = this.state.homeToolData.heThongRapChieu;
-      const renderData = _.filter(data, {
-        maHeThongRap: this.state.maHeThongRap
-      });
-      return typeof renderData == "object"
-        ? Object.keys(renderData).map((value, index) => {
-            return typeof renderData[value].cumRapChieu == "object" ? (
+    if (this.props.movieDate.heThongRapChieu) {
+      return this.props.movieDate.heThongRapChieu.map((heThongRapChieu, index) => {
+        return heThongRapChieu.cumRapChieu.map((cumRapChieu, index) => {
+          if(cumRapChieu.maCumRap ===this.state.maCumRap){
+            const filteredArr = cumRapChieu.lichChieuPhim.reduce(
+              (arrayDuplicated, current) => {
+                const duplicatedItem = arrayDuplicated.find(
+                  movie =>
+                    new Date(movie.ngayChieuGioChieu).toLocaleDateString() ===new Date(current.ngayChieuGioChieu).toLocaleDateString()
+                );
+               return (!duplicatedItem)? arrayDuplicated.concat([current]) : arrayDuplicated
+              },
+              []
+            );
+            return (
               <React.Fragment key={index}>
-                {Object.keys(renderData[value].cumRapChieu).map(
-                  (item1, indexTheater) => {
-                    const objLichChieu =
-                      renderData[value].cumRapChieu[item1].lichChieuPhim;
-                    const filteredArr = objLichChieu.reduce(
-                      (arrayDuplicated, current) => {
-                        const duplicatedItem = arrayDuplicated.find(
-                          movie =>
-                            new Date(
-                              movie.ngayChieuGioChieu
-                            ).toLocaleDateString() ===
-                            new Date(
-                              current.ngayChieuGioChieu
-                            ).toLocaleDateString()
-                        );
-                        if (!duplicatedItem) {
-                          return arrayDuplicated.concat([current]);
-                        } else {
-                          return arrayDuplicated;
-                        }
-                      },
-                      []
-                    );
+                {Object.keys(filteredArr).map(
+                  (dateMovie, indexDateMovie) => {
                     return (
-                      <React.Fragment key={indexTheater}>
-                        {Object.keys(filteredArr).map(
-                          (dateMovie, indexDateMovie) => {
-                            return (
-                              <option key={dateMovie}>
-                                {new Date(
-                                  filteredArr[dateMovie].ngayChieuGioChieu
-                                ).toLocaleDateString()}
-                              </option>
-                            );
-                          }
-                        )}
-                      </React.Fragment>
+                      <option key={dateMovie}>
+                        {new Date(
+                          filteredArr[dateMovie].ngayChieuGioChieu
+                        ).toLocaleDateString()}
+                      </option>
                     );
                   }
                 )}
               </React.Fragment>
-            ) : null;
-          })
-        : null;
-    }
+            );
+          }
+    })})}
   };
   renderGioChieu = () => {
-    if (this.props.movieDate) {
-      let data = this.state.homeToolData.heThongRapChieu;
-      const renderData = _.filter(data, {
-        maHeThongRap: this.state.maHeThongRap
-      });
-      return typeof renderData == "object"
-        ? Object.keys(renderData).map((value, index) => {
-            return typeof renderData[value].cumRapChieu == "object" ? (
+    if (this.props.movieDate.heThongRapChieu) {
+      return this.props.movieDate.heThongRapChieu.map((heThongRapChieu, index) => {
+        return heThongRapChieu.cumRapChieu.map((cumRapChieu, index) => {
+          if(cumRapChieu.maCumRap ===this.state.maCumRap){
+            const filteredArr = cumRapChieu.lichChieuPhim.reduce(
+              (arrayDuplicated, current) => {
+                const duplicatedItem = arrayDuplicated.find(
+                  movie =>
+                    new Date(
+                      movie.ngayChieuGioChieu
+                    ).toLocaleTimeString() ===
+                    new Date(
+                      current.ngayChieuGioChieu
+                    ).toLocaleTimeString()
+                );
+               return (!duplicatedItem)? arrayDuplicated.concat([current]) : arrayDuplicated
+              },
+              []
+            );
+            return (
               <React.Fragment key={index}>
-                {" "}
-                {Object.keys(renderData[value].cumRapChieu).map(
-                  (item1, indexTheater) => {
-                    const objLichChieu =
-                      renderData[value].cumRapChieu[item1].lichChieuPhim;
-                    const filteredArr = objLichChieu.reduce(
-                      (arrayDuplicated, current) => {
-                        const duplicatedItem = arrayDuplicated.find(
-                          time =>
-                            new Date(
-                              time.ngayChieuGioChieu
-                            ).toLocaleTimeString() ===
-                            new Date(
-                              current.ngayChieuGioChieu
-                            ).toLocaleTimeString()
-                        );
-                        if (!duplicatedItem) {
-                          return arrayDuplicated.concat([current]);
-                        } else {
-                          return arrayDuplicated;
-                        }
-                      },
-                      []
-                    );
+                {Object.keys(filteredArr).map(
+                  (dateMovie, indexDateMovie) => {
                     return (
-                      <React.Fragment key={indexTheater}>
-                        {Object.keys(filteredArr).map(
-                          (dateMovie, indexDateMovie) => {
-                            return (
-                              <option
-                                key={indexDateMovie}
-                                value={filteredArr[dateMovie].maLichChieu}
-                              >
-                                {new Date(
-                                  filteredArr[dateMovie].ngayChieuGioChieu
-                                ).toLocaleTimeString()}
-                              </option>
-                            );
-                          }
-                        )}
-                      </React.Fragment>
+                      <option value={filteredArr[dateMovie].maLichChieu} key={dateMovie}>
+                        {new Date(
+                          filteredArr[dateMovie].ngayChieuGioChieu
+                        ).toLocaleTimeString()}
+                      </option>
                     );
                   }
                 )}
               </React.Fragment>
-            ) : null;
-          })
-        : null;
-    }
+            );
+          }
+    })})}
   };
-  handlingChange = event => {
+  handleChangeListMovie = event => {
     this.setState(
       {
         id: event.target.value
@@ -196,29 +151,31 @@ class HomeTool extends Component {
   };
   handlingChangeTheater = event => {
     this.setState({
-      maHeThongRap: event.target.value,
-      homeToolData: this.props.movieDate
+      maCumRap: event.target.value,
     });
   };
-  handlinTest = e => {
+  handleChangeDay = e => {
     this.setState({
       ngayChieu: e.target.value
     });
   };
-  handlinTest2 = e => {
+  handleChangeTime = e => {
+    const maLichChieu =parseInt(e.target.value)
     this.setState({
-      maPhim: e.target.value
+      maLichChieu,
     });
   };
   render() {
     return (
       <div className="wrapper home-tool desktop">
-        <DanhSachPhim movieName={this.movieName} handlingChange={this.handlingChange} renderDanhSachPhim={this.renderDanhSachPhim}></DanhSachPhim>
+        <DanhSachPhim movieName={this.movieName} handleChangeListMovie={this.handleChangeListMovie} renderDanhSachPhim={this.renderDanhSachPhim}></DanhSachPhim>
         <DanhSachRap handlingChangeTheater={this.handlingChangeTheater} renderDanhSachRap={this.renderDanhSachRap}></DanhSachRap>
-        <DanhSachNgayXem handlinTest={this.handlinTest} renderDanhSachRap={this.renderDanhSachRap} renderNgayXem={this.renderNgayXem}></DanhSachNgayXem>
-        <DanhSachLichChieu handlinTest2={this.handlinTest2} renderNgayXem={this.renderNgayXem} renderGioChieu={this.renderGioChieu}></DanhSachLichChieu>
-        {this.state.maPhim !== "" ? (
-        <ButtonBooking maPhim={this.state.maPhim}></ButtonBooking>
+        <DanhSachNgayXem handleChangeDay={this.handleChangeDay} renderDanhSachRap={this.renderDanhSachRap} renderNgayXem={this.renderNgayXem}></DanhSachNgayXem>
+        <DanhSachLichChieu handleChangeTime={this.handleChangeTime} renderNgayXem={this.renderNgayXem} renderGioChieu={this.renderGioChieu}></DanhSachLichChieu>
+        {this.state.maLichChieu ? (
+          <Link className="btn-datve btn btn-primary" to={`/dat-ve/${this.state.maLichChieu}`}>
+            Mua vé ngay
+          </Link>
         ) : (
           <Link className="btn-datve btn btn-primary" disabled to={"/"}>
             Mua vé ngay

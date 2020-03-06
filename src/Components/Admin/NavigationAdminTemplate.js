@@ -21,6 +21,7 @@ export default class Navbar extends Component {
         window.addEventListener("scroll", this.handleScroll);
       }
       componentWillUnmount() {
+       this.handleScroll()
         window.removeEventListener("scroll", this.handleScroll);
       }
     render() {

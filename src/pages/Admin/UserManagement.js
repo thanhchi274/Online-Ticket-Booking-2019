@@ -33,8 +33,9 @@ class UserManagement extends Component {
   componentDidMount() {
     this._isMounted = true;
     this.props.getUserList();
+    this.receivedData();
   }
-  componentWillReceiveProps(nextProps) {
+  UNSAFE_componentWillReceiveProps(nextProps) {
       if ((this.state.dataUser !== this.props.userList)&&(this.state.keyWord ==="")) {
         this.setState(
           {
