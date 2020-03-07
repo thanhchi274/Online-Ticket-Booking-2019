@@ -1,12 +1,11 @@
 .booking-movie {
-  background-color: #011840;
+  background-color: $main;
   padding: 60px;
   padding-top: 30px;
   width: 1200px;
-  height: 820px;
   position: relative;
   margin: 0 auto;
-
+  height: 100%;
   .countdown {
     position: absolute;
     left: 82%;
@@ -31,7 +30,7 @@
   }
 
   h3 {
-    color: $white !important;
+    color: $white-darker-2 !important;
     font-weight: 300 !important;
     font-size: 20px !important;
 
@@ -231,7 +230,7 @@
   position: fixed;
   background-color: $white;
   padding: 40px;
-  color: black;
+  color: $main;
   h5 {
     margin-bottom: 20px;
   }

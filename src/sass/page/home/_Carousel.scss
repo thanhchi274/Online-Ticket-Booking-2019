@@ -42,7 +42,7 @@
   }
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;
-  background-color: #fff;
+  background-color: $primary;
   display: block;
   width: 100%;
   border-top: 0px !important;
@@ -54,7 +54,7 @@
   a {
     cursor: pointer;
     padding: 10px 15px;
-    color: #000;
+    color: $white-darker-2;
     margin-bottom: 0;
     line-height: normal;
     position: absolute;
@@ -64,13 +64,13 @@
     text-decoration: none;
     transition: all 0.2s;
     &:hover {
-      color: #f03f42 !important;
+      color: $white-darker-2 !important;
       text-decoration: none;
     }
   }
   p {
     padding: 10px 15px;
-    color: #000;
+    color: $white-darker-2;
     margin-bottom: 0;
     &:nth-child(2) {
       position: absolute;

@@ -10,13 +10,13 @@ export default class Navbar extends Component {
       visibleNavBar: true
     };
   }
-  scrollTo = (top,left)=>{
+  scrollTo = (top, left) => {
     window.scroll({
       top: top,
       left: left,
       behavior: "smooth"
     });
-  }
+  };
   handleScroll = () => {
     const { prevScrollpos } = this.state;
     const currentScrollPos = window.pageYOffset;
@@ -80,7 +80,7 @@ export default class Navbar extends Component {
       return (
         <NavLink
           activeClassName="active"
-          className="signin_link row align-items-center"
+          className="col-sm-1 signin_link row align-items-center"
           to="/login"
         >
           <div className="userIcon desktop">
@@ -104,7 +104,7 @@ export default class Navbar extends Component {
             <div className="logo">
               <Link
                 className="logo-title d-flex align-items-center"
-                onClick={()=>this.scrollTo(0,0)}
+                onClick={() => this.scrollTo(0, 0)}
                 to="/"
               >
                 <img
@@ -117,7 +117,7 @@ export default class Navbar extends Component {
               </Link>
             </div>
 
-            <div className="col-sm-7 nav-menu ">
+            <div className="col-sm-4 nav-menu ">
               <button
                 className="navbar-toggler"
                 type="button"
@@ -132,20 +132,9 @@ export default class Navbar extends Component {
               >
                 <ul className="navbar-nav">
                   <li className="nav-item">
-                    <NavLink
-                      activeClassName="active"
-                      exact
-                      className="nav-link"
-                      onClick={()=>this.scrollTo(0,0)}
-                      to="/"
-                    >
-                      Home
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
                     <Link
                       className="nav-link"
-                      onClick={()=>this.scrollTo(750,0)}
+                      onClick={() => this.scrollTo(750, 0)}
                       to=""
                     >
                       Movie
@@ -154,15 +143,24 @@ export default class Navbar extends Component {
                   <li className="nav-item">
                     <Link
                       className="nav-link"
-                      onClick={()=>this.scrollTo(1400,0)}
+                      // onClick={() => this.scrollTo(750, 0)}
                       to=""
                     >
-                      Subscribe
+                      Theater
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link className="nav-link" to="">
                       News
+                    </Link>
+                  </li>
+                  <li className="nav-item">
+                    <Link
+                      className="nav-link"
+                      onClick={() => this.scrollTo(1400, 0)}
+                      to=""
+                    >
+                      Subscribe
                     </Link>
                   </li>
                 </ul>

@@ -10,23 +10,22 @@ import ModalVideo from "react-modal-video";
 import FullWidthTabs from "../../Components/Home/DetailMoviePage/FullWidthTabs";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 
-const DetailMovieDescription = (props) => (
+const DetailMovieDescription = props => (
   <div className="table detail-description">
-            <p className="title-description">
-              <strong>Tên phim: {props.movie.tenPhim}</strong>
-            </p>
-            <p className="title-description">
-              <strong>
-                Ngày chiếu:{" "}
-                {new Date(props.movie.ngayKhoiChieu).toLocaleDateString()}
-              </strong>
-            </p>
-            <p className="title-description mt-5">
-              <AnchorLink href="#section2" className="book-btn mr-4">
-                đặt vé
-              </AnchorLink>
-            </p>
-          </div>
+    <p className="title-description">
+      <strong>Tên phim: {props.movie.tenPhim}</strong>
+    </p>
+    <p className="title-description">
+      <strong>
+        Ngày chiếu: {new Date(props.movie.ngayKhoiChieu).toLocaleDateString()}
+      </strong>
+    </p>
+    <p className="title-description mt-5">
+      <AnchorLink href="#section2" className="book-btn mr-4">
+        đặt vé
+      </AnchorLink>
+    </p>
+  </div>
 );
 class DetailMovie extends Component {
   constructor() {
@@ -68,11 +67,8 @@ class DetailMovie extends Component {
           onClose={() => this.setState({ isOpen: false })}
           isOpen={this.state.isOpen}
         />
-         <div className="detail-movie-intro">
-          <LazyLoadImage className="detail-movie-intro-image" src={this.props.hinhAnh} effect="blur" alt="Card" height={100} width={300} />
-        </div>
         <div className="row">
-          <div className="col-sm-4 img-movie ">
+          <div className="col-sm-3 img-movie ">
             <LazyLoadImage
               src={movie.hinhAnh}
               effect="blur"
@@ -81,13 +77,10 @@ class DetailMovie extends Component {
               width={300}
               className="trailer"
             />
-            <button onClick={this.openModal}>
-              <div className="bg-trailer">
-                <div className="play-btn">
-                  <FontAwesomeIcon icon={faPlay} />
-                </div>
-              </div>
-            </button>
+            <div className="bg-trailer"></div>
+            <div className="play-btn" onClick={this.openModal}>
+              <FontAwesomeIcon icon={faPlay} />
+            </div>
           </div>
           <div className="col-sm-8">
             <DetailMovieDescription movie={movie}></DetailMovieDescription>
@@ -116,8 +109,8 @@ const mapDispatchToProps = dispatch => {
     setLoading: () => {
       dispatch(Action.actLoading());
     },
-    getMovieDateTime:(ve)=>{
-      dispatch(Action.actGetDateTimeMovie(ve))
+    getMovieDateTime: ve => {
+      dispatch(Action.actGetDateTimeMovie(ve));
     }
   };
 };

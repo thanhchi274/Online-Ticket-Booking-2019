@@ -30,24 +30,10 @@ class Home extends Component {
             <Carousel />
             <HomeTool movieDate={this.props.movieDate} />
           </div>
-          <div className="mt-5">
-            <h3
-              className="now_title"
-              style={{
-                textTransform: "uppercase",
-                color: "yellow",
-                textShadow: "0 0 10px yellow, 0 0 40px yellow, 0 0 80px yellow",
-                textAlign: "center"
-              }}
-            >
-              Now available
-            </h3>
+          <div className="availableMovie">
+            <h3 className="now_title">Now available</h3>
             <div className="tab-content nav-tabContent desktop" id="section1">
-              <LazyLoad
-                className="desktop"
-                once={true}
-                height="600"
-              >
+              <LazyLoad className="desktop" once={true} height="600">
                 {loading ? <SmallSpinner /> : <MovieAvailable />}
               </LazyLoad>
             </div>

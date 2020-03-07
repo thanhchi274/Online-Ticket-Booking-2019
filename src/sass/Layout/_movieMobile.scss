@@ -1,3 +1,7 @@
+.availableMovie {
+  margin-top: 5%;
+}
+
 @media (max-width: 768px) and (min-width: 320px) {
   .movie_card {
     width: 100%;
@@ -5,7 +9,7 @@
     .movie_link {
       height: 30%;
       h5 {
-        color: yellow;
+        color: $white-darker-2;
       }
       p {
         font-size: 300;
@@ -25,15 +29,15 @@
           .img-content_info {
             margin-top: 10px;
             padding: 5px;
-            color: yellow;
+            color: $white-darker-2;
             border-radius: 10px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
           }
           .img-content_evaluate {
             padding: 5px;
             height: 50%;
             border-bottom-left-radius: 15px;
-            background-color: rgba(0, 0, 0, 0.5);
+            background-color: rgba(0, 0, 0, 0.8);
             text-align: center;
             .rateStar {
               font-size: 10px;
@@ -52,11 +56,14 @@
     width: 100%;
     border-radius: 10px;
     padding: 10px 0;
-    color: yellow;
-    border: 2px solid #264cc8;
+    color: $white-darker-2;
+    border: 2px solid $primary;
     background-color: transparent;
     outline: none;
     font-weight: 400;
     font-size: 20px;
+  }
+  .availableMovie {
+    margin-top: 25%;
   }
 }

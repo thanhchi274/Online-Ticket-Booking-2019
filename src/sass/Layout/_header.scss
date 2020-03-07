@@ -1,5 +1,5 @@
 .navbar-expand-md {
-  height: 100px !important;
+  height: 95px !important;
   .logo {
     padding: 0 !important;
     text-align: left;
@@ -15,8 +15,8 @@
   margin: 0 !important;
 }
 .navbar {
-  height: 95px;
-  background-color: #0c0c4a;
+  height: 85px;
+  background-color: $main;
   z-index: 1001;
   width: 100%;
   font-size: 16px;
@@ -29,10 +29,6 @@
     font-family: "Pacifico";
     &:hover {
       text-decoration: none;
-    }
-    .logo_topContent {
-      font-size: 28px;
-      color: yellow;
     }
   }
   .logined {
@@ -49,31 +45,31 @@
       }
     }
 
-    color: white;
+    color: $white-darker;
     margin-left: 100px;
     position: relative;
     text-align: center;
   }
   .logined_button {
-    color: yellow !important;
+    color: $white-darker !important;
     &:focus {
       outline: none !important;
     }
   }
   .signin_link {
-    padding: 0 40px;
+    padding: 0 30px;
     .userIcon {
       width: 50px;
       height: 50px;
-      border: 2px solid yellow;
+      border: 2px solid $white-darker;
       border-radius: 50%;
       text-align: center;
       line-height: 50px;
       font-size: 23px;
-      color: yellow;
+      color: $white-darker;
     }
     h5 {
-      color: yellow;
+      color: $white-darker;
       margin: 0 10px;
     }
 
@@ -87,7 +83,7 @@
 }
 .logo-name {
   margin-top: 1em;
-  color: #fff;
+  color: $white-darker;
   font-weight: 700;
   font-size: 18px;
 }
@@ -103,24 +99,21 @@
   }
 }
 .active {
-  font-weight: 400;
-  color: #2196f3 !important;
-  text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+  color: $primary !important;
+  text-shadow: 0 0 10px $primary, 0 0 40px $primary, 0 0 80px $primary;
 }
 .nav-link {
-  color: yellow;
-  font-weight: 600;
+  color: $white-darker-2;
   margin: 0 10px;
-  font-size: 20px;
+  font-size: 18px;
   transition: 0.5s;
   &:hover {
-    color: #2196f3;
-    text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    color: $primary;
   }
 }
 .loginBtn {
   .active {
-    box-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+    box-shadow: 0 0 10px $primary, 0 0 40px $primary, 0 0 80px $primary;
   }
 }
 .nav-drop {
@@ -133,7 +126,7 @@
   .dropdown-toggle {
     background-color: transparent !important;
     border: none;
-    color: white;
+    color: $white-darker;
   }
   .user_icon {
     margin-right: 10px;
@@ -145,17 +138,44 @@ button:focus {
 
 @media (max-width: 768px) and (min-width: 320px) {
   .mobile_header {
-    padding: 0 30px;
+    background-color: $main;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    height: 80px;
+    z-index: 2001;
     .logo-img {
       img {
-        width: 90%;
+        width: 70%;
       }
     }
     .col-3 {
       padding: 0 !important;
+    }
+  }
+  .nav-login {
+    .logined_mobile {
+      display: flex;
+      align-items: center;
+      .userIcon_info {
+        a {
+          font-size: 18px;
+          padding: 0;
+          text-align: left;
+        }
+      }
+      .userIcon_mobile {
+        color: $white-darker-2;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        line-height: 50px;
+        border-radius: 50%;
+        border: 1px solid $white-darker-2;
+      }
     }
   }
   .nav_content {
@@ -166,26 +186,28 @@ button:focus {
     height: 100%;
     top: 0;
     left: 0;
-    padding: 30px 50px;
     transition: all 0.5s;
     transform: translateX(-100%);
-    li {
-      border-bottom: 1px solid rgba(white, 0.5);
-      padding: 20px 0;
+    .nav-content {
+      padding: 20px 30px;
       a {
-        font-size: 20px;
+        padding: 20px 30px;
+        font-size: 24px;
       }
+    }
+    li {
+      border-bottom: 1px solid rgba($primary, 0.5);
+      padding: 20px 0;
       &:last-child {
         border-bottom: none;
       }
     }
     .mobileSignin_link {
       h5 {
-        color: yellow;
-        font-size: 30px;
+        color: $white-darker-2;
+        transition: all 0.3s;
         &:hover {
-          color: #2196f3;
-          text-shadow: 0 0 10px #2196f3, 0 0 40px #2196f3, 0 0 80px #2196f3;
+          color: $primary;
         }
       }
       &:hover {
@@ -194,7 +216,7 @@ button:focus {
     }
   }
   .menu {
-    transform: translateX(-5%);
+    transform: translateX(0);
   }
   .mobilecontainer {
     display: inline-block;
@@ -207,9 +229,12 @@ button:focus {
       pointer-events: none;
       width: 35px;
       height: 5px;
-      background-color: yellow;
+      background-color: $primary;
       margin: 6px 0;
       transition: 0.4s;
+    }
+    .bar2 {
+      width: 30px;
     }
   }
 
