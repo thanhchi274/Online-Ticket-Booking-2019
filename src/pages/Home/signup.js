@@ -10,63 +10,97 @@ import {
 import { connect } from "react-redux";
 import * as action from "../../Store/action";
 
-
-const SignUpImage = (props) => (
-    <div className="signup-img col-sm-5">
-            <img alt="hinhAnh123" src="https://cdn.jotfor.ms/images/podo-login-signup.png" />
-            <p>{props.noti}</p>
-          </div>
+const SignUpImage = props => (
+  <div className=" signup-img col-sm-6">
+    <img
+      alt="hinhAnh123"
+      src="https://cdn.jotfor.ms/images/podo-login-signup.png"
+    />
+    <p className="desktop">{props.noti}</p>
+  </div>
 );
 
-
-
-const FormSignUp = (props) => (
-    <form onSubmit={props.handleSubmit}>
-              <div className="row"></div>
-              <div className="input-div signup">
-                <div className="i">
-                  <FontAwesomeIcon icon={faGlobe} />
-                </div>
-                <div className="input-user">
-                  <input type="text" className="input" name="taiKhoan" placeholder="Nhập UserName" onChange={props.handleChange} onBlur={props.handleBlur} />
-                </div>
-              </div>
-              <div className="input-div signup">
-                <div className="i ">
-                  <FontAwesomeIcon icon={faLock} />
-                </div>
-                <div>
-                  <input className="input" type="password" name="matKhau" placeholder="Nhập Mật Khẩu" onChange={props.handleChange} onBlur={props.handleBlur} />
-                </div>
-              </div>
-              <div className="input-div signup">
-                <div className="i">
-                  <FontAwesomeIcon icon={faUser} />
-                </div>
-                <div className="input-user">
-                  <input type="text" className="input" name="hoTen" placeholder="Nhập đầy đủ họ tên" onChange={props.handleChange} onBlur={props.handleBlur} />
-                </div>
-              </div>
-              <div className="input-div signup">
-                <div className="i">
-                  <FontAwesomeIcon icon={faPhone} />
-                </div>
-                <div className="input-user">
-                  <input type="text" className="input" name="soDT" placeholder="Nhập số điện thoại" onChange={props.handleChange} onBlur={props.handleBlur} />
-                </div>
-              </div>
-              <div className="input-div signup">
-                <div className="i">
-                  <FontAwesomeIcon icon={faEnvelope} />
-                </div>
-                <div className="input-user">
-                  <input type="text" className="input" name="email" placeholder="Nhập email" onChange={props.handleChange} onBlur={props.handleBlur} />
-                </div>
-              </div>
-              <button className="btn signup-btn">SIGN UP</button>
-            </form>
+const FormSignUp = props => (
+  <form onSubmit={props.handleSubmit}>
+    <div className="row"></div>
+    <div className="input-div signup">
+      <div className="i">
+        <FontAwesomeIcon icon={faGlobe} />
+      </div>
+      <div className="input-user">
+        <input
+          type="text"
+          className="input"
+          name="taiKhoan"
+          placeholder="Nhập UserName"
+          onChange={props.handleChange}
+          onBlur={props.handleBlur}
+        />
+      </div>
+    </div>
+    <div className="input-div signup">
+      <div className="i ">
+        <FontAwesomeIcon icon={faLock} />
+      </div>
+      <div>
+        <input
+          className="input"
+          type="password"
+          name="matKhau"
+          placeholder="Nhập Mật Khẩu"
+          onChange={props.handleChange}
+          onBlur={props.handleBlur}
+        />
+      </div>
+    </div>
+    <div className="input-div signup">
+      <div className="i">
+        <FontAwesomeIcon icon={faUser} />
+      </div>
+      <div className="input-user">
+        <input
+          type="text"
+          className="input"
+          name="hoTen"
+          placeholder="Nhập đầy đủ họ tên"
+          onChange={props.handleChange}
+          onBlur={props.handleBlur}
+        />
+      </div>
+    </div>
+    <div className="input-div signup">
+      <div className="i">
+        <FontAwesomeIcon icon={faPhone} />
+      </div>
+      <div className="input-user">
+        <input
+          type="text"
+          className="input"
+          name="soDT"
+          placeholder="Nhập số điện thoại"
+          onChange={props.handleChange}
+          onBlur={props.handleBlur}
+        />
+      </div>
+    </div>
+    <div className="input-div signup">
+      <div className="i">
+        <FontAwesomeIcon icon={faEnvelope} />
+      </div>
+      <div className="input-user">
+        <input
+          type="text"
+          className="input"
+          name="email"
+          placeholder="Nhập email"
+          onChange={props.handleChange}
+          onBlur={props.handleBlur}
+        />
+      </div>
+    </div>
+    <button className="btn signup-btn">SIGN UP</button>
+  </form>
 );
-
 
 class Signup extends Component {
   constructor(props) {
@@ -89,7 +123,7 @@ class Signup extends Component {
       tenValid: false,
       dtValid: false,
       emailValid: false,
-      noti: "hi there, wanna book your movie tickets, register now"
+      noti: "Chào bạn, điền đầy đủ thông tin vào form nhé"
     };
   }
 
@@ -181,11 +215,16 @@ class Signup extends Component {
   renderHTML = () => {
     return (
       <div className="signup-container">
-        <div className="signup-content row">
-          <SignUpImage noti={this.state.noti}></SignUpImage>
+        <div className="signup-content row align-items-center">
+          <SignUpImage className="desktop" noti={this.state.noti}></SignUpImage>
+          <p className="mobile mobile_noti">{this.state.noti}</p>
           <div className="signUp-form col-sm-5">
             <h4>Register</h4>
-          <FormSignUp handleSubmit={this.handleSubmit} handleChange={this.handleChange} handleBlur={this.handleBlur}></FormSignUp>
+            <FormSignUp
+              handleSubmit={this.handleSubmit}
+              handleChange={this.handleChange}
+              handleBlur={this.handleBlur}
+            ></FormSignUp>
           </div>
         </div>
       </div>

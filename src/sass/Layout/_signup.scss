@@ -1,27 +1,28 @@
 .signup-container {
-  width: 80%;
-  margin: 0 auto !important;
-  margin-top: 10vh !important;
+  width: 50%;
+  margin: 0 auto;
   padding: 40px;
   border-radius: 69px;
-  background: linear-gradient(145deg, #0e0e4a, #101058);
-  box-shadow: 34px 34px 69px #090930, -34px -34px 69px #151574;
+  background: $white-darker-2;
+  form {
+    width: 100% !important;
+    margin: 0 !important;
+  }
+  box-shadow: 34px 34px 69px black, -34px -34px 69px black;
   .signup-content {
-    width: 100%;
-    margin: 10px 0;
     .signup-btn {
       opacity: 1 !important;
       position: relative;
       left: 35%;
       width: 150px;
-      background-color: transparent;
-      color: #03ffd2;
+      background-color: $primary;
+      color: yellow;
+      border: 2px solid yellow;
       font-weight: 700;
       border-radius: 70px;
-      border: 2px solid #03ffd2;
       transition: all 0.4s;
       font-size: 20px !important;
-      margin: 30px 0 10px 30px;
+      margin: 20px auto;
       &:hover {
         background: linear-gradient(145deg, #14d280, #18f998);
         color: $white;
@@ -33,7 +34,7 @@
       text-align: center;
       font-size: 38px;
       font-weight: 600;
-      color: #03ffd2;
+      color: $primary;
       text-transform: uppercase;
     }
     .errorNoti {
@@ -44,38 +45,67 @@
     .signup-img {
       img {
         position: relative;
-        margin-top: 200px;
         width: 100%;
       }
       p {
         position: absolute;
         font-weight: 600;
-        top: 20%;
+        top: -40%;
         left: 2%;
         width: 50%;
         padding: 18px;
         text-transform: uppercase;
         text-align: center;
-        color: $white;
-        background-color: #6610f2;
+        color: black;
+        background-color: $white;
         border: 1px none transparent;
         border-radius: 50%;
       }
     }
 
     .input-div {
-      margin-left: 0;
-      margin-right: 0;
-      width: 100%;
+      margin: 0;
       input {
-        width: 400px;
-        color: $white;
+        color: $main;
         &::placeholder {
-          color: $white;
+          color: $main;
           font-size: 16px;
           font-weight: 400;
         }
       }
+    }
+  }
+}
+@media (max-width: 767px) and (min-width: 320px) {
+  .signup-container {
+    width: 100%;
+    margin-top: 150px;
+    position: relative;
+    .signup-img {
+      position: absolute;
+      top: -10%;
+      left: 40%;
+      width: 100px;
+      height: 100px;
+      border: 2px solid $primary;
+      border-radius: 50%;
+      overflow: hidden;
+      line-height: 100px;
+      margin: 0 auto;
+      background-color: $white-darker-2;
+      img {
+        width: 100%;
+      }
+    }
+
+    .mobile_noti {
+      background-color: $white;
+      color: red;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 10px 20px;
+      margin: 10px auto;
+      border-radius: 20px;
     }
   }
 }

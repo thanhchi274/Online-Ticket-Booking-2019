@@ -22,7 +22,7 @@
     position: relative;
     top: 40%;
     .title-description {
-      color: #fff;
+      color: $white-darker-2;
     }
     span {
       font-size: 24px;
@@ -36,9 +36,9 @@
     }
   }
   .book-btn {
-    color: white;
+    color: $white-darker-2;
     padding: 10px 30px;
-    background-color: rgb(170, 170, 52);
+    background-color: $primary;
     border: none;
     text-transform: uppercase;
     &:focus {
@@ -46,39 +46,53 @@
     }
   }
   .img-movie {
+    overflow: hidden;
+    .col-sm-3 {
+      flex: 0 0 28% !important;
+    }
     .trailer {
       box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3),
         0 15px 12px rgba(0, 0, 0, 0.22);
       position: relative;
     }
-    button {
-      opacity: 0;
-    }
-    .bg-trailer {
-      background-color: rgba(0, 0, 0, 0.5);
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 300px;
-      height: 100%;
-      margin-left: 15px;
-      cursor: pointer;
-      transition: 0.4s;
-      opacity: 0;
-      &:hover {
+    &:hover {
+      .bg-trailer {
+        left: -100%;
+      }
+      .play-btn {
+        transform: scale(1);
         opacity: 1;
       }
     }
+    .bg-trailer {
+      background-color: rgba($primary, 0.8);
+      position: absolute;
+      top: 0;
+      left: -400%;
+      width: 300%;
+      height: 100%;
+      width: 300%;
+      transition: all 0.4s;
+      transform: skewX(45deg);
+    }
     .play-btn {
       text-align: center;
-      line-height: 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      line-height: 70px;
+      cursor: pointer;
       border: 1px solid $white;
       border-radius: 50%;
-      margin-top: 195px;
-      margin-left: 120px;
-      width: 50px;
-      height: 50px;
+      margin-top: 190px;
+      margin-left: 119px;
+      font-size: 30px;
+      width: 70px;
+      height: 70px;
       color: $white;
+      opacity: 0;
+      transform: scale(0.8);
+      transition: all 0.2s;
     }
   }
   .table {

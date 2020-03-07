@@ -83,8 +83,8 @@ class Booking extends Component {
               className={item.daDat ? "chair m-1 booked" : "chair m-1"}
               style={
                 item.loaiGhe === "Thuong"
-                  ? { backgroundColor: "#2196f3 " }
-                  : { backgroundColor: "yellow" }
+                  ? { backgroundColor: "#922cc9" }
+                  : { backgroundColor: "#cfcfcf" }
               }
               key={index}
               maghe={item.maGhe}

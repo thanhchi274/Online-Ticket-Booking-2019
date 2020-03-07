@@ -1,11 +1,14 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default class MobileHeader extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      menu: "nav_content mobile"
+      menu: "nav_content mobile",
+      navigate: false,
+      visibleNavBar: true
     };
   }
 
@@ -77,22 +80,26 @@ export default class MobileHeader extends Component {
     }
     if (localStorage.getItem("UserHome")) {
       return (
-        <li className=" nav-item">
-          <Link className="nav-link" to="/info">
-            {obj.hoTen}
-          </Link>
+        <li className="logined_mobile nav-item">
+          <div className="userIcon_mobile">
+            <FontAwesomeIcon icon={faUser} />
+          </div>
+          <div className="userIcon_info">
+            <Link className="nav-link" to="/info">
+              {obj.hoTen}
+            </Link>
+            <Link className="nav-link" onClick={this.logout} to="/">
+              Log out
+            </Link>
+          </div>
         </li>
       );
     } else {
       return (
         <li className="nav-item">
-          <NavLink
-            activeClassName="active"
-            className="mobileSignin_link"
-            to="/login"
-          >
+          <Link className="mobileSignin_link" to="/login">
             <h5 className="mobile_content">Đăng nhập</h5>
-          </NavLink>
+          </Link>
         </li>
       );
     }
@@ -103,7 +110,6 @@ export default class MobileHeader extends Component {
     this.setState({ navigate: true });
   };
   render() {
-    const home = localStorage.getItem("UserHome");
     return (
       <nav className="mobile_header mobile">
         <div className="logo_mobile mobile col-3">
@@ -125,40 +131,33 @@ export default class MobileHeader extends Component {
 
           <div className={this.state.menu}>
             <ul className="navbar-nav">
-              {this.renderHTML()}
-              <li className="nav-item">
-                <NavLink
-                  activeClassName="active"
-                  exact
-                  className="nav-link"
-                  onClick={this.scrollToTop}
-                  to="/"
-                >
-                  Home
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" onClick={this.scrollToMovie} to="">
-                  Movie
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" onClick={this.scrollToFooter} to="">
-                  Subscribe
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="">
-                  News
-                </Link>
-              </li>
-              {home ? (
+              <div className="nav-login">{this.renderHTML()}</div>
+              <div className="nav-content">
                 <li className="nav-item">
-                  <Link className="nav-link" onClick={this.logout} to="/">
-                    Log out
+                  <Link className="nav-link" onClick={this.scrollToMovie} to="">
+                    Movie
                   </Link>
                 </li>
-              ) : null}
+                <li className="nav-item">
+                  <Link className="nav-link" onClick={this.scrollToMovie} to="">
+                    Theaters
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="">
+                    News
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link
+                    className="nav-link"
+                    onClick={this.scrollToFooter}
+                    to=""
+                  >
+                    Subscribe
+                  </Link>
+                </li>
+              </div>
             </ul>
           </div>
         </div>
