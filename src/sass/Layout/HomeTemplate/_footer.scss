@@ -1,7 +1,6 @@
 .footer {
   color: #fff !important;
   background-color: $primary;
-  height: 500px !important;
   padding: 10px;
   @media only screen and (max-width: 768px) {
     /* For mobile phones: */
@@ -144,15 +143,30 @@
     margin: 20px 0px 20px 0px;
   }
 
-  .footer_copyright p {
-    font-size: 12px;
-    color: white;
-    padding-top: 20px;
+  .footer_copyright {
+    p {
+      font-size: 14px;
+      color: black;
+      width: 100%;
+      text-align: left;
+    }
   }
 
   .footer__partners img {
-    margin: 10px auto;
-    margin-left: 120px;
+    margin: 10px 1vw;
     max-width: 100%;
   }
+}
+
+.backToTop {
+  background-image: url("https://1.bp.blogspot.com/-3WIf_OycRTc/VDzvGk2d1GI/AAAAAAAAB4c/cUCRrbV_yvs/s1600/up-arrow-icon.png");
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  right: 10px;
+  bottom: 50px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  cursor: pointer;
 }

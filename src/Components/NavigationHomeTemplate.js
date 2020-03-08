@@ -80,7 +80,7 @@ export default class Navbar extends Component {
       return (
         <NavLink
           activeClassName="active"
-          className="col-sm-1 signin_link row align-items-center"
+          className="signin_link row align-items-center"
           to="/login"
         >
           <div className="userIcon desktop">
@@ -101,7 +101,7 @@ export default class Navbar extends Component {
                 : "header navbar--hidden-main row"
             }
           >
-            <div className="logo">
+            <div className="logo col-sm-1">
               <Link
                 className="logo-title d-flex align-items-center"
                 onClick={() => this.scrollTo(0, 0)}
@@ -117,7 +117,7 @@ export default class Navbar extends Component {
               </Link>
             </div>
 
-            <div className="col-sm-4 nav-menu ">
+            <div className="nav-menu ">
               <button
                 className="navbar-toggler"
                 type="button"

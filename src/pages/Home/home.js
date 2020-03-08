@@ -6,7 +6,6 @@ import Carousel from "../../Components/Home/MainPage/carousel";
 import HomeTool from "../../Components/Home/Home-tool/home-tool";
 import MovieAvailable from "../../Components/Home/MainPage/MovieAvailable";
 import Footer from "../../Components/footer";
-import LazyLoad from "react-lazyload";
 import SmallSpinner from "../../Components/Home/DetailMoviePage/smallSpinner";
 import MobileMovieSlider from "../../Components/Home/Mobile/mobile-movieSlider";
 class Home extends Component {
@@ -14,6 +13,13 @@ class Home extends Component {
     this.props.setLoading();
     this.props.getListMovie();
   }
+  scrollTop = () => {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: "smooth"
+    });
+  };
   render() {
     let { loading } = this.props;
     if (loading) {
@@ -33,9 +39,9 @@ class Home extends Component {
           <div className="availableMovie">
             <h3 className="now_title">Now available</h3>
             <div className="tab-content nav-tabContent desktop" id="section1">
-              <LazyLoad className="desktop" once={true} height="600">
+              <div className="desktop">
                 {loading ? <SmallSpinner /> : <MovieAvailable />}
-              </LazyLoad>
+              </div>
             </div>
             <div className="tab-content nav-tabContent mobile" id="section1">
               {loading ? <SmallSpinner /> : <MobileMovieSlider />}
@@ -43,6 +49,7 @@ class Home extends Component {
           </div>
         </div>
         <Footer />
+        <div className="backToTop mobile" onClick={this.scrollTop}></div>
       </>
     );
   }

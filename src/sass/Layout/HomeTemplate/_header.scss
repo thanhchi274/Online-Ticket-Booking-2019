@@ -1,5 +1,5 @@
 .navbar-expand-md {
-  height: 95px !important;
+  padding: 10px 0 !important;
   .logo {
     padding: 0 !important;
     text-align: left;
@@ -16,13 +16,14 @@
 }
 .navbar {
   height: 85px;
-  background-color: $main;
-  z-index: 1001;
+  background-color: rgba($main, 0.99);
+  z-index: 2001;
   width: 100%;
   font-size: 16px;
   position: fixed !important;
   transition: all 0.4s;
   top: 0;
+  border-bottom: 1px solid rgba($primary, 0.5);
   .logo-title {
     text-align: center;
 
@@ -61,7 +62,7 @@
     .userIcon {
       width: 50px;
       height: 50px;
-      border: 2px solid $white-darker;
+      border: 2px solid $primary;
       border-radius: 50%;
       text-align: center;
       line-height: 50px;
@@ -138,18 +139,18 @@ button:focus {
 
 @media (max-width: 768px) and (min-width: 320px) {
   .mobile_header {
-    background-color: $main;
+    background-color: rgba($main, 0.99);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    position: fixed;
     width: 100%;
     top: 0;
     height: 80px;
     z-index: 2001;
+    border-bottom: 1px solid rgba($primary, 0.5);
     .logo-img {
       img {
-        width: 70%;
+        width: 45%;
       }
     }
     .col-3 {
@@ -179,7 +180,8 @@ button:focus {
     }
   }
   .nav_content {
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: $main;
+    width: 60%;
     text-align: center;
     position: fixed;
     z-index: 2001;
@@ -189,14 +191,14 @@ button:focus {
     transition: all 0.5s;
     transform: translateX(-100%);
     .nav-content {
-      padding: 20px 30px;
+      padding: 5px 0;
       a {
-        padding: 20px 30px;
-        font-size: 24px;
+        padding: 5px 0;
+        font-size: 20px;
+        text-align: left;
       }
     }
     li {
-      border-bottom: 1px solid rgba($primary, 0.5);
       padding: 20px 0;
       &:last-child {
         border-bottom: none;
@@ -206,6 +208,8 @@ button:focus {
       h5 {
         color: $white-darker-2;
         transition: all 0.3s;
+        font-size: 24px;
+        text-align: left;
         &:hover {
           color: $primary;
         }
@@ -220,7 +224,6 @@ button:focus {
   }
   .mobilecontainer {
     display: inline-block;
-    padding-right: 10px;
     cursor: pointer;
     position: relative;
     .bar1,

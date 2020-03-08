@@ -7,7 +7,7 @@ function footer() {
         <div className="footer_trust_top">
           <div className="trustlogos" />
         </div>
-        <div className="col-lg-12 col-md-12 col-xs-12 footer_main row ">
+        <div className="col-lg-12 col-md-12 col-xs-12 footer_main row desktop ">
           <div className="col-xs-5 col-md-3 footer-left">
             <h4>Find Out More</h4>
             <ul className="footer_list">
@@ -28,7 +28,7 @@ function footer() {
               </li>
             </ul>
           </div>
-          <div className="col-xs-12 col-md-6 col-md-pull-3 footer_middle desktop">
+          <div className="col-xs-12 col-md-6 col-md-pull-3 footer_middle">
             <h4>
               Be the first to know about <strong>Movie Theater</strong>
             </h4>
@@ -70,14 +70,14 @@ function footer() {
           </div>
         </div>
         <div className="footer_bottom">
-          <div className="col-lg-3 col-md-12 footer_copyright">
-            <p>©2020 All rights reserved.</p>
-          </div>
-          <div className="col-md-9 col-xs-12 footer__partners">
+          <div className="footer__partners">
             <img
               alt="footer-partners"
               src="https://www.authenticireland.com/wp-content/uploads/2018/04/Bottom_Trust2.png"
             />
+          </div>
+          <div className="footer_copyright">
+            <p>© 2020 All rights reserved.</p>
           </div>
         </div>
       </div>

@@ -214,6 +214,11 @@ class Login extends Component {
             ) : (
               ""
             )}
+            <div className="signUp_link">
+              <span>
+                Chưa có tài khoản? <Link to="/sign-up">Đăng ký</Link>
+              </span>
+            </div>
 
             <div className="btnAction">
               <button
@@ -222,9 +227,9 @@ class Login extends Component {
               >
                 SIGN IN
               </button>
-              <Link className="btn signup-btn" to="/sign-up">
+              {/*<Link className="btn signup-btn" to="/sign-up">
                 SIGN UP
-              </Link>
+            </Link>*/}
             </div>
           </form>
         </div>
