@@ -210,6 +210,10 @@ class Signup extends Component {
       setTimeout(() => {
         this.props.signup(user, this.props.history);
       }, 2000);
+    } else {
+      this.setState({
+        noti: "Vui lòng điền đầy đủ thông tin"
+      });
     }
   };
   renderHTML = () => {
@@ -219,7 +223,7 @@ class Signup extends Component {
           <SignUpImage className="desktop" noti={this.state.noti}></SignUpImage>
           <p className="mobile mobile_noti">{this.state.noti}</p>
           <div className="signUp-form col-sm-5">
-            <h4>Register</h4>
+            <h4>Đăng ký</h4>
             <FormSignUp
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}

@@ -3,22 +3,22 @@
 @import "./sass/Base/typography";
 @import "./sass/Helper/extend";
 @import "./sass/Helper/mixin";
-@import "./sass/Layout/header";
-@import "./sass/Layout/loading";
-@import "./sass/Layout/pagenotfound";
-@import "./sass/Layout/movie";
-@import "./sass/Layout/detailMovie";
+@import "./sass/Layout/HomeTemplate/header";
+@import "./sass/Layout/HomeTemplate/loading";
+@import "./sass/Layout/HomeTemplate/pagenotfound";
+@import "./sass/Layout/HomeTemplate/movie";
+@import "./sass/Layout/HomeTemplate/detailMovie";
 @import "./sass/page/home/Carousel";
 @import "./sass/page/home/HomeTool";
-@import "./sass/Layout/login";
-@import "./sass/Layout/bookTicket";
-@import "./sass/Layout/navTab";
-@import "./sass/Layout/adminLogin";
-@import "./sass/Layout/info";
-@import "./sass/Layout/footer";
-@import "./sass/Layout/signup";
-@import "./sass/Layout/comment";
-@import "./sass/Layout/movieMobile";
+@import "./sass/Layout/HomeTemplate/login";
+@import "./sass/Layout/HomeTemplate/bookTicket";
+@import "./sass/Layout/HomeTemplate/navTab";
+@import "./sass/Layout/HomeTemplate/adminLogin";
+@import "./sass/Layout/HomeTemplate/info";
+@import "./sass/Layout/HomeTemplate/footer";
+@import "./sass/Layout/HomeTemplate/signup";
+@import "./sass/Layout/HomeTemplate/comment";
+@import "./sass/Layout/HomeTemplate/movieMobile";
 
 // ADMIN TEMPLATE
 @import "./sass/Layout/AdminTemplate/navBar";
@@ -27,4 +27,4 @@
 @import "./sass/Layout/AdminTemplate/pagination";
 @import "./sass/Layout/AdminTemplate/info-admin";
 @import "./sass/Layout/AdminTemplate/Table/dataTableMovie";
-@import "./sass/Layout/sb-admin";
+@import "./sass/Layout/AdminTemplate/sb-admin";

@@ -98,7 +98,7 @@ export default class MobileHeader extends Component {
       return (
         <li className="nav-item">
           <Link className="mobileSignin_link" to="/login">
-            <h5 className="mobile_content">Đăng nhập</h5>
+            <h5 className="mobile_content">Signin</h5>
           </Link>
         </li>
       );
@@ -111,11 +111,11 @@ export default class MobileHeader extends Component {
   };
   render() {
     return (
-      <nav className="mobile_header mobile">
-        <div className="logo_mobile mobile col-3">
+      <nav className="mobile_header ">
+        <div className="logo_mobile mobile col-4">
           <Link className="logo-img" onClick={this.scrollToTop} to="/">
             <img
-              className="img-fluid "
+              className="img-fluid"
               src="../logoMovies.png"
               alt="icons8-movie-ticket"
               border={0}

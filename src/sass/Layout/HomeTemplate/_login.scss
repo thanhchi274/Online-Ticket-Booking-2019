@@ -2,8 +2,9 @@
   text-align: center;
   padding: 30px;
   margin: 16vh 200px !important;
-  border-radius: 69px;
+  border-radius: 3%;
   background: $white-darker-2;
+  border: 2px solid $primary;
   box-shadow: 34px 34px 69px black, -34px -34px 69px black;
   svg {
     width: 450px;
@@ -32,9 +33,7 @@
   }
   .btnAction {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin-top: 30px;
     .signin-btn {
       opacity: 1 !important;
       width: 150px;
@@ -43,7 +42,6 @@
       background-color: $primary;
       font-weight: 700;
       border-radius: 70px;
-      border: 2px solid #03ffd2;
       transition: all 0.2s;
       font-size: 20px !important;
       &:hover {
