@@ -98,6 +98,7 @@ const FormSignUp = props => (
         />
       </div>
     </div>
+    <p className="mobile mobile_noti">{props.noti}</p>
     <button className="btn signup-btn">SIGN UP</button>
   </form>
 );
@@ -221,12 +222,12 @@ class Signup extends Component {
       <div className="signup-container">
         <div className="signup-content row align-items-center">
           <SignUpImage className="desktop" noti={this.state.noti}></SignUpImage>
-          <p className="mobile mobile_noti">{this.state.noti}</p>
           <div className="signUp-form col-sm-5">
             <h4>Đăng ký</h4>
             <FormSignUp
               handleSubmit={this.handleSubmit}
               handleChange={this.handleChange}
+              noti={this.state.noti}
               handleBlur={this.handleBlur}
             ></FormSignUp>
           </div>

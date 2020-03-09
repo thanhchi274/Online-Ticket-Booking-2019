@@ -74,7 +74,7 @@ class DetailMovie extends Component {
               effect="blur"
               alt="Card"
               height={450}
-              width={300}
+              width="100%"
               className="trailer"
             />
             <div className="bg-trailer"></div>

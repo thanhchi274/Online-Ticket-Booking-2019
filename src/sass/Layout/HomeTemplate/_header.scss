@@ -183,6 +183,7 @@ button:focus {
     background-color: $main;
     width: 60%;
     text-align: center;
+    border-right: 1px solid $primary;
     position: fixed;
     z-index: 2001;
     height: 100%;
