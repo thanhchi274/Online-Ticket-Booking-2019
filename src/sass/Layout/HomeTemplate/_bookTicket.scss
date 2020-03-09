@@ -1,11 +1,10 @@
+.bookTicket_container {
+  margin-top: 8vh;
+}
 .booking-movie {
   background-color: $main;
   padding: 60px;
-  padding-top: 30px;
-  width: 1200px;
-  position: relative;
   margin: 0 auto;
-  height: 100%;
   .countdown {
     position: absolute;
     left: 82%;
@@ -24,8 +23,8 @@
     margin-bottom: 0;
   }
   .timeCount {
-    color: yellow;
-    text-shadow: 0 0 10px yellow, 0 0 40px yellow, 0 0 80px yellow;
+    color: $primary;
+    text-shadow: 0 0 10px $primary, 0 0 40px $primary, 0 0 80px $primary;
     text-align: center;
   }
 
@@ -60,8 +59,8 @@
   .monitor {
     width: 90%;
     margin: 0 auto;
-    background: black;
-    color: $white;
+    background: $white-darker-2;
+    color: $main;
     border-radius: 10px;
     height: 50px;
     padding-top: 10px;
@@ -81,8 +80,8 @@
     color: transparent;
     line-height: 40px;
     text-align: center;
-    width: 40px;
-    height: 40px;
+    width: 2.6vw;
+    height: 5vh;
     font-weight: 300;
     font-size: 14px;
     border-radius: 50%;
@@ -97,14 +96,45 @@
       font-weight: 300;
     }
   }
+  .btnCloseErrForm {
+    margin: 0 auto;
+  }
+  .errRender {
+    .maxErrNoti {
+      text-align: center;
+      width: 80%;
+      margin: 0 auto;
+      img {
+        width: 35%;
+        margin: 5% auto;
+      }
+    }
+  }
   .modal-content {
     margin-top: 235px !important;
   }
-  .payStyles {
-    margin-top: 150px !important;
-    img {
-      width: 50%;
-      margin-bottom: 5vh;
+  .payStyle_container {
+    .payStyles {
+      margin-top: 150px !important;
+      img {
+        width: 50%;
+        margin-bottom: 5vh;
+      }
+    }
+    .payStyle_pay {
+      width: 80%;
+      margin: 0 auto;
+      text-align: center;
+      p {
+        font-size: 18px;
+        width: 80%;
+        margin: 10px auto;
+      }
+      img {
+        width: 180px;
+        height: 180px;
+        margin: 0;
+      }
     }
   }
   .errNoti {
@@ -128,14 +158,14 @@
   }
   .info-ticket {
     h5 {
-      font-size: 23px;
+      font-size: 20px;
       font-weight: 300;
       &:nth-child(3) {
         font-weight: 700;
       }
     }
     span {
-      font-size: 23px;
+      font-size: 20px;
       font-weight: 700;
     }
   }
@@ -146,8 +176,8 @@
   }
   .checkType {
     img {
-      width: 40px !important;
-      height: 40px !important;
+      width: 40px;
+      height: 40px;
       margin-left: 20px;
     }
     h5 {
@@ -163,31 +193,22 @@
   }
   .total {
     text-align: center;
-    padding: 0 30px;
-    padding-top: 7vh !important;
-    padding-bottom: 10px !important;
+    padding: 10px 30px;
     h2 {
       font-size: 30px;
-      font-weight: 500;
-
-      &:nth-child(2) {
-        font-size: 40px;
-        font-weight: 700;
-      }
+      font-weight: 700;
+      color: $primary;
     }
   }
   .btnBook {
-    position: absolute;
-    left: 30%;
-    bottom: 5%;
-    width: 210px;
-    height: 50px;
+    width: 100%;
+    margin: 20px 0;
+    padding: 20px 30px;
     -webkit-appearance: none;
     background: -webkit-gradient(to right, $green 0%, $sand 50%, $peach 100%);
     background: linear-gradient(to right, $green 0%, $sand 50%, $peach 100%);
     background-size: 500%;
     border: none;
-    border-radius: 5rem;
     box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
     color: $white;
     cursor: pointer;

@@ -1,14 +1,13 @@
-import React from 'react'
+import React from "react";
 
 export default function smallSpinner() {
   return (
-    <div>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       style={{
         margin: "auto",
-        background: "rgba(255, 255, 255, 0)",
+        background: "none",
         display: "block",
         shapeRendering: "auto"
       }}
@@ -18,7 +17,7 @@ export default function smallSpinner() {
       preserveAspectRatio="xMidYMid"
     >
       <g>
-        <circle cx="86.2122" cy={50} r={4} fill="#e15b64">
+        <circle cx="71.2558" cy={50} r={4} fill="#922cc9">
           <animate
             attributeName="cx"
             repeatCount="indefinite"
@@ -36,7 +35,7 @@ export default function smallSpinner() {
             begin="-0.67s"
           />
         </circle>
-        <circle cx="46.6122" cy={50} r={4} fill="#e15b64">
+        <circle cx="91.6558" cy={50} r={4} fill="#922cc9">
           <animate
             attributeName="cx"
             repeatCount="indefinite"
@@ -54,7 +53,7 @@ export default function smallSpinner() {
             begin="-0.33s"
           />
         </circle>
-        <circle cx="66.4122" cy={50} r={4} fill="#e15b64">
+        <circle cx="51.4558" cy={50} r={4} fill="#922cc9">
           <animate
             attributeName="cx"
             repeatCount="indefinite"
@@ -82,7 +81,7 @@ export default function smallSpinner() {
         <path
           d="M50 50L20 50A30 30 0 0 0 80 50Z"
           fill="#f8df6a"
-          transform="rotate(42.8817 50 50)"
+          transform="rotate(24.6837 50 50)"
         >
           <animateTransform
             attributeName="transform"
@@ -96,7 +95,7 @@ export default function smallSpinner() {
         <path
           d="M50 50L20 50A30 30 0 0 1 80 50Z"
           fill="#f8df6a"
-          transform="rotate(-42.8817 50 50)"
+          transform="rotate(-24.6837 50 50)"
         >
           <animateTransform
             attributeName="transform"
@@ -109,6 +108,5 @@ export default function smallSpinner() {
         </path>
       </g>
     </svg>
-  </div>
-  )
+  );
 }
