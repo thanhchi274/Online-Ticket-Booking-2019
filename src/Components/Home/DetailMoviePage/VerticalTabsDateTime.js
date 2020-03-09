@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
@@ -40,58 +40,60 @@ function a11yProps(index) {
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.paper,
+    background:"linear-gradient(145deg, #151417, #19181c)",
+    boxShadow:"8px 8px 5px #0f0f11,-8px -8px 5px #1f1d23",
     display: "flex",
     height: 540,
-
+    borderRadius:20
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
-    width:200
+    width:86,
   }
 }));
 
 function VerticalTabs(props) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
-  const [rap,setRap]= React.useState("BHD");
+  const [value, setValue] =useState(0);
+  const [rap,setRap]= useState("");
+  const [theater, setTheater] = useState([])
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-const handleClick =(event,newValue)=>{
+const handleClick = (event=>{
   setRap(event.target.id)
-}
-
+})
   useEffect(() => {
     props.getTheaterInfo();
+    if(theater!==""){
+      setTheater(props.theaterInfo);
+    }
   }, []);
-
-  const renderRap = () => {
-    if (props.theaterInfo) {
-      return props.theaterInfo.map((item, index) => {
+  useEffect(() => {
+    setRap(rap)
+  }, [rap])
+  const renderRap =() => {
+    if (theater) {
+      return theater.map((item, index) => {
         return (
-          <Tab
+         <Tab
             key={index}
+            id={item.maHeThongRap}
             label={<img id={item.maHeThongRap} src={item.logo} onClick={handleClick} className="theaterIcon" alt="theater-Icon" />}
             {...a11yProps(index)}
           />
-        );
-      });
-    }
-  };
-
+        )})}};
   const renderRapContent = () => {
-    if (props.theaterInfo) {
+    if (props.theaterInfo && props.movie) {
       return props.theaterInfo.map((item, index) => {
         return (
           <TabPanel key={index} value={value} index={index}>
-            {<DayofMovie id={props.id} maRap={rap} />}
+            {<DayofMovie movie={props.dateTimeMovie} id={props.id} maRap={rap} />}
           </TabPanel>
         );
       });
     }
   };
-
   return (
     <div className={classes.root}>
       <Tabs
@@ -103,15 +105,13 @@ const handleClick =(event,newValue)=>{
       >
         {renderRap()}
       </Tabs>
-      {renderRapContent()}
+      {rap!==""?renderRapContent():null}
     </div>
   );
 }
-
 const mapStateToProps = state => ({
   theaterInfo: state.movieReducer.theaterInfo
 });
-
 const mapDispatchToProps = dispatch => {
   return {
     getTheaterInfo: () => {
@@ -119,5 +119,4 @@ const mapDispatchToProps = dispatch => {
     }
   };
 };
-
 export default connect(mapStateToProps, mapDispatchToProps)(VerticalTabs);

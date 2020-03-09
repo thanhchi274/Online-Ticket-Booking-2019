@@ -3,8 +3,11 @@
 }
 .booking-movie {
   background-color: $main;
-  padding: 60px;
+  width: 1200px;
+  padding-top: 30px;
+  position: relative;
   margin: 0 auto;
+  height: 100%;
   .countdown {
     position: absolute;
     left: 82%;
@@ -27,14 +30,16 @@
     text-shadow: 0 0 10px $primary, 0 0 40px $primary, 0 0 80px $primary;
     text-align: center;
   }
-
+  .tenPhim{
+    font-size:30px!important;
+    font-weight: 900!important;
+    font-family: Helvetica;
+  }
   h3 {
+    font-family: Helvetica;
     color: $white-darker-2 !important;
-    font-weight: 300 !important;
-    font-size: 20px !important;
-
+    font-size: 18px;
     transform: translateX(0%);
-
     span {
       font-weight: 900 !important;
     }
@@ -52,22 +57,61 @@
     color: $white !important;
   }
 
-  .chairList {
-    margin: 30px 7vw;
+  .seat-choosing{
+    .chairList {
+      margin: 30px 7vw;
+      margin-top: 70px;
+      transform: translateX(41px);
+    }
+    .monitor {
+      span{
+        position: relative;
+        top:17px;
+        font-size: 16px;
+        font-weight: 700;
+        color:whitesmoke;
+      }
+      background-color: #f3558e;
+      width: 90%;
+      margin: 20px auto;
+      margin-bottom: 30px;
+      color: $white;
+      border-radius: 50%/ 85% 85% 0 0 ;
+      height: 20px;
+      padding-top: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      text-align: center; 
+      -webkit-box-shadow: 5px 15px 50px 2px #F3558E; 
+      box-shadow: 5px 15px 50px 2px #F3558E;
+    }
   }
-
-  .monitor {
-    width: 90%;
+  .seat--info{
+    width: 80%;
     margin: 0 auto;
-    background: $white-darker-2;
-    color: $main;
-    border-radius: 10px;
-    height: 50px;
-    padding-top: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
-  }
+    transform: translateX(-15px);
+    p{
+      color:white;
+      font-weight: 700;
+      font-size: 14px;
+    }
+    .normalSeat{
+      .seat--info_detail{
+        margin-right:10px;
+        width: 20px;
+        height: 20px;
+        background-color: #922cc9;
+      }
+    }
+    .vipSeat{
+      .seat--info_detail{
+        margin-right:10px;
+        width: 20px;
+        height: 20px;
+        background-color: #cfcfcf;
+      }
+    }
+  }  
 
   .active {
     background-color: red;
@@ -80,8 +124,8 @@
     color: transparent;
     line-height: 40px;
     text-align: center;
-    width: 2.6vw;
-    height: 5vh;
+    width: 40px;
+    height: 40px;
     font-weight: 300;
     font-size: 14px;
     border-radius: 50%;
@@ -90,10 +134,29 @@
   }
 }
 .booking-ticket {
+  .img-movie-booking{
+    margin-left:35%;
+     img{
+       width: 140px;
+       height: 200px;
+     }
+   }
+  &:hover{
+   border-radius: 20px;
+   background: #17161a;
+   box-shadow: inset 20px 20px 43px #0e0e10, 
+               inset -20px -20px 43px #201e24
+  }
+  border-radius: 20px;
+  transition: all 0.05s;
   .seat-check {
     h5 {
-      font-size: 20px;
+      font-size: 18px;
       font-weight: 300;
+      color:white;
+    }
+    span{
+      font-weight: 700;
     }
   }
   .btnCloseErrForm {
@@ -129,10 +192,11 @@
         font-size: 18px;
         width: 80%;
         margin: 10px auto;
+        color:white;
       }
       img {
-        width: 180px;
-        height: 180px;
+        width: 180px!important;
+        height: 180px!important;
         margin: 0;
       }
     }
@@ -154,56 +218,71 @@
     }
     h4 {
       text-align: center;
+      color:white
     }
   }
   .info-ticket {
     h5 {
       font-size: 20px;
       font-weight: 300;
+      color:white;
       &:nth-child(3) {
         font-weight: 700;
       }
     }
     span {
+      color:white;
       font-size: 20px;
       font-weight: 700;
     }
   }
-  background-color: $white;
   p {
     color: black;
     font-size: 15px;
   }
   .checkType {
-    img {
-      width: 40px;
-      height: 40px;
-      margin-left: 20px;
-    }
     h5 {
+      color:white;
       font-size: 20px;
       font-weight: 700;
     }
-    .payStyle {
-      p {
-        margin: 15px 20px;
-        font-size: 18px;
+    .container{
+      margin-top: 20px;
+      margin-bottom:5px;
+      .payStyle {
+        img {
+          width: 40px !important;
+          height: 40px !important;
+          margin-left: 20px;
+        }
+        p {
+          color:white;
+          margin: 15px 20px;
+          font-size: 16px;
+        }
       }
     }
   }
   .total {
     text-align: center;
     padding: 10px 30px;
-    h2 {
-      font-size: 30px;
-      font-weight: 700;
-      color: $primary;
+    padding-top: 1.5vh !important;
+    h4 {
+      font-size: 21px;
+      font-weight: 300;
+      font-family: Helvetica;
+      color:white;
     }
+        span{
+          font-weight: 700;
+          font-size: 25px!important;
+        }
   }
   .btnBook {
     width: 100%;
-    margin: 20px 0;
+    margin: 10px 0;
     padding: 20px 30px;
+    margin-bottom: 0;
     -webkit-appearance: none;
     background: -webkit-gradient(to right, $green 0%, $sand 50%, $peach 100%);
     background: linear-gradient(to right, $green 0%, $sand 50%, $peach 100%);
@@ -217,6 +296,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     letter-spacing: 0.05em;
+    transition: all 0.3s;
     outline: none;
     -webkit-tap-highlight-color: transparent;
     -webkit-user-select: none;

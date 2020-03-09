@@ -1,5 +1,15 @@
 .detail-movie {
-  margin-top: 30vh;
+  .tabInfo{
+    width: 85%;
+    margin: 0 auto
+  }
+  .MuiTypography-root{
+    .MuiButtonBase-root{
+      padding: 0;
+      min-width: 88px;
+    }
+  }
+  margin-top: 6vh;
   a {
     &:hover {
       text-decoration: none;
@@ -9,7 +19,8 @@
     box-sizing: border-box;
   }
   .tabs {
-    margin: 40px 0;
+    width: 60%;
+    margin: 0 auto
   }
   .detail-movie-intro-image {
     width: 100vw;
@@ -29,13 +40,6 @@
       font-size: 24px;
     }
   }
-  .theater-icon {
-    width: 40%;
-    opacity: 0.5;
-    &:hover {
-      opacity: 1;
-    }
-  }
   .book-btn {
     color: $white-darker-2;
     padding: 10px 30px;
@@ -47,6 +51,8 @@
     }
   }
   .img-movie {
+    padding: 0!important;
+    max-width: 300px;
     overflow: hidden;
     padding: 0 !important;
     .trailer {
@@ -64,14 +70,14 @@
       }
     }
     .bg-trailer {
-      background-color: rgba($primary, 0.8);
+      background-color: rgba($primary, 0.3);
+      transition: all 300ms;
       position: absolute;
       top: 0;
       left: -400%;
       width: 300%;
       height: 100%;
       width: 300%;
-      transition: all 0.4s;
       transform: skewX(45deg);
     }
     .play-btn {
@@ -153,12 +159,6 @@
     color: yellow;
   }
 }
-.Mui-selected {
-  outline: none !important;
-  .theater-icon {
-    opacity: 1;
-  }
-}
 
 .detailSec2 {
   margin: 48px;
@@ -185,7 +185,9 @@
 }
 
 .theaterIcon {
-  width: 43%;
+  transform: translateX(-2px);
+  width: 92%;
+  margin: 10px 0px;
 }
 .commentForm {
   margin: 0 auto;
@@ -211,6 +213,34 @@
     color: #aaaa34;
   }
 }
+.MuiTabs-indicator{
+  background-color:$primary!important;
+}
+.MuiTabs-vertical{
+  width: 86px!important;
+  min-width: 86px;
+}
+.MuiTypography-root{
+  width:1000px!important;
+  max-width: 1000px!important;
+}
+.ant-tabs-nav{
+  .ant-tabs-tab-active{
+    color:$primary!important;
+  }
+  .ant-tabs-tab{
+    font-size: 18px;
+    padding:10px!important;
+    color:white;
+  }
+  .ant-tabs-ink-bar-animated{
+    background-color:$primary;
+  }
+}
+.ant-tabs-bar {
+  width:54vw!important;
+  max-width: 54vw!important;;
+}
 .commentBtn {
   padding: 10px 50px;
   border-radius: 50px;
@@ -221,6 +251,9 @@
   &:focus {
     outline: none;
   }
+}
+.detailMovie--tenRap{
+  color:white;
 }
 .ratingComment {
   margin: 0 330px;

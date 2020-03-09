@@ -5,7 +5,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
+import ModalImage from "react-modal-image";
 import CountDown from "../../Components/Home/BookingPage/countDown";
+
 class Booking extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +52,6 @@ class Booking extends Component {
       });
     }
   };
-
   timViTri = maGhe => {
     let viTri = -1;
     this.state.danhSachVe.map((item, index) => {
@@ -120,7 +121,7 @@ class Booking extends Component {
     if (this.state.danhSachVe.length === 0) {
       return (
         <div
-          class="modal fade"
+          className="modal fade"
           id="exampleModal"
           tabindex="-1"
           role="dialog"
@@ -211,67 +212,59 @@ class Booking extends Component {
         <div className="booking-movie col-sm-8">
           <CountDown />
           <div className="row">
+            <h3 className="mr-2 mb-4 tenPhim">
+                {room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}
+            </h3>
+          </div>
+          <div className="row mb-3">
             <h3 className="mr-2 tenCumRap">
-              <span>
-                {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}
-              </span>{" "}
+              THEATER:
+              <span> {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}</span>
             </h3>
-          </div>
-          <div className="row">
-            <h3 className="mr-2 tenPhim">
-              <span>{room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}</span>
-            </h3>
-          </div>
-          <div className="row">
             <h3 className="mr-2 suatChieu">
-              <span>
-                {room.thongTinPhim ? room.thongTinPhim.ngayChieu : ""} -{" "}
-              </span>
-              <span>
-                {room.thongTinPhim ? room.thongTinPhim.gioChieu : ""} -{" "}
-              </span>
-              <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""}</span>
+            No:
+            <span>{room.thongTinPhim ? room.thongTinPhim.tenRap : ""}</span> 
+            </h3>
+            <h3 className="mr-2">
+              DAY:<span>{room.thongTinPhim ? room.thongTinPhim.ngayChieu : ""}</span>
+            </h3>
+            <h3 className="mr-2">
+              TIME: <span> {room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}</span>
             </h3>
           </div>
           <div className="seat-choosing">
-            <div className="monitor">Màn hình</div>
-            <div className="row chairList">{this.renderHTML()}</div>
+          <div className="monitor">
+              <span>SCREEN</span>
+            </div>
+          <div className="row chairList">{this.renderHTML()}</div>
           </div>
+        <div className="seat--info d-flex justify-content-center">
+           <div className="normalSeat mx-4 d-flex">
+           <div className="seat--info_detail"></div>
+           <p>NORMAL SEAT</p>
+           </div>
+           <div className="vipSeat d-flex">
+           <div className="seat--info_detail"></div>
+           <p>VIP SEAT</p>
+           </div>
+           </div>
         </div>
         <div className="booking-ticket col-sm-4">
           <div className="container">
+          <div className="img-movie-booking">
+          <img src={room.thongTinPhim ? room.thongTinPhim.hinhAnh : ""}></img>
+          </div>
             <div className="total">
-              <h2>{this.state.tienVe}đ</h2>
+              <h4>COST:<span> {this.state.tienVe}Đ</span></h4>
             </div>
-            <hr />
-            <div className="info-ticket">
-              <h5>
-                Tên Phim:{" "}
-                <span>
-                  {room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}
-                </span>
-              </h5>
-              <h5>
-                Địa Điểm:{" "}
-                <span>
-                  {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}
-                </span>
-              </h5>
-              <h5>
-                {room.thongTinPhim ? room.thongTinPhim.ngayChieu : ""} -{" "}
-                {room.thongTinPhim ? room.thongTinPhim.gioChieu : ""} -{" "}
-                {room.thongTinPhim ? room.thongTinPhim.tenRap : ""}
-              </h5>
-            </div>
-            <hr />
-
             <div className="seat-check">
               <h5>
                 GHẾ ĐÃ CHỌN: {""}
+                <span>
                 {this.renderTicket()}
+                </span>
               </h5>
             </div>
-            <hr />
             <div className="checkType">
               <h5>Hình thức thanh toán</h5>
               {this.state.danhSachVe.length !== 0 ? (
@@ -284,16 +277,8 @@ class Booking extends Component {
                         value="zalopay"
                         defaultChecked
                       />
-                      <img
-                        className="paymentMethod--img"
-                        src="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw"
-                        srcSet="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s360-rw 2x"
-                        aria-hidden="true"
-                        alt="Ảnh bìa"
-                        itemProp="image"
-                        data-atf="false"
-                        data-iml="1314.2249999946216"
-                      ></img>
+                      <img src= "https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw">
+                      </img>
                       <p>Thanh toán qua Zalo PAY</p>
                     </div>
                     {this.state.payStyle === "zalopay" ? (
@@ -303,7 +288,7 @@ class Booking extends Component {
                           alt="ZaloPay"
                           src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/86977583_2651059108511383_5143827256606457856_n.jpg?_nc_cat=107&_nc_ohc=ogOA-E8yXMkAX9UhCFk&_nc_ht=scontent.fsgn3-1.fna&oh=4b7dc1aa1e1dc90e2fb2e48d56116c92&oe=5EF560CC"
                         />
-                        <p>Vui lòng quét mã zalopay để hoàn tất thanh toán</p>
+                        <p>Vui lòng quét mã ZaloPay để hoàn tất thanh toán</p>
                       </div>
                     ) : null}
                   </div>
@@ -329,7 +314,7 @@ class Booking extends Component {
                           alt="Momo"
                           src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.15752-9/86969607_2592060907738901_7392232684623233024_n.jpg?_nc_cat=111&_nc_ohc=rXRWI-3efysAX9x72Jn&_nc_ht=scontent-hkg3-2.xx&oh=2514b0089c43a46c313103dab319d42c&oe=5EC2AC9A"
                         />
-                        <p>Vui lòng quét mã momo để hoàn tất thanh toán</p>
+                        <p>Vui lòng quét mã MOMO để hoàn tất thanh toán</p>
                       </div>
                     ) : null}
                   </div>
@@ -349,7 +334,7 @@ class Booking extends Component {
                         {" "}
                         <p>
                           Xin lỗi hiện tại chúng tôi chưa hỗ trợ hình thức thanh
-                          toán này, bạn vui lòng chọn phuong thức thanh toán
+                          toán này, vui lòng chọn phuong thức thanh toán
                           khác
                         </p>
                       </div>
@@ -361,7 +346,7 @@ class Booking extends Component {
             <div className="btnAction_container">
               <button
                 type="button"
-                className=" btnBook"
+                className="btnBook"
                 data-toggle="modal"
                 data-target="#exampleModal"
                 onClick={this.handleSubmit}

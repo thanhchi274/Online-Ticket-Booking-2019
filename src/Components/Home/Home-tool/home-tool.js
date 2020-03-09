@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import * as Action from "../../../Store/action/index";
 import { connect } from "react-redux";
-import _ from "lodash";
 import { Link } from "react-router-dom";
 
 const DanhSachRap = props => (
@@ -89,6 +88,7 @@ class HomeTool extends Component {
     }
   };
   renderNgayXem = () => {
+    let error
     if (this.props.movieDate.heThongRapChieu) {
       return this.props.movieDate.heThongRapChieu.map(
         (heThongRapChieu, index) => {
@@ -121,12 +121,14 @@ class HomeTool extends Component {
                 </React.Fragment>
               );
             }
+            return error
           });
         }
       );
     }
   };
   renderGioChieu = () => {
+    let error;
     if (this.props.movieDate.heThongRapChieu) {
       return this.props.movieDate.heThongRapChieu.map(
         (heThongRapChieu, index) => {
@@ -162,6 +164,7 @@ class HomeTool extends Component {
                 </React.Fragment>
               );
             }
+            return  error
           });
         }
       );

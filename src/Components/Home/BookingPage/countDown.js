@@ -33,7 +33,7 @@ function CountDown() {
     }
     return (
       <div>
-        <p className="timeLabel">Thời gian giữ ghế</p>
+        <p className="timeLabel">TIME LEFT</p>
         <h1 className="timeCount">
           {minutes}:{seconds}
         </h1>

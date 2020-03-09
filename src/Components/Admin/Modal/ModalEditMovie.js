@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useCallback,useReducer} from 'react'
-import moment from "moment";
+import React, {useState, useEffect, useCallback} from 'react'
+// import moment from "moment";
 import * as action from "../../../Store/action";
 import { connect } from "react-redux";
 function ModalEditMovie(props) {
