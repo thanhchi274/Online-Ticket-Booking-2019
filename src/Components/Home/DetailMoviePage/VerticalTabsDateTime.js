@@ -68,7 +68,7 @@ const handleClick = (event=>{
     if(theater!==""){
       setTheater(props.theaterInfo);
     }
-  }, []);
+  }, [theater]);
   useEffect(() => {
     setRap(rap)
   }, [rap])

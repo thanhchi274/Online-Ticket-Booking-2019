@@ -9,11 +9,11 @@ export default function TimeofMovie(props) {
                 return (
                     Object.keys(GioChieuPhim).map((dateMovie,indexDateMovie)=>{
                      return ( 
-                         <div key={indexDateMovie} className="d-inline m-2">
-                            <Link className="btn btn-danger" to={`/dat-ve/${GioChieuPhim[dateMovie].maLichChieu}`} >
-                                {new Date(GioChieuPhim[dateMovie].ngayChieuGioChieu).toLocaleTimeString()}
-                            </Link>
-                         </div>
+                        <button className="btnDayofMovie" key={indexDateMovie}>
+                        <Link key={indexDateMovie}  className="left" to={`/dat-ve/${GioChieuPhim[dateMovie].maLichChieu}`} >
+                            {new Date(GioChieuPhim[dateMovie].ngayChieuGioChieu).toLocaleTimeString()}
+                        </Link>
+                     </button>
                   )})) 
         }
     }

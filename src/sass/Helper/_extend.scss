@@ -19,6 +19,11 @@ $dark-25: rgba(0, 0, 0, 0.25);
 $main: #17161a;
 $text-color: rgb(97, 94, 94);
 $primary: #922cc9;
+//detailMovie
+$--text-color: hsla(210, 50%, 85%, 1);
+$--shadow-color: hsla(210, 40%, 52%, .4);
+$--btn-color: hsl(210, 80%, 42%);
+$--bg-color: #141218;
 
 @mixin breakpoint($class) {
   @if $class == xs {

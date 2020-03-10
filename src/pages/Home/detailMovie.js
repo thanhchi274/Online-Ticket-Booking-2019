@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import ModalVideo from "react-modal-video";
 import FullWidthTabs from "../../Components/Home/DetailMoviePage/FullWidthTabs";
-import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const DetailMovieDescription = props => (
   <div className="table detail-description">
@@ -19,11 +18,6 @@ const DetailMovieDescription = props => (
       <strong>
         Ngày chiếu: {new Date(props.movie.ngayKhoiChieu).toLocaleDateString()}
       </strong>
-    </p>
-    <p className="title-description mt-5">
-      <AnchorLink href="#section2" className="book-btn mr-4">
-        đặt vé
-      </AnchorLink>
     </p>
   </div>
 );
@@ -91,7 +85,7 @@ class DetailMovie extends Component {
             <DetailMovieDescription dateTimeMovie={movieDate} movie={movie}></DetailMovieDescription>
           </div>
         </div>
-        <div className="row tabs" id="section2">
+        <div className="row tabs">
           <FullWidthTabs
             movie={movie}
             ticket={this.state.bookTicket}

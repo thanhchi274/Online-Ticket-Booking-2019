@@ -61,28 +61,13 @@ export default function CenteredTabs(props) {
         className="detailSec2"
       >
         <Tab label="Đặt vé" {...a11yProps(0)} style={{ color: "white" }} />
-        {/* <Tab
-          label="Thông tin phim"
-          {...a11yProps(1)}
-          style={{ color: "white" }}
-        /> */}
         <Tab label="Đánh giá" {...a11yProps(1)} style={{ color: "white" }} />
       </Tabs>
       <TabPanel value={value} index={0}>
         <VerticalTabsDateTime DateTime={props.DateTime} movie={props.movie} id={props.id} theaterInfo={props.theaterInfo} />
       </TabPanel>
-      {/* <TabPanel value={value} index={1}>
-        <div className="movie-info ">
-          <p>
-            Ngày phát hành:{" "}
-            {new Date(props.movie.ngayKhoiChieu).toLocaleDateString()}
-          </p>
-          <p>Tên phim: {props.movie.tenPhim}</p>
-          <p>Mô tả: {props.movie.moTa}</p>
-        </div>
-      </TabPanel> */}
       <TabPanel value={value} index={1}>
-        <CommentList id={props.id} />
+        <CommentList id={props.id} danhGia={props.movie.danhGia}  />
       </TabPanel>
     </Paper>
   );

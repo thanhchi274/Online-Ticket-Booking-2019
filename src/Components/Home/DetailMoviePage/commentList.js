@@ -23,8 +23,10 @@ class CommentList extends Component {
   componentDidMount() {
     const id = this.props.id;
     this.props.actGetCommentList(id);
+    const danhGia = this.props.danhGia
     this.setState({
-      maPhim: id
+      maPhim: id,
+      value: danhGia
     });
   }
   UNSAFE_componentWillUpdate() {

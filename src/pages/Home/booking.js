@@ -5,7 +5,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
-import ModalImage from "react-modal-image";
 import CountDown from "../../Components/Home/BookingPage/countDown";
 
 class Booking extends Component {
