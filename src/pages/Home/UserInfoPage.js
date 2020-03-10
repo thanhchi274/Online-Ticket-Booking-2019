@@ -30,8 +30,8 @@ class Info extends Component {
               </h5>
             </div>
           </div>
-          <div className="info_gen row desktop">
-            <div className="col-sm-5 mr-5 row justify-content-between topic-info_detail">
+          <div className="info_gen d-flex row desktop">
+            <div className="col-sm-5 col-md-5 col-lg-5 mr-5 row justify-content-between topic-info_detail">
               <p>Tài khoản: </p>
               <span>
                 {UserHome ? (
@@ -41,7 +41,7 @@ class Info extends Component {
                 )}
               </span>
             </div>
-            <div className="col-sm-3 row justify-content-between topic-info_detail2">
+            <div className="col-sm-3 col-md-5 col-lg-5 d-flex justify-content-between topic-info_detail2">
               <p>Mã nhóm: </p>
               <span>
                 {UserHome ? (
