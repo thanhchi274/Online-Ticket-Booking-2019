@@ -39,11 +39,9 @@ class TabUpdateUser extends Component {
     let target = e.target;
     let name = target.name;
     let value = target.value;
-    this.setState(
-      {
-        [name]: value
-      }
-    );
+    this.setState({
+      [name]: value
+    });
   };
   componentDidMount() {
     let UserHome = JSON.parse(localStorage.getItem("UserHome"));
@@ -89,7 +87,7 @@ class TabUpdateUser extends Component {
 
           <button
             type="submit"
-            className="btn btn-update btn-success"
+            className="btn btnUpdate"
             onClick={this.handleClick}
           >
             Cập nhật

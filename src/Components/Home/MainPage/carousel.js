@@ -1,95 +1,37 @@
 import React, { Component } from "react";
-import Slider from "react-slick";
-import { NavLink } from "react-router-dom";
-import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/black-and-white.css";
-function NextArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
-}
-
-function PrevArrow(props) {
-  const { className, style, onClick } = props;
-  return (
-    <div
-      className={className}
-      style={{ ...style, display: "block" }}
-      onClick={onClick}
-    />
-  );
-}
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faQuoteLeft, faQuoteRight } from "@fortawesome/free-solid-svg-icons";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 class Carousel extends Component {
   render() {
-    var settings = {
-      dots: false,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 1,
-      slidesToScroll: 1,
-      nextArrow: <NextArrow />,
-      prevArrow: <PrevArrow />
-    };
     return (
       <div className="carousel-main desktop">
-        <Slider {...settings}>
-          <div>
-            <NavLink to="/detail-movie/1314">
-              <LazyLoadImage
-                src={
-                  "https://www.upsieutoc.com/images/2020/01/07/ted-poster.jpg"
-                }
-                effect="black-and-white"
-                alt="Card"
-                border="{0}"
-              />
-            </NavLink>
-            <div className="carousel-detail">
-              <p>DetailCarousel</p>
+        <div className="carousel_detail">
+          <div className="carousel-wrapper">
+            <div className="carousel-content">
+              <div className="carousel_contentTitle">
+                <p className="first_content">Great experiences</p>
+                <p className="sec_content">
+                  For Customers / Cyber movies forerver
+                </p>
+              </div>
+              <div className="carousel_contentDescription">
+                <p className="content_description">
+                  <FontAwesomeIcon className="quoteLeft" icon={faQuoteLeft} />
+                  Cyber movies proud to be the website which have the large
+                  number of movie theaters cooporate with, we could ensure to
+                  bring you a best experiences with our website where you could
+                  book ticket from many theaters that exist in country
+                  <FontAwesomeIcon className="quoteRight" icon={faQuoteRight} />
+                </p>
+                <AnchorLink className="toMoviesButton" href="#sectionMovies">
+                  Buy Tickets
+                </AnchorLink>
+              </div>
             </div>
           </div>
-          <div>
-            <NavLink to="/detail-movie/1389">
-              <LazyLoadImage
-                src={
-                  "https://www.upsieutoc.com/images/2020/01/07/ant-man-big.jpg"
-                }
-                effect="black-and-white"
-                alt="Card"
-                border="{0}"
-              />
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/detail-movie/1404">
-              <LazyLoadImage
-                src={
-                  "https://www.upsieutoc.com/images/2020/01/07/jurassic-world-fallen-kingdom-12k-international-poster-vh-2560x1440.jpg"
-                }
-                effect="black-and-white"
-                alt="Card"
-                border="{0}"
-              />
-            </NavLink>
-          </div>
-          <div>
-            <NavLink to="/detail-movie/1374">
-              <LazyLoadImage
-                src={
-                  "https://www.upsieutoc.com/images/2020/01/07/itl.cat_wallpaper-superman-android_2097462.jpg"
-                }
-                effect="black-and-white"
-                alt="Card"
-                border="{0}"
-              />
-            </NavLink>
-          </div>
-        </Slider>
+        </div>
       </div>
     );
   }

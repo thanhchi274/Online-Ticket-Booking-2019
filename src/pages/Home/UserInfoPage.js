@@ -4,11 +4,13 @@ import UserInformationTab from "../../Components/Home/UserPage/UserInformationTa
 import Skeleton from "@material-ui/lab/Skeleton";
 
 const AvatarUser = () => (
-    <div className="ava">
-              <img alt="avatar" src="https://divineshop.vn/image/avatar/default.png?rand=963987" />
-            </div>
+  <div className="ava">
+    <img
+      alt="avatar"
+      src="https://divineshop.vn/image/avatar/default.png?rand=963987"
+    />
+  </div>
 );
-
 
 class Info extends Component {
   renderHTML = () => {
@@ -28,7 +30,7 @@ class Info extends Component {
               </h5>
             </div>
           </div>
-          <div className="topic-info row">
+          <div className="info_gen row desktop">
             <div className="col-sm-5 mr-5 row justify-content-between topic-info_detail">
               <p>Tài khoản: </p>
               <span>

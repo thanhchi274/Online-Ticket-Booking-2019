@@ -8,6 +8,7 @@
   border: 1px solid $primary;
   border-radius: 0.75rem;
   left: 14%;
+  animation: dropTool 1s;
   .form-control {
     border: none !important;
     background-color: $main;
@@ -43,5 +44,15 @@
     &:focus {
       outline: none !important;
     }
+  }
+}
+@keyframes dropTool {
+  0% {
+    opacity: 0;
+    transform: translateY(-50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
