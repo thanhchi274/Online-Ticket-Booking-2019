@@ -143,20 +143,6 @@ export default class MobileHeader extends Component {
                     Theaters
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" to="">
-                    News
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    className="nav-link"
-                    onClick={this.scrollToFooter}
-                    to=""
-                  >
-                    Subscribe
-                  </Link>
-                </li>
               </div>
             </ul>
           </div>

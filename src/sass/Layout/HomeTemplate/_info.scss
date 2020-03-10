@@ -1,30 +1,88 @@
-.userInformation {
-  width: 40%;
-  .comp {
-    line-height: 1.4;
-    p {
-      font-size: 20px;
-      font-weight: 300;
-    }
-    span {
-      font-weight: 700;
-    }
+.MuiTypography-root {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 0 !important;
+}
+.updateUser {
+  width: 50%;
+  margin: 20px auto;
+  .btnUpdate {
+    background-color: $primary;
+    color: $white-darker-2;
   }
 }
 .info_cover {
   display: flex;
-  margin-left: 260px;
+  align-items: center;
+  .topic-info {
+    display: flex;
+    align-items: center;
+    p {
+      margin: 0 10px;
+    }
+  }
+  .updateInfo {
+    color: $primary;
+    cursor: pointer;
+  }
+  .userInformation {
+    width: 100%;
+    margin: 0 auto;
+    background-color: $main;
+    .comp {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      p {
+        font-size: 20px;
+        font-weight: 300;
+      }
+      span {
+        font-weight: 700;
+      }
+    }
+    form {
+      margin: 40px auto;
+      .form-group {
+        label {
+          font-size: 16px;
+          font-weight: 700;
+        }
+        input {
+          border: none;
+          border-radius: 0;
+          outline: none;
+          border-bottom: 2px solid black;
+          transition: all 0.2s;
+          &:focus {
+            outline: none !important;
+            border-bottom: 2px solid #1feb6d;
+            box-shadow: none;
+          }
+        }
+      }
+      .editButton {
+        margin-left: 40%;
+        .btn_update {
+          background-color: $primary;
+          color: $white-darker-2;
+        }
+        .btn_cancel {
+          color: $white-darker-2;
+        }
+      }
+    }
+  }
 }
-.updateInfo {
-  color: #007bff;
-  cursor: pointer;
-  margin-top: 100px;
-  margin-left: 200px;
+.MuiTab-wrapper {
+  color: $primary;
+}
+h4 {
+  color: $white-darker-2 !important;
 }
 .info-user {
   .info-cover {
     position: relative;
-    background-color: white;
     background-image: url("https://divineshop.vn/assets/resources/bao-mat/banner.png?rand=530");
     height: 300px;
     background-size: cover;
@@ -36,9 +94,11 @@
       padding-top: 190px;
       padding-left: 50px;
       .general {
-        color: white;
         font-size: 20px;
         font-weight: 700;
+        h5 {
+          color: $white-darker-2;
+        }
       }
       .ava {
         border: 1px solid transparent;
@@ -55,12 +115,13 @@
         }
       }
     }
-    .topic-info {
+    .info_gen {
       position: absolute;
       width: 60%;
       font-weight: 600;
       top: 103%;
       left: 0;
+      color: $white-darker-2;
       margin-left: 25%;
       .topic-info_detail {
         border-right: 1px solid #eee;
@@ -69,25 +130,40 @@
     }
   }
 }
-form {
-  margin: 40px auto;
-  width: 500px !important;
-  .form-group {
-    label {
-      font-size: 16px;
-      font-weight: 700;
-    }
-    input {
-      border: none;
-      border-radius: 0;
-      outline: none;
-      border-bottom: 2px solid black;
-      transition: all 0.2s;
-      &:focus {
-        outline: none !important;
-        border-bottom: 2px solid #1feb6d;
-        box-shadow: none;
+
+@media (max-width: 767px) and (min-width: 320px) {
+  .info-user {
+    .info-cover {
+      .detail-info {
+        display: block;
+        align-items: center;
+        padding-top: 35%;
+        padding-left: 3%;
+        text-align: center;
+        color: $white-darker-2;
+        .ava {
+          border: 1px solid transparent;
+          background-color: white;
+          overflow: hidden;
+          text-align: center;
+          line-height: 150px;
+          width: 150px;
+          height: 150px;
+          border-radius: 50%;
+          margin: 0 auto;
+          img {
+            width: 100%;
+          }
+        }
       }
     }
+  }
+  .updateUser {
+    width: 100%;
+  }
+  .info_cover {
+    display: flex;
+    margin-left: 0;
+    width: 100%;
   }
 }

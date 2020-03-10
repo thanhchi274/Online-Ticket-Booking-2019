@@ -1,91 +1,87 @@
 .carousel-main {
-  margin-top: 8vh;
-  .slick-slider {
-    width: 100vw !important;
-
-    .slick-prev {
-      left: 40px;
-      z-index: 2;
-
-      &::before {
-        font-size: 45px;
+  .carousel_detail {
+    .carousel-wrapper {
+      background-image: url("../../../Asset/Image/black_panther-carousel.jpg");
+      height: 700px;
+      background-position: center -550px;
+      background-repeat: no-repeat;
+      background-size: cover;
+      .carousel-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        .carousel_contentTitle {
+          padding: 10% 5%;
+          .first_content {
+            width: 20%;
+            color: $white-darker-2;
+            font-size: 40px;
+            text-transform: uppercase;
+          }
+          .sec_content {
+            color: $text-color;
+          }
+          animation: showContentTitle 1s;
+        }
+        .carousel_contentDescription {
+          width: 32%;
+          padding: 0 5%;
+          color: $text-color;
+          animation: showContentDescript 1s;
+          .quoteLeft {
+            margin-right: 10px;
+          }
+          .quoteRight {
+            margin-left: 10px;
+          }
+          p {
+            margin-bottom: 20px;
+          }
+          .toMoviesButton {
+            color: $white-darker-2;
+            background-color: $primary;
+            padding: 10px 40px;
+            animation: buttonToMovies 1s;
+            &:hover {
+              text-decoration: none;
+            }
+          }
+        }
       }
     }
-
-    .slick-next {
-      right: 60px;
-      z-index: 2;
-
-      &::before {
-        font-size: 45px;
-      }
+  }
+  @keyframes showContentTitle {
+    0% {
+      opacity: 0;
+      transform: translateX(30%);
     }
-
-    .slick-list {
-      height: 40vw !important;
-
-      img {
-        height: 850px;
-        width: 100%;
-        background-size: cover;
-      }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
-}
-.carousel-detail {
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24) !important;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  &:hover {
-    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22) !important;
-  }
-  &:focus {
-    outline: none;
-  }
-  border-top-left-radius: 0px !important;
-  border-top-right-radius: 0px !important;
-  background-color: $primary;
-  display: block;
-  width: 100%;
-  border-top: 0px !important;
-  position: relative;
-  font-size: 16px;
-  font-weight: 600;
-  height: 100px;
-  margin-bottom: 20px !important;
-  a {
-    cursor: pointer;
-    padding: 10px 15px;
-    color: $white-darker-2;
-    margin-bottom: 0;
-    line-height: normal;
-    position: absolute;
-    top: -2%;
-    font-size: 18px;
-    font-size: 700;
-    text-decoration: none;
-    transition: all 0.2s;
-    &:hover {
-      color: $white-darker-2 !important;
-      text-decoration: none;
+  @keyframes showContentDescript {
+    0% {
+      opacity: 0;
+      transform: translateX(-30%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
-  p {
-    padding: 10px 15px;
-    color: $white-darker-2;
-    margin-bottom: 0;
-    &:nth-child(2) {
-      position: absolute;
-      top: 42%;
-      font-size: 14px;
+  @keyframes buttonToMovies {
+    0% {
+      opacity: 0;
+      transform: translateY(-30%);
     }
-  }
-  .MuiBox-root {
-    position: absolute;
-    padding-top: 5px;
-    bottom: -25%;
-    left: 5%;
-    .MuiRating-root {
-      font-size: 1.1rem;
+    50% {
+      opacity: 0;
+      transform: translateY(-20%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 }

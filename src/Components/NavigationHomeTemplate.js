@@ -149,24 +149,10 @@ export default class Navbar extends Component {
                       Theater
                     </Link>
                   </li>
-                  <li className="nav-item">
-                    <Link className="nav-link" to="">
-                      News
-                    </Link>
-                  </li>
-                  <li className="nav-item">
-                    <Link
-                      className="nav-link"
-                      onClick={() => this.scrollTo(1400, 0)}
-                      to=""
-                    >
-                      Subscribe
-                    </Link>
-                  </li>
                 </ul>
+                {this.renderHTML()}
               </div>
             </div>
-            {this.renderHTML()}
           </div>
         </nav>
       </>

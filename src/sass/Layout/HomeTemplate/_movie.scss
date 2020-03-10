@@ -97,3 +97,18 @@
   color: $white-darker-2;
   font-weight: 900;
 }
+.movie-detail {
+  background-color: $primary;
+  padding: 5px 10px;
+  .MuiBox-root {
+    margin: 0;
+  }
+  a,
+  p {
+    color: $white-darker-2;
+    &:hover {
+      color: $white-darker-2;
+      text-decoration: none;
+    }
+  }
+}

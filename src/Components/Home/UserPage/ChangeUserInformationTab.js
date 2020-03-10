@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { connect } from "react-redux";
 import * as Action from "../../../Store/action/index";
+import { connect } from "react-redux";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
 class DetailInfo extends Component {
   constructor(props) {
     super(props);
@@ -63,13 +65,13 @@ class DetailInfo extends Component {
         <div className="editButton">
           <button
             type="submit"
-            className="btn btn-update btn-success"
+            className="btn btn_update"
             onClick={this.handleSubmit}
           >
             Cập nhật
           </button>
           <button
-            className="btn btn-danger"
+            className="btn btn_cancel"
             onClick={() => {
               this.setState({
                 clicked: false
@@ -89,9 +91,27 @@ class DetailInfo extends Component {
         <div className="info_cover">
           <div className=" userInformation">
             <form className="updateUser" onSubmit={this.handleSubmit}>
-              <h4>Thông tin cá nhân</h4>
+              <div className="topic-info">
+                <h4>Thông tin cá nhân</h4>
+                <div className="updateInfo">
+                  {this.state.clicked === false ? (
+                    <p
+                      className="updateButton"
+                      onClick={() => {
+                        this.setState({
+                          clicked: true
+                        });
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faUserEdit} />
+                    </p>
+                  ) : (
+                    ""
+                  )}
+                </div>
+              </div>
               <hr />
-              <div className="comp row align-items-center justify-content-between">
+              <div className="comp">
                 <p className="col-sm-3">Tài Khoản:</p>
                 <span>
                   {UserInfo ? (
@@ -101,7 +121,7 @@ class DetailInfo extends Component {
                   )}
                 </span>
               </div>
-              <div className="comp row align-items-center justify-content-between">
+              <div className="comp">
                 <p className="col-sm-3">Họ và tên:</p>
                 {this.state.clicked === false ? (
                   <span>
@@ -114,7 +134,7 @@ class DetailInfo extends Component {
                 ) : (
                   <input
                     type="text"
-                    className="form-control col-sm-8"
+                    className="form-control col-sm-4"
                     name="hoTen"
                     value={this.state.hoTen ? this.state.hoTen : ""}
                     onChange={this.handleChange}
@@ -122,7 +142,7 @@ class DetailInfo extends Component {
                   />
                 )}
               </div>
-              <div className="comp row align-items-center justify-content-between">
+              <div className="comp">
                 <p className="col-sm-1">Email:</p>
                 {this.state.clicked === false ? (
                   <span>
@@ -135,7 +155,7 @@ class DetailInfo extends Component {
                 ) : (
                   <input
                     type="email"
-                    className="form-control col-sm-8"
+                    className="form-control col-sm-4"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
@@ -143,7 +163,7 @@ class DetailInfo extends Component {
                   />
                 )}
               </div>
-              <div className="comp row align-items-center justify-content-between">
+              <div className="comp">
                 <p className="col-sm-3">Số điện thoại:</p>
                 {this.state.clicked === false ? (
                   <span>
@@ -156,7 +176,7 @@ class DetailInfo extends Component {
                 ) : (
                   <input
                     type="text"
-                    className="form-control col-sm-8"
+                    className="form-control col-sm-4"
                     name="soDt"
                     value={this.state.soDt}
                     onChange={this.handleChange}
@@ -166,22 +186,6 @@ class DetailInfo extends Component {
               </div>
               {this.renderButton()}
             </form>
-          </div>
-          <div className="updateInfo">
-            {this.state.clicked === false ? (
-              <p
-                className="updateButton"
-                onClick={() => {
-                  this.setState({
-                    clicked: true
-                  });
-                }}
-              >
-                Cập nhật
-              </p>
-            ) : (
-              ""
-            )}
           </div>
         </div>
       </>

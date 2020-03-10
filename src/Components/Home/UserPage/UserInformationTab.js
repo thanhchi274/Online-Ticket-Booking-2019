@@ -61,7 +61,15 @@ export default function FullWidthTabs() {
   };
 
   return (
-    <div className={classes.root} style={{ width: "100%", paddingTop: "50px" }}>
+    <div
+      className={classes.root}
+      style={{
+        width: "100%",
+        paddingTop: "50px",
+        backgroundColor: "#17161a",
+        color: "#cfcfcf"
+      }}
+    >
       <AppBar position="static" color="default">
         <Tabs
           value={value}

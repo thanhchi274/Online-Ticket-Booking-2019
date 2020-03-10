@@ -46,10 +46,7 @@ class MovieAvailable extends Component {
               src={movie.hinhAnh}
             />
           </div>
-          <div
-            className="carousel-detail"
-            style={{ border: "1px solid black", borderRadius: "20px" }}
-          >
+          <div className="movie-detail">
             <Link to={`/detail-movie/${movie.maPhim}`}>{movie.tenPhim}</Link>
             <p>Premiere Date: {formattedDate}</p>
             <Rating danhGia={movie.danhGia} />
@@ -61,7 +58,7 @@ class MovieAvailable extends Component {
   render() {
     return (
       <div>
-        <div className="swiper-container container ">
+        <div className="swiper-container container" id="sectionMovies">
           <div className="swiper-wrapper">{this.renderHTML()}</div>
           <div className="swiper-pagination" />
           <div className="swiper-button-next" />
