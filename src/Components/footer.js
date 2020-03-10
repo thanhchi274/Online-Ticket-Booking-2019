@@ -7,8 +7,8 @@ function footer() {
         <div className="footer_trust_top">
           <div className="trustlogos" />
         </div>
-        <div className="col-lg-12 col-md-12 col-xs-12 footer_main row desktop ">
-          <div className="col-xs-5 col-md-3 footer-left">
+        <div className="col-lg-12 col-md-12 col-xs-12 d-flex footer_main row desktop ">
+          <div className="col-xs-5 col-md-3 col-lg-3 footer-left">
             <h4>Find Out More</h4>
             <ul className="footer_list">
               <li>
@@ -28,7 +28,7 @@ function footer() {
               </li>
             </ul>
           </div>
-          <div className="col-xs-12 col-md-6 col-md-pull-3 footer_middle">
+          <div className="col-xs-12 col-md-6 col-md-pull-3 col-lg-6 footer_middle">
             <h4>
               Be the first to know about <strong>Movie Theater</strong>
             </h4>
@@ -56,7 +56,7 @@ function footer() {
               </div>
             </form>
           </div>
-          <div className="col-xs-7 col-md-3 col-md-push-6 footer-right">
+          <div className="col-xs-7 col-md-3 col-md-push-6 col-lg-3 footer-right">
             <div className="footerbox">
               <h4>Contact Us</h4>
               <p>We're ready to help!</p>

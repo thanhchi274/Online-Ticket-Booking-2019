@@ -90,9 +90,14 @@
     outline: none;
   }
 }
-.swiper-button-next:after,
-.swiper-button-prev:after {
+.swiper-button-next:after{
   content: ">";
+  font-size: 20px !important;
+  color: $white-darker-2;
+  font-weight: 900;
+}
+.swiper-button-prev:after {
+  content: "<";
   font-size: 20px !important;
   color: $white-darker-2;
   font-weight: 900;
