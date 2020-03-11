@@ -58,7 +58,7 @@ class MovieAvailable extends Component {
   render() {
     return (
       <div>
-        <div className="swiper-container container" id="sectionMovies">
+        <div className="swiper-container container">
           <div className="swiper-wrapper">{this.renderHTML()}</div>
           <div className="swiper-pagination" />
           <div className="swiper-button-next" />

@@ -7,7 +7,7 @@ function footer() {
         <div className="footer_trust_top">
           <div className="trustlogos" />
         </div>
-        <div className="col-lg-12 col-md-12 col-xs-12 d-flex footer_main row desktop ">
+        <div className="footer_main desktop">
           <div className="col-xs-5 col-md-3 col-lg-3 footer-left">
             <h4>Find Out More</h4>
             <ul className="footer_list">

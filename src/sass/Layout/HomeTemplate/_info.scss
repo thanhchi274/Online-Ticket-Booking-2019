@@ -6,6 +6,9 @@
 .updateUser {
   width: 50%;
   margin: 20px auto;
+  h4 {
+    color: $white-darker-2;
+  }
   .btnUpdate {
     background-color: $primary;
     color: $white-darker-2;
@@ -17,6 +20,9 @@
   .topic-info {
     display: flex;
     align-items: center;
+    h4 {
+      color: $white-darker-2;
+    }
     p {
       margin: 0 10px;
     }
@@ -77,9 +83,6 @@
 .MuiTab-wrapper {
   color: $primary;
 }
-h4 {
-  color: $white-darker-2 !important;
-}
 .info-user {
   .info-cover {
     position: relative;
@@ -117,6 +120,7 @@ h4 {
     }
     .info_gen {
       position: absolute;
+      display: flex;
       width: 60%;
       font-weight: 600;
       top: 103%;

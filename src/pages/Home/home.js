@@ -36,7 +36,7 @@ class Home extends Component {
             <Carousel />
             <HomeTool movieDate={this.props.movieDate} />
           </div>
-          <div className="availableMovie">
+          <div className="availableMovie" id="sectionMovies">
             <h3 className="now_title">Now available</h3>
             <div className="tab-content nav-tabContent desktop" id="section1">
               <div className="desktop">
