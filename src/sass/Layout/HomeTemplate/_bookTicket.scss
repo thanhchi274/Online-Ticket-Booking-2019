@@ -1,169 +1,189 @@
 .bookTicket_container {
-  margin-top: 8vh;
-}
-.booking-movie {
-  background-color: $main;
-  width: 1200px;
-  padding-top: 30px;
-  position: relative;
-  margin: 0 auto;
-  height: 100%;
-  .countdown {
-    position: absolute;
-    left: 82%;
-
-    span {
-      color: $white;
-    }
-  }
-
-  .row {
-    margin-left: 50px;
-  }
-  .timeLabel {
-    color: $white;
-    font-size: 14px;
-    margin-bottom: 0;
-  }
-  .timeCount {
-    color: $primary;
-    text-shadow: 0 0 10px $primary, 0 0 40px $primary, 0 0 80px $primary;
-    text-align: center;
-  }
-  .tenPhim{
-    font-size:30px!important;
-    font-weight: 900!important;
-    font-family: Helvetica;
-  }
-  h3 {
-    font-family: Helvetica;
-    color: $white-darker-2 !important;
-    font-size: 18px;
-    transform: translateX(0%);
-    span {
-      font-weight: 900 !important;
-    }
-  }
-
-  .chose {
-    background-color: #33d6a8 !important;
-    color: $white !important;
-    font-weight: 700 !important;
-    font-size: 14px;
-  }
-
-  .booked {
-    background-color: grey !important;
-    color: $white !important;
-  }
-
-  .seat-choosing{
-    .chairList {
-      margin: 30px 7vw;
-      margin-top: 70px;
-      transform: translateX(41px);
-    }
-    .monitor {
-      span{
-        position: relative;
-        top:17px;
-        font-size: 16px;
-        font-weight: 700;
-        color:whitesmoke;
-      }
-      background-color: #f3558e;
-      width: 90%;
-      margin: 20px auto;
-      margin-bottom: 30px;
-      color: $white;
-      border-radius: 50%/ 85% 85% 0 0 ;
-      height: 20px;
-      padding-top: 10px;
-      font-weight: 700;
-      text-transform: uppercase;
-      text-align: center; 
-      -webkit-box-shadow: 5px 15px 50px 2px #F3558E; 
-      box-shadow: 5px 15px 50px 2px #F3558E;
-    }
-  }
-  .seat--info{
-    width: 80%;
+  margin-top: 10vh;
+  .booking-movie {
+    background-color: $main;
+    width: 1200px;
+    padding-top: 30px;
+    position: relative;
     margin: 0 auto;
-    transform: translateX(-15px);
-    p{
-      color:white;
-      font-weight: 700;
+    height: 100%;
+    .countdown {
+      position: absolute;
+      left: 82%;
+
+      span {
+        color: $white;
+      }
+    }
+    .timeLabel {
+      color: $white;
       font-size: 14px;
+      margin-bottom: 0;
     }
-    .normalSeat{
-      .seat--info_detail{
-        margin-right:10px;
-        width: 20px;
+    .timeCount {
+      color: $primary;
+      text-shadow: 0 0 10px $primary, 0 0 40px $primary, 0 0 80px $primary;
+      text-align: center;
+    }
+    .tenPhim {
+      font-size: 30px !important;
+      font-weight: 900 !important;
+      font-family: Helvetica;
+      color: $white-darker-2;
+    }
+    .thongTinSuatChieu {
+      display: flex;
+      color: $white-darker-2;
+      font-size: 20px;
+    }
+    .seat-choosing {
+      .chairList {
+        max-width: 86.2%;
+        margin: 0 auto;
+      }
+      .monitor {
+        span {
+          position: relative;
+          top: 17px;
+          font-size: 16px;
+          font-weight: 700;
+          color: whitesmoke;
+        }
+        background-color: #f3558e;
+        width: 100%;
+        margin: 20px auto;
+        margin-bottom: 30px;
+        color: $white;
+        border-radius: 50%/ 85% 85% 0 0;
         height: 20px;
-        background-color: #922cc9;
+        padding-top: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        text-align: center;
+        -webkit-box-shadow: 5px 15px 50px 2px #f3558e;
+        box-shadow: 5px 15px 50px 2px #f3558e;
+      }
+      .chose {
+        background-color: #33d6a8 !important;
+        color: $white !important;
+        font-weight: 700 !important;
+        font-size: 14px;
+      }
+
+      .chair {
+        background-color: black;
+        opacity: 1;
+        color: transparent;
+        line-height: 40px;
+        text-align: center;
+        width: 2.5vw;
+        height: 5vh;
+        font-weight: 300;
+        font-size: 14px;
+        border-radius: 50%;
+        border: 1px solid black;
+        cursor: pointer;
+      }
+      .booked {
+        background-color: grey !important;
+        color: $white !important;
       }
     }
-    .vipSeat{
-      .seat--info_detail{
-        margin-right:10px;
-        width: 20px;
-        height: 20px;
-        background-color: #cfcfcf;
+    .seat--info {
+      width: 80%;
+      margin: 5% auto;
+      transform: translateX(-15px);
+      p {
+        color: white;
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .normalSeat {
+        .seat--info_detail {
+          margin-right: 10px;
+          width: 20px;
+          height: 20px;
+          background-color: #922cc9;
+        }
+      }
+      .vipSeat {
+        .seat--info_detail {
+          margin-right: 10px;
+          width: 20px;
+          height: 20px;
+          background-color: #cfcfcf;
+        }
       }
     }
-  }  
-
-  .active {
-    background-color: red;
-    color: $white;
   }
-
-  .chair {
-    background-color: black;
-    opacity: 1;
-    color: transparent;
-    line-height: 40px;
-    text-align: center;
-    width: 40px;
-    height: 40px;
-    font-weight: 300;
-    font-size: 14px;
-    border-radius: 50%;
-    border: 1px solid black;
-    cursor: pointer;
-  }
-}
-.booking-ticket {
-  .img-movie-booking{
-    margin-left:35%;
-     img{
-       width: 140px;
-       height: 200px;
-     }
-   }
-  &:hover{
-   border-radius: 20px;
-   background: #17161a;
-   box-shadow: inset 20px 20px 43px #0e0e10, 
-               inset -20px -20px 43px #201e24
-  }
-  border-radius: 20px;
-  transition: all 0.05s;
-  .seat-check {
-    h5 {
-      font-size: 18px;
-      font-weight: 300;
-      color:white;
+  .booking-ticket {
+    .img-movie-booking {
+      margin-left: 35%;
+      img {
+        width: 140px;
+        height: 200px;
+      }
     }
-    span{
-      font-weight: 700;
+    &:hover {
+      border-radius: 20px;
+      background: #17161a;
+      box-shadow: inset 20px 20px 43px #0e0e10, inset -20px -20px 43px #201e24;
     }
-  }
-  .btnCloseErrForm {
-    margin: 0 auto;
-  }
-  .errRender {
-    .maxErrNoti {
+    border-radius: 20px;
+    transition: all 0.05s;
+    .seat-check {
+      h5 {
+        font-size: 18px;
+        font-weight: 300;
+        color: white;
+      }
+      span {
+        font-weight: 700;
+      }
+    }
+    .btnCloseErrForm {
+      margin: 0 auto;
+    }
+    .errRender {
+      .maxErrNoti {
+        text-align: center;
+        width: 80%;
+        margin: 0 auto;
+        img {
+          width: 35%;
+          margin: 5% auto;
+        }
+      }
+    }
+    .modal-content {
+      margin-top: 235px !important;
+    }
+    .payStyle_container {
+      .payStyles {
+        margin-top: 150px !important;
+        img {
+          width: 50%;
+          margin-bottom: 5vh;
+        }
+      }
+      .payStyle_pay {
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        p {
+          font-size: 18px;
+          width: 80%;
+          margin: 10px auto;
+          color: white;
+        }
+        img {
+          width: 180px !important;
+          height: 180px !important;
+          margin: 0;
+        }
+      }
+    }
+    .errNoti {
       text-align: center;
       width: 80%;
       margin: 0 auto;
@@ -172,170 +192,182 @@
         margin: 5% auto;
       }
     }
-  }
-  .modal-content {
-    margin-top: 235px !important;
-  }
-  .payStyle_container {
-    .payStyles {
-      margin-top: 150px !important;
-      img {
-        width: 50%;
-        margin-bottom: 5vh;
+    .info-ticket {
+      h5 {
+        font-size: 20px;
+        font-weight: 300;
+        color: white;
+        &:nth-child(3) {
+          font-weight: 700;
+        }
       }
-    }
-    .payStyle_pay {
-      width: 80%;
-      margin: 0 auto;
-      text-align: center;
-      p {
-        font-size: 18px;
-        width: 80%;
-        margin: 10px auto;
-        color:white;
-      }
-      img {
-        width: 180px!important;
-        height: 180px!important;
-        margin: 0;
-      }
-    }
-  }
-  .errNoti {
-    padding: 20px;
-    align-items: center;
-    justify-content: center;
-    .circleTimes {
-      border: 1px none transparent;
-      background-color: red;
-      color: $white;
-      width: 40px;
-      height: 40px;
-      text-align: center;
-      line-height: 40px;
-      border-radius: 50%;
-      margin-right: 10px;
-    }
-    h4 {
-      text-align: center;
-      color:white
-    }
-  }
-  .info-ticket {
-    h5 {
-      font-size: 20px;
-      font-weight: 300;
-      color:white;
-      &:nth-child(3) {
+      span {
+        color: white;
+        font-size: 20px;
         font-weight: 700;
       }
     }
-    span {
-      color:white;
-      font-size: 20px;
-      font-weight: 700;
+    p {
+      color: black;
+      font-size: 15px;
     }
-  }
-  p {
-    color: black;
-    font-size: 15px;
-  }
-  .checkType {
-    h5 {
-      color:white;
-      font-size: 20px;
-      font-weight: 700;
-    }
-    .container{
-      margin-top: 20px;
-      margin-bottom:5px;
-      .payStyle {
-        img {
-          width: 40px !important;
-          height: 40px !important;
-          margin-left: 20px;
-        }
-        p {
-          color:white;
-          margin: 15px 20px;
-          font-size: 16px;
+    .checkType {
+      h5 {
+        color: white;
+        font-size: 20px;
+        font-weight: 700;
+      }
+      .container {
+        margin-top: 20px;
+        margin-bottom: 5px;
+        .payStyle {
+          img {
+            width: 40px !important;
+            height: 40px !important;
+            margin-left: 20px;
+          }
+          p {
+            color: white;
+            margin: 15px 20px;
+            font-size: 16px;
+          }
         }
       }
     }
-  }
-  .total {
-    text-align: center;
-    padding: 10px 30px;
-    padding-top: 1.5vh !important;
-    h4 {
-      font-size: 21px;
-      font-weight: 300;
-      font-family: Helvetica;
-      color:white;
+    .total {
+      text-align: center;
+      padding: 10px 30px;
+      padding-top: 1.5vh !important;
+      h4 {
+        font-size: 21px;
+        font-weight: 300;
+        font-family: Helvetica;
+        color: white;
+      }
+      span {
+        font-weight: 700;
+        font-size: 25px !important;
+      }
     }
-        span{
-          font-weight: 700;
-          font-size: 25px!important;
-        }
-  }
-  .btnBook {
-    width: 100%;
-    margin: 10px 0;
-    padding: 20px 30px;
-    margin-bottom: 0;
-    -webkit-appearance: none;
-    background: -webkit-gradient(to right, $green 0%, $sand 50%, $peach 100%);
-    background: linear-gradient(to right, $green 0%, $sand 50%, $peach 100%);
-    background-size: 500%;
-    border: none;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-    color: $white;
-    cursor: pointer;
-    font-weight: 700 !important;
-    font: 1em Raleway, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    letter-spacing: 0.05em;
-    transition: all 0.3s;
-    outline: none;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    &:hover {
-      animation-name: gradient;
-      -webkit-animation-name: gradient;
-      animation-duration: 2s;
-      -webkit-animation-duration: s;
-      animation-iteration-count: 1;
-      -webkit-animation-iteration-count: 1;
-      animation-fill-mode: forwards;
-      -webkit-animation-fill-mode: forwards;
-    }
-  }
-
-  @keyframes gradient {
-    0% {
-      background-position: 0% 50%;
+    .btnBook {
+      width: 100%;
+      margin: 10px 0;
+      padding: 20px 30px;
+      margin-bottom: 0;
+      -webkit-appearance: none;
+      background: -webkit-gradient(to right, $green 0%, $sand 50%, $peach 100%);
+      background: linear-gradient(to right, $green 0%, $sand 50%, $peach 100%);
+      background-size: 500%;
+      border: none;
+      box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+      color: $white;
+      cursor: pointer;
+      font-weight: 700 !important;
+      font: 1em Raleway, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      letter-spacing: 0.05em;
+      transition: all 0.3s;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      &:hover {
+        animation-name: gradient;
+        -webkit-animation-name: gradient;
+        animation-duration: 2s;
+        -webkit-animation-duration: s;
+        animation-iteration-count: 1;
+        -webkit-animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        -webkit-animation-fill-mode: forwards;
+      }
     }
 
-    100% {
-      background-position: 100%;
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      100% {
+        background-position: 100%;
+      }
+    }
+  }
+  .modalContent {
+    top: 40%;
+    left: 25%;
+    z-index: 2001;
+    position: fixed;
+    background-color: $white;
+    padding: 40px;
+    color: $main;
+    h5 {
+      margin-bottom: 20px;
+    }
+    .close-btn {
+      margin-left: 90%;
     }
   }
 }
-.modalContent {
-  top: 40%;
-  left: 25%;
-  z-index: 2001;
-  position: fixed;
-  background-color: $white;
-  padding: 40px;
-  color: $main;
-  h5 {
-    margin-bottom: 20px;
+@media (max-width: 767px) and (min-width: 320px) {
+  .bookTicket_container {
+    margin-top: 1vh;
+    .booking-movie {
+      width: 100%;
+      .seat-choosing {
+        .chairList {
+          max-width: 378px;
+          .chair {
+            width: 3vw;
+            height: 3vh;
+            font-size: 8px;
+          }
+        }
+      }
+      .tenPhim {
+        font-size: 20px !important;
+        font-weight: 900 !important;
+        font-family: Helvetica;
+      }
+      .thongTinSuatChieu {
+        font-size: 17px;
+      }
+    }
   }
-  .close-btn {
-    margin-left: 90%;
+  .ticketFooter-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: $main;
+    border-top: 1px solid $primary;
+    color: $white-darker-2;
+    .seat_mobile {
+      padding: 0 20px;
+      width: 60%;
+      font-weight: 700;
+    }
+    .pay_button {
+      height: 100%;
+      width: 40%;
+      background-color: $primary;
+      color: $white-darker-2;
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 500;
+      text-align: center;
+      padding: 30px;
+      transition: all 0.5s;
+      &:hover {
+        text-decoration: none;
+        background-color: $white-darker-2;
+        color: $main;
+      }
+    }
   }
 }

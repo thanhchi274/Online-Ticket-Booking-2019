@@ -210,7 +210,9 @@ class Login extends Component {
               </div>
             </div>
             {this.state.errors.matKhau ? (
-              <div className="warning-text">{this.state.errors.matKhau}</div>
+              <div className="warning-text" style={{ color: "red" }}>
+                {this.state.errors.matKhau}
+              </div>
             ) : (
               ""
             )}

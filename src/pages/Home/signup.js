@@ -222,7 +222,7 @@ class Signup extends Component {
       <div className="signup-container">
         <div className="signup-content row align-items-center">
           <SignUpImage className="desktop" noti={this.state.noti}></SignUpImage>
-          <div className="signUp-form col-sm-5">
+          <div className="signUp-form col-sm-6">
             <h4>Đăng ký</h4>
             <FormSignUp
               handleSubmit={this.handleSubmit}
