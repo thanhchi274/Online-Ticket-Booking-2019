@@ -48,8 +48,8 @@ export const actGetUserList = () => {
     })
       .then(async result => {
         dispatch({
-          type:await  ActionTypes.GET_USER_LIST,
-          userList:await  result.data
+          type: await ActionTypes.GET_USER_LIST,
+          userList: await result.data
         });
       })
       .catch(err => {
@@ -260,10 +260,10 @@ export const actQuanLyVeUser = user => {
         "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
       data: user
     })
-      .then( result => {
+      .then(result => {
         dispatch({
-          type:  ActionTypes.GET_TICKET_DETAIL,
-          tickets:  result.data
+          type: ActionTypes.GET_TICKET_DETAIL,
+          tickets: result.data
         });
       })
       .catch(err => {
@@ -390,7 +390,7 @@ export const actDeleteMovie = movie => {
         Authorization: `Bearer ${UserAdmin.accessToken}`
       }
     })
-      .then( async result => {
+      .then(async result => {
         alert(result.data);
         dispatch({
           type: await ActionTypes.DELETE_MOVIE
@@ -524,7 +524,21 @@ export const actxoaComment = (maPhim, maComment) => {
       url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${maPhim}/danhSachComment/${maComment}`
     })
       .then(result => {
-        alert("xóa thành công");
+        dispatch(result.data);
+      })
+      .catch(err => {
+        return err;
+      });
+  };
+};
+export const actSuaComment = (maPhim, maComment, comment) => {
+  return dispatch => {
+    Axios({
+      method: "PUT",
+      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${maPhim}/danhSachComment/${maComment}`,
+      data: comment
+    })
+      .then(result => {
         dispatch(result.data);
       })
       .catch(err => {

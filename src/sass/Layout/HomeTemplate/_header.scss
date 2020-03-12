@@ -160,17 +160,17 @@ button:focus {
       align-items: center;
       .userIcon_info {
         a {
-          font-size: 18px;
+          font-size: 4.6vw;
           padding: 0;
           text-align: left;
         }
       }
       .userIcon_mobile {
         color: $white-darker-2;
-        width: 50px;
-        height: 50px;
+        width: 9vw;
+        height: 8vh;
         text-align: center;
-        line-height: 50px;
+        line-height: 8vh;
         border-radius: 50%;
         border: 1px solid $white-darker-2;
       }
@@ -192,7 +192,7 @@ button:focus {
     .nav-content {
       a {
         padding: 5px 0;
-        font-size: 20px;
+        font-size: 4.6vw;
         text-align: left;
       }
     }
@@ -206,7 +206,7 @@ button:focus {
       h5 {
         color: $white-darker-2;
         transition: all 0.3s;
-        font-size: 24px;
+        font-size: 4.6vw;
         padding-left: 6px;
         text-align: left;
         &:hover {
