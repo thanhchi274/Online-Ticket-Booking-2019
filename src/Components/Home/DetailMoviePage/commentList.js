@@ -2,10 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../../../Store/action";
 import Rating from "@material-ui/lab/Rating";
-// import Rate from "../Components/ratingComment";
 import Box from "@material-ui/core/Box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBan } from "@fortawesome/free-solid-svg-icons";
+import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
 import SmallSpinner from "./smallSpinner";
 
 class CommentList extends Component {
@@ -17,13 +16,14 @@ class CommentList extends Component {
       nhanXet: "",
       danhGia: "",
       value: 3,
-      commentList: []
+      commentList: [],
+      change: false
     };
   }
   componentDidMount() {
     const id = this.props.id;
     this.props.actGetCommentList(id);
-    const danhGia = this.props.danhGia
+    const danhGia = this.props.danhGia;
     this.setState({
       maPhim: id,
       value: danhGia
@@ -43,7 +43,7 @@ class CommentList extends Component {
   handleComment = e => {
     const home = JSON.parse(localStorage.getItem("UserHome"));
     e.preventDefault();
-    if (home) {
+    if (home && this.state.nhanXet !== "") {
       this.setState(
         {
           hoTen: home.hoTen,
@@ -109,8 +109,27 @@ class CommentList extends Component {
       );
     }
   };
-
+  handleChangeComment = e => {
+    const id = this.props.id;
+    const commentId = e.target.getAttribute("value");
+    const home = JSON.parse(localStorage.getItem("UserHome"));
+    this.setState(
+      {
+        hoTen: home.hoTen,
+        nhanXet: this.state.nhanXet,
+        danhGia: this.state.value,
+        change: false
+      },
+      () => {
+        this.props.actSuaComment(id, commentId, this.state);
+      }
+    );
+  };
+  renderAction = e => {
+    e.target.classList.toggle("show");
+  };
   renderHTML = () => {
+    const home = JSON.parse(localStorage.getItem("UserHome"));
     if (this.props.comment.danhSachComment) {
       return this.props.comment.danhSachComment.map((item, index) => {
         return (
@@ -124,22 +143,90 @@ class CommentList extends Component {
                 />
                 <h5>{item.hoTen}</h5>
               </div>
-              <Rating
-                name="read-only"
-                value={parseInt(item.danhGia)}
-                readOnly
-              />
+              {this.state.change === false ? (
+                <Rating
+                  name="read-only"
+                  value={parseInt(item.danhGia)}
+                  readOnly
+                />
+              ) : item.hoTen === home.hoTen ? (
+                <Rating
+                  name="danhGia"
+                  value={this.state.value}
+                  onChange={(event, newValue) => {
+                    this.setState({
+                      value: newValue
+                    });
+                  }}
+                />
+              ) : (
+                <Rating
+                  name="read-only"
+                  value={parseInt(item.danhGia)}
+                  readOnly
+                />
+              )}
             </div>
             <hr />
             <div className="contentComment">
-              <p>{item.nhanXet}</p>
+              {this.state.change === false ? (
+                <p>{item.nhanXet}</p>
+              ) : item.hoTen === home.hoTen ? (
+                <div className="changeCommentDetail">
+                  <input
+                    type="text"
+                    className="changeComment"
+                    name="nhanXet"
+                    value={this.state.nhanXet}
+                    placeholder="Nhập bình luận"
+                    onChange={this.handleChange}
+                  />
+                  <div className="changeButton">
+                    <button
+                      className="commentUpdate"
+                      onClick={this.handleChangeComment}
+                      value={item.id}
+                    >
+                      Đăng
+                    </button>
+                    <button
+                      className="cancelUpdate"
+                      onClick={() => {
+                        this.setState({
+                          change: false
+                        });
+                      }}
+                    >
+                      Hủy
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <p>{item.nhanXet}</p>
+              )}
             </div>
-            <div className="deleteButton">
-              <p value={item.id} onClick={this.handleDelete}>
-                Xóa
-              </p>
-              <FontAwesomeIcon className="deleteIcon" icon={faBan} />
-            </div>
+            {home.hoTen === item.hoTen && this.state.change === false ? (
+              <div className="actionComment" onClick={this.renderAction}>
+                <div className="actionCommentIcon">
+                  <FontAwesomeIcon icon={faEllipsisV} />
+                </div>
+                <div className="actionCommentDetail">
+                  <p
+                    onClick={() => {
+                      this.setState({
+                        change: true,
+                        nhanXet: item.nhanXet
+                      });
+                    }}
+                  >
+                    Sửa
+                  </p>
+                  <p value={item.id} onClick={this.handleDelete}>
+                    Xóa
+                  </p>
+                </div>
+              </div>
+            ) : null}
           </div>
         );
       });
@@ -211,6 +298,9 @@ const mapDispatchToProps = dispatch => {
     },
     actxoaComment: (maPhim, maComment) => {
       dispatch(action.actxoaComment(maPhim, maComment));
+    },
+    actSuaComment: (maPhim, maComment, comment) => {
+      dispatch(action.actSuaComment(maPhim, maComment, comment));
     }
   };
 };

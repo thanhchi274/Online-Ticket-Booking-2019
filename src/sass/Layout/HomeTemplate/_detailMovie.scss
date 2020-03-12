@@ -1,10 +1,10 @@
 .detail-movie {
-  .tabInfo{
+  .tabInfo {
     width: 85%;
-    margin: 0 auto
+    margin: 0 auto;
   }
-  .MuiTypography-root{
-    .MuiButtonBase-root{
+  .MuiTypography-root {
+    .MuiButtonBase-root {
       padding: 0;
       min-width: 88px;
     }
@@ -20,7 +20,7 @@
   }
   .tabs {
     width: 60%;
-    margin: 0 auto
+    margin: 0 auto;
   }
   .detail-movie-intro-image {
     width: 100vw;
@@ -51,7 +51,7 @@
     }
   }
   .img-movie {
-    padding: 0!important;
+    padding: 0 !important;
     max-width: 300px;
     overflow: hidden;
     padding: 0 !important;
@@ -194,90 +194,65 @@
   width: 90% !important;
   height: 100% !important;
 }
-.MuiRating-label {
-  font-size: 40px;
-}
+
 .commentArea {
   height: 70px;
   width: 100% !important;
   margin: 0 !important;
 }
-.upComment {
-  background-color: white;
-  width: 80%;
-  border-radius: 5px;
-  margin: 0 auto;
-  h1 {
-    text-align: center;
-    font-weight: 500;
-    color: #aaaa34;
-  }
+
+.MuiTabs-indicator {
+  background-color: $primary !important;
 }
-.MuiTabs-indicator{
-  background-color:$primary!important;
-}
-.MuiTabs-vertical{
-  width: 86px!important;
+.MuiTabs-vertical {
+  width: 86px !important;
   min-width: 86px;
 }
-.MuiTypography-root{
-  width:1000px!important;
-  max-width: 1000px!important;
+.MuiTypography-root {
+  width: 1000px !important;
+  max-width: 1000px !important;
 }
-.ant-tabs-nav{
-  .ant-tabs-tab-active{
-    color:$primary!important;
+.ant-tabs-nav {
+  .ant-tabs-tab-active {
+    color: $primary !important;
   }
-  .ant-tabs-tab{
+  .ant-tabs-tab {
     font-size: 18px;
-    padding:10px!important;
-    color:white;
+    padding: 10px !important;
+    color: white;
   }
-  .ant-tabs-ink-bar-animated{
-    background-color:$primary;
+  .ant-tabs-ink-bar-animated {
+    background-color: $primary;
   }
 }
 .ant-tabs-bar {
-  width:54vw!important;
-  max-width: 54vw!important;
-  border-bottom: 0px!important;
+  width: 54vw !important;
+  max-width: 54vw !important;
+  border-bottom: 0px !important;
 }
-.ant-tabs-tab-prev-icon{
-  i{
-    color:white;
-    font-size:14px!important;
+.ant-tabs-tab-prev-icon {
+  i {
+    color: white;
+    font-size: 14px !important;
   }
 }
-.ant-tabs-tab-next-icon{
+.ant-tabs-tab-next-icon {
   @extend .ant-tabs-tab-prev-icon;
 }
-.commentBtn {
-  padding: 10px 50px;
-  border-radius: 50px;
+.detailMovie--tenRap {
   color: white;
-  background-color: #aaaa34;
-  border: none;
-  margin: 10px 83%;
-  &:focus {
-    outline: none;
-  }
-}
-.detailMovie--tenRap{
-  color:white;
-  font-size:30px;
-  padding-left:10px;
+  font-size: 30px;
+  padding-left: 10px;
   font-weight: 700;
   font-family: Helvetica;
 }
-.ratingComment {
-  margin: 0 330px;
-}
-.MuiTabs-scrollButtons{
-  svg{
-    color:white!important;
+
+.MuiTabs-scrollButtons {
+  svg {
+    color: white !important;
     height: 1.25em;
   }
-  }
+}
 .deleteButton {
   display: flex;
   align-items: center;
@@ -315,21 +290,21 @@
   z-index: 0;
 }
 .btnDayofMovie {
-  position:relative;
-  padding: 10px 20px;  
+  position: relative;
+  padding: 10px 20px;
   border: none;
   background: none;
   cursor: pointer;
   font-family: Helvetica;
   font-weight: 900;
   text-transform: uppercase;
-  font-size: 25px;  
-  background-color:transparent!important;
-  a{
-    background-color:transparent!important;
+  font-size: 25px;
+  background-color: transparent !important;
+  a {
+    background-color: transparent !important;
     color: $primary;
-    &:hover{
-     color:#f3558e!important;
+    &:hover {
+      color: #f3558e !important;
     }
   }
 }

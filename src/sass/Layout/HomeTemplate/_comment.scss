@@ -1,5 +1,5 @@
 .commentList {
-  width: 50%;
+  width: 70%;
   background-color: $white;
   margin: 20px auto;
   padding: 20px;
@@ -18,8 +18,119 @@
       }
     }
   }
+  .changeComment {
+    width: 100%;
+    height: 50px;
+    padding: 10px;
+  }
+  .actionComment {
+    width: 10%;
+    margin-left: 90%;
+    position: relative;
+    cursor: pointer;
+    .actionCommentIcon {
+      pointer-events: none;
+      text-align: right;
+      color: $main;
+    }
+    .actionCommentDetail {
+      position: absolute;
+      border: 1px solid $primary;
+      top: -80%;
+      border-radius: 10%;
+      left: -90%;
+      background-color: $main;
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.5s all;
+      p {
+        cursor: pointer;
+        text-align: center;
+        color: $white-darker-2;
+        margin: 3px 0;
+        padding: 5px 30px;
+        &:first-child {
+          border-bottom: 1px solid $primary;
+        }
+        &:hover {
+          background-color: $primary;
+          color: $main;
+        }
+      }
+    }
+    &.show {
+      .actionCommentDetail {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+  .changeButton {
+    margin: 2% auto;
+    width: 30%;
+    .commentUpdate {
+      background-color: $primary;
+      color: $white-darker-2;
+      padding: 10px 30px;
+      border-radius: 39px;
+      margin-right: 2%;
+      border: none;
+      &:focus {
+        outline: none;
+      }
+    }
+    .cancelUpdate {
+      background-color: transparent;
+      border: none;
+    }
+  }
+  animation: appear 1s;
+}
+.upComment {
+  background-color: white;
+  width: 80%;
+  border-radius: 5px;
+  margin: 0 auto;
+  .MuiRating-label {
+    font-size: 40px;
+  }
+  h1 {
+    text-align: center;
+    font-weight: 500;
+    color: #aaaa34;
+  }
+  .ratingComment {
+    margin: 0 auto;
+    width: 28%;
+  }
+  .modaSwitchlLogin {
+    width: 25%;
+    margin-left: 78%;
+    .commentBtn {
+      padding: 10px 50px;
+      border-radius: 50px;
+      color: $white-darker-2;
+      background-color: $primary;
+      border: none;
+      margin: 5% auto;
+      &:focus {
+        outline: none;
+      }
+    }
+  }
 }
 .commentArea {
   width: 60%;
+  padding: 20px;
   margin: 0 200px;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

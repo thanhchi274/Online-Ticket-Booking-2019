@@ -39,7 +39,7 @@
     .seat-choosing {
       .chairList {
         max-width: 86.2%;
-        margin: 0 auto;
+        margin: 5vh auto;
       }
       .monitor {
         span {
@@ -318,10 +318,10 @@
       width: 100%;
       .seat-choosing {
         .chairList {
-          max-width: 378px;
+          max-width: 100%;
           .chair {
-            width: 3vw;
-            height: 3vh;
+            width: 4vw;
+            height: 4vh;
             font-size: 8px;
           }
         }
