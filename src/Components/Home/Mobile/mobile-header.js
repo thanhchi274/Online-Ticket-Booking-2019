@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default class MobileHeader extends Component {
@@ -116,7 +116,7 @@ export default class MobileHeader extends Component {
           <Link className="logo-img" onClick={this.scrollToTop} to="/">
             <img
               className="img-fluid"
-              src="../logoMovies.png"
+              src="../asset/logoMovies.png"
               alt="icons8-movie-ticket"
               border={0}
             />

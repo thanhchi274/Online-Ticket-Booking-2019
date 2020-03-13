@@ -54,7 +54,7 @@ class HomeTool extends Component {
   componentDidMount() {
     this._isMounted = true;
   }
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     return this.props.movieDate;
   }
   renderDanhSachPhim = () => {
@@ -88,7 +88,7 @@ class HomeTool extends Component {
     }
   };
   renderNgayXem = () => {
-    let error
+    let error;
     if (this.props.movieDate.heThongRapChieu) {
       return this.props.movieDate.heThongRapChieu.map(
         (heThongRapChieu, index) => {
@@ -121,7 +121,7 @@ class HomeTool extends Component {
                 </React.Fragment>
               );
             }
-            return error
+            return error;
           });
         }
       );
@@ -164,7 +164,7 @@ class HomeTool extends Component {
                 </React.Fragment>
               );
             }
-            return  error
+            return error;
           });
         }
       );

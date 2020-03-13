@@ -16,8 +16,8 @@ class CommentList extends Component {
       nhanXet: "",
       danhGia: "",
       value: 3,
-      commentList: [],
-      change: false
+      change: false,
+      commentList: []
     };
   }
   componentDidMount() {
@@ -29,10 +29,12 @@ class CommentList extends Component {
       value: danhGia
     });
   }
-  UNSAFE_componentWillUpdate() {
+
+  componentDidUpdate() {
     const id = this.props.id;
     this.props.actGetCommentList(id);
   }
+
   handleChange = e => {
     let { name, value } = e.target;
     this.setState({
@@ -62,6 +64,28 @@ class CommentList extends Component {
     const id = this.props.id;
     this.props.actxoaComment(id, commentId);
   };
+  handleChangeComment = e => {
+    const id = this.props.id;
+    const commentId = e.target.getAttribute("value");
+    const home = JSON.parse(localStorage.getItem("UserHome"));
+    if (home) {
+      this.setState(
+        {
+          hoTen: home.hoTen,
+          nhanXet: this.state.nhanXet,
+          danhGia: this.state.value,
+          change: false
+        },
+        () => {
+          this.props.actSuaComment(id, commentId, this.state);
+        }
+      );
+    }
+  };
+  renderAction = e => {
+    e.target.classList.toggle("show");
+  };
+
   renderModalErr = () => {
     const home = JSON.parse(localStorage.getItem("UserHome"));
     if (!home) {
@@ -109,26 +133,7 @@ class CommentList extends Component {
       );
     }
   };
-  handleChangeComment = e => {
-    const id = this.props.id;
-    const commentId = e.target.getAttribute("value");
-    const home = JSON.parse(localStorage.getItem("UserHome"));
-    this.setState(
-      {
-        hoTen: home.hoTen,
-        nhanXet: this.state.nhanXet,
-        danhGia: this.state.value,
-        change: false
-      },
-      () => {
-        this.props.actSuaComment(id, commentId, this.state);
-      }
-    );
-  };
-  renderAction = e => {
-    e.target.classList.toggle("show");
-  };
-  renderHTML = () => {
+  renderCommentList = () => {
     const home = JSON.parse(localStorage.getItem("UserHome"));
     if (this.props.comment.danhSachComment) {
       return this.props.comment.danhSachComment.map((item, index) => {
@@ -205,27 +210,29 @@ class CommentList extends Component {
                 <p>{item.nhanXet}</p>
               )}
             </div>
-            {home.hoTen === item.hoTen && this.state.change === false ? (
-              <div className="actionComment" onClick={this.renderAction}>
-                <div className="actionCommentIcon">
-                  <FontAwesomeIcon icon={faEllipsisV} />
+            {home ? (
+              home.hoTen === item.hoTen && this.state.change === false ? (
+                <div className="actionComment" onClick={this.renderAction}>
+                  <div className="actionCommentIcon">
+                    <FontAwesomeIcon icon={faEllipsisV} />
+                  </div>
+                  <div className="actionCommentDetail">
+                    <p
+                      onClick={() => {
+                        this.setState({
+                          change: true,
+                          nhanXet: item.nhanXet
+                        });
+                      }}
+                    >
+                      Sửa
+                    </p>
+                    <p value={item.id} onClick={this.handleDelete}>
+                      Xóa
+                    </p>
+                  </div>
                 </div>
-                <div className="actionCommentDetail">
-                  <p
-                    onClick={() => {
-                      this.setState({
-                        change: true,
-                        nhanXet: item.nhanXet
-                      });
-                    }}
-                  >
-                    Sửa
-                  </p>
-                  <p value={item.id} onClick={this.handleDelete}>
-                    Xóa
-                  </p>
-                </div>
-              </div>
+              ) : null
             ) : null}
           </div>
         );
@@ -280,7 +287,7 @@ class CommentList extends Component {
             </div>
           </form>
         </div>
-        {this.renderHTML()}
+        {this.renderCommentList()}
       </div>
     );
   }

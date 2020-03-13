@@ -109,7 +109,7 @@ export default class Navbar extends Component {
               >
                 <img
                   className="img-fluid "
-                  src="../logoMovies.png"
+                  src="../asset/logoMovies.png"
                   alt="icons8-movie-ticket"
                   border={0}
                   width="50%"

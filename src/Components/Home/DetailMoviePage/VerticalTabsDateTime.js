@@ -7,7 +7,7 @@ import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { connect } from "react-redux";
 import * as Action from "../../../Store/action";
-import DayofMovie from "./DayofMovie"
+import DayofMovie from "./DayofMovie";
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
   return (
@@ -40,55 +40,72 @@ function a11yProps(index) {
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
-    background:"linear-gradient(145deg, #151417, #19181c)",
-    boxShadow:"8px 8px 5px #0f0f11,-8px -8px 5px #1f1d23",
+    background: "linear-gradient(145deg, #151417, #19181c)",
+    boxShadow: "8px 8px 5px #0f0f11,-8px -8px 5px #1f1d23",
     display: "flex",
     height: 540,
-    borderRadius:20
+    borderRadius: 20
   },
   tabs: {
     borderRight: `1px solid ${theme.palette.divider}`,
-    width:86,
+    width: 86
   }
 }));
 
 function VerticalTabs(props) {
   const classes = useStyles();
-  const [value, setValue] =useState(0);
-  const [rap,setRap]= useState("");
-  const [theater, setTheater] = useState([])
+  const [value, setValue] = useState(0);
+  const [rap, setRap] = useState("");
+  const [theater, setTheater] = useState([]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-const handleClick = (event=>{
-  setRap(event.target.id)
-})
+  const handleClick = event => {
+    setRap(event.target.id);
+  };
   useEffect(() => {
     props.getTheaterInfo();
-    if(theater!==""){
+    if (theater !== "") {
       setTheater(props.theaterInfo);
     }
   }, [theater]);
   useEffect(() => {
-    setRap(rap)
-  }, [rap])
-  const renderRap =() => {
+    setRap(rap);
+  }, [rap]);
+  const renderRap = () => {
     if (theater) {
       return theater.map((item, index) => {
         return (
-         <Tab
+          <Tab
             key={index}
             id={item.maHeThongRap}
-            label={<img id={item.maHeThongRap} src={item.logo} onClick={handleClick} className="theaterIcon" alt="theater-Icon" />}
+            label={
+              <img
+                id={item.maHeThongRap}
+                src={item.logo}
+                onClick={handleClick}
+                className="theaterIcon"
+                alt="theater-Icon"
+              />
+            }
             {...a11yProps(index)}
           />
-        )})}};
+        );
+      });
+    }
+  };
   const renderRapContent = () => {
     if (props.theaterInfo && props.movie) {
       return props.theaterInfo.map((item, index) => {
         return (
           <TabPanel key={index} value={value} index={index}>
-            {<DayofMovie movie={props.dateTimeMovie} id={props.id} maRap={rap} />}
+            {
+              <DayofMovie
+                movie={props.dateTimeMovie}
+                id={props.id}
+                maRap={rap}
+              />
+            }
           </TabPanel>
         );
       });
@@ -105,7 +122,7 @@ const handleClick = (event=>{
       >
         {renderRap()}
       </Tabs>
-      {rap!==""?renderRapContent():null}
+      {rap !== "" ? renderRapContent() : null}
     </div>
   );
 }

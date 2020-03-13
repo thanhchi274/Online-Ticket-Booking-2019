@@ -2,7 +2,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #17161a !important;
-  width: 100%;
+  max-width: 1600px;
 }
 html {
   scroll-behavior: smooth;
@@ -18,7 +18,7 @@ html {
   display: none;
 }
 
-@media (max-width: 767px) and (min-width: 320px) {
+@media (max-width: 600px) and (min-width: 320px) {
   .desktop {
     display: none !important;
   }
