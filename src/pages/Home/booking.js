@@ -28,7 +28,7 @@ class Booking extends Component {
     let tenGhe = e.target.getAttribute("tenghe");
     let maGhe = e.target.getAttribute("maghe");
     let maLichChieu = thongTinPhim.maLichChieu;
-    if (e.target.className === "chair m-1 chose") {
+    if (e.target.className === "chair chose") {
       this.setState({
         maLichChieu,
 
@@ -85,7 +85,7 @@ class Booking extends Component {
         return (
           <React.Fragment key={index}>
             <div
-              className={item.daDat ? "chair m-1 booked" : "chair m-1"}
+              className={item.daDat ? "chair booked" : "chair"}
               style={
                 item.loaiGhe === "Thuong"
                   ? { backgroundColor: "#922cc9 " }
@@ -219,23 +219,26 @@ class Booking extends Component {
               {room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}
             </h3>
             <div className="mb-3 thongTinSuatChieu">
-              <span>
-                {" "}
-                {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}
-                {" - "}
-              </span>
-              <span>
-                {" "}
-                {room.thongTinPhim ? room.thongTinPhim.tenRap : ""} -{" "}
-              </span>
-              <span>
-                {" "}
-                {room.thongTinPhim ? room.thongTinPhim.ngayChieu : ""} -
-              </span>
-              <span>
-                {" "}
-                {room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}
-              </span>
+              <div classList="thongTinSuatChieu_tenPhim">
+                <span>
+                  {" "}
+                  {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}
+                </span>
+              </div>
+              <div classList="thongTinSuatChieu_rapChieu">
+                <span>
+                  {" "}
+                  {room.thongTinPhim ? room.thongTinPhim.tenRap : ""} -{" "}
+                </span>
+                <span>
+                  {" "}
+                  {room.thongTinPhim ? room.thongTinPhim.ngayChieu : ""} -
+                </span>
+                <span>
+                  {" "}
+                  {room.thongTinPhim ? room.thongTinPhim.gioChieu : ""}
+                </span>
+              </div>
             </div>
             <div className="seat-choosing">
               <div className="monitor">
