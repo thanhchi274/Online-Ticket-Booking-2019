@@ -2,8 +2,9 @@
   .carousel_detail {
     .carousel-wrapper {
       background-image: url("../../../Asset/Image/black_panther-carousel.jpg");
-      height: 700px;
-      background-position: center -550px;
+      height: 90vh;
+      background-attachment: fixed;
+      background-position: center;
       background-repeat: no-repeat;
       background-size: cover;
       .carousel-content {
@@ -11,7 +12,7 @@
         align-items: center;
         justify-content: space-between;
         .carousel_contentTitle {
-          padding: 10% 5%;
+          padding: 20vh 5vw;
           .first_content {
             width: 20%;
             color: $white-darker-2;

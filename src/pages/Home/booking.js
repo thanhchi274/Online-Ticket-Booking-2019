@@ -79,7 +79,7 @@ class Booking extends Component {
     }
   };
 
-  renderHTML = () => {
+  renderChair = () => {
     if (this.props.room.danhSachGhe) {
       return this.props.room.danhSachGhe.map((item, index) => {
         return (
@@ -134,7 +134,7 @@ class Booking extends Component {
                 <div className=" errNoti">
                   <img
                     src="https://tix.vn/app/assets/img/Post-notification.png"
-                    alt="error image"
+                    alt="Chọn ghế"
                   />
                   <p>Vui lòng chọn ghế</p>
                 </div>
@@ -169,7 +169,7 @@ class Booking extends Component {
                 <div className=" maxErrNoti">
                   <img
                     src="https://tix.vn/app/assets/img/Post-notification.png"
-                    alt="error image"
+                    alt="Vượt số ghế cho phép"
                   />
                   <p>
                     Nếu bạn muốn đặt hơn 12 vé, vui lòng liên hệ với chúng tôi
@@ -212,8 +212,8 @@ class Booking extends Component {
     }
     return (
       <div>
-        <div className="row bookTicket_container">
-          <div className="booking-movie col-sm-7">
+        <div className=" bookTicket_container">
+          <div className="booking-movie">
             <CountDown />
             <h3 className="mr-2 mb-4 tenPhim">
               {room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}
@@ -241,7 +241,7 @@ class Booking extends Component {
               <div className="monitor">
                 <span>SCREEN</span>
               </div>
-              <div className="row chairList">{this.renderHTML()}</div>
+              <div className="row chairList">{this.renderChair()}</div>
             </div>
             <div className="seat--info d-flex justify-content-center">
               <div className="normalSeat mx-4 d-flex">
@@ -258,6 +258,7 @@ class Booking extends Component {
             <div className="container">
               <div className="img-movie-booking">
                 <img
+                  alt="Anh Phim"
                   src={room.thongTinPhim ? room.thongTinPhim.hinhAnh : ""}
                 ></img>
               </div>
@@ -284,16 +285,16 @@ class Booking extends Component {
                           value="zalopay"
                           defaultChecked
                         />
-                        <img src="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw"></img>
+                        <img
+                          alt="thanh toan zalopay"
+                          src="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw"
+                        ></img>
                         <p>Thanh toán qua Zalo PAY</p>
                       </div>
                       {this.state.payStyle === "zalopay" ? (
                         <div className=" payStyle_pay">
                           {" "}
-                          <img
-                            alt="ZaloPay"
-                            src="https://scontent.fsgn3-1.fna.fbcdn.net/v/t1.15752-9/86977583_2651059108511383_5143827256606457856_n.jpg?_nc_cat=107&_nc_ohc=ogOA-E8yXMkAX9UhCFk&_nc_ht=scontent.fsgn3-1.fna&oh=4b7dc1aa1e1dc90e2fb2e48d56116c92&oe=5EF560CC"
-                          />
+                          <img alt="ZaloPay" src="../asset/airpay_pay.jpg" />
                           <p>Vui lòng quét mã ZaloPay để hoàn tất thanh toán</p>
                         </div>
                       ) : null}
@@ -316,10 +317,7 @@ class Booking extends Component {
                       {this.state.payStyle === "momo" ? (
                         <div className=" payStyle_pay">
                           {" "}
-                          <img
-                            alt="Momo"
-                            src="https://scontent-hkg3-2.xx.fbcdn.net/v/t1.15752-9/86969607_2592060907738901_7392232684623233024_n.jpg?_nc_cat=111&_nc_ohc=rXRWI-3efysAX9x72Jn&_nc_ht=scontent-hkg3-2.xx&oh=2514b0089c43a46c313103dab319d42c&oe=5EC2AC9A"
-                          />
+                          <img alt="Momo" src="../asset/momo_pay.jpg" />
                           <p>Vui lòng quét mã MOMO để hoàn tất thanh toán</p>
                         </div>
                       ) : null}
