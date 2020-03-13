@@ -19,10 +19,11 @@
     }
     .timeLabel {
       color: $white;
-      font-size: 14px;
+      font-size: 1vw;
       margin-bottom: 0;
     }
     .timeCount {
+      font-size: 2.5vw;
       color: $primary;
       text-shadow: 0 0 10px $primary, 0 0 40px $primary, 0 0 80px $primary;
       text-align: center;
@@ -34,9 +35,8 @@
       color: $white-darker-2;
     }
     .thongTinSuatChieu {
-      display: flex;
       color: $white-darker-2;
-      font-size: 20px;
+      font-size: 1.5vw;
     }
     .seat-choosing {
       .chairList {
@@ -76,6 +76,7 @@
         background-color: black;
         opacity: 1;
         color: transparent;
+        margin: 0.2vw;
         line-height: 40px;
         text-align: center;
         width: 2.5vw;
@@ -313,7 +314,7 @@
     }
   }
 }
-@media (max-width: 600px) and (min-width: 350px) {
+@media (max-width: 600px) and (min-width: 320px) {
   .bookTicket_container {
     margin-top: 1vh;
     margin-bottom: 0;
@@ -323,8 +324,8 @@
           padding-left: 3vw;
           max-width: 580px;
           .chair {
-            width: 3.7vw;
-            height: 4vh;
+            width: 5.3vw;
+            height: 4.5vh;
             font-size: 8px;
             line-height: 4vh;
           }
@@ -337,6 +338,12 @@
       }
       .thongTinSuatChieu {
         font-size: 17px;
+      }
+      .timeLabel {
+        font-size: 3.5vw;
+      }
+      .timeCount {
+        font-size: 6vw;
       }
     }
   }
@@ -365,7 +372,7 @@
       text-transform: uppercase;
       font-weight: 500;
       text-align: center;
-      padding: 30px;
+      padding: 7vw;
       transition: all 0.5s;
       &:hover {
         text-decoration: none;
