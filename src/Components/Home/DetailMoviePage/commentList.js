@@ -16,6 +16,7 @@ class CommentList extends Component {
       nhanXet: "",
       danhGia: "",
       value: 3,
+      smallValue: 3,
       change: false,
       commentList: []
     };
@@ -68,12 +69,12 @@ class CommentList extends Component {
     const id = this.props.id;
     const commentId = e.target.getAttribute("value");
     const home = JSON.parse(localStorage.getItem("UserHome"));
-    if (home) {
+    if (home && this.state.nhanXet && this.state.smallValue) {
       this.setState(
         {
           hoTen: home.hoTen,
           nhanXet: this.state.nhanXet,
-          danhGia: this.state.value,
+          danhGia: this.state.smallValue,
           change: false
         },
         () => {
@@ -156,11 +157,11 @@ class CommentList extends Component {
                 />
               ) : item.hoTen === home.hoTen ? (
                 <Rating
-                  name="danhGia"
-                  value={this.state.value}
-                  onChange={(event, newValue) => {
+                  name="danhGia1"
+                  value={this.state.smallValue}
+                  onChange={(event, newValueSmall) => {
                     this.setState({
-                      value: newValue
+                      smallValue: newValueSmall
                     });
                   }}
                 />

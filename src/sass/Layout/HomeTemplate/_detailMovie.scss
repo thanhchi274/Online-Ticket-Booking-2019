@@ -33,6 +33,12 @@
     border: none;
     position: relative;
     top: 40%;
+    .scrollToBooking {
+      padding: 10px 30px;
+      background-color: $primary;
+      color: $white-darker-2;
+      font-weight: 500;
+    }
     .title-description {
       color: $white-darker-2;
     }

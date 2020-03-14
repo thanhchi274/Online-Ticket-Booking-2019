@@ -29,9 +29,6 @@ export default class Navbar extends Component {
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
-  componentWillUnmount() {
-    window.removeEventListener("scroll", this.scrollTo);
-  }
   logout = () => {
     localStorage.clear("token");
     localStorage.removeItem("UserInfo");
@@ -104,8 +101,8 @@ export default class Navbar extends Component {
             <div className="logo col-sm-1">
               <Link
                 className="logo-title d-flex align-items-center"
-                onClick={() => this.scrollTo(0, 0)}
                 to="/"
+                onClick={() => this.scrollTo(0, 0)}
               >
                 <img
                   className="img-fluid "
@@ -134,8 +131,8 @@ export default class Navbar extends Component {
                   <li className="nav-item">
                     <Link
                       className="nav-link"
+                      to="/"
                       onClick={() => this.scrollTo(750, 0)}
-                      to=""
                     >
                       Movie
                     </Link>
@@ -144,7 +141,7 @@ export default class Navbar extends Component {
                     <Link
                       className="nav-link"
                       // onClick={() => this.scrollTo(750, 0)}
-                      to=""
+                      to="/"
                     >
                       Theater
                     </Link>

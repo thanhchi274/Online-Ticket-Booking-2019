@@ -118,7 +118,6 @@ export const actLoginHome = (user, history) => {
       .then(result => {
         localStorage.setItem("UserHome", JSON.stringify(result.data));
         history.push("/");
-        window.location.reload();
         dispatch({
           type: ActionTypes.LOGIN,
           user: result.data
@@ -211,7 +210,7 @@ export const actGetDateTimeMovie = id => {
       });
   };
 };
-export const actDatVe = user => {
+export const actDatVe = (user, history) => {
   const UserHome = JSON.parse(localStorage.getItem("UserHome"));
   return dispatch => {
     Axios({
@@ -223,8 +222,7 @@ export const actDatVe = user => {
       }
     })
       .then(result => {
-        alert("Đặt vé thành công");
-        window.location.reload();
+        history.push("/");
         dispatch(result.data);
       })
       .catch(err => {

@@ -3,7 +3,7 @@
   margin: 10% auto;
   padding: 40px;
   border-radius: 3%;
-  background: $white-darker-2;
+  background: $main;
   border: 2px solid $primary;
   form {
     width: 100% !important;
@@ -55,7 +55,7 @@
         text-transform: uppercase;
         text-align: center;
         color: red;
-        background-color: $white;
+        background-color: $white-darker-2;
         border: 1px none transparent;
         border-radius: 50%;
       }
@@ -64,9 +64,9 @@
     .input-div {
       margin: 0;
       input {
-        color: $main;
+        color: $white-darker-2;
         &::placeholder {
-          color: $main;
+          color: $white-darker-2;
           font-size: 16px;
           font-weight: 400;
         }

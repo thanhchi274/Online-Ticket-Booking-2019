@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Success from "../../Components/success";
 import {
   faUser,
   faLock,
@@ -30,7 +31,8 @@ class Login extends Component {
       tkValid: false,
       mkValid: false,
       show: faEye,
-      type: "password"
+      type: "password",
+      logined: false
     };
   }
   handleClick = e => {
@@ -121,7 +123,12 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.props.login(this.state, this.props.history);
+    this.setState({
+      logined: true
+    });
+    setTimeout(() => {
+      this.props.login(this.state, this.props.history);
+    }, 1000);
   };
 
   handleFormValid = () => {
@@ -150,90 +157,93 @@ class Login extends Component {
   };
   renderHTML = () => {
     return (
-      <div className="container login-container row">
-        <div className="col-sm-6 login_img desktop">
-          <SVGAdminLogin />
-        </div>
-        <div className="formDangNhap col-sm-5">
-          <h3>Đăng nhập</h3>
-          <form onSubmit={this.handleSubmit}>
-            <div
-              className={this.state.input1}
-              onFocus={this.handleClick}
-              onBlur={this.handleBlur}
-            >
-              <div className="i">
-                <FontAwesomeIcon icon={faUser} />
-              </div>
-              <div className="input-user">
-                <h5>UserName</h5>
-                <input
-                  type="text"
-                  className="input"
-                  name="taiKhoan"
-                  onChange={this.handleChange}
-                />
-              </div>
-            </div>
-            {this.state.errors.taiKhoan ? (
-              <div className="warning-text" style={{ color: "red" }}>
-                {this.state.errors.taiKhoan}
-              </div>
-            ) : (
-              ""
-            )}
-            <div
-              className={this.state.input2}
-              onFocus={this.handleClick}
-              onBlur={this.handleBlur}
-            >
-              <div className="i">
-                <FontAwesomeIcon icon={faLock} />
-              </div>
-              <div>
-                <h5>Password</h5>
-                <div className="inputAr">
+      <div className="login-wrapper">
+        {this.state.logined === true ? <Success tab={"Đăng nhập"} /> : null}
+        <div className="container login-container row">
+          <div className="col-sm-6 login_img desktop">
+            <SVGAdminLogin />
+          </div>
+          <div className="formDangNhap col-sm-5">
+            <h3>Đăng nhập</h3>
+            <form onSubmit={this.handleSubmit}>
+              <div
+                className={this.state.input1}
+                onFocus={this.handleClick}
+                onBlur={this.handleBlur}
+              >
+                <div className="i">
+                  <FontAwesomeIcon icon={faUser} />
+                </div>
+                <div className="input-user">
+                  <h5>UserName</h5>
                   <input
+                    type="text"
                     className="input"
-                    type={this.state.type}
-                    name="matKhau"
+                    name="taiKhoan"
                     onChange={this.handleChange}
                   />
-                  {this.state.matKhau ? (
-                    <FontAwesomeIcon
-                      className="PassIcon"
-                      icon={this.state.show}
-                      onClick={this.handleShowPassword}
-                    />
-                  ) : null}
                 </div>
               </div>
-            </div>
-            {this.state.errors.matKhau ? (
-              <div className="warning-text" style={{ color: "red" }}>
-                {this.state.errors.matKhau}
-              </div>
-            ) : (
-              ""
-            )}
-            <div className="signUp_link">
-              <span>
-                Chưa có tài khoản? <Link to="/sign-up">Đăng ký</Link>
-              </span>
-            </div>
-
-            <div className="btnAction">
-              <button
-                className="btn signin-btn"
-                disabled={!this.state.formvalid}
+              {this.state.errors.taiKhoan ? (
+                <div className="warning-text" style={{ color: "red" }}>
+                  {this.state.errors.taiKhoan}
+                </div>
+              ) : (
+                ""
+              )}
+              <div
+                className={this.state.input2}
+                onFocus={this.handleClick}
+                onBlur={this.handleBlur}
               >
-                SIGN IN
-              </button>
-              {/*<Link className="btn signup-btn" to="/sign-up">
-                SIGN UP
-            </Link>*/}
-            </div>
-          </form>
+                <div className="i">
+                  <FontAwesomeIcon icon={faLock} />
+                </div>
+                <div>
+                  <h5>Password</h5>
+                  <div className="inputAr">
+                    <input
+                      className="input"
+                      type={this.state.type}
+                      name="matKhau"
+                      onChange={this.handleChange}
+                    />
+                    {this.state.matKhau ? (
+                      <FontAwesomeIcon
+                        className="PassIcon"
+                        icon={this.state.show}
+                        onClick={this.handleShowPassword}
+                      />
+                    ) : null}
+                  </div>
+                </div>
+              </div>
+              {this.state.errors.matKhau ? (
+                <div className="warning-text" style={{ color: "red" }}>
+                  {this.state.errors.matKhau}
+                </div>
+              ) : (
+                ""
+              )}
+              <div className="signUp_link">
+                <span>
+                  Chưa có tài khoản? <Link to="/sign-up">Đăng ký</Link>
+                </span>
+              </div>
+
+              <div className="btnAction">
+                <button
+                  className="btn signin-btn"
+                  disabled={!this.state.formvalid}
+                >
+                  SIGN IN
+                </button>
+                {/*<Link className="btn signup-btn" to="/sign-up">
+              SIGN UP
+          </Link>*/}
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
@@ -243,7 +253,7 @@ class Login extends Component {
     if (localStorage.getItem("UserHome")) {
       return <Redirect to="/" />;
     }
-    return <div>{this.renderHTML()}</div>;
+    return <div> {this.renderHTML()}</div>;
   }
 }
 

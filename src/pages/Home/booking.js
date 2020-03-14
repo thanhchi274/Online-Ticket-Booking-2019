@@ -7,6 +7,7 @@ import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
 import CountDown from "../../Components/Home/BookingPage/countDown";
 import TicketFooter from "../../Components/Home/Mobile/ticketFooter";
+import Success from "../../Components/success";
 
 class Booking extends Component {
   constructor(props) {
@@ -17,10 +18,11 @@ class Booking extends Component {
       taiKhoanNguoiDung: "",
       count: 1,
       tienVe: 0,
-      payStyle: "zalopay"
+      payStyle: "zalopay",
+      booked: false
     };
   }
-  handleClick = e => {
+  handleChoose = e => {
     let { thongTinPhim } = this.props.room;
     let userName = JSON.parse(localStorage.getItem("UserHome"));
     e.target.classList.toggle("chose");
@@ -73,9 +75,15 @@ class Booking extends Component {
     let ve = { ...this.state };
     if (
       this.state.danhSachVe.length !== 0 &&
-      this.state.danhSachVe.length <= 12
+      this.state.danhSachVe.length <= 12 &&
+      this.state.payStyle !== "card"
     ) {
-      this.props.bookingTicket(ve);
+      this.setState({
+        booked: true
+      });
+      setTimeout(() => {
+        this.props.bookingTicket(ve, this.props.history);
+      }, 1000);
     }
   };
 
@@ -95,7 +103,7 @@ class Booking extends Component {
               maghe={item.maGhe}
               tenghe={item.tenGhe}
               giave={item.giaVe}
-              onClick={item.daDat ? null : this.handleClick}
+              onClick={item.daDat ? null : this.handleChoose}
             >
               {item.daDat ? <FontAwesomeIcon icon={faTimes} /> : item.tenGhe}
             </div>
@@ -212,6 +220,8 @@ class Booking extends Component {
     }
     return (
       <div>
+        {this.state.booked === true ? <Success tab={"Đặt vé"} /> : null}
+
         <div className=" bookTicket_container">
           <div className="booking-movie">
             <CountDown />
@@ -386,8 +396,8 @@ const mapDispatchToProps = dispatch => {
     setLoading: () => {
       dispatch(action.actLoading());
     },
-    bookingTicket: user => {
-      dispatch(action.actDatVe(user));
+    bookingTicket: (user, history) => {
+      dispatch(action.actDatVe(user, history));
     }
   };
 };
