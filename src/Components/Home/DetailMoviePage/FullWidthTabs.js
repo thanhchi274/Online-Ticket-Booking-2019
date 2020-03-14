@@ -51,23 +51,28 @@ export default function CenteredTabs(props) {
     setValue(newValue);
   };
   return (
-    <Paper className={classes.root}>
+    <Paper className={classes.root} id="detail">
       <Tabs
         value={value}
         onChange={handleChange}
         indicatorColor="primary"
         textColor="primary"
-        centered 
+        centered
         className="detailSec2"
       >
         <Tab label="Đặt vé" {...a11yProps(0)} style={{ color: "white" }} />
         <Tab label="Đánh giá" {...a11yProps(1)} style={{ color: "white" }} />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <VerticalTabsDateTime DateTime={props.DateTime} movie={props.movie} id={props.id} theaterInfo={props.theaterInfo} />
+        <VerticalTabsDateTime
+          DateTime={props.DateTime}
+          movie={props.movie}
+          id={props.id}
+          theaterInfo={props.theaterInfo}
+        />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <CommentList id={props.id} danhGia={props.movie.danhGia}  />
+        <CommentList id={props.id} danhGia={props.movie.danhGia} />
       </TabPanel>
     </Paper>
   );

@@ -38,12 +38,12 @@ class Home extends Component {
           </div>
           <div className="availableMovie" id="sectionMovies">
             <h3 className="now_title">Now available</h3>
-            <div className="tab-content nav-tabContent desktop" id="section1">
+            <div className="tab-content nav-tabContent desktop" id="movie">
               <div className="desktop">
                 {loading ? <SmallSpinner /> : <MovieAvailable />}
               </div>
             </div>
-            <div className="tab-content nav-tabContent mobile" id="section1">
+            <div className="tab-content nav-tabContent mobile" id="movie">
               {loading ? <SmallSpinner /> : <MobileMovieSlider />}
             </div>
           </div>

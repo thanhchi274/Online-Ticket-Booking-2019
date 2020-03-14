@@ -3,7 +3,7 @@
   padding: 30px;
   margin: 16vh 200px !important;
   border-radius: 3%;
-  background: $white-darker-2;
+  background: $main;
   border: 2px solid $primary;
   box-shadow: 34px 34px 69px black, -34px -34px 69px black;
   svg {
@@ -20,6 +20,11 @@
       font-weight: 900 !important;
       letter-spacing: 4px;
       font-size: 2rem !important;
+    }
+    .signUp_link {
+      span {
+        color: $white-darker-2;
+      }
     }
   }
 
@@ -84,7 +89,7 @@
   font-size: 16px;
   font-weight: 700;
   transform: translateY(-50%);
-  color: $main;
+  color: $white-darker-2;
   transition: 0.3s;
 }
 

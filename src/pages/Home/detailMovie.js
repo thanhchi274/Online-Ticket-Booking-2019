@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import ModalVideo from "react-modal-video";
 import FullWidthTabs from "../../Components/Home/DetailMoviePage/FullWidthTabs";
+import AnchorLink from "react-anchor-link-smooth-scroll";
 
 const DetailMovieDescription = props => (
   <div className="table detail-description">
@@ -19,6 +20,9 @@ const DetailMovieDescription = props => (
         Ngày chiếu: {new Date(props.movie.ngayKhoiChieu).toLocaleDateString()}
       </strong>
     </p>
+    <AnchorLink className="scrollToBooking" href="#detail">
+      Mua vé
+    </AnchorLink>
   </div>
 );
 class DetailMovie extends Component {
@@ -42,12 +46,12 @@ class DetailMovie extends Component {
     const id = this.props.match.params.id;
     this.props.setLoading();
     this.props.getdetailMovie(id);
-    if(id!==""){
+    if (id !== "") {
       this.props.getMovieDateTime(id);
     }
   }
   render() {
-    let { loading, movie,movieDate } = this.props;
+    let { loading, movie, movieDate } = this.props;
     if (loading) {
       return (
         <div className="loading-spinner">
@@ -64,7 +68,14 @@ class DetailMovie extends Component {
           isOpen={this.state.isOpen}
         />
         <div className="detail-movie-intro">
-          <LazyLoadImage className="detail-movie-intro-image" src={movie.hinhAnh} effect="blur" alt="Card" height={100} width={300} />
+          <LazyLoadImage
+            className="detail-movie-intro-image"
+            src={movie.hinhAnh}
+            effect="blur"
+            alt="Card"
+            height={100}
+            width={300}
+          />
         </div>
         <div className="row tabInfo">
           <div className="col-sm-3 img-movie ">
@@ -82,7 +93,10 @@ class DetailMovie extends Component {
             </div>
           </div>
           <div className="col-sm-8">
-            <DetailMovieDescription dateTimeMovie={movieDate} movie={movie}></DetailMovieDescription>
+            <DetailMovieDescription
+              dateTimeMovie={movieDate}
+              movie={movie}
+            ></DetailMovieDescription>
           </div>
         </div>
         <div className="row tabs">
@@ -99,7 +113,7 @@ class DetailMovie extends Component {
 const mapStateToProps = state => ({
   movie: state.movieReducer.movie,
   loading: state.movieReducer.loading,
-  movieDate:state.movieReducer.movieDate,
+  movieDate: state.movieReducer.movieDate
 });
 const mapDispatchToProps = dispatch => {
   return {

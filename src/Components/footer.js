@@ -2,7 +2,7 @@ import React, { memo } from "react";
 
 function footer() {
   return (
-    <div className="footer">
+    <div className="footer" id="footer">
       <div className="container">
         <div className="footer_trust_top">
           <div className="trustlogos" />

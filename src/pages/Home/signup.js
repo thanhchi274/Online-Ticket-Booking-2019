@@ -9,6 +9,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { connect } from "react-redux";
 import * as action from "../../Store/action";
+import Success from "../../Components/success";
 
 const SignUpImage = props => (
   <div className=" signup-img col-sm-6">
@@ -124,6 +125,7 @@ class Signup extends Component {
       tenValid: false,
       dtValid: false,
       emailValid: false,
+      signup: false,
       noti: "Chào bạn, điền đầy đủ thông tin vào form nhé"
     };
   }
@@ -206,7 +208,8 @@ class Signup extends Component {
     user.maLoaiNguoiDung = "KhachHang";
     if ((tkValid, mkValid, dtValid, tenValid, emailValid === true)) {
       this.setState({
-        noti: "Chúc mừng bạn đã đăng kí thành công"
+        noti: "Chúc mừng bạn đã đăng kí thành công",
+        signup: true
       });
       setTimeout(() => {
         this.props.signup(user, this.props.history);
@@ -219,17 +222,23 @@ class Signup extends Component {
   };
   renderHTML = () => {
     return (
-      <div className="signup-container">
-        <div className="signup-content row align-items-center">
-          <SignUpImage className="desktop" noti={this.state.noti}></SignUpImage>
-          <div className="signUp-form col-sm-6">
-            <h4>Đăng ký</h4>
-            <FormSignUp
-              handleSubmit={this.handleSubmit}
-              handleChange={this.handleChange}
+      <div>
+        {this.state.signup === true ? <Success tab={"Đăng ký"} /> : null}
+        <div className="signup-container">
+          <div className="signup-content row align-items-center">
+            <SignUpImage
+              className="desktop"
               noti={this.state.noti}
-              handleBlur={this.handleBlur}
-            ></FormSignUp>
+            ></SignUpImage>
+            <div className="signUp-form col-sm-6">
+              <h4>Đăng ký</h4>
+              <FormSignUp
+                handleSubmit={this.handleSubmit}
+                handleChange={this.handleChange}
+                noti={this.state.noti}
+                handleBlur={this.handleBlur}
+              ></FormSignUp>
+            </div>
           </div>
         </div>
       </div>
