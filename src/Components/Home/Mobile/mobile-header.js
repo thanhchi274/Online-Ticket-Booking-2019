@@ -116,7 +116,7 @@ export default class MobileHeader extends Component {
           <Link className="logo-img" onClick={this.scrollToTop} to="/">
             <img
               className="img-fluid"
-              src="../asset/logoMovies.png"
+              src="https://www.upsieutoc.com/images/2020/03/14/logoMovies.png"
               alt="icons8-movie-ticket"
               border={0}
             />
