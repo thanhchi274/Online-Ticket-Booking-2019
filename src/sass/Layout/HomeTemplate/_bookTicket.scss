@@ -180,8 +180,8 @@
           color: white;
         }
         img {
-          width: 180px !important;
-          height: 180px !important;
+          width: 10vw !important;
+          height: 10vw !important;
           margin: 0;
         }
       }
@@ -217,7 +217,7 @@
     .checkType {
       h5 {
         color: white;
-        font-size: 20px;
+        font-size: 1.4vw;
         font-weight: 700;
       }
       .container {
@@ -232,7 +232,7 @@
           p {
             color: white;
             margin: 15px 20px;
-            font-size: 16px;
+            font-size: 1vw;
           }
         }
       }
@@ -301,7 +301,7 @@
   .modalContent {
     top: 40%;
     left: 25%;
-    z-index: 2001;
+    z-index: 9999;
     position: fixed;
     background-color: $white;
     padding: 40px;
@@ -348,6 +348,7 @@
     }
     .booking-ticket {
       position: fixed;
+      border-radius: 0;
       z-index: 2001;
       top: 0;
       left: 0;
@@ -356,17 +357,66 @@
       background-color: $main;
       transition: all 0.5s;
       transform: translateY(100%);
+      &:hover {
+        border-radius: 0;
+      }
       &.show {
         transform: translateY(0);
       }
       .total {
         display: flex;
         justify-content: space-between;
+        align-items: center;
         padding: 0;
         .backButton {
           color: $white-darker-2;
           cursor: pointer;
         }
+        h4 {
+          font-size: 5vw;
+        }
+        span {
+          font-size: 5vw !important;
+        }
+      }
+    }
+    .booking-ticket {
+      .checkType {
+        .container {
+          .payStyle {
+            p {
+              font-size: 2.62vw;
+            }
+          }
+        }
+        h5 {
+          font-size: 4vw;
+        }
+      }
+      .payStyle_container .payStyle_pay {
+        img {
+          width: 30vw !important;
+          height: 30vw !important;
+        }
+        p {
+          font-size: 4vw;
+        }
+      }
+    }
+    .modalContent {
+      top: 40%;
+      left: 0;
+      z-index: 9999;
+      position: fixed;
+      background-color: $white;
+      width: 100%;
+      padding: 2vh 40px;
+      color: $main;
+      h5 {
+        margin-bottom: 20px;
+      }
+      .close-btn {
+        margin-left: 90%;
       }
     }
   }

@@ -285,7 +285,7 @@ class Booking extends Component {
               </div>
               <div className="total">
                 <div
-                  className="backButton"
+                  className="backButton mobile"
                   onClick={() => {
                     this.setState({ bookingClass: "booking-ticket col-sm-4" });
                   }}

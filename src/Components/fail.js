@@ -5,7 +5,6 @@ import { faTimesCircle, faTimes } from "@fortawesome/free-solid-svg-icons";
 export default class Fail extends Component {
   render() {
     let { tab, fail } = this.props;
-    console.log(fail);
     return (
       <div className="failModal-wrapper">
         <FontAwesomeIcon className="closeIcon" onClick={fail} icon={faTimes} />
