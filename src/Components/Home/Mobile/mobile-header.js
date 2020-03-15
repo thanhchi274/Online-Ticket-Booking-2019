@@ -88,9 +88,6 @@ export default class MobileHeader extends Component {
             <Link className="nav-link" to="/info">
               {obj.hoTen}
             </Link>
-            <Link className="nav-link" onClick={this.logout} to="/">
-              Log out
-            </Link>
           </div>
         </li>
       );
@@ -141,6 +138,11 @@ export default class MobileHeader extends Component {
                 <li className="nav-item">
                   <Link className="nav-link" onClick={this.scrollToMovie} to="">
                     Theaters
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" onClick={this.logout} to="/">
+                    Log out
                   </Link>
                 </li>
               </div>

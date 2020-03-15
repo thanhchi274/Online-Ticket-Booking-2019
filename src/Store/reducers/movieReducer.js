@@ -13,7 +13,9 @@ let initialState = {
   keyWord: [],
   tickets: [],
   theaterInfo: [],
-  comment: []
+  comment: [],
+  loginedstt: "",
+  signuped: ""
 };
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -79,11 +81,18 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, deleted: true };
     }
     case ActionType.LOGIN:
-      return { ...state, logined: true };
+      state.loginedstt = action.loginedstt;
+      console.log(state.loginedstt);
+      return { ...state };
+    case ActionType.LOGINFAIL:
+      state.err = action.err;
+      console.log(state.err);
+      return { ...state };
 
     case ActionType.LOGOUT:
       return { ...state };
     case ActionType.SIGNUP:
+      state.signuped = action.signuped;
       return { ...state };
     case ActionType.GET_ROOM_LIST:
       state.room = action.room;

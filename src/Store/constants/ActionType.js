@@ -10,6 +10,7 @@ export const GET_ROOM_LIST = "GET_ROOM_LIST";
 export const LOADING = "LOADING";
 export const DELETED = "DELETED";
 export const LOGIN = "LOGIN";
+export const LOGINFAIL = "LOGINFAIL";
 export const LOGOUT = "LOGOUT";
 export const SIGNUP = "SIGNUP";
 export const SEARCH_USER = "SEARCH_USER";

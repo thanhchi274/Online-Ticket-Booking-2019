@@ -126,9 +126,7 @@ class Login extends Component {
     this.setState({
       logined: true
     });
-    setTimeout(() => {
-      this.props.login(this.state, this.props.history);
-    }, 1000);
+    this.props.login(this.state, this.props.history);
   };
 
   handleFormValid = () => {
@@ -158,7 +156,9 @@ class Login extends Component {
   renderHTML = () => {
     return (
       <div className="login-wrapper">
-        {this.state.logined === true ? <Success tab={"Đăng nhập"} /> : null}
+        {this.state.logined === true && this.props.loginedstt === 200 ? (
+          <Success tab={"Đăng nhập"} />
+        ) : null}
         <div className="container login-container row">
           <div className="col-sm-6 login_img desktop">
             <SVGAdminLogin />
@@ -199,7 +199,7 @@ class Login extends Component {
                 <div className="i">
                   <FontAwesomeIcon icon={faLock} />
                 </div>
-                <div>
+                <div className="input-user">
                   <h5>Password</h5>
                   <div className="inputAr">
                     <input
@@ -238,9 +238,6 @@ class Login extends Component {
                 >
                   SIGN IN
                 </button>
-                {/*<Link className="btn signup-btn" to="/sign-up">
-              SIGN UP
-          </Link>*/}
               </div>
             </form>
           </div>
@@ -256,7 +253,9 @@ class Login extends Component {
     return <div> {this.renderHTML()}</div>;
   }
 }
-
+const mapStateToProps = state => ({
+  loginedstt: state.movieReducer.loginedstt
+});
 const mapDispatchToProps = dispatch => {
   return {
     login: (user, history) => {
@@ -265,4 +264,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

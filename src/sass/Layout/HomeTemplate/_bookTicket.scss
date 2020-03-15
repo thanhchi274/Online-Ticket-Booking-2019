@@ -346,7 +346,31 @@
         font-size: 6vw;
       }
     }
+    .booking-ticket {
+      position: fixed;
+      z-index: 2001;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: $main;
+      transition: all 0.5s;
+      transform: translateY(100%);
+      &.show {
+        transform: translateY(0);
+      }
+      .total {
+        display: flex;
+        justify-content: space-between;
+        padding: 0;
+        .backButton {
+          color: $white-darker-2;
+          cursor: pointer;
+        }
+      }
+    }
   }
+
   .ticketFooter-container {
     display: flex;
     justify-content: space-between;
