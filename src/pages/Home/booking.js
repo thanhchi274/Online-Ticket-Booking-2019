@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import * as action from "../../Store/action";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import SVGLoading from "../../Components/loading";
 import { Redirect } from "react-router-dom";
 import CountDown from "../../Components/Home/BookingPage/countDown";
-import TicketFooter from "../../Components/Home/Mobile/ticketFooter";
 import Success from "../../Components/success";
+import Fail from "../../Components/fail";
 
 class Booking extends Component {
   constructor(props) {
@@ -18,8 +18,10 @@ class Booking extends Component {
       taiKhoanNguoiDung: "",
       count: 1,
       tienVe: 0,
-      payStyle: "zalopay",
-      booked: false
+      payStyle: "airpay",
+      booked: false,
+      fail: false,
+      bookingClass: "booking-ticket col-sm-4"
     };
   }
   handleChoose = e => {
@@ -85,6 +87,18 @@ class Booking extends Component {
         this.props.bookingTicket(ve, this.props.history);
       }, 1000);
     }
+  };
+
+  setPay = e => {
+    this.setState({
+      payStyle: e.target.value
+    });
+  };
+
+  toggleError = () => {
+    this.setState({
+      fail: false
+    });
   };
 
   renderChair = () => {
@@ -200,11 +214,6 @@ class Booking extends Component {
       );
     }
   };
-  setPay = e => {
-    this.setState({
-      payStyle: e.target.value
-    });
-  };
   render() {
     let { room, loading } = this.props;
     if (loading) {
@@ -221,7 +230,6 @@ class Booking extends Component {
     return (
       <div>
         {this.state.booked === true ? <Success tab={"Đặt vé"} /> : null}
-
         <div className=" bookTicket_container">
           <div className="booking-movie">
             <CountDown />
@@ -267,15 +275,23 @@ class Booking extends Component {
               </div>
             </div>
           </div>
-          <div className="booking-ticket col-sm-4 desktop">
+          <div className={this.state.bookingClass}>
             <div className="container">
-              <div className="img-movie-booking">
+              <div className="img-movie-booking desktop">
                 <img
                   alt="Anh Phim"
                   src={room.thongTinPhim ? room.thongTinPhim.hinhAnh : ""}
                 ></img>
               </div>
               <div className="total">
+                <div
+                  className="backButton"
+                  onClick={() => {
+                    this.setState({ bookingClass: "booking-ticket col-sm-4" });
+                  }}
+                >
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                </div>
                 <h4>
                   TOTAL:<span> {this.state.tienVe}Đ</span>
                 </h4>
@@ -295,20 +311,20 @@ class Booking extends Component {
                         <input
                           type="radio"
                           name="pay"
-                          value="zalopay"
+                          value="airpay"
                           defaultChecked
                         />
                         <img
-                          alt="thanh toan zalopay"
-                          src="https://lh3.googleusercontent.com/F8cUV5oOLjCTMSvSRymK1154MwKalnvkepN4xGrfWBC_tcXvNTq_sEStiwCYV61lRdI=s180-rw"
+                          alt="thanh toan airpay"
+                          src="../Asset/airpay_logo.png"
                         ></img>
-                        <p>Thanh toán qua Zalo PAY</p>
+                        <p>Thanh toán qua Airpay</p>
                       </div>
-                      {this.state.payStyle === "zalopay" ? (
+                      {this.state.payStyle === "airpay" ? (
                         <div className=" payStyle_pay">
                           {" "}
-                          <img alt="ZaloPay" src="../asset/airpay_pay.jpg" />
-                          <p>Vui lòng quét mã ZaloPay để hoàn tất thanh toán</p>
+                          <img alt="airpay" src="../asset/airpay_pay.jpg" />
+                          <p>Vui lòng quét mã Airpay để hoàn tất thanh toán</p>
                         </div>
                       ) : null}
                     </div>
@@ -375,7 +391,29 @@ class Booking extends Component {
             </div>
           </div>
         </div>
-        <TicketFooter seat={this.renderTicket()} />
+        <div className="ticketFooter-container mobile">
+          <div className="seat_mobile">{this.renderTicket()}</div>
+          <a
+            className="pay_button"
+            onClick={
+              this.state.danhSachVe.length !== 0
+                ? () => {
+                    this.setState({
+                      bookingClass: "booking-ticket show col-sm-4"
+                    });
+                  }
+                : () =>
+                    this.setState({
+                      fail: true
+                    })
+            }
+          >
+            tiếp tục
+          </a>
+        </div>
+        {this.state.fail === true ? (
+          <Fail tab={"Vui lòng chọn ghế"} fail={this.toggleError} />
+        ) : null}
       </div>
     );
   }

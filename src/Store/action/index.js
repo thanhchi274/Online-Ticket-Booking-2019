@@ -115,15 +115,17 @@ export const actLoginHome = (user, history) => {
       url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
       data: user
     })
-      .then(result => {
-        localStorage.setItem("UserHome", JSON.stringify(result.data));
-        history.push("/");
+      .then(async result => {
+        setTimeout(() => {
+          localStorage.setItem("UserHome", JSON.stringify(result.data));
+        }, 500);
         dispatch({
-          type: ActionTypes.LOGIN,
-          user: result.data
+          type: await ActionTypes.LOGIN,
+          loginedstt: await result.status,
+          user: await result.data
         });
       })
-      .catch(err => {
+      .catch(async err => {
         alert("Bạn chưa có quyền đăng nhập hãy tạo tài khoản");
         return err;
       });
@@ -140,7 +142,6 @@ export const actLoginAdmin = (user, history) => {
         // Lưu vào local storage
         if (result.data.maLoaiNguoiDung === "QuanTri") {
           localStorage.setItem("UserAdmin", JSON.stringify(result.data));
-          // Chuyển hướng đến trang home
           history.push("/dashboard");
           window.location.reload();
           dispatch({
@@ -162,11 +163,14 @@ export const actSignupHome = (user, history) => {
       url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
       data: user
     })
-      .then(result => {
-        history.push("/login");
+      .then(async result => {
+        setTimeout(() => {
+          history.push("/login");
+        }, 500);
         dispatch({
-          type: ActionTypes.SIGNUP,
-          user: result.data
+          type: await ActionTypes.SIGNUP,
+          user: await result.data,
+          signuped: await result.status
         });
       })
       .catch(err => {

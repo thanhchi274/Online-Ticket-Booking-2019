@@ -223,7 +223,9 @@ class Signup extends Component {
   renderHTML = () => {
     return (
       <div>
-        {this.state.signup === true ? <Success tab={"Đăng ký"} /> : null}
+        {this.state.signup === true && this.props.signuped === 200 ? (
+          <Success tab={"Đăng ký"} />
+        ) : null}
         <div className="signup-container">
           <div className="signup-content row align-items-center">
             <SignUpImage
@@ -249,7 +251,9 @@ class Signup extends Component {
     return <div>{this.renderHTML()}</div>;
   }
 }
-
+const mapStateToProps = state => ({
+  signuped: state.movieReducer.signuped
+});
 const mapDispatchToProps = dispatch => {
   return {
     signup: (user, history) => {
@@ -258,4 +262,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
