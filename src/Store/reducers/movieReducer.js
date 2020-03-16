@@ -82,13 +82,7 @@ const movieReducer = (state = initialState, action) => {
     }
     case ActionType.LOGIN:
       state.loginedstt = action.loginedstt;
-      console.log(state.loginedstt);
       return { ...state };
-    case ActionType.LOGINFAIL:
-      state.err = action.err;
-      console.log(state.err);
-      return { ...state };
-
     case ActionType.LOGOUT:
       return { ...state };
     case ActionType.SIGNUP:

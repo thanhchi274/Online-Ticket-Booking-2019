@@ -108,29 +108,6 @@ export const actCheckAuthentication = history => {
     return history.push("/");
   }
 };
-export const actLoginHome = (user, history) => {
-  return dispatch => {
-    Axios({
-      method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
-      data: user
-    })
-      .then(async result => {
-        setTimeout(() => {
-          localStorage.setItem("UserHome", JSON.stringify(result.data));
-        }, 500);
-        dispatch({
-          type: await ActionTypes.LOGIN,
-          loginedstt: await result.status,
-          user: await result.data
-        });
-      })
-      .catch(async err => {
-        alert("Bạn chưa có quyền đăng nhập hãy tạo tài khoản");
-        return err;
-      });
-  };
-};
 export const actLoginAdmin = (user, history) => {
   return dispatch => {
     Axios({
@@ -178,7 +155,30 @@ export const actSignupHome = (user, history) => {
       });
   };
 };
-
+export const actLoginHome = (user, history) => {
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+      data: user
+    })
+      .then(result => {
+        setTimeout(() => {
+          history.push("/");
+        }, 500);
+        dispatch({
+          type: ActionTypes.LOGIN,
+          loginedstt: result.status,
+          user: result.data
+        });
+        localStorage.setItem("UserHome", JSON.stringify(result.data));
+      })
+      .catch(async err => {
+        alert("Bạn chưa có quyền đăng nhập hãy tạo tài khoản");
+        return err;
+      });
+  };
+};
 export const actGetRoomList = id => {
   return dispatch => {
     Axios({

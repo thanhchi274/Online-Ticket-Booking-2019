@@ -223,6 +223,7 @@ class Booking extends Component {
         </div>
       );
     }
+    const id = this.props.match.params.id;
     if (localStorage.getItem("UserHome") === null) {
       alert("Bạn phải đăng nhập tài khoản trước khi đặt vé");
       return <Redirect to="/login" />;
