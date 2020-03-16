@@ -254,7 +254,8 @@ class Login extends Component {
   }
 }
 const mapStateToProps = state => ({
-  loginedstt: state.movieReducer.loginedstt
+  loginedstt: state.movieReducer.loginedstt,
+  test: state.movieReducer.test
 });
 const mapDispatchToProps = dispatch => {
   return {
