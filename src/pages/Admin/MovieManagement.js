@@ -9,6 +9,7 @@ import TableMovieHead from "../../Components/Admin/TableandSideBar/TableHead";
 import SelectEntriesOption from "../../Components/Admin/SelectEntriesOption"
 import Pagination from '@material-ui/lab/Pagination';
 import ModalEditMovie from "../../Components/Admin/Modal/ModalEditMovie"
+import ModalAddMovie from "../../Components/Admin/Modal/ModalAddMovie"
 class MovieManagement extends Component {
   _isMounted = false;
   constructor(props) {
@@ -24,23 +25,6 @@ class MovieManagement extends Component {
       maPhimDelete: "",
       maPhim: 0,
       tenPhim: "",
-      biDanh: "",
-      trailer: "",
-      moTa: "",
-      danhGia: 0,
-      hinhAnh: "",
-      ngayKhoiChieu: "",
-      sumbitDataMovie: {
-        maPhim: 0,
-        tenPhim: "",
-        biDanh: "",
-        trailer: "",
-        moTa: "",
-        hinhAnh: "",
-        maNhom: "GP01",
-        ngayKhoiChieu: "",
-        danhGia: 0
-      }
     };
     this.handleChange = this.handleChange.bind(this);
   }
@@ -64,143 +48,34 @@ class MovieManagement extends Component {
       );
     }
 }
-  handleChangeEdit = async e => {
-    let target = e.target;
-    let name = target.name;
-    let value = await target.value;
-    this.setState(
-      {
-        [name]: value,
-        sumbitDataMovie: {
-          maPhim: this.state.maPhim,
-          tenPhim: this.state.tenPhim,
-          biDanh: this.state.biDanh,
-          hinhAnh: this.state.hinhAnh,
-          trailer: this.state.trailer,
-          maNhom: "GP01",
-          ngayKhoiChieu: this.state.ngayKhoiChieu,
-          danhGia: this.state.danhGia,
-          moTa: this.state.moTa,
-          [name]: value
-        }
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
-  };
-  handleChangeAdd = async e => {
-    let target = e.target;
-    let name = target.name;
-    let value = await target.value;
-    this.setState(
-      {
-        [name]: value,
-        sumbitDataMovie: {
-          maPhim: this.state.maPhim,
-          tenPhim: this.state.tenPhim,
-          biDanh: this.state.biDanh,
-          hinhAnh: this.state.hinhAnh,
-          trailer: this.state.trailer,
-          maNhom: "GP01",
-          ngayKhoiChieu: this.state.ngayKhoiChieu,
-          danhGia: this.state.danhGia,
-          moTa: this.state.moTa
-        }
-      },
-      () => {
-        console.log(this.state.hinhAnh);
-      }
-    );
-  };
+handleAdd = e=>{
+ this.props.checkedSuccess()
+}
   handleDelete = async event => {
     event.persist()
-    this.props.deleteMovie(event.target.value)
+    const eventValue = event.target.value
+    this.props.deleteMovie(eventValue)
     this.setState({
-          maPhimDelete: event.target.value,
-          deleted:true
+          maPhimDelete:eventValue,
         });
         await this.props.getMovieList()
         if(this.props.listMovie){
-            let a = await this.props.listMovie
+            let a = this.props.listMovie
             this.setState({
                 listMovie:a
             },()=>{this.props.getMovieList()})
           }
     }
-    componentDidCatch(error, errorInfo) {
-        console.log(error)
-        console.log(errorInfo)
-      }
-componentDidUpdate(){
-    console.log(this.props.listMovie)
-}
-  handleSubmitEdit = e => {
-    if (this.state.sumbitDataMovie.ngayKhoiChieu === this.state.ngayKhoiChieu) {
-      this.setState(
-        {
-          sumbitDataMovie: {
-            ...this.state.sumbitDataMovie,
-            ngayKhoiChieu: moment
-              .utc(this.state.ngayKhoiChieu)
-              .format("DD/MM/YYYY")
-          }
-        },
-        () => {
-          this.props.updateMovie(this.state.sumbitDataMovie);
-        }
-      );
-    }
-    e.preventDefault();
-  };
-  handleSubmitAdd = e => {
-    if (this.state.sumbitDataMovie.ngayKhoiChieu === this.state.ngayKhoiChieu) {
-      this.setState(
-        {
-          sumbitDataMovie: {
-            ...this.state.sumbitDataMovie,
-            ngayKhoiChieu: moment
-              .utc(this.state.ngayKhoiChieu)
-              .format("DD/MM/YYYY")
-          }
-        },
-        () => {
-          this.props.addMovie(this.state.sumbitDataMovie);
-          this.props.addImageMovie(this.state.hinhAnh);
-        }
-      );
-    }
-    e.preventDefault();
-  };
-  handleEdit = async e => {
-    await this.setState({
-      maPhim: e.target.value,
-      tenPhim: e.target.getAttribute("tenphim"),
-      biDanh: e.target.getAttribute("bidanh"),
-      trailer: e.target.getAttribute("trailer"),
-      danhGia: e.target.getAttribute("danhgia"),
-      hinhAnh: e.target.getAttribute("hinhanh"),
-      moTa: e.target.getAttribute("moTa"),
-      ngayKhoiChieu: new Date(e.target.getAttribute("ngayKhoiChieu"))
-        .toISOString()
-        .slice(0, 10),
-      sumbitDataMovie: {
-        maPhim: this.state.maPhim,
-        tenPhim: this.state.tenPhim,
-        biDanh: this.state.biDanh,
-        trailer: this.state.trailer,
-        hinhAnh: this.state.hinhAnh,
-        maNhom: "GP01",
-        moTa: this.state.moTa,
-        ngayKhoiChieu: moment
-          .utc(e.target.getAttribute("ngayKhoiChieu"))
-          .format("DD-MM-YYYY"),
-        danhGia: this.state.danhGia
-      }
-    });
+  handleEdit = e => {
+    e.persist();
+    let maPhim  = e.target.value
+    this.setState({
+      maPhim,
+      edited:true,
+    },()=>this.props.getDetailMovie(maPhim))
   };
   async receivedData(){
-          const data = this.state.listMovie;
+          const data =await this.state.listMovie;
           const slice = await data.slice(
             this.state.offset,
             this.state.offset + this.state.perPage
@@ -242,7 +117,6 @@ componentDidUpdate(){
   };
   handleChange = e => {
     const selectedPage = parseInt(e.target.innerHTML)
-    console.log(selectedPage)
     const offset = (selectedPage-1) * this.state.perPage;
     if(selectedPage===1){
       this.setState(
@@ -304,112 +178,8 @@ componentDidUpdate(){
             </div>
           </div>
         </div>
-        <ModalEditMovie idPhim={this.state.maPhim} />
-        <div id="ModalAdd" className="modal fade" role="dialog">
-          <div className="modal-dialog">
-            {/* Modal content*/}
-            <div className="modal-content editMovie">
-              <div className="modal-body">
-                <form onSubmit={this.handleSubmitAdd}>
-                  <div className="form-group">
-                    <label>Mã Phim:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="maPhim"
-                      onChange={this.handleChangeAdd}
-                      placeholder="Nhập Mã Phim"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Tên Phim:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="tenPhim"
-                      onChange={this.handleChangeAdd}
-                      placeholder="Nhập Tên Phim"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Bí Danh:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="biDanh"
-                      autoComplete="password"
-                      onChange={this.handleChangeAdd}
-                      placeholder="Nhập Bí Danh Phim"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Trailer:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="trailer"
-                      onChange={this.handleChangeAdd}
-                      placeholder="Nhập đường dẫn trailer Youtube"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Ngày Khởi Chiếu:</label>
-                    <input
-                      type="date"
-                      className="datePicker"
-                      onChange={this.handleChangeAdd}
-                      value={
-                        this.state.ngayKhoiChieu ? this.state.ngayKhoiChieu : ""
-                      }
-                      name="ngayKhoiChieu"
-                      id="ngayKhoiChieu"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Hình Ảnh:</label>
-                    <input
-                      type="file"
-                      className="form-control"
-                      name="hinhAnh"
-                      onChange={this.handleChangeAdd}
-                      placeholder="Chỉ được nhập link ảnh từ nguồn Khác"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Đánh Giá:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="danhGia"
-                      onChange={this.handleChangeAdd}
-                      placeholder="Nhập đánh giá từ 1 đến 5"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label>Mô Tả:</label>
-                    <input
-                      type="text"
-                      className="form-control"
-                      name="moTa"
-                      onChange={this.handleChangeAdd}
-                      placeholder="Nhập Mô Tả Phim"
-                    />
-                  </div>
-                  <button type="submit" className="btn btn-update btnADDMovie">
-                    Submit
-                  </button>
-                  <button
-                    type="button"
-                    className="btn btnCloseMovie"
-                    data-dismiss="modal"
-                  >
-                    Cancel
-                  </button>
-                </form>
-              </div>
-            </div>
-          </div>
-        </div>
+       <ModalEditMovie idPhim={this.state.maPhim} /> 
+      <ModalAddMovie />
       </div>
     );
   }
@@ -417,6 +187,7 @@ componentDidUpdate(){
 const mapStateToProps = state => {
     return {
         listMovie: state.movieReducer.listMovie,
+        checkedSucessMovie: state.movieReducer.checkedSucessMovie
     };
   };
 const mapDispatchToProps = dispatch => {
@@ -427,14 +198,14 @@ const mapDispatchToProps = dispatch => {
     deleteMovie: movie => {
       dispatch(action.actDeleteMovie(movie));
     },
-    updateMovie: tk => {
-      dispatch(action.actUpdateMovie(tk));
-    },
     addMovie: tk => {
       dispatch(action.actThemMovie(tk));
     },
-    addImageMovie: image => {
-      dispatch(action.actthemHinhAnhPhim(image));
+    checkedSuccess: ()=>{
+      dispatch(action.actUploadMovieSuccess())
+    },
+    getDetailMovie : id =>{
+      dispatch(action.actGetDetailMovieAPI(id))
     }
   };
 };

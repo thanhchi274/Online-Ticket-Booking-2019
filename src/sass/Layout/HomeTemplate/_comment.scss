@@ -43,16 +43,6 @@
     outline: none;
   }
 }
-@keyframes appear {
-  0% {
-    opacity: 0;
-    transform: translateX(-100%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
 .commentList {
   width: 70%;
   background-color: $main;
@@ -61,6 +51,7 @@
   padding: 20px;
   box-shadow: 10px 10px rgba(black, 0.3);
   border: 1px solid $primary;
+  animation: appear 1s;
   .headerComment {
     display: flex;
     justify-content: space-between;
@@ -148,5 +139,14 @@
       border: none;
     }
   }
-  animation: appear 1s;
+}
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

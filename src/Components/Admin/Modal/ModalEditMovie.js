@@ -1,7 +1,7 @@
 import * as action from "../../../Store/action";
 import { connect } from "react-redux";
 import React, { Component } from "react";
-
+import moment from "moment";
 class ModalEditMovie extends Component {
   _edited = false;
   constructor(props) {
@@ -13,18 +13,65 @@ class ModalEditMovie extends Component {
       ngayKhoiChieu: "",
       hinhAnh: "",
       danhGia: "",
-      maNhom: "GP01"
+      trailer:"",
+      moTa:"",
+      maNhom: "GP01",
+      file:null
     };
   }
-
-  render() {
+  UNSAFE_componentWillReceiveProps(nextProps){
+    if(nextProps.idPhim !==""){
+      let movie = nextProps.movie
+      this.setState({
+        maPhim: movie.maPhim,
+        tenPhim: movie.tenPhim,
+        biDanh:movie.biDanh,
+        ngayKhoiChieu:movie.ngayKhoiChieu,
+        hinhAnh:movie.hinhAnh,
+        danhGia:movie.danhGia,
+        trailer:movie.trailer,
+        moTa:movie.moTa
+      })
+    }
+  }
+  handleImage(e){
+    let file= e.target.files[0]
+    this.setState({
+      file,
+    });
+  }
+  handleClose = e => {
+    this.props.getMovieList()
+  };
+  handleChangeEdit = e => {
+    let { name, value } = e.target;
+      this.setState({
+        [name]: value,
+      });
+  };
+  handleSubmitEdit = async e => {
+    e.preventDefault();
+    console.log(this.state)
+    let ngayKhoiChieu = moment.utc(this.state.ngayKhoiChieu).format("DD/MM/YYYY")
+    let movie = {...this.state,ngayKhoiChieu}
+    let File = this.state.file
+    let formData = new FormData()
+    formData.append('File',File)
+    formData.append('tenphim',this.state.tenPhim)
+    formData.append('manhom','GP01')
+    console.log(Array.from(formData))
+    this.props.updateMovie(movie,formData)
+    return (this.state.file)? (this.props.addImageMovie(formData)):null
+  };
+ render() {
+  let detailMovie= this.state
     return (
       <div id="myModal" className="modal fade" role="dialog">
         <div className="modal-dialog">
           <div className="modal-content editMovie">
             <div className="modal-body">
               <form
-                // onSubmit={this.handleSubmitEdit}
+                onSubmit={this.handleSubmitEdit}
                 encType="multipart/form-data"
                 action="/upload/image"
               >
@@ -34,9 +81,10 @@ class ModalEditMovie extends Component {
                     type="text"
                     className="form-control"
                     name="maPhim"
-                    // value={recevieMovie.maPhim}
-                    // onChange={handleChangeEdit}
+                    value={detailMovie.maPhim || ""}
+                    onChange={this.handleChangeEdit}
                     placeholder="Nhập Mã Phim"
+                    readOnly
                   />
                 </div>
                 <div className="form-group">
@@ -45,8 +93,8 @@ class ModalEditMovie extends Component {
                     type="text"
                     className="form-control"
                     name="tenPhim"
-                    // onChange={handleChangeEdit}
-                    // defaultValue={recevieMovie.tenPhim}
+                    onChange={this.handleChangeEdit}
+                    value={detailMovie.tenPhim || ""}
                     placeholder="Nhập Tên Phim"
                   />
                 </div>
@@ -56,9 +104,8 @@ class ModalEditMovie extends Component {
                     type="text"
                     className="form-control"
                     name="biDanh"
-                    autoComplete="password"
-                    // value={this.state.biDanh!=="" ? this.state.biDanh :"loading"}
-                    // onChange={this.handleChangeEdit}
+                    value={detailMovie.biDanh || ""}
+                    onChange={this.handleChangeEdit}
                     placeholder="Nhập Bí Danh Phim"
                   />
                 </div>
@@ -68,10 +115,8 @@ class ModalEditMovie extends Component {
                     type="text"
                     className="form-control"
                     name="trailer"
-                    // value={
-                    //   this.state.trailer!=="" ? this.state.trailer : "loading"
-                    // }
-                    // onChange={this.handleChangeEdit}
+                    value={detailMovie.trailer || ""}
+                    onChange={this.handleChangeEdit}
                     placeholder="Nhập đường dẫn trailer Youtube"
                   />
                 </div>
@@ -80,29 +125,34 @@ class ModalEditMovie extends Component {
                   <input
                     type="date"
                     className="datePicker"
-                    // onChange={this.handleChangeEdit}
-                    // value={
-                    //   this.state.ngayKhoiChieu
-                    //     ? moment
-                    //         .utc(this.state.ngayKhoiChieu)
-                    //         .format("YYYY-MM-DD")
-                    //     : "Loading"
-                    // }
+                    onChange={this.handleChangeEdit}
+                    value={moment.utc(detailMovie.ngayKhoiChieu).format("YYYY-MM-DD")|| ""}
                     name="ngayKhoiChieu"
                     id="ngayKhơiChieu"
                   />
                 </div>
                 <div className="form-group">
-                  <label>Hình Ảnh:</label>
+                  <label>Mô Tả:</label>
                   <input
                     type="text"
                     className="form-control"
+                    name="moTa"
+                    value={
+                     detailMovie.moTa || ""
+                    }
+                    onChange={this.handleChangeEdit}
+                    placeholder="Nhập đánh giá từ 1 đến 5"
+                  />
+                </div>
+                <div className="form-group">
+                  <label>Hình Ảnh:</label>
+                  <input
+                    type="file"
+                    className="form-control"
                     name="hinhAnh"
-                    // value={
-                    //   this.state.hinhAnh!=="" ? this.state.hinhAnh : "loading"
-                    // }
-                    // onChange={this.handleChangeEdit}
-                    placeholder="Chỉ được nhập link ảnh từ nguồn Khác"
+                    accept="image/*"
+                    onChange={(e)=>this.handleImage(e)}
+                    placeholder="Upload Ảnh đê"
                   />
                 </div>
                 <div className="form-group">
@@ -111,10 +161,10 @@ class ModalEditMovie extends Component {
                     type="text"
                     className="form-control"
                     name="danhGia"
-                    // value={
-                    //   this.state.danhGia!=="" ? this.state.danhGia : "loading"
-                    // }
-                    // onChange={this.handleChangeEdit}
+                    value={
+                     detailMovie.danhGia || ""
+                    }
+                    onChange={this.handleChangeEdit}
                     placeholder="Nhập đánh giá từ 1 đến 5"
                   />
                 </div>
@@ -125,6 +175,7 @@ class ModalEditMovie extends Component {
                   type="button"
                   className="btn btn-default"
                   data-dismiss="modal"
+                  onClick={this.handleClose}
                 >
                   Cancel
                 </button>
@@ -139,19 +190,23 @@ class ModalEditMovie extends Component {
 
 const mapStateToProps = state => {
   return {
-    movie: state.movieReducer.movie
+    movie: state.movieReducer.movie,
+    checkedSucessMovie: state.movieReducer.checkedSucessMovie
   };
 };
 const mapDispatchToProps = dispatch => {
   return {
+    getMovieList:() => {
+      dispatch(action.actGetListMovieAPI());
+    },
     updateMovie: tk => {
       dispatch(action.actUpdateMovie(tk));
     },
     addImageMovie: image => {
       dispatch(action.actthemHinhAnhPhim(image));
     },
-    detaiMovie: id => {
-      dispatch(action.actGetDetailMovieAPI(id));
+    checkedSuccess: ()=>{
+      dispatch(action.actUploadMovieSuccess())
     }
   };
 };

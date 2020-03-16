@@ -5,9 +5,7 @@ import { Date } from "prismic-reactjs";
 import Rating from "../../RatingMovie";
 import * as Moment from "moment";
 import { Link } from "react-router-dom";
-
 import Swiper from "swiper";
-
 class MovieAvailable extends Component {
   componentDidMount() {
     new Swiper(".swiper-container", {
@@ -34,7 +32,7 @@ class MovieAvailable extends Component {
   }
   renderHTML = () => {
     let { listMovie } = this.props;
-    return listMovie.slice(0, 14).map((movie, index) => {
+    return listMovie.map((movie, index) => {
       const date = Date(movie.ngayKhoiChieu);
       const formattedDate = Moment(date).format("LL");
       return (

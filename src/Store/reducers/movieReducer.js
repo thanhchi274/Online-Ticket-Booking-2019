@@ -6,6 +6,7 @@ let initialState = {
   movieDate: [],
   theaterDateInformation: [],
   loading: false,
+  checkedSucessMovie:false,
   deleted: false,
   room: {},
   userList: [],
@@ -13,13 +14,15 @@ let initialState = {
   keyWord: [],
   tickets: [],
   theaterInfo: [],
-  comment: []
+  comment: [],
+  loginedstt: "",
+  signuped: ""
 };
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.GET_LIST_MOVIE: {
       state.listMovie = action.listMovie;
-      return { ...state, loading: false };
+      return { ...state, loading: false,checkedSucessMovie: false };
     }
     case ActionType.GET_USER_LIST: {
       state.userList = action.userList;
@@ -27,7 +30,7 @@ const movieReducer = (state = initialState, action) => {
     }
     case ActionType.GET_DETAIL_MOVIE: {
       state.movie = action.movie;
-      return { ...state, loading: false };
+      return { ...state, loading: false,checkedSucessMovie: true };
     }
     case ActionType.UPDATE_MOVIE: {
       return { ...state };
@@ -79,11 +82,12 @@ const movieReducer = (state = initialState, action) => {
       return { ...state, deleted: true };
     }
     case ActionType.LOGIN:
-      return { ...state, logined: true };
-
+      state.loginedstt = action.loginedstt;
+      return { ...state };
     case ActionType.LOGOUT:
       return { ...state };
     case ActionType.SIGNUP:
+      state.signuped = action.signuped;
       return { ...state };
     case ActionType.GET_ROOM_LIST:
       state.room = action.room;
@@ -97,6 +101,8 @@ const movieReducer = (state = initialState, action) => {
       return { ...state };
     case ActionType.DELETE_MOVIE:
       return { ...state };
+      case ActionType.UPLOAD_MOVIE_IMAGE_CHECKED:
+        return{...state,checkedSucessMovie:true}
     default:
       return { ...state };
   }

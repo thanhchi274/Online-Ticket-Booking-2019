@@ -163,14 +163,15 @@ button:focus {
           font-size: 4.6vw;
           padding: 0;
           text-align: left;
+          margin: 0 1.5vw;
         }
       }
       .userIcon_mobile {
         color: $white-darker-2;
-        width: 9vw;
-        height: 8vh;
+        width: 8vw;
+        height: 6vh;
         text-align: center;
-        line-height: 8vh;
+        line-height: 6vh;
         border-radius: 50%;
         border: 1px solid $white-darker-2;
       }

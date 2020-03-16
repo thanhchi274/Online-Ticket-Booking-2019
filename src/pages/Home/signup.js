@@ -125,7 +125,6 @@ class Signup extends Component {
       tenValid: false,
       dtValid: false,
       emailValid: false,
-      signup: false,
       noti: "Chào bạn, điền đầy đủ thông tin vào form nhé"
     };
   }
@@ -207,14 +206,8 @@ class Signup extends Component {
     user.maNhom = "GP01";
     user.maLoaiNguoiDung = "KhachHang";
     if ((tkValid, mkValid, dtValid, tenValid, emailValid === true)) {
-      this.setState({
-        noti: "Chúc mừng bạn đã đăng kí thành công",
-        signup: true
-      });
-      setTimeout(() => {
-        this.props.signup(user, this.props.history);
-      }, 2000);
-    } else {
+      this.props.signup(user, this.props.history);
+    } else if ((tkValid, mkValid, dtValid, tenValid, emailValid === false)) {
       this.setState({
         noti: "Vui lòng điền đầy đủ thông tin"
       });
@@ -223,7 +216,7 @@ class Signup extends Component {
   renderHTML = () => {
     return (
       <div>
-        {this.state.signup === true ? <Success tab={"Đăng ký"} /> : null}
+        {this.props.signuped === 200 ? <Success tab={"Đăng ký"} /> : null}
         <div className="signup-container">
           <div className="signup-content row align-items-center">
             <SignUpImage
@@ -249,7 +242,9 @@ class Signup extends Component {
     return <div>{this.renderHTML()}</div>;
   }
 }
-
+const mapStateToProps = state => ({
+  signuped: state.movieReducer.signuped
+});
 const mapDispatchToProps = dispatch => {
   return {
     signup: (user, history) => {
@@ -258,4 +253,4 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export default connect(null, mapDispatchToProps)(Signup);
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);
