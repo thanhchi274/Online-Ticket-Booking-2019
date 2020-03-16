@@ -46,7 +46,7 @@ class ModalAddUser extends Component {
       };
     render() {
         return (
-            <div id="myModalAdd" className="modal fade" role="dialog">
+            <div id="myModalAdd" className="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
             <div className="modal-dialog">
               <div className="modal-content">
                 <div className="modal-body">

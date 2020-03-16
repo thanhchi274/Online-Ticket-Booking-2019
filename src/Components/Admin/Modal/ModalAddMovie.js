@@ -33,8 +33,8 @@ class ModalAddMovie extends Component {
       },()=>console.log(this.state));
   };
   UNSAFE_componentWillReceiveProps(nextProps){
-      console.log(nextProps)
-  }
+    console.log(nextProps)
+}
   handleSubmitEdit = async e => {
     e.preventDefault();
     console.log(this.state)
@@ -45,14 +45,13 @@ class ModalAddMovie extends Component {
     formData.append('File',File)
     formData.append('tenphim',this.state.tenPhim)
     formData.append('manhom','GP01')
-    console.log(Array.from(formData))
     this.props.addMovie(movie,formData)
     return (this.state.file)? (this.props.addImageMovie(formData)):null
   };
  render() {
   let detailMovie= this.state
     return (
-      <div id="ModalAdd" className="modal fade" role="dialog">
+      <div id="ModalAdd" className="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
         <div className="modal-dialog">
           <div className="modal-content editMovie">
             <div className="modal-body">
@@ -102,7 +101,7 @@ class ModalAddMovie extends Component {
                     name="hinhAnh"
                     accept="image/*"
                     onChange={(e)=>this.handleImage(e)}
-                    placeholder="Upload Ảnh đê"
+                    placeholder="Upload Ảnh dưới 1MB"
                   />
                 </div>
                 <div className="form-group">

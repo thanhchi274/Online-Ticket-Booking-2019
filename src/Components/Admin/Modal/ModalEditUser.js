@@ -49,7 +49,7 @@ class ModalEditUser extends Component {
   };
   render() {
     return (
-      <div id="myModal" className="modal modalEditUser fade" role="dialog">
+      <div id="myModal" className="modal modalEditUser fade" data-backdrop="static" data-keyboard="false" role="dialog">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-body">
@@ -63,6 +63,7 @@ class ModalEditUser extends Component {
                     value={this.state.taiKhoan}
                     onChange={this.handleChangeEdit}
                     placeholder="Nhập Họ và Tên"
+                    readOnly
                   />
                 </div>
                 <div className="form-group">

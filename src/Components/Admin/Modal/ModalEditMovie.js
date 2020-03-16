@@ -66,7 +66,7 @@ class ModalEditMovie extends Component {
  render() {
   let detailMovie= this.state
     return (
-      <div id="myModal" className="modal fade" role="dialog">
+      <div id="myModal" className="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
         <div className="modal-dialog">
           <div className="modal-content editMovie">
             <div className="modal-body">
@@ -152,7 +152,7 @@ class ModalEditMovie extends Component {
                     name="hinhAnh"
                     accept="image/*"
                     onChange={(e)=>this.handleImage(e)}
-                    placeholder="Upload Ảnh đê"
+                    placeholder="Upload Ảnh dưới 1MB"
                   />
                 </div>
                 <div className="form-group">

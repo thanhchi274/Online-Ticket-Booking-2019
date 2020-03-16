@@ -7,7 +7,6 @@ let initialState = {
   theaterDateInformation: [],
   loading: false,
   checkedSucessMovie:false,
-  deleted: false,
   room: {},
   userList: [],
   userInformation: {},
