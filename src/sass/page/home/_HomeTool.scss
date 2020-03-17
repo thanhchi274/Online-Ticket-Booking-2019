@@ -1,13 +1,11 @@
 .home-tool {
+  width: 65%;
   padding: 15px;
-  margin: 0 auto;
+  margin: -30px auto;
   display: flex;
   background-color: $main;
-  position: absolute;
-  bottom: -5%;
   border: 1px solid $primary;
   border-radius: 0.75rem;
-  left: 14%;
   animation: dropTool 1s;
   .form-control {
     width: 100%;
@@ -21,7 +19,7 @@
   }
   .selectChoice {
     font-size: 16px;
-    width: 240px;
+    max-width: 13vw;
     height: 40px;
     &:focus {
       border-color: none;
@@ -30,9 +28,10 @@
   }
   .btn-datve {
     margin-left: 10px;
-    padding: 5px;
+    width: 10vw;
+    padding: 10px;
     border-radius: 0.75rem;
-    font-size: 16px;
+    font-size: 1vw;
     border: none;
     background-color: $primary;
     text-align: center;

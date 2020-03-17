@@ -20,7 +20,7 @@ export const actGetListMovieAPI = () => {
 };
 export const actUpdateMovie = user => {
   const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
-  return  dispatch => {
+  return dispatch => {
     Axios({
       method: "POST",
       url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhim",
@@ -29,12 +29,12 @@ export const actUpdateMovie = user => {
         Authorization: `Bearer ${UserAdmin.accessToken}`
       }
     })
-      .then( result => {
+      .then(result => {
         alert("Cập Nhật Thành Công");
-          dispatch({
-            type: ActionTypes.UPLOAD_MOVIE_IMAGE_CHECKED,
-            checkedSucessMovie: true
-          });
+        dispatch({
+          type: ActionTypes.UPLOAD_MOVIE_IMAGE_CHECKED,
+          checkedSucessMovie: true
+        });
       })
       .catch(err => {
         console.log(err.response);
@@ -158,7 +158,11 @@ export const actSignupHome = (user, history) => {
           signuped: await result.status
         });
       })
-      .catch(err => {
+      .catch(async err => {
+        dispatch({
+          type: await ActionTypes.SIGNUP,
+          errorSignup: await err.response.data
+        });
         return err;
       });
   };
@@ -182,7 +186,10 @@ export const actLoginHome = (user, history) => {
         localStorage.setItem("UserHome", JSON.stringify(result.data));
       })
       .catch(async err => {
-        alert("Bạn chưa có quyền đăng nhập hãy tạo tài khoản");
+        dispatch({
+          type: ActionTypes.LOGIN,
+          errorData: err.response.data
+        });
         return err;
       });
   };
@@ -444,13 +451,13 @@ export const actThemMovie = user => {
         Authorization: `Bearer ${UserAdmin.accessToken}`
       }
     })
-    .then(result => {
-      alert("Cập Nhật Thành Công");
-        dispatch( {
+      .then(result => {
+        alert("Cập Nhật Thành Công");
+        dispatch({
           type: ActionTypes.UPLOAD_MOVIE_IMAGE_CHECKED,
           checkedSucessMovie: true
         });
-    })
+      })
       .catch(err => {
         console.log(err.response);
         return err;
@@ -469,7 +476,7 @@ export const actthemHinhAnhPhim = hinhAnh => {
       }
     })
       .then(result => {
-        alert(result.data)
+        alert(result.data);
         return result.data;
       })
       .catch(err => {
@@ -489,11 +496,11 @@ export const actTaoLichChieu = lichChieu => {
       }
     })
       .then(result => {
-        alert("Thêm Lịch Chiếu Thành Công ahihi")
+        alert("Thêm Lịch Chiếu Thành Công ahihi");
         return result.data;
       })
       .catch(err => {
-        alert(err.response)
+        alert(err.response);
         return err.data;
       });
   };
@@ -516,12 +523,11 @@ export const actLayThongTinRap = () => {
       });
   };
 };
-export const actLayThongTinCumRapTheoHeThong = (id) => {
+export const actLayThongTinCumRapTheoHeThong = id => {
   return dispatch => {
     Axios({
       method: "GET",
-      url:
-      `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`
+      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`
     })
       .then(result => {
         dispatch({

@@ -136,118 +136,127 @@ class CommentList extends Component {
 
   renderCommentList = () => {
     const home = JSON.parse(localStorage.getItem("UserHome"));
-    if (this.props.comment.danhSachComment) {
-      return this.props.comment.danhSachComment
-        .sort((a, b) => {
-          return b.id - a.id;
-        })
-        .map((item, index) => {
-          return (
-            <div key={index} className="commentList">
-              <div className="headerComment">
-                <div className="guest_intro">
-                  <img
-                    alt="avatar"
-                    className="guest_ava mr-2"
-                    src="https://divineshop.vn/image/avatar/default.png?rand=963987"
-                  />
-                  <h5>{item.hoTen}</h5>
-                </div>
-                {this.state.change === false ? (
-                  <Rating
-                    name="read-only"
-                    value={parseInt(item.danhGia)}
-                    readOnly
-                  />
-                ) : item.hoTen === home.hoTen ? (
-                  <Rating
-                    name="danhGia1"
-                    value={this.state.smallValue}
-                    onChange={(event, newValueSmall) => {
-                      this.setState({
-                        smallValue: newValueSmall
-                      });
-                    }}
-                  />
-                ) : (
-                  <Rating
-                    name="read-only"
-                    value={parseInt(item.danhGia)}
-                    readOnly
-                  />
-                )}
-              </div>
-              <hr />
-              <div className="contentComment">
-                {this.state.change === false ? (
-                  <p>{item.nhanXet}</p>
-                ) : item.hoTen === home.hoTen ? (
-                  <div className="changeCommentDetail">
-                    <input
-                      type="text"
-                      className="changeComment"
-                      name="nhanXet"
-                      value={this.state.nhanXet}
-                      placeholder="Nhập bình luận"
-                      onChange={this.handleChange}
-                    />
-                    <div className="changeButton">
-                      <button
-                        className="commentUpdate"
-                        onClick={this.handleChangeComment}
-                        value={item.id}
-                      >
-                        Đăng
-                      </button>
-                      <button
-                        className="cancelUpdate"
-                        onClick={() => {
-                          this.setState({
-                            change: false
-                          });
-                        }}
-                      >
-                        Hủy
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <p>{item.nhanXet}</p>
-                )}
-              </div>
-              {home ? (
-                home.hoTen === item.hoTen && this.state.change === false ? (
-                  <div className="actionComment" onClick={this.renderAction}>
-                    <div className="actionCommentIcon">
-                      <FontAwesomeIcon icon={faEllipsisV} />
-                    </div>
-                    <div className="actionCommentDetail">
-                      <p
-                        onClick={() => {
-                          this.setState({
-                            change: true,
-                            nhanXet: item.nhanXet
-                          });
-                        }}
-                      >
-                        Sửa
-                      </p>
-                      <p value={item.id} onClick={this.handleDelete}>
-                        Xóa
-                      </p>
-                    </div>
-                  </div>
-                ) : null
-              ) : null}
-            </div>
-          );
-        });
-    } else {
+    if (!this.props.comment.danhSachComment) {
       return (
         <div className="loading-spinner">
           <SmallSpinner />
         </div>
       );
+    }
+    if (this.props.comment.danhSachComment) {
+      if (this.props.comment.danhSachComment.length !== 0) {
+        return this.props.comment.danhSachComment
+          .sort((a, b) => {
+            return b.id - a.id;
+          })
+          .map((item, index) => {
+            return (
+              <div key={index} className="commentList">
+                <div className="headerComment">
+                  <div className="guest_intro">
+                    <img
+                      alt="avatar"
+                      className="guest_ava mr-2"
+                      src="https://divineshop.vn/image/avatar/default.png?rand=963987"
+                    />
+                    <h5>{item.hoTen}</h5>
+                  </div>
+                  {this.state.change === false ? (
+                    <Rating
+                      name="read-only"
+                      value={parseInt(item.danhGia)}
+                      readOnly
+                    />
+                  ) : item.hoTen === home.hoTen ? (
+                    <Rating
+                      name="danhGia1"
+                      value={this.state.smallValue}
+                      onChange={(event, newValueSmall) => {
+                        this.setState({
+                          smallValue: newValueSmall
+                        });
+                      }}
+                    />
+                  ) : (
+                    <Rating
+                      name="read-only"
+                      value={parseInt(item.danhGia)}
+                      readOnly
+                    />
+                  )}
+                </div>
+                <hr />
+                <div className="contentComment">
+                  {this.state.change === false ? (
+                    <p>{item.nhanXet}</p>
+                  ) : item.hoTen === home.hoTen ? (
+                    <div className="changeCommentDetail">
+                      <input
+                        type="text"
+                        className="changeComment"
+                        name="nhanXet"
+                        value={this.state.nhanXet}
+                        placeholder="Nhập bình luận"
+                        onChange={this.handleChange}
+                      />
+                      <div className="changeButton">
+                        <button
+                          className="commentUpdate"
+                          onClick={this.handleChangeComment}
+                          value={item.id}
+                        >
+                          Đăng
+                        </button>
+                        <button
+                          className="cancelUpdate"
+                          onClick={() => {
+                            this.setState({
+                              change: false
+                            });
+                          }}
+                        >
+                          Hủy
+                        </button>
+                      </div>
+                    </div>
+                  ) : (
+                    <p>{item.nhanXet}</p>
+                  )}
+                </div>
+                {home ? (
+                  home.hoTen === item.hoTen && this.state.change === false ? (
+                    <div className="actionComment" onClick={this.renderAction}>
+                      <div className="actionCommentIcon">
+                        <FontAwesomeIcon icon={faEllipsisV} />
+                      </div>
+                      <div className="actionCommentDetail">
+                        <p
+                          onClick={() => {
+                            this.setState({
+                              change: true,
+                              nhanXet: item.nhanXet
+                            });
+                          }}
+                        >
+                          Sửa
+                        </p>
+                        <p value={item.id} onClick={this.handleDelete}>
+                          Xóa
+                        </p>
+                      </div>
+                    </div>
+                  ) : null
+                ) : null}
+              </div>
+            );
+          });
+      } else {
+        return (
+          <div className="lackComment">
+            <p>Phim này hiện chưa có comment</p>
+          </div>
+        );
+      }
     }
   };
   render() {

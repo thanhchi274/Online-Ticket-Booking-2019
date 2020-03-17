@@ -43,6 +43,15 @@
     outline: none;
   }
 }
+
+.lackComment {
+  margin: 5vh 0;
+  p {
+    color: $white-darker-2;
+    font-size: 1.5vw;
+    text-align: center;
+  }
+}
 .commentList {
   width: 70%;
   background-color: $main;
