@@ -7,6 +7,7 @@ export const GET_COMMENT = "GET_COMMENT";
 export const GET_USER_INFORMATION = "GET_USER_INFORMATION";
 export const GET_USER_LIST = "GET_USER_LIST";
 export const GET_ROOM_LIST = "GET_ROOM_LIST";
+export const GET_THEATER_SCHEDULE = "GET_THEATER_SCHEDULE";
 export const LOADING = "LOADING";
 export const DELETED = "DELETED";
 export const LOGIN = "LOGIN";

@@ -9,6 +9,7 @@ import SelectEntriesOption from "../../Components/Admin/SelectEntriesOption"
 import Pagination from '@material-ui/lab/Pagination';
 import ModalEditMovie from "../../Components/Admin/Modal/ModalEditMovie"
 import ModalAddMovie from "../../Components/Admin/Modal/ModalAddMovie"
+import ModalTaoLichChieu from "../../Components/Admin/Modal/ModalTaoLichChieu"
 class MovieManagement extends Component {
   _isMounted = false;
   constructor(props) {
@@ -164,6 +165,14 @@ handleAdd = e=>{
             >
               Add Phim
             </button>
+            <button
+              onClick={this.handleTaoLichChieu}
+              data-toggle="modal"
+              data-target="#ModalTaoLichChieu"
+              className="btnAddPhim btn"
+            >
+              Tạo Lịch Chieu
+            </button>
           </div>
           <div className="container-table100">
             <div className="wrap-table100">
@@ -179,6 +188,7 @@ handleAdd = e=>{
         </div>
        <ModalEditMovie idPhim={this.state.maPhim} /> 
       <ModalAddMovie />
+      <ModalTaoLichChieu />
       </div>
     );
   }

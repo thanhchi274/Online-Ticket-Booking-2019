@@ -15,7 +15,8 @@ let initialState = {
   theaterInfo: [],
   comment: [],
   loginedstt: "",
-  signuped: ""
+  signuped: "",
+  theaterSchedule:[]
 };
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -67,6 +68,10 @@ const movieReducer = (state = initialState, action) => {
     case ActionType.GET_INFO_THEATER: {
       state.theaterInfo = action.theaterInfo;
       return { ...state };
+    }
+    case ActionType.GET_THEATER_SCHEDULE:{
+      state.theaterSchedule = action.theaterSchedule;
+      return {...state}
     }
     case ActionType.UPDATE_USER_INFORMATION: {
       return { ...state, loading: false };

@@ -457,8 +457,6 @@ export const actThemMovie = user => {
       });
   };
 };
-
-
 export const actthemHinhAnhPhim = hinhAnh => {
   const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
   return dispatch => {
@@ -479,6 +477,27 @@ export const actthemHinhAnhPhim = hinhAnh => {
       });
   };
 };
+export const actTaoLichChieu = lichChieu => {
+  const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
+  return dispatch => {
+    Axios({
+      method: "POST",
+      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/TaoLichChieu",
+      data: lichChieu,
+      headers: {
+        Authorization: `Bearer ${UserAdmin.accessToken}`
+      }
+    })
+      .then(result => {
+        alert("Thêm Lịch Chiếu Thành Công ahihi")
+        return result.data;
+      })
+      .catch(err => {
+        alert(err.response)
+        return err.data;
+      });
+  };
+};
 export const actLayThongTinRap = () => {
   return dispatch => {
     Axios({
@@ -490,6 +509,24 @@ export const actLayThongTinRap = () => {
         dispatch({
           type: ActionTypes.GET_INFO_THEATER,
           theaterInfo: result.data
+        });
+      })
+      .catch(err => {
+        return err.data;
+      });
+  };
+};
+export const actLayThongTinCumRapTheoHeThong = (id) => {
+  return dispatch => {
+    Axios({
+      method: "GET",
+      url:
+      `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`
+    })
+      .then(result => {
+        dispatch({
+          type: ActionTypes.GET_THEATER_SCHEDULE,
+          theaterSchedule: result.data
         });
       })
       .catch(err => {
