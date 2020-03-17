@@ -107,6 +107,7 @@ export default class MobileHeader extends Component {
     this.setState({ navigate: true });
   };
   render() {
+    const home = JSON.parse(localStorage.getItem("UserHome"));
     return (
       <nav className="mobile_header ">
         <div className="logo_mobile mobile col-4">
@@ -140,11 +141,13 @@ export default class MobileHeader extends Component {
                     Theaters
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" onClick={this.logout} to="/">
-                    Log out
-                  </Link>
-                </li>
+                {home ? (
+                  <li className="nav-item">
+                    <Link className="nav-link" onClick={this.logout} to="/">
+                      Log out
+                    </Link>
+                  </li>
+                ) : null}
               </div>
             </ul>
           </div>

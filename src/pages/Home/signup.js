@@ -10,6 +10,7 @@ import {
 import { connect } from "react-redux";
 import * as action from "../../Store/action";
 import Success from "../../Components/success";
+import Fail from "../../Components/fail";
 
 const SignUpImage = props => (
   <div className=" signup-img col-sm-6">
@@ -100,7 +101,9 @@ const FormSignUp = props => (
       </div>
     </div>
     <p className="mobile mobile_noti">{props.noti}</p>
-    <button className="btn signup-btn">SIGN UP</button>
+    <button className="btn signup-btn" onClick={props.errorData}>
+      SIGN UP
+    </button>
   </form>
 );
 
@@ -125,7 +128,8 @@ class Signup extends Component {
       tenValid: false,
       dtValid: false,
       emailValid: false,
-      noti: "Chào bạn, điền đầy đủ thông tin vào form nhé"
+      noti: "Chào bạn, điền đầy đủ thông tin vào form nhé",
+      fail: false
     };
   }
 
@@ -213,9 +217,22 @@ class Signup extends Component {
       });
     }
   };
+  handleError = () => {
+    this.setState({
+      fail: true
+    });
+  };
+  toggleError = () => {
+    this.setState({
+      fail: false
+    });
+  };
   renderHTML = () => {
     return (
       <div>
+        {this.state.fail === true && this.props.errorSignup ? (
+          <Fail tab={this.props.errorSignup} fail={this.toggleError} />
+        ) : null}
         {this.props.signuped === 200 ? <Success tab={"Đăng ký"} /> : null}
         <div className="signup-container">
           <div className="signup-content row align-items-center">
@@ -226,6 +243,7 @@ class Signup extends Component {
             <div className="signUp-form col-sm-6">
               <h4>Đăng ký</h4>
               <FormSignUp
+                errorData={this.handleError}
                 handleSubmit={this.handleSubmit}
                 handleChange={this.handleChange}
                 noti={this.state.noti}
@@ -243,7 +261,8 @@ class Signup extends Component {
   }
 }
 const mapStateToProps = state => ({
-  signuped: state.movieReducer.signuped
+  signuped: state.movieReducer.signuped,
+  errorSignup: state.movieReducer.errorSignup
 });
 const mapDispatchToProps = dispatch => {
   return {

@@ -11,6 +11,8 @@ import * as action from "../../Store/action";
 import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import SVGAdminLogin from "../../Asset/SVG/userLoginImage";
+import Fail from "../../Components/fail";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +34,7 @@ class Login extends Component {
       mkValid: false,
       show: faEye,
       type: "password",
-      logined: false
+      fail: false
     };
   }
   handleClick = e => {
@@ -123,9 +125,6 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.setState({
-      logined: true
-    });
     this.props.login(this.state, this.props.history);
   };
 
@@ -153,12 +152,23 @@ class Login extends Component {
       });
     }
   };
+  handleError = () => {
+    this.setState({
+      fail: true
+    });
+  };
+  toggleError = () => {
+    this.setState({
+      fail: false
+    });
+  };
   renderHTML = () => {
     return (
       <div className="login-wrapper">
-        {this.state.logined === true && this.props.loginedstt === 200 ? (
-          <Success tab={"Đăng nhập"} />
+        {this.state.fail === true && this.props.errorData ? (
+          <Fail tab={this.props.errorData} fail={this.toggleError} />
         ) : null}
+        {this.props.loginedstt === 200 ? <Success tab={"Đăng nhập"} /> : null}
         <div className="container login-container row">
           <div className="col-sm-6 login_img desktop">
             <SVGAdminLogin />
@@ -234,6 +244,7 @@ class Login extends Component {
               <div className="btnAction">
                 <button
                   className="btn signin-btn"
+                  onClick={this.handleError}
                   disabled={!this.state.formvalid}
                 >
                   SIGN IN
@@ -255,7 +266,8 @@ class Login extends Component {
 }
 const mapStateToProps = state => ({
   loginedstt: state.movieReducer.loginedstt,
-  test: state.movieReducer.test
+  test: state.movieReducer.test,
+  errorData: state.movieReducer.errorData
 });
 const mapDispatchToProps = dispatch => {
   return {
