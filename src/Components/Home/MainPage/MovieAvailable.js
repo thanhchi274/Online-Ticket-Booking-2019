@@ -13,6 +13,7 @@ class MovieAvailable extends Component {
       loop: true,
       centeredSlides: true,
       slidesPerView: "auto",
+      grabCursor: true,
       coverflowEffect: {
         rotate: 50,
         stretch: 0,
