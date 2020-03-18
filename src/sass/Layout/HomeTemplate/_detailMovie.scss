@@ -32,7 +32,24 @@
   .detail-description {
     border: none;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     top: 40%;
+    .rating_wrapper {
+      .wrapper_circle {
+        text-align: center;
+        background-color: rgba($main, 0.8);
+        border-radius: 50%;
+        padding: 1vw 1.8vw;
+        h4 {
+          color: $primary;
+        }
+        .starIcon {
+          color: $primary;
+        }
+      }
+    }
     .scrollToBooking {
       padding: 10px 30px;
       background-color: $primary;
