@@ -140,10 +140,10 @@ export default class Navbar extends Component {
                   <li className="nav-item">
                     <Link
                       className="nav-link"
-                      // onClick={() => this.scrollTo(750, 0)}
+                      onClick={() => this.scrollTo(1280, 0)}
                       to="/"
                     >
-                      Theater
+                      About us
                     </Link>
                   </li>
                 </ul>
