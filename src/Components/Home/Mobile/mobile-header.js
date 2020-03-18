@@ -8,7 +8,8 @@ export default class MobileHeader extends Component {
     this.state = {
       menu: "nav_content mobile",
       navigate: false,
-      visibleNavBar: true
+      visibleNavBar: true,
+      menuClass: "mobilecontainer"
     };
   }
 
@@ -19,6 +20,7 @@ export default class MobileHeader extends Component {
       behavior: "smooth"
     });
     this.setState({
+      menuClass: "mobilecontainer",
       menu: "nav_content mobile"
     });
   };
@@ -29,6 +31,7 @@ export default class MobileHeader extends Component {
       behavior: "smooth"
     });
     this.setState({
+      menuClass: "mobilecontainer",
       menu: "nav_content mobile"
     });
   };
@@ -39,6 +42,7 @@ export default class MobileHeader extends Component {
       behavior: "smooth"
     });
     this.setState({
+      menuClass: "mobilecontainer",
       menu: "nav_content mobile"
     });
   };
@@ -59,9 +63,11 @@ export default class MobileHeader extends Component {
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
   }
-  handleClick = e => {
-    e.target.classList.toggle("change");
-    if (e.target.classList.value === "mobilecontainer change") {
+  handleClick = () => {
+    this.state.menuClass === "mobilecontainer"
+      ? this.setState({ menuClass: "mobilecontainer change" })
+      : this.setState({ menuClass: "mobilecontainer" });
+    if (this.state.menuClass === "mobilecontainer") {
       this.setState({
         menu: "nav_content mobile menu"
       });
@@ -109,8 +115,8 @@ export default class MobileHeader extends Component {
   render() {
     const home = JSON.parse(localStorage.getItem("UserHome"));
     return (
-      <nav className="mobile_header ">
-        <div className="logo_mobile mobile col-4">
+      <nav className="mobile_header">
+        <div className="logo_mobile mobile">
           <Link className="logo-img" onClick={this.scrollToTop} to="/">
             <img
               className="img-fluid"
@@ -120,8 +126,8 @@ export default class MobileHeader extends Component {
             />
           </Link>
         </div>
-        <div className="container-mobileHeader col-2">
-          <div className="mobilecontainer" onClick={this.handleClick}>
+        <div className="container-mobileHeader">
+          <div className={this.state.menuClass} onClick={this.handleClick}>
             <div className="bar1"></div>
             <div className="bar2"></div>
             <div className="bar3"></div>
@@ -137,8 +143,12 @@ export default class MobileHeader extends Component {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" onClick={this.scrollToMovie} to="">
-                    Theaters
+                  <Link
+                    className="nav-link"
+                    onClick={this.scrollToFooter}
+                    to=""
+                  >
+                    Our partners
                   </Link>
                 </li>
                 {home ? (

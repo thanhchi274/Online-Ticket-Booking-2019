@@ -86,6 +86,11 @@
         }
       }
     }
+    .closeIcon {
+      color: $white-darker-2;
+      cursor: pointer;
+      font-size: 9vw;
+    }
   }
 }
 @keyframes renderIcon {

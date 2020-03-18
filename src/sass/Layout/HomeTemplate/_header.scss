@@ -84,12 +84,6 @@
 .nav-logout {
   margin-left: 40px;
 }
-.logo-name {
-  margin-top: 1em;
-  color: $white-darker;
-  font-weight: 700;
-  font-size: 18px;
-}
 .dropdown-menu {
   border: none;
   border-radius: 0.5rem;
@@ -152,7 +146,7 @@ button:focus {
     border-bottom: 1px solid rgba($primary, 0.5);
     .logo-img {
       img {
-        width: 45%;
+        max-width: 600px;
       }
     }
     .col-3 {
