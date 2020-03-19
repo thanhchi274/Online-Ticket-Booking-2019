@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "../../../Store/action/index";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 class TabUpdateUser extends Component {
   constructor(props) {
     super(props);
@@ -13,7 +15,10 @@ class TabUpdateUser extends Component {
       hoTen: "",
       maNhom: "",
       maLoaiNguoiDung: "",
-      matKhauCu: ""
+      matKhauCu: "",
+      count: "checkCount",
+      upper: "checkUppercase",
+      number: "checkNumber"
     };
   }
   handleSubmit = e => {
@@ -21,11 +26,15 @@ class TabUpdateUser extends Component {
     e.preventDefault();
     let updatedUser = { ...this.state };
     let taiKhoan = this.state.taiKhoan;
-    if (this.state.matKhauCu === UserInfo.matKhau) {
+    if (
+      this.state.matKhauCu === UserInfo.matKhau &&
+      this.state.count === "checkCount checked" &&
+      this.state.upper === "checkUppercase checked" &&
+      this.state.number === "checkNumber checked"
+    ) {
       this.props.updateUser(updatedUser);
-    } else {
-      alert("Sai Mật Khẩu Cũ");
     }
+
     this.setState(
       {
         ...this.state
@@ -43,6 +52,44 @@ class TabUpdateUser extends Component {
       [name]: value
     });
   };
+  handleChangeMatKhau = e => {
+    let target = e.target;
+    let value = target.value;
+    let checkUpper = "(?=.*[A-Z])";
+    let checkNumber = "[0-9]";
+    this.setState(
+      {
+        matKhau: value
+      },
+      () => {
+        this.state.matKhau.length >= 4
+          ? this.setState({
+              count: "checkCount checked"
+            })
+          : this.setState({
+              count: "checkCount"
+            });
+        if (this.state.matKhau.match(checkUpper)) {
+          this.setState({
+            upper: "checkUppercase checked"
+          });
+        } else {
+          this.setState({
+            upper: "checkUppercase"
+          });
+        }
+        if (this.state.matKhau.match(checkNumber)) {
+          this.setState({
+            number: "checkNumber checked"
+          });
+        } else {
+          this.setState({
+            number: "checkNumber"
+          });
+        }
+      }
+    );
+  };
   componentDidMount() {
     let UserHome = JSON.parse(localStorage.getItem("UserHome"));
     let taiKhoan = UserHome.taiKhoan;
@@ -59,6 +106,7 @@ class TabUpdateUser extends Component {
     });
   }
   render() {
+    let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
     return (
       <>
         <form className="updateUser" onSubmit={this.handleSubmit}>
@@ -80,15 +128,31 @@ class TabUpdateUser extends Component {
               type="password"
               className="form-control"
               name="matKhau"
-              onChange={this.handleChange}
+              onChange={this.handleChangeMatKhau}
               placeholder="Nhập Password"
             />
+            <div className="passwordCheck">
+              <div className={this.state.count}>
+                <FontAwesomeIcon icon={faCheck} />
+                <p>Mật khẩu có ít nhất 4 kí tự</p>
+              </div>
+              <div className={this.state.upper}>
+                <FontAwesomeIcon icon={faCheck} />
+                <p>Mật khẩu có ít nhất 1 kí tự in hoa</p>
+              </div>
+              <div className={this.state.number}>
+                <FontAwesomeIcon icon={faCheck} />
+                <p>Mật khẩu có ít nhất 1 số</p>
+              </div>
+            </div>
           </div>
 
           <button
             type="submit"
             className="btn btnUpdate"
-            onClick={this.handleClick}
+            onClick={
+              this.state.matKhauCu !== UserInfo.matKhau ? this.props.error : ""
+            }
           >
             Cập nhật
           </button>

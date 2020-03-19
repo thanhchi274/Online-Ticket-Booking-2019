@@ -4,6 +4,7 @@ import * as Action from "../../../Store/action/index";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
+import Success from "../../success";
 class DetailInfo extends Component {
   constructor(props) {
     super(props);
@@ -112,7 +113,7 @@ class DetailInfo extends Component {
               </div>
               <hr />
               <div className="comp">
-                <p className="col-sm-3">Tài Khoản:</p>
+                <p>Tài Khoản:</p>
                 <span>
                   {UserInfo ? (
                     UserInfo.taiKhoan
@@ -122,7 +123,7 @@ class DetailInfo extends Component {
                 </span>
               </div>
               <div className="comp">
-                <p className="col-sm-3">Họ và tên:</p>
+                <p>Họ và tên:</p>
                 {this.state.clicked === false ? (
                   <span>
                     {UserInfo ? (
@@ -134,7 +135,7 @@ class DetailInfo extends Component {
                 ) : (
                   <input
                     type="text"
-                    className="form-control col-sm-4"
+                    className="form-control"
                     name="hoTen"
                     value={this.state.hoTen ? this.state.hoTen : ""}
                     onChange={this.handleChange}
@@ -143,7 +144,7 @@ class DetailInfo extends Component {
                 )}
               </div>
               <div className="comp">
-                <p className="col-sm-1">Email:</p>
+                <p>Email:</p>
                 {this.state.clicked === false ? (
                   <span>
                     {UserInfo ? (
@@ -155,7 +156,7 @@ class DetailInfo extends Component {
                 ) : (
                   <input
                     type="email"
-                    className="form-control col-sm-4"
+                    className="form-control"
                     name="email"
                     value={this.state.email}
                     onChange={this.handleChange}
@@ -164,7 +165,7 @@ class DetailInfo extends Component {
                 )}
               </div>
               <div className="comp">
-                <p className="col-sm-3">Số điện thoại:</p>
+                <p>Số điện thoại:</p>
                 {this.state.clicked === false ? (
                   <span>
                     {UserInfo ? (
@@ -176,7 +177,7 @@ class DetailInfo extends Component {
                 ) : (
                   <input
                     type="text"
-                    className="form-control col-sm-4"
+                    className="form-control"
                     name="soDt"
                     value={this.state.soDt}
                     onChange={this.handleChange}
