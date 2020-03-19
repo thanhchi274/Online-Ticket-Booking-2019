@@ -11,27 +11,26 @@ class TicketHistory extends Component {
       movieData: []
     };
   }
- async componentDidMount() {
-   try{
-     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-     const group1 = _.groupBy(UserInfo.thongTinDatVe, "ngayDat");
+  async componentDidMount() {
+    try {
+      let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
+      const group1 = _.groupBy(UserInfo.thongTinDatVe, "ngayDat");
       let UserHome = JSON.parse(localStorage.getItem("UserHome"));
-       let taiKhoan = UserHome.taiKhoan;
-       this.props.getUserInformation({taiKhoan});
-       this.setState({
-         taiKhoan,
-         movieData: group1,
-         matKhau:UserInfo.matKhau,
-         email:UserInfo.email,
-         soDt:UserInfo.soDT,
-         hoTen:UserInfo.hoTen,
-         maNhom:UserHome.maNhom,
-         maLoaiNguoiDung:UserHome.maLoaiNguoiDung,
-       });
-   }
-   catch(err){
-    return <Redirect to ="/" />
-   }
+      let taiKhoan = UserHome.taiKhoan;
+      this.props.getUserInformation({ taiKhoan });
+      this.setState({
+        taiKhoan,
+        movieData: group1,
+        matKhau: UserInfo.matKhau,
+        email: UserInfo.email,
+        soDt: UserInfo.soDT,
+        hoTen: UserInfo.hoTen,
+        maNhom: UserHome.maNhom,
+        maLoaiNguoiDung: UserHome.maLoaiNguoiDung
+      });
+    } catch (err) {
+      return <Redirect to="/" />;
+    }
   }
   render() {
     let UserData = this.state.movieData;
@@ -145,7 +144,7 @@ class TicketHistory extends Component {
   }
 }
 const mapStateToProps = state => ({
-  userInformation: state.movieReducer.userInformation,
+  userInformation: state.movieReducer.userInformation
 });
 const mapDispatchToProps = dispatch => {
   return {

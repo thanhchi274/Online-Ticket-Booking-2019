@@ -302,9 +302,13 @@ export const actUpdateUserInformation = user => {
     })
       .then(result => {
         setTimeout(function() {
-          alert("Cập nhật thành công");
+          window.location.reload();
         }, 500);
-        dispatch(result.data);
+        dispatch({
+          type: ActionTypes.UPDATESUCCESS,
+          success: true
+        });
+        return result;
       })
       .catch(err => {
         return err;

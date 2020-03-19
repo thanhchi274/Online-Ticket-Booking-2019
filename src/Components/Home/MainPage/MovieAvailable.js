@@ -33,7 +33,7 @@ class MovieAvailable extends Component {
   }
   renderHTML = () => {
     let { listMovie } = this.props;
-    return listMovie.map((movie, index) => {
+    return listMovie.slice(0, 21).map((movie, index) => {
       const date = Date(movie.ngayKhoiChieu);
       const formattedDate = Moment(date).format("LL");
       return (

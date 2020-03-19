@@ -177,6 +177,8 @@ button:focus {
     }
   }
   .nav_content {
+    overflow: auto;
+    white-space: nowrap;
     background-color: $main;
     width: 60%;
     text-align: center;

@@ -18,7 +18,8 @@ let initialState = {
   signuped: "",
   theaterSchedule: [],
   errorData: "",
-  errorSignup: ""
+  errorSignup: "",
+  success: false
 };
 const movieReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -56,6 +57,10 @@ const movieReducer = (state = initialState, action) => {
       state.theaterDateInformation = action.theaterDateInformation;
       return { ...state };
     }
+    case ActionType.UPDATESUCCESS:
+      state.success = action.success;
+      console.log(state.success);
+      return { ...state };
     case ActionType.GET_COMMENT: {
       state.comment = action.comment;
       return { ...state };

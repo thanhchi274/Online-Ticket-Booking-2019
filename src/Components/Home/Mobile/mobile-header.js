@@ -37,7 +37,7 @@ export default class MobileHeader extends Component {
   };
   scrollToFooter = () => {
     window.scroll({
-      top: 1400,
+      top: 50000,
       left: 0,
       behavior: "smooth"
     });

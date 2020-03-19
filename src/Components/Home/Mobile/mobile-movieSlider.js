@@ -13,7 +13,7 @@ class MobileMovieSlider extends Component {
   renderHTML() {
     if (this.props.listMovie) {
       if (this.state.more === true) {
-        return this.props.listMovie.slice(0, 14).map((item, index) => {
+        return this.props.listMovie.slice(0, 21).map((item, index) => {
           return (
             <div className="movie_card mb-3" key={index}>
               <Link className="movie_link" to={`/detail-movie/${item.maPhim}`}>

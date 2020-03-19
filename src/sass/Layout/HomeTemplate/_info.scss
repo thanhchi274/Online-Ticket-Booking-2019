@@ -13,6 +13,23 @@
     background-color: $primary;
     color: $white-darker-2;
   }
+
+  .passwordCheck {
+    margin-top: 2vh;
+    .checkCount,
+    .checkUppercase,
+    .checkNumber {
+      display: flex;
+      align-items: center;
+      font-size: 1.3vw;
+      p {
+        margin: 0 1vw;
+      }
+      &.checked {
+        color: $primary;
+      }
+    }
+  }
 }
 .info_cover {
   display: flex;
@@ -49,6 +66,9 @@
     }
     form {
       margin: 40px auto;
+      .form-control {
+        max-width: 20vw;
+      }
       .form-group {
         label {
           font-size: 16px;
@@ -68,7 +88,8 @@
         }
       }
       .editButton {
-        margin-left: 40%;
+        margin: 2vh auto;
+        max-width: 170px;
         .btn_update {
           background-color: $primary;
           color: $white-darker-2;
@@ -162,8 +183,24 @@
       }
     }
   }
+  .info_cover {
+    .userInformation {
+      form {
+        .form-control {
+          max-width: 50vw;
+        }
+      }
+    }
+  }
   .updateUser {
     width: 100%;
+    .passwordCheck {
+      .checkCount,
+      .checkUppercase,
+      .checkNumber {
+        font-size: 3.5vw;
+      }
+    }
   }
   .info_cover {
     display: flex;
