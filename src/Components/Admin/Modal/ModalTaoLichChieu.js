@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import moment from "moment";
 import _ from 'lodash';
+import { TimePicker } from 'antd';
 class ModalAddMovie extends Component {
   _edited = false;
   constructor(props) {
@@ -14,7 +15,8 @@ class ModalAddMovie extends Component {
       giaVe:0,
       cumRap:"",
       defaultTheater:"BHDStar",
-      noiChieu:""
+      noiChieu:"",
+      gioChieu:""
     };
   }
   componentDidMount(){
@@ -40,13 +42,18 @@ handleLocationTheater = async e=>{
     noiChieu:e.target.value
   })
 }
+timeChange= (time, timeString)=>{
+  this.setState({
+    gioChieu: timeString
+  })
+}
 
   handleSubmitEdit = async e => {
     e.preventDefault();
-    console.log(this.state)
-    let ngayChieuGioChieu = moment.utc(this.state.ngayChieuGioChieu).format("DD/MM/YYYY hh:mm:ss")
+    let gioChieu = this.state.gioChieu
+    let ngayChieu = moment.utc(this.state.ngayChieuGioChieu).format("DD/MM/YYYY")
+    let ngayChieuGioChieu = `${ngayChieu} ${gioChieu}`
     let lichChieu = {...this.state,ngayChieuGioChieu}
-    console.log(lichChieu)
     this.props.addSchedule(lichChieu)
   };
   renderDanhSachCumRap = () => {
@@ -113,6 +120,12 @@ handleLocationTheater = async e=>{
                     name="ngayChieuGioChieu"
                     id="ngayKhơiChieu"
                   />
+                </div>
+                <div className="form-group">
+                  <label>Giờ Khởi Chiếu:</label>
+                  <div>
+                  <TimePicker onChange={this.timeChange} defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />,
+                  </div>
                 </div>
                 <div className="form-group">
                   <label>Cụm Rạp:</label>

@@ -27,6 +27,15 @@
 }
 #ModalAdd{
     background-color: $dark-25;
+    .modal-content{
+        form{
+            label{
+                font-size: 19px;
+                font-weight: 700;
+                font-family: Helvetica;
+            }
+        }
+    }
     .btnADDMovie{
         position: relative;
         right:5%;

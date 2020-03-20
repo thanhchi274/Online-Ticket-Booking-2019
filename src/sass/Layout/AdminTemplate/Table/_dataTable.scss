@@ -48,12 +48,8 @@
   /*//////////////////////////////////////////////////////////////////
   [ Table ]*/
   
-  .limiter {
-    width:87%;
-  }
-  
   .container-table100 {
-    width: 100%;
+    margin-bottom: 3vh!important;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -65,7 +61,8 @@
   }
   
   .wrap-table100 {
-    width: 1650px;
+    width: 80.5vw;
+    margin:0 auto;
   }
   
   /*//////////////////////////////////////////////////////////////////
@@ -269,6 +266,9 @@
     background-color: #cccccc;
   }
   .selectEntries{
+    .MuiFormControl-root{
+      z-index: 0!important;
+    }
     padding-left:15px!important;
     height:45px;
     span{

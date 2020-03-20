@@ -190,7 +190,7 @@ class UserManagement extends Component {
       <div>
         <div className="limiter">
         <ModalAddUser />
-          <div className="selectEntries d-flex">
+          <div className="selectEntries mb-4 d-flex">
             <select className="mr-5" onChange={this.handlingChange}>
               <SelectEntriesOption />
             </select>

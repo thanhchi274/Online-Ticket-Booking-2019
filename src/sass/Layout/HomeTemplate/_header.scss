@@ -70,6 +70,10 @@
       text-decoration: none;
     }
   }
+  .active {
+    color: $primary;
+    text-shadow: 0 0 10px $primary, 0 0 40px $primary, 0 0 80px $primary;
+  }
 }
 .navbar--hidden-main {
   @extend .navbar;
@@ -94,10 +98,6 @@
       font-weight: 700;
     }
   }
-}
-.active {
-  color: $primary !important;
-  text-shadow: 0 0 10px $primary, 0 0 40px $primary, 0 0 80px $primary;
 }
 .nav-link {
   color: $white-darker-2;

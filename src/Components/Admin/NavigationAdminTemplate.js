@@ -27,7 +27,7 @@ export default class Navbar extends Component {
     render() {
         return (
             <>
-            <nav id="collapsibleNavbar" 
+            <nav id="collapsibleNavbar-admin" 
              className={
               !this.state.visible
                 ? " navbar-expand row navbar-light bg-white topbar  shadow"

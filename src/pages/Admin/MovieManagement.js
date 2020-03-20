@@ -153,7 +153,7 @@ handleAdd = e=>{
     return (
       <div>
         <div className="limiter MovieComponent">
-          <div className="selectEntries d-flex">
+          <div className="selectEntries mb-4 d-flex">
             <select onChange={this.handlingChange}>
             <SelectEntriesOption />
             </select>
