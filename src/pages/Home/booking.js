@@ -59,9 +59,7 @@ class Booking extends Component {
   timViTri = maGhe => {
     let viTri = -1;
     this.state.danhSachVe.map((item, index) => {
-      if (item.maGhe === maGhe) {
-        return (viTri = index);
-      }
+    return  (item.maGhe === maGhe)?  (viTri = index): null
     });
     return viTri;
   };
@@ -145,9 +143,8 @@ class Booking extends Component {
         <div
           className="modal fade"
           id="exampleModal"
-          tabindex="-1"
+          tabIndex="-1"
           role="dialog"
-          aria-labelledby="exampleModalLabel"
           aria-hidden="true"
         >
           <div className="modal-dialog" role="document">
@@ -164,7 +161,7 @@ class Booking extends Component {
               <div className="modal-footer">
                 <button
                   type="button"
-                  class="btnCloseErrForm btn btn-secondary"
+                  className="btnCloseErrForm btn btn-secondary"
                   data-dismiss="modal"
                 >
                   Close
@@ -223,7 +220,6 @@ class Booking extends Component {
         </div>
       );
     }
-    const id = this.props.match.params.id;
     if (localStorage.getItem("UserHome") === null) {
       alert("Bạn phải đăng nhập tài khoản trước khi đặt vé");
       return <Redirect to="/login" />;
@@ -238,13 +234,13 @@ class Booking extends Component {
               {room.thongTinPhim ? room.thongTinPhim.tenPhim : ""}
             </h3>
             <div className="mb-3 thongTinSuatChieu">
-              <div classList="thongTinSuatChieu_tenPhim">
+              <div classlist="thongTinSuatChieu_tenPhim">
                 <span>
                   {" "}
                   {room.thongTinPhim ? room.thongTinPhim.tenCumRap : ""}
                 </span>
               </div>
-              <div classList="thongTinSuatChieu_rapChieu">
+              <div classlist="thongTinSuatChieu_rapChieu">
                 <span>
                   {" "}
                   {room.thongTinPhim ? room.thongTinPhim.tenRap : ""} -{" "}
@@ -394,7 +390,7 @@ class Booking extends Component {
         </div>
         <div className="ticketFooter-container mobile">
           <div className="seat_mobile">{this.renderTicket()}</div>
-          <a
+          <a href="a"
             className="pay_button"
             onClick={
               this.state.danhSachVe.length !== 0

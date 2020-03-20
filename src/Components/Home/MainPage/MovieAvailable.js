@@ -38,13 +38,13 @@ class MovieAvailable extends Component {
       const formattedDate = Moment(date).format("LL");
       return (
         <div key={index} className="swiper-slide">
-          <div className="imgBx">
+          <Link className="imgBx" to={`/detail-movie/${movie.maPhim}`}>
             <img
               className="container-fluid"
               alt="MovieAvailable"
               src={movie.hinhAnh}
             />
-          </div>
+          </Link>
           <div className="movie-detail">
             <Link to={`/detail-movie/${movie.maPhim}`}>{movie.tenPhim}</Link>
             <p>Premiere Date: {formattedDate}</p>

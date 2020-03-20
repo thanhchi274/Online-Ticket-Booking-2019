@@ -59,7 +59,6 @@ const movieReducer = (state = initialState, action) => {
     }
     case ActionType.UPDATESUCCESS:
       state.success = action.success;
-      console.log(state.success);
       return { ...state };
     case ActionType.GET_COMMENT: {
       state.comment = action.comment;

@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../../../Store/action";
 class ModalEditUser extends Component {
-  _edited = false;
   constructor(props) {
     super(props);
     this.state = {
@@ -28,9 +27,6 @@ class ModalEditUser extends Component {
         maNhom: "GP01"
       });
     }
-    if (this._edited) {
-      this.props.getUserList();
-    }
   }
   handleClose = e => {
     this.props.getUserList();
@@ -45,7 +41,6 @@ class ModalEditUser extends Component {
     e.preventDefault();
     let user = this.state;
     await this.props.updateUserAdminOnly(user);
-    this._edited = true;
   };
   render() {
     return (
@@ -100,6 +95,17 @@ class ModalEditUser extends Component {
                     placeholder="Nhập số điện thoại"
                   />
                 </div>
+                <div className="form-group choiceTypeUser">
+                      <label>Mã Loại Người Dùng:</label>
+                      <select 
+                      name="maLoaiNguoiDung"
+                      onChange={this.handleChangeEdit}
+                      >
+                        <option value="">Mời Bạn Chọn</option>
+                        <option value="KhachHang">Khách Hàng</option>
+                        <option value="QuanTri">Quản Trị</option>
+                      </select>
+                    </div>
                 <div className="form-group">
                   <label>Email:</label>
                   <input

@@ -28,13 +28,6 @@ function App() {
         <Switch>
           {showMenuHome(routeHome)}
           {showMenuAdmin(routeAdmin)}
-          {/* Trang chủ
-      <Route path="/" exact component={Home} />
-      {/* Trang About */}
-          {/* <Route path="/about"  component={About}/> */}
-          {/* Trang list Movie */}
-          {/* <Route path="/list-movie" component={ListMovie}/>  */} */
-          {/* Phải luôn để page not found cuối cùng */}
           <Route path="/admin" component={Admin} />
           <Route path="" component={Pagenotfound} />
         </Switch>

@@ -1,5 +1,8 @@
  #myModal{
     background-color: $dark-25;
+    .modal-content{
+        margin-top:15vh;
+    }
 }
 .limiter{
     .btnADDUSER{
@@ -70,7 +73,9 @@
 }
 #myModalAdd{
     background-color: $dark-25;
-    padding-top:2vh;
+    .modal-content{
+        margin-top:15vh;
+    }
     .form-group{
         input{
             width: 460px;

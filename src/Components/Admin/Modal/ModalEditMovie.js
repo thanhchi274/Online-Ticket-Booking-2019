@@ -51,7 +51,6 @@ class ModalEditMovie extends Component {
   };
   handleSubmitEdit = async e => {
     e.preventDefault();
-    console.log(this.state)
     let ngayKhoiChieu = moment.utc(this.state.ngayKhoiChieu).format("DD/MM/YYYY")
     let movie = {...this.state,ngayKhoiChieu}
     let File = this.state.file
@@ -59,7 +58,6 @@ class ModalEditMovie extends Component {
     formData.append('File',File)
     formData.append('tenphim',this.state.tenPhim)
     formData.append('manhom','GP01')
-    console.log(Array.from(formData))
     this.props.updateMovie(movie,formData)
     return (this.state.file)? (this.props.addImageMovie(formData)):null
   };
@@ -128,7 +126,7 @@ class ModalEditMovie extends Component {
                     onChange={this.handleChangeEdit}
                     value={moment.utc(detailMovie.ngayKhoiChieu).format("YYYY-MM-DD")|| ""}
                     name="ngayKhoiChieu"
-                    id="ngayKhơiChieu"
+           
                   />
                 </div>
                 <div className="form-group">

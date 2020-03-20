@@ -30,14 +30,10 @@ class ModalAddMovie extends Component {
     let { name, value } = e.target;
       this.setState({
         [name]: value,
-      },()=>console.log(this.state));
+      });
   };
-  UNSAFE_componentWillReceiveProps(nextProps){
-    console.log(nextProps)
-}
   handleSubmitEdit = async e => {
     e.preventDefault();
-    console.log(this.state)
     let ngayKhoiChieu = moment.utc(this.state.ngayKhoiChieu).format("DD/MM/YYYY")
     let movie = {...this.state,ngayKhoiChieu}
     let File = this.state.file

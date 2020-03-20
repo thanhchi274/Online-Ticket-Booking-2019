@@ -135,7 +135,6 @@ class Login extends Component {
   };
   handleShowPassword = e => {
     e.target.classList.toggle("hide");
-    console.log(e.target.classList);
     if (
       e.target.classList.value ===
         "svg-inline--fa fa-eye fa-w-18 PassIcon hide" ||

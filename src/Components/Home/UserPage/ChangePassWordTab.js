@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as Action from "../../../Store/action/index";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faCheck } from "@fortawesome/free-solid-svg-icons";
 class TabUpdateUser extends Component {
   constructor(props) {
     super(props);

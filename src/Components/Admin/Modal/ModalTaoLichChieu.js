@@ -29,7 +29,7 @@ class ModalAddMovie extends Component {
     let { name, value } = e.target;
     this.setState({
       [name]: value,
-    },()=>console.log(this.state));
+    });
   };
 handleChangeCumRap= async e=>{
   this.setState({
@@ -78,7 +78,6 @@ timeChange= (time, timeString)=>{
      let test1= _.filter(this.props.theaterSchedule, {maCumRap:this.state.noiChieu});
     return Object.keys(test1).map((value,index)=>{
       let danhSachRap = test1[value].danhSachRap
-      console.log(danhSachRap)
       return danhSachRap.map((theater,index2)=>{
         return(
           <option key={index2} value={theater.maRap}>{theater.tenRap}</option>
@@ -118,7 +117,7 @@ timeChange= (time, timeString)=>{
                     onChange={this.handleChangeEdit}
                     value={moment.utc(detailMovie.ngayChieuGioChieu).format("YYYY-MM-DD")|| ""}
                     name="ngayChieuGioChieu"
-                    id="ngayKhơiChieu"
+             
                   />
                 </div>
                 <div className="form-group">
