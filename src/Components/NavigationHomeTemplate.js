@@ -49,7 +49,11 @@ export default class Navbar extends Component {
             <div className="dropdown">
               <button
                 type="button"
-                className="dropdown-toggle logined_button"
+                className={
+                  obj.maLoaiNguoiDung === "QuanTri"
+                    ? "dropdown-toggle logined_button vip"
+                    : "dropdown-toggle logined_button"
+                }
                 data-toggle="dropdown"
               >
                 <FontAwesomeIcon className="user_icon" icon={faUser} />

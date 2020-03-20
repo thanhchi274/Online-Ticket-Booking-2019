@@ -123,7 +123,10 @@
   .dropdown-toggle {
     background-color: transparent !important;
     border: none;
-    color: $white-darker;
+    color: $white-darker !important;
+  }
+  .vip {
+    color: $primary !important;
   }
   .user_icon {
     margin-right: 10px;
