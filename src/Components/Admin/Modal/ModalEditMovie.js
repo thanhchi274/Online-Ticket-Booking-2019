@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import React, { Component } from "react";
 import moment from "moment";
 class ModalEditMovie extends Component {
-  _edited = false;
   constructor(props) {
     super(props);
     this.state = {

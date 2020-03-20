@@ -36,7 +36,7 @@ class UserManagement extends Component {
     this.receivedData();
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
-      if ((this.state.dataUser !== this.props.userList)&&(this.state.keyWord ==="")) {
+      if ((this.state.dataUser !== this.props.userList)&&(this.state.keyWord ==="") || this.state.check) {
         this.setState(
           {
             dataUser: nextProps.userList
@@ -103,7 +103,7 @@ class UserManagement extends Component {
   };
 
  async receivedData() {  
-    const data = (this.state.keyWord==="")?(await this.state.dataUser):(await this.props.keyWord)
+    const data = (await this.state.keyWord==="")?( await this.state.dataUser):( this.props.keyWord)
         const slice =await data.slice(
           this.state.offset,
           this.state.offset + this.state.perPage
@@ -229,7 +229,7 @@ class UserManagement extends Component {
             </div>
           </div>
         </div>
-       {this.state.check ? <ModalEditUser typeUser={this.state.maLoaiNguoiDung} idUser={this.state.taiKhoan} />:null}
+       {<ModalEditUser typeUser={this.state.maLoaiNguoiDung} idUser={this.state.taiKhoan} />}
       </div>
     );
   }
@@ -238,7 +238,6 @@ const mapStateToProps = state => {
   return {
     keyWord: state.movieReducer.keyWord,
     userList: state.movieReducer.userList,
-    loading: state.movieReducer.loading,
     userInformation: state.movieReducer.userInformation
   };
 };
@@ -252,9 +251,6 @@ const mapDispatchToProps = dispatch => {
     },
     getUserInformation: tk => {
       dispatch(action.actLayThongTinUser(tk));
-    },
-    addUser: user => {
-      dispatch(action.actThemNguoiDung(user));
     },
     getUserList: () => {
       dispatch(action.actGetUserList());

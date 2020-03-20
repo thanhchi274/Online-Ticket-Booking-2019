@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as action from "../../Store/action";
 import * as Icon from "@material-ui/icons";
-// import * as Core from "@material-ui/core";
 import IconButton from "@material-ui/core/IconButton";
 import TableMovieHead from "../../Components/Admin/TableandSideBar/TableHead";
 import SelectEntriesOption from "../../Components/Admin/SelectEntriesOption"
@@ -71,7 +70,6 @@ handleAdd = e=>{
     let maPhim  = e.target.value
     this.setState({
       maPhim,
-      edited:true,
     },()=>this.props.getDetailMovie(maPhim))
   };
   async receivedData(){

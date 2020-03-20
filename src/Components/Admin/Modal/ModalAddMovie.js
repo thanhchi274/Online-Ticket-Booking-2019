@@ -136,7 +136,6 @@ class ModalAddMovie extends Component {
 const mapStateToProps = state => {
   return {
     movie: state.movieReducer.movie,
-    checkedSucessMovie: state.movieReducer.checkedSucessMovie
   };
 };
 const mapDispatchToProps = dispatch => {
@@ -146,9 +145,6 @@ const mapDispatchToProps = dispatch => {
     },
     addImageMovie: image => {
       dispatch(action.actthemHinhAnhPhim(image));
-    },
-    checkedSuccess: ()=>{
-      dispatch(action.actUploadMovieSuccess())
     },
     addMovie: tk => {
         dispatch(action.actThemMovie(tk));

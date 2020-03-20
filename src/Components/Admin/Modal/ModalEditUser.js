@@ -29,13 +29,13 @@ class ModalEditUser extends Component {
     }
   }
   handleClose = e => {
-    this.props.getUserList();
+    this.props.getUserList()
   };
   handleChangeEdit = e => {
     let { name, value } = e.target;
     this.setState({
       [name]: value
-    });
+    },()=>console.log(this.state));
   };
   handleSubmitEdit = async e => {
     e.preventDefault();
@@ -43,6 +43,7 @@ class ModalEditUser extends Component {
     await this.props.updateUserAdminOnly(user);
   };
   render() {
+    let user = this.state
     return (
       <div id="myModal" className="modal modalEditUser fade" data-backdrop="static" data-keyboard="false" role="dialog">
         <div className="modal-dialog">
@@ -55,7 +56,7 @@ class ModalEditUser extends Component {
                     type="text"
                     className="form-control"
                     name="taiKhoan"
-                    value={this.state.taiKhoan}
+                    value={user.taiKhoan || ""}
                     onChange={this.handleChangeEdit}
                     placeholder="Nhập Họ và Tên"
                     readOnly
@@ -67,7 +68,7 @@ class ModalEditUser extends Component {
                     type="text"
                     className="form-control"
                     name="hoTen"
-                    value={this.state.hoTen}
+                    value={user.hoTen || ""}
                     onChange={this.handleChangeEdit}
                     placeholder="Nhập Họ và Tên"
                   />
@@ -79,7 +80,7 @@ class ModalEditUser extends Component {
                     className="form-control"
                     name="matKhau"
                     autoComplete="password"
-                    value={this.state.matKhau}
+                    value={user.matKhau || ""}
                     onChange={this.handleChangeEdit}
                     placeholder="Nhập Password"
                   />
@@ -90,7 +91,7 @@ class ModalEditUser extends Component {
                     type="text"
                     className="form-control"
                     name="soDt"
-                    value={this.state.soDt}
+                    value={user.soDt || ""}
                     onChange={this.handleChangeEdit}
                     placeholder="Nhập số điện thoại"
                   />
@@ -112,7 +113,7 @@ class ModalEditUser extends Component {
                     type="email"
                     className="form-control"
                     name="email"
-                    value={this.state.email}
+                    value={user.email || ""}
                     onChange={this.handleChangeEdit}
                     placeholder="Nhập Email"
                   />
@@ -145,9 +146,6 @@ const mapDispatchToProps = dispatch => {
   return {
     updateUserAdminOnly: tk => {
       dispatch(action.actUpdateUserAdminOnly(tk));
-    },
-    getUserInformation: tk => {
-      dispatch(action.actLayThongTinUser(tk));
     },
     getUserList: () => {
       dispatch(action.actGetUserList());
