@@ -15,8 +15,8 @@ class CommentList extends Component {
       hoTen: "",
       nhanXet: "",
       danhGia: "",
-      value: 3,
-      smallValue: 3,
+      value: 5,
+      smallValue: 5,
       change: false,
       commentList: []
     };
@@ -30,6 +30,7 @@ class CommentList extends Component {
       value: danhGia
     });
   }
+
   componentDidUpdate() {
     const id = this.props.id;
     this.props.actGetCommentList(id);
@@ -55,6 +56,9 @@ class CommentList extends Component {
         },
         () => {
           this.props.actComment(this.state, this.state.maPhim);
+          this.setState({
+            nhanXet: ""
+          });
         }
       );
     }
@@ -287,6 +291,7 @@ class CommentList extends Component {
               type="text"
               className="commentArea"
               placeholder="Hãy cho mọi người biết suy nghĩ của bạn về bộ phim"
+              value={this.state.nhanXet}
               onChange={this.handleChange}
             ></input>
             <div className="modaSwitchlLogin">
