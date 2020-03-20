@@ -161,13 +161,21 @@ class Login extends Component {
       fail: false
     });
   };
+  renderSuccess = loginedstt => {
+    return loginedstt === 200 ? <Success tab={"Đăng nhập"} /> : null;
+  };
+  renderError = loginedstt => {
+    return this.state.fail === true &&
+      this.props.errorData &&
+      loginedstt !== 200 ? (
+      <Fail tab={this.props.errorData} fail={this.toggleError} />
+    ) : null;
+  };
   renderHTML = () => {
     return (
       <div className="login-wrapper">
-        {this.state.fail === true && this.props.errorData ? (
-          <Fail tab={this.props.errorData} fail={this.toggleError} />
-        ) : null}
-        {this.props.loginedstt === 200 ? <Success tab={"Đăng nhập"} /> : null}
+        {this.renderSuccess(this.props.loginedstt)}
+        {this.renderError(this.props.loginedstt)}
         <div className="container login-container row">
           <div className="col-sm-6 login_img desktop">
             <SVGAdminLogin />
