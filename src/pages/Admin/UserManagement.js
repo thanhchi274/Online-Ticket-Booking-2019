@@ -36,7 +36,7 @@ class UserManagement extends Component {
     this.receivedData();
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
-      if ((this.state.dataUser !== this.props.userList)&&(this.state.keyWord ==="") || this.state.check) {
+      if (((this.state.dataUser !== this.props.userList)&&(this.state.keyWord ==="")) || this.state.check) {
         this.setState(
           {
             dataUser: nextProps.userList

@@ -35,7 +35,7 @@ class ModalEditUser extends Component {
     let { name, value } = e.target;
     this.setState({
       [name]: value
-    },()=>console.log(this.state));
+    });
   };
   handleSubmitEdit = async e => {
     e.preventDefault();
