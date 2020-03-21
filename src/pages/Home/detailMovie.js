@@ -51,15 +51,10 @@ class DetailMovie extends Component {
     this.openModal = this.openModal.bind(this);
   }
   openModal() {
-    this.setState(
-      {
-        isOpen: true,
-        videoid: this.props.movie.trailer.slice(30)
-      },
-      () => {
-        console.log(this.state.videoid);
-      }
-    );
+    this.setState({
+      isOpen: true,
+      videoid: this.props.movie.trailer.slice(30)
+    });
   }
   componentDidMount() {
     const id = this.props.match.params.id;
