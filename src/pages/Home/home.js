@@ -6,7 +6,7 @@ import Carousel from "../../Components/Home/MainPage/carousel";
 import HomeTool from "../../Components/Home/Home-tool/home-tool";
 import MovieAvailable from "../../Components/Home/MainPage/MovieAvailable";
 import Footer from "../../Components/footer";
-import SmallSpinner from "../../Components/Home/DetailMoviePage/smallSpinner";
+import SmallSpinner from "../../Components/smallSpinner";
 import MobileMovieSlider from "../../Components/Home/Mobile/mobile-movieSlider";
 class Home extends Component {
   componentDidMount() {

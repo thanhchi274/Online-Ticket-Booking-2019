@@ -31,6 +31,7 @@ export const actUpdateMovie = user => {
     })
       .then(result => {
         alert("Cập Nhật Thành Công");
+        console.log(user);
         dispatch({
           type: ActionTypes.UPLOAD_MOVIE_IMAGE_CHECKED,
           checkedSucessMovie: true
