@@ -30,7 +30,8 @@ class TabUpdateUser extends Component {
       this.state.matKhauCu === UserInfo.matKhau &&
       this.state.count === "checkCount checked" &&
       this.state.upper === "checkUppercase checked" &&
-      this.state.number === "checkNumber checked"
+      this.state.number === "checkNumber checked" &&
+      this.state.matKhauCu !== this.state.matKhau
     ) {
       this.props.updateUser(updatedUser);
     }
@@ -95,15 +96,17 @@ class TabUpdateUser extends Component {
     let taiKhoan = UserHome.taiKhoan;
     this.props.getUserInformation({ taiKhoan });
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-    this.setState({
-      taiKhoan: UserInfo.taiKhoan,
-      matKhau: UserInfo.matKhau,
-      email: UserInfo.email,
-      soDt: UserInfo.soDT,
-      hoTen: UserInfo.hoTen,
-      maNhom: UserHome.maNhom,
-      maLoaiNguoiDung: UserHome.maLoaiNguoiDung
-    });
+    if (UserInfo && UserHome) {
+      this.setState({
+        taiKhoan: UserInfo.taiKhoan,
+        matKhau: UserInfo.matKhau,
+        email: UserInfo.email,
+        soDt: UserInfo.soDT,
+        hoTen: UserInfo.hoTen,
+        maNhom: UserHome.maNhom,
+        maLoaiNguoiDung: UserHome.maLoaiNguoiDung
+      });
+    }
   }
   render() {
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
@@ -151,7 +154,11 @@ class TabUpdateUser extends Component {
             type="submit"
             className="btn btnUpdate"
             onClick={
-              this.state.matKhauCu !== UserInfo.matKhau ? this.props.error : ""
+              UserInfo
+                ? this.state.matKhauCu !== UserInfo.matKhau
+                  ? this.props.error
+                  : ""
+                : ""
             }
           >
             Cập nhật

@@ -3,6 +3,7 @@ import _ from "lodash";
 import * as Action from "../../../Store/action/index";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import SmallSpinner from "../../smallSpinner";
 class TicketHistory extends Component {
   constructor(props) {
     super(props);
@@ -11,7 +12,7 @@ class TicketHistory extends Component {
       movieData: []
     };
   }
-  async componentDidMount() {
+  componentDidMount() {
     try {
       let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
       const group1 = _.groupBy(UserInfo.thongTinDatVe, "ngayDat");
@@ -32,7 +33,7 @@ class TicketHistory extends Component {
       return <Redirect to="/" />;
     }
   }
-  render() {
+  renderTable = () => {
     let UserData = this.state.movieData;
     return (
       <div className="container-table100" style={{ width: "100%" }}>
@@ -141,6 +142,20 @@ class TicketHistory extends Component {
         </div>
       </div>
     );
+  };
+  render() {
+    let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
+    let UserData = this.state.movieData;
+    if (!UserInfo) {
+      return (
+        <div className="loading-spinner">
+          <SmallSpinner />
+        </div>
+      );
+    }
+    if (UserData) {
+      return this.renderTable();
+    }
   }
 }
 const mapStateToProps = state => ({

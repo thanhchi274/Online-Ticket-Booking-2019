@@ -5,7 +5,6 @@ import Rating from "@material-ui/lab/Rating";
 import Box from "@material-ui/core/Box";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsisV } from "@fortawesome/free-solid-svg-icons";
-import SmallSpinner from "./smallSpinner";
 
 class CommentList extends Component {
   constructor(props) {
@@ -140,13 +139,6 @@ class CommentList extends Component {
 
   renderCommentList = () => {
     const home = JSON.parse(localStorage.getItem("UserHome"));
-    if (!this.props.comment.danhSachComment) {
-      return (
-        <div className="loading-spinner">
-          <SmallSpinner />
-        </div>
-      );
-    }
     if (this.props.comment.danhSachComment) {
       if (this.props.comment.danhSachComment.length !== 0) {
         return this.props.comment.danhSachComment
