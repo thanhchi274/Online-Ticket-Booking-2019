@@ -76,9 +76,6 @@ export default function CenteredTabs(props) {
         <CommentList id={props.id} danhGia={props.movie.danhGia} />
       </TabPanel>
     </Paper>
-    <div className="comment-mobile">
-      <CommentList id={props.id} danhGia={props.movie.danhGia} />
-    </div>
     </React.Fragment>
   );
 }

@@ -9,6 +9,7 @@ import { faPlay, faStar } from "@fortawesome/free-solid-svg-icons";
 import ModalVideo from "react-modal-video";
 import FullWidthTabs from "../../Components/Home/DetailMoviePage/FullWidthTabs";
 import AnchorLink from "react-anchor-link-smooth-scroll";
+import CommentList from "../../Components/Home/DetailMoviePage/commentList";
 
 const DetailMovieDescription = props => (
   <div className="table detail-description">
@@ -122,6 +123,9 @@ class DetailMovie extends Component {
             id={this.props.match.params.id}
           />
         </div>
+        <div className="comment-mobile">
+      <CommentList id={this.props.match.params.id} danhGia={movie.danhGia} />
+    </div>
       </div>
     );
   }
