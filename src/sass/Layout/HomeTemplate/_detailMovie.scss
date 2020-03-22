@@ -338,7 +338,8 @@
   }
   .tabInfo{
     width: 100%!important;
-    height: 100vh!important;
+    height: auto!important;
+    margin-bottom: 1vh!important;
     .play-btn{
       top:50%!important;
     }
