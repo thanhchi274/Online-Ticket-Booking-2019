@@ -31,7 +31,7 @@ const DetailMovieDescription = props => (
         <h4>{props.movie.danhGia}/5</h4>
         <FontAwesomeIcon className="starIcon" icon={faStar} />
       </div>
-      <p>
+      <p className="count-rating-people">
         {props.comment.danhSachComment
           ? props.comment.danhSachComment.length
           : ""}{" "}

@@ -4,6 +4,7 @@
     margin: 0 auto;
   }
   .MuiTypography-root {
+    width: 1000px ;
     .MuiButtonBase-root {
       padding: 0;
       min-width: 88px;
@@ -231,10 +232,6 @@
   width: 86px !important;
   min-width: 86px;
 }
-.MuiTypography-root {
-  width: 1000px !important;
-  max-width: 1000px !important;
-}
 .ant-tabs-nav {
   .ant-tabs-tab-active {
     color: $primary !important;
@@ -312,6 +309,9 @@
   transform: rotate(-45deg);
   z-index: 0;
 }
+.comment-mobile{
+  display: none;
+}
 .btnDayofMovie {
   position: relative;
   padding: 10px 20px;
@@ -328,6 +328,125 @@
     color: $primary;
     &:hover {
       color: #f3558e !important;
+    }
+  }
+}
+@media (max-width: 768px) and (min-width: 320px) {
+  .ant-tabs-content{
+    width: 79vw !important;
+    max-width: 80vw !important;
+  }
+  .tabInfo{
+    width: 100%!important;
+    height: 100vh!important;
+    .img-movie{
+      margin: 0 auto;
+    }
+    .col-sm-8{
+      margin-bottom: 3vh;
+    }
+  }
+  .comment-mobile{
+    display: block;
+    z-index: 1;
+    .container{
+      padding:0;
+      .upComment{
+        width: 100%;
+        border-radius: 0;
+        .commentForm{
+          .modaSwitchlLogin{
+            margin-top: 2vh;
+            margin-left: 25vw;
+          }
+        }
+      }
+      .commentList{
+        width: 100%;
+        hr{
+          display: none!important;
+        }
+        .headerComment{
+          display: block;
+          .guest_intro{
+            margin-bottom: 0.5vh;
+            img{
+              width:15%;
+            }
+          }
+        }
+      }
+    }
+  }
+  .detail-movie{
+    margin-top: 3vh;
+    .table{
+      margin:0!important
+    }
+    .detail-description{
+      top:5%!important
+    }
+    .rating_wrapper{
+      .wrapper_circle{
+        padding:0!important;
+        width: 15vh;
+        height: 15vh;
+        line-height: 5vh;
+        p{
+         margin: 0!important;
+         font-size: 0.85rem;
+        }
+      }
+      .count-rating-people{
+        font-size: 0.75rem;
+        text-align: center;
+      }
+    }
+  }
+  .tabs {
+    width: 100%!important;
+    margin: 0 auto;
+    .MuiTypography-root{
+      max-width: 100vw!important;
+      .ant-tabs-content{
+        width: 79vw !important;
+        max-width: 80vw !important;
+      }
+    }
+  }
+  .MuiTabs-vertical {
+    width: 60px !important;
+    min-width: 60px;
+  }
+  .MuiTypography-root {
+    width: 94%!important;
+    max-width: 100%!important;
+    .MuiButtonBase-root {
+      padding: 0;
+      min-width: 70px!important;
+    }
+  }
+  .MuiPaper-root {
+    .detailSec2{
+      display: none!important;
+    }
+  }
+  .ant-tabs-bar {
+    width: 77vw !important;
+    max-width: 77vw !important;
+    border-bottom: 0px !important;
+  }
+  .theaterIcon {
+    transform: translateX(-2px);
+    width: 70%;
+    margin: 20px 10px 20px 0px;
+  }
+  .detail-movie-intro{
+    .lazy-load-image-background {
+      position: fixed;
+      .detail-movie-intro-image{
+        width: 100vw!important;
+      }
     }
   }
 }
