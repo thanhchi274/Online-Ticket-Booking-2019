@@ -339,6 +339,9 @@
   .tabInfo{
     width: 100%!important;
     height: 88vh!important;
+    .play-btn{
+      top:50%!important;
+    }
     .img-movie{
       margin: 0 auto;
     }
@@ -452,10 +455,89 @@
   }
   .detail-movie-intro{
     .lazy-load-image-background {
+      &:focus{
+        height: 369px;
+      }
       position: fixed;
       .detail-movie-intro-image{
         width: 100vw!important;
       }
+    }
+  }
+  .MuiTabs-flexContainerVertical{
+    overflow-x: hidden;
+  }
+  .modal-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000000;
+    cursor: pointer;
+    opacity: 1;
+    animation-timing-function: ease-out;
+    animation-duration: 0.3s;
+    animation-name: modal-video;
+    -webkit-transition: opacity 0.3s ease-out;
+    -moz-transition: opacity 0.3s ease-out;
+    -ms-transition: opacity 0.3s ease-out;
+    -o-transition: opacity 0.3s ease-out;
+    transition: opacity 0.3s ease-out;
+    .modal-video-body {
+      max-width: 940px;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      display: table;
+      .modal-video-inner {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .modal-video-close-btn{
+      background: transparent;
+      overflow: hidden;
+    border: none;
+      &::before{
+        content: '';
+        transform: rotate(45deg);
+        position: absolute;
+        height: 2px;
+        width: 7%;
+        top: 20%;
+        left: 90%;
+        margin-top: -1px;
+        background: #fff;
+        border-radius: 5px;
+        margin-top: -6px;
+      }
+      &::after{
+        transform: rotate(-45deg);
+        content: '';
+        position: absolute;
+        height: 2px;
+        width: 7%;
+        top: 20%;
+        left: 90%;
+        margin-top: -1px;
+        background: #fff;
+        border-radius: 5px;
+        margin-top: -6px;
+    }
+      
+    }
+    .modal-video-movie-wrap iframe {
+      position: initial;
+      width: 100vw!important;
+      height: 30vh!important;
+      top: 15%;
+      left: 15%;
+      width: 70%;
+      height: 70%;
     }
   }
 }
