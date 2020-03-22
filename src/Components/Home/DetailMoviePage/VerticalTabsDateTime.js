@@ -43,7 +43,8 @@ const useStyles = makeStyles(theme => ({
     background: "linear-gradient(145deg, #151417, #19181c)",
     boxShadow: "8px 8px 5px #0f0f11,-8px -8px 5px #1f1d23",
     display: "flex",
-    height: 540,
+    height: "auto",
+    marginBottom:30,
     borderRadius: 20
   },
   tabs: {
