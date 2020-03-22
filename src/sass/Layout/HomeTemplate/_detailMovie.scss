@@ -354,7 +354,16 @@
       .upComment{
         width: 100%;
         border-radius: 0;
+        .ratingComment{
+          width: 44%;
+        }
         .commentForm{
+          input{
+            &::placeholder{
+              font-size: 12px;
+              font-family: helvetica;;
+            }
+          }
           .modaSwitchlLogin{
             margin-top: 2vh;
             margin-left: 25vw;
