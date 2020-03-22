@@ -455,6 +455,7 @@
   }
   .detail-movie-intro{
     .lazy-load-image-background {
+      margin-top: 3vh;
       &:focus{
         height: 369px;
       }
