@@ -338,7 +338,7 @@
   }
   .tabInfo{
     width: 100%!important;
-    height: 88vh!important;
+    height: 100vh!important;
     .play-btn{
       top:50%!important;
     }
@@ -455,7 +455,7 @@
   }
   .detail-movie-intro{
     .lazy-load-image-background {
-      margin-top: 3vh;
+      margin-top: 3.5vh;
       &:focus{
         height: 369px;
       }
