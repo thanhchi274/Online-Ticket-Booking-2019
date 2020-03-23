@@ -44,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     boxShadow: "8px 8px 5px #0f0f11,-8px -8px 5px #1f1d23",
     display: "flex",
     height: "auto",
-    marginBottom:30,
+    marginBottom: 30,
     borderRadius: 20
   },
   tabs: {
@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
 function VerticalTabs(props) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
-  const [rap, setRap] = useState("");
+  const [rap, setRap] = useState("BHDStar");
   const [theater, setTheater] = useState([]);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -100,13 +100,7 @@ function VerticalTabs(props) {
       return props.theaterInfo.map((item, index) => {
         return (
           <TabPanel key={index} value={value} index={index}>
-            {
-              <DayofMovie
-                movie={props.dateTimeMovie}
-                id={props.id}
-                maRap={rap}
-              />
-            }
+            <DayofMovie movie={props.dateTimeMovie} id={props.id} maRap={rap} />
           </TabPanel>
         );
       });
@@ -123,7 +117,7 @@ function VerticalTabs(props) {
       >
         {renderRap()}
       </Tabs>
-      {rap !== "" ? renderRapContent() : null}
+      {renderRapContent()}
     </div>
   );
 }
