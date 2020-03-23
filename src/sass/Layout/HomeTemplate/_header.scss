@@ -160,6 +160,15 @@ button:focus {
     .logined_mobile {
       display: flex;
       align-items: center;
+      &.vip {
+        .userIcon_mobile {
+          color: $primary;
+          border-color: $primary;
+        }
+        a {
+          color: $primary;
+        }
+      }
       .userIcon_info {
         a {
           font-size: 4.6vw;

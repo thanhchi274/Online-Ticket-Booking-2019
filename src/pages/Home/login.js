@@ -176,7 +176,7 @@ class Login extends Component {
       <div className="login-wrapper">
         {this.renderSuccess(this.props.loginedstt)}
         {this.renderError(this.props.loginedstt)}
-        <div className="container login-container row">
+        <div className=" login-container ">
           <div className="col-sm-6 login_img desktop">
             <SVGAdminLogin />
           </div>

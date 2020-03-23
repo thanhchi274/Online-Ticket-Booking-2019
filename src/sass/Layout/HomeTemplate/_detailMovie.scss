@@ -4,7 +4,7 @@
     margin: 0 auto;
   }
   .MuiTypography-root {
-    width: 1000px ;
+    width: 1000px;
     .MuiButtonBase-root {
       padding: 0;
       min-width: 88px;
@@ -309,7 +309,7 @@
   transform: rotate(-45deg);
   z-index: 0;
 }
-.comment-mobile{
+.comment-mobile {
   display: none;
 }
 .btnDayofMovie {
@@ -332,96 +332,96 @@
   }
 }
 @media (max-width: 768px) and (min-width: 320px) {
-  .ant-tabs-content{
+  .ant-tabs-content {
     width: 79vw !important;
     max-width: 80vw !important;
   }
-  .tabInfo{
-    width: 100%!important;
-    height: auto!important;
-    margin-bottom: 1vh!important;
-    .play-btn{
-      top:50%!important;
+  .tabInfo {
+    width: 100% !important;
+    height: auto !important;
+    margin-bottom: 1vh !important;
+    .play-btn {
+      top: 50% !important;
     }
-    .img-movie{
+    .img-movie {
       margin: 0 auto;
     }
-    .col-sm-8{
+    .col-sm-8 {
       margin-bottom: 3vh;
     }
   }
-  .comment-mobile{
+  .comment-mobile {
     display: block;
     z-index: 1;
-    .container{
-      padding:0;
-      .upComment{
+    .container {
+      padding: 0;
+      .upComment {
         width: 100%;
         border-radius: 0;
-        .ratingComment{
+        .ratingComment {
           width: 44%;
         }
-        .commentForm{
-          input{
-            &::placeholder{
+        .commentForm {
+          input {
+            &::placeholder {
               font-size: 12px;
-              font-family: helvetica;;
+              font-family: helvetica;
             }
           }
-          .modaSwitchlLogin{
+          .modaSwitchlLogin {
             margin-top: 2vh;
             margin-left: 25vw;
           }
         }
       }
-      .commentList{
+      .commentList {
         width: 100%;
-        hr{
-          display: none!important;
+        hr {
+          display: none !important;
         }
-        .headerComment{
+        .headerComment {
           display: block;
-          .guest_intro{
+          .guest_intro {
             margin-bottom: 0.5vh;
-            img{
-              width:15%;
+            img {
+              width: 15%;
             }
           }
         }
       }
     }
   }
-  .detail-movie{
+  .detail-movie {
     margin-top: 6vh;
-    .table{
-      margin:0!important
+    .table {
+      margin: 0 !important;
     }
-    .detail-description{
-      top:5%!important
+    .detail-description {
+      top: 5% !important;
     }
-    .rating_wrapper{
-      .wrapper_circle{
-        padding:0!important;
+    .rating_wrapper {
+      .wrapper_circle {
+        padding: 0 !important;
         width: 15vh;
         height: 15vh;
         line-height: 5vh;
-        p{
-         margin: 0!important;
-         font-size: 0.85rem;
+        p {
+          margin: 0 !important;
+          font-size: 0.85rem;
         }
       }
-      .count-rating-people{
+      .count-rating-people {
         font-size: 0.75rem;
         text-align: center;
       }
     }
   }
   .tabs {
-    width: 100%!important;
+    width: 100% !important;
     margin: 0 auto;
-    .MuiTypography-root{
-      max-width: 100vw!important;
-      .ant-tabs-content{
+    .MuiTypography-root {
+      max-width: 100vw !important;
+      .ant-tabs-content {
         width: 79vw !important;
         max-width: 80vw !important;
       }
@@ -432,16 +432,16 @@
     min-width: 60px;
   }
   .MuiTypography-root {
-    width: 94%!important;
-    max-width: 100%!important;
+    width: 94% !important;
+    max-width: 100% !important;
     .MuiButtonBase-root {
       padding: 0;
-      min-width: 70px!important;
+      min-width: 70px !important;
     }
   }
   .MuiPaper-root {
-    .detailSec2{
-      display: none!important;
+    .detailSec2 {
+      display: none !important;
     }
   }
   .ant-tabs-bar {
@@ -454,19 +454,20 @@
     width: 70%;
     margin: 20px 10px 20px 0px;
   }
-  .detail-movie-intro{
+  .detail-movie-intro {
     .lazy-load-image-background {
       margin-top: 3.5vh;
-      &:focus{
+      &:focus {
         height: 369px;
       }
       position: fixed;
-      .detail-movie-intro-image{
-        width: 100vw!important;
+      z-index: -1;
+      .detail-movie-intro-image {
+        width: 100vw !important;
       }
     }
   }
-  .MuiTabs-flexContainerVertical{
+  .MuiTabs-flexContainerVertical {
     overflow-x: hidden;
   }
   .modal-video {
@@ -500,12 +501,12 @@
         height: 100%;
       }
     }
-    .modal-video-close-btn{
+    .modal-video-close-btn {
       background: transparent;
       overflow: hidden;
-    border: none;
-      &::before{
-        content: '';
+      border: none;
+      &::before {
+        content: "";
         transform: rotate(45deg);
         position: absolute;
         height: 2px;
@@ -517,9 +518,9 @@
         border-radius: 5px;
         margin-top: -6px;
       }
-      &::after{
+      &::after {
         transform: rotate(-45deg);
-        content: '';
+        content: "";
         position: absolute;
         height: 2px;
         width: 7%;
@@ -529,13 +530,12 @@
         background: #fff;
         border-radius: 5px;
         margin-top: -6px;
-    }
-      
+      }
     }
     .modal-video-movie-wrap iframe {
       position: initial;
-      width: 100vw!important;
-      height: 30vh!important;
+      width: 100vw !important;
+      height: 30vh !important;
       top: 15%;
       left: 15%;
       width: 70%;

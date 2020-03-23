@@ -86,7 +86,13 @@ export default class MobileHeader extends Component {
     }
     if (localStorage.getItem("UserHome")) {
       return (
-        <li className="logined_mobile nav-item">
+        <li
+          className={
+            obj.maLoaiNguoiDung === "KhachHang"
+              ? "logined_mobile nav-item"
+              : "logined_mobile vip nav-item"
+          }
+        >
           <div className="userIcon_mobile">
             <FontAwesomeIcon icon={faUser} />
           </div>
