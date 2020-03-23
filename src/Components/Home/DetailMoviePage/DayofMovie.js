@@ -1,35 +1,37 @@
-
-import React from 'react';
-import 'antd/dist/antd.css';
-import { Tabs } from 'antd';
+import React from "react";
+import "antd/dist/antd.css";
+import { Tabs } from "antd";
 import { connect } from "react-redux";
-import _ from 'lodash'
-import TimeofMovie from './TimeofMovie';
+import _ from "lodash";
+import TimeofMovie from "./TimeofMovie";
 const { TabPane } = Tabs;
 class DayofMovie extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      idPhim:"",
-      ngayChieu:"",
+      idPhim: "",
+      ngayChieu: ""
     };
   }
-UNSAFE_componentWillReceiveProps(nextProps){
-  if(this.props.idPhim!==""){
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props.idPhim !== "") {
+      this.setState(
+        {
+          idPhim: this.props.id
+        },
+        () => this.renderNgayChieu()
+      );
+    }
+  }
+  componentWillUnmount() {
+    return this.renderNgayChieu();
+  }
+  handleChange = e => {
     this.setState({
-      idPhim: this.props.id,
-    },()=>this.renderNgayChieu())
-  }
-}
-componentWillUnmount(){
-  return this.renderNgayChieu()
-}
-  handleChange= e=>{
-      this.setState({
-          ngayChieu:e
-      })
-  }
-renderNgayChieu(){
+      ngayChieu: e
+    });
+  };
+  renderNgayChieu() {
     if (this.props.movieDate) {
         let ngayChieu = this.props.movieDate.heThongRapChieu
         const renderNgayChieu = _.filter(ngayChieu,{maHeThongRap: this.props.maRap})
@@ -77,15 +79,11 @@ renderNgayChieu(){
     }
   }
   render() {
-          return (
-            <div>
-          {this.renderNgayChieu()}
-            </div>
-          );
+    return <div>{this.renderNgayChieu()}</div>;
   }
 }
 const mapStateToProps = state => ({
-    movieDate: state.movieReducer.movieDate,
-  });
-  
+  movieDate: state.movieReducer.movieDate
+});
+
 export default connect(mapStateToProps, null)(DayofMovie);
