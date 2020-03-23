@@ -143,13 +143,13 @@ class ModalEditMovie extends Component {
                 </div>
                 <div className="form-group">
                   <label>Hình Ảnh:</label>
+                  <label>(Up ảnh dưới 1MB)</label>
                   <input
                     type="file"
                     className="form-control"
                     name="hinhAnh"
                     accept="image/*"
                     onChange={(e)=>this.handleImage(e)}
-                    placeholder="Upload Ảnh dưới 1MB"
                   />
                 </div>
                 <div className="form-group">

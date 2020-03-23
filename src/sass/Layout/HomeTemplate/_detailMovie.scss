@@ -542,4 +542,16 @@
       height: 70%;
     }
   }
+  .detail-movie-no-choose-noti{
+    font-size: 17px;
+    margin:3vh;
+  }
+}
+.detail-movie-no-choose-noti{
+  color:white;
+  font-family: Helvetica;
+  margin:4vh;
+}
+.detail-movie-schedule-error{
+  @extend .detail-movie-no-choose-noti;
 }

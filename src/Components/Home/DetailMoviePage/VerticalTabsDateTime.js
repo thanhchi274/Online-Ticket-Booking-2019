@@ -123,7 +123,7 @@ function VerticalTabs(props) {
       >
         {renderRap()}
       </Tabs>
-      {rap !== "" ? renderRapContent() : null}
+      {rap !== "" ? renderRapContent() : <p className="detail-movie-no-choose-noti">Mời bạn bấm vào rạp để chọn lịch</p>}
     </div>
   );
 }

@@ -4,7 +4,6 @@ import * as Action from "../../../Store/action/index";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserEdit } from "@fortawesome/free-solid-svg-icons";
-import Success from "../../success";
 class DetailInfo extends Component {
   constructor(props) {
     super(props);
