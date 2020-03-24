@@ -425,7 +425,7 @@ class Booking extends Component {
         <div className="ticketFooter-container mobile">
           <div className="seat_mobile">{this.renderTicket()}</div>
           <a
-            href="a"
+            href="#a"
             className="pay_button"
             onClick={
               this.state.danhSachVe.length !== 0
