@@ -4,6 +4,10 @@
     text-align: left;
   }
 }
+.dropdown-item.active,
+.dropdown-item:active {
+  background-color: $primary !important;
+}
 .navbar {
   z-index: 2001;
   padding: 30px 0 !important;

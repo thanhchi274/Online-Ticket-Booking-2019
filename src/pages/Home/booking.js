@@ -21,17 +21,18 @@ class Booking extends Component {
       payStyle: "airpay",
       booked: false,
       fail: false,
+      over: false,
       bookingClass: "booking-ticket col-sm-4"
     };
   }
   handleChoose = e => {
     let { thongTinPhim } = this.props.room;
     let userName = JSON.parse(localStorage.getItem("UserHome"));
-    e.target.classList.toggle("chose");
     let giaVe = e.target.getAttribute("giave");
     let tenGhe = e.target.getAttribute("tenghe");
     let maGhe = e.target.getAttribute("maghe");
     let maLichChieu = thongTinPhim.maLichChieu;
+    e.target.classList.toggle("chose");
     if (e.target.className === "chair chose") {
       this.setState({
         maLichChieu,
@@ -59,7 +60,7 @@ class Booking extends Component {
   timViTri = maGhe => {
     let viTri = -1;
     this.state.danhSachVe.map((item, index) => {
-    return  (item.maGhe === maGhe)?  (viTri = index): null
+      return item.maGhe === maGhe ? (viTri = index) : null;
     });
     return viTri;
   };
@@ -133,7 +134,7 @@ class Booking extends Component {
     this.props.getRoomList(id);
   }
   renderTicket = () => {
-    return this.state.danhSachVe.map((item, index) => {
+    return this.state.danhSachVe.slice(0, 13).map((item, index) => {
       return <React.Fragment key={index}>{item.tenGhe} </React.Fragment>;
     });
   };
@@ -171,8 +172,41 @@ class Booking extends Component {
           </div>
         </div>
       );
-    }
-    if (this.state.danhSachVe.length > 12) {
+    } else if (this.state.payStyle === "card") {
+      return (
+        <div
+          class="errRender modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          role="dialog"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-body">
+                <div className=" maxErrNoti">
+                  <img
+                    src="https://tix.vn/app/assets/img/Post-notification.png"
+                    alt="another payment method"
+                  />
+                  <p>Vui lòng chọn hình thức thanh toán khác</p>
+                </div>
+              </div>
+              <div className="modal-footer">
+                <button
+                  type="button"
+                  class="btnCloseErrForm btn btn-secondary"
+                  data-dismiss="modal"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    } else if (this.state.danhSachVe.length > 12) {
       return (
         <div
           class="errRender modal fade"
@@ -390,7 +424,8 @@ class Booking extends Component {
         </div>
         <div className="ticketFooter-container mobile">
           <div className="seat_mobile">{this.renderTicket()}</div>
-          <a href="a"
+          <a
+            href="a"
             className="pay_button"
             onClick={
               this.state.danhSachVe.length !== 0

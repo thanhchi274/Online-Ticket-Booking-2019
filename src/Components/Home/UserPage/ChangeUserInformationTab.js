@@ -136,7 +136,7 @@ class DetailInfo extends Component {
                     type="text"
                     className="form-control"
                     name="hoTen"
-                    value={this.state.hoTen ? this.state.hoTen : ""}
+                    value={this.state.hoTen}
                     onChange={this.handleChange}
                     placeholder="Nhập Họ và Tên"
                   />
