@@ -37,9 +37,9 @@ export const actUpdateMovie = user => {
         });
       })
       .catch(err => {
-        alert("Cập nhật lỗi, kiểm tra lại hình ảnh")
+        alert("Cập nhật lỗi, kiểm tra lại hình ảnh");
       });
-    };
+  };
 };
 export const actGetUserList = () => {
   return async dispatch => {
@@ -198,10 +198,10 @@ export const actGetRoomList = id => {
       method: "GET",
       url: `http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`
     })
-      .then(result => {
+      .then(async result => {
         dispatch({
-          type: ActionTypes.GET_ROOM_LIST,
-          room: result.data
+          type: await ActionTypes.GET_ROOM_LIST,
+          room: await result.data
         });
       })
       .catch(err => {
@@ -454,7 +454,7 @@ export const actThemMovie = user => {
     })
       .then(result => {
         alert("Cập Nhật Thành Công");
-        console.log(result)
+        console.log(result);
         dispatch({
           type: ActionTypes.UPLOAD_MOVIE_IMAGE_CHECKED,
           checkedSucessMovie: true

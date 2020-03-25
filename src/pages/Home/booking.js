@@ -19,6 +19,7 @@ class Booking extends Component {
       count: 1,
       tienVe: 0,
       payStyle: "airpay",
+      bookedChair: [],
       booked: false,
       fail: false,
       over: false,
@@ -99,7 +100,6 @@ class Booking extends Component {
       fail: false
     });
   };
-
   renderChair = () => {
     if (this.props.room.danhSachGhe) {
       return this.props.room.danhSachGhe.map((item, index) => {
@@ -138,110 +138,48 @@ class Booking extends Component {
       return <React.Fragment key={index}>{item.tenGhe} </React.Fragment>;
     });
   };
+  modalError = content => {
+    return (
+      <div
+        className="modal fade"
+        id="exampleModal"
+        tabIndex="-1"
+        role="dialog"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog" role="document">
+          <div className="modal-content">
+            <div className="modal-body">
+              <div className=" errNoti">
+                <img
+                  src="https://tix.vn/app/assets/img/Post-notification.png"
+                  alt="Chọn ghế"
+                />
+                <p>{content}</p>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btnCloseErrForm btn btn-secondary"
+                data-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  };
   renderError = () => {
     if (this.state.danhSachVe.length === 0) {
-      return (
-        <div
-          className="modal fade"
-          id="exampleModal"
-          tabIndex="-1"
-          role="dialog"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-body">
-                <div className=" errNoti">
-                  <img
-                    src="https://tix.vn/app/assets/img/Post-notification.png"
-                    alt="Chọn ghế"
-                  />
-                  <p>Vui lòng chọn ghế</p>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btnCloseErrForm btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      return this.modalError("Vui lòng chọn ghế");
     } else if (this.state.payStyle === "card") {
-      return (
-        <div
-          class="errRender modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-body">
-                <div className=" maxErrNoti">
-                  <img
-                    src="https://tix.vn/app/assets/img/Post-notification.png"
-                    alt="another payment method"
-                  />
-                  <p>Vui lòng chọn hình thức thanh toán khác</p>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  class="btnCloseErrForm btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
+      return this.modalError("Vui lòng chọn hình thức thanh toán khác");
     } else if (this.state.danhSachVe.length > 12) {
-      return (
-        <div
-          class="errRender modal fade"
-          id="exampleModal"
-          tabindex="-1"
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-body">
-                <div className=" maxErrNoti">
-                  <img
-                    src="https://tix.vn/app/assets/img/Post-notification.png"
-                    alt="Vượt số ghế cho phép"
-                  />
-                  <p>
-                    Nếu bạn muốn đặt hơn 12 vé, vui lòng liên hệ với chúng tôi
-                    qua số hot line: (+84) 123 123 123
-                  </p>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  class="btnCloseErrForm btn btn-secondary"
-                  data-dismiss="modal"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
+      return this.modalError(
+        "Nếu bạn muốn đặt hơn 12 vé, vui lòng liên hệ với chúng tôi qua số hot line: (+84) 123 123 123"
       );
     }
   };
