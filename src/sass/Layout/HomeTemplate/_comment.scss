@@ -148,11 +148,77 @@
     }
   }
 }
+.comment-mobile {
+  display: none;
+}
 
 @media (max-width: 768px) and (min-width: 320px) {
   .lackComment {
     p {
       font-size: 3.5vw;
+    }
+  }
+
+  .commentList {
+    .changeButton {
+      width: 100%;
+    }
+  }
+
+  .comment-mobile {
+    display: block;
+    z-index: 1;
+    .container {
+      padding: 0;
+      .upComment {
+        width: 100%;
+        border-radius: 0;
+        .ratingComment {
+          width: 40vw;
+        }
+        .commentForm {
+          input {
+            &::placeholder {
+              font-size: 12px;
+              font-family: helvetica;
+            }
+          }
+          .modaSwitchlLogin {
+            width: 44%;
+            margin-left: 65%;
+            .commentBtn {
+              margin: 2vh 0;
+            }
+          }
+        }
+      }
+      .commentList {
+        width: 100%;
+        hr {
+          display: none !important;
+        }
+        .headerComment {
+          display: block;
+          .guest_intro {
+            margin-bottom: 0.5vh;
+            img {
+              width: 15%;
+            }
+          }
+        }
+      }
+      .actionComment {
+        width: 20%;
+        margin-left: 80%;
+        .actionCommentDetail {
+          width: 100%;
+          font-size: 3vw;
+          left: -5vw;
+          p {
+            padding: 1vh 0;
+          }
+        }
+      }
     }
   }
 }

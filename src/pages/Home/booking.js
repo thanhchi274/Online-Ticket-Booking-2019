@@ -134,7 +134,7 @@ class Booking extends Component {
     this.props.getRoomList(id);
   }
   renderTicket = () => {
-    return this.state.danhSachVe.slice(0, 13).map((item, index) => {
+    return this.state.danhSachVe.map((item, index) => {
       return <React.Fragment key={index}>{item.tenGhe} </React.Fragment>;
     });
   };

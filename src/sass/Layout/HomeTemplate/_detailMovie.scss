@@ -309,9 +309,6 @@
   transform: rotate(-45deg);
   z-index: 0;
 }
-.comment-mobile {
-  display: none;
-}
 .btnDayofMovie {
   position: relative;
   padding: 10px 20px;
@@ -348,47 +345,6 @@
     }
     .col-sm-8 {
       margin-bottom: 3vh;
-    }
-  }
-  .comment-mobile {
-    display: block;
-    z-index: 1;
-    .container {
-      padding: 0;
-      .upComment {
-        width: 100%;
-        border-radius: 0;
-        .ratingComment {
-          width: 44%;
-        }
-        .commentForm {
-          input {
-            &::placeholder {
-              font-size: 12px;
-              font-family: helvetica;
-            }
-          }
-          .modaSwitchlLogin {
-            margin-top: 2vh;
-            margin-left: 25vw;
-          }
-        }
-      }
-      .commentList {
-        width: 100%;
-        hr {
-          display: none !important;
-        }
-        .headerComment {
-          display: block;
-          .guest_intro {
-            margin-bottom: 0.5vh;
-            img {
-              width: 15%;
-            }
-          }
-        }
-      }
     }
   }
   .detail-movie {
@@ -542,16 +498,16 @@
       height: 70%;
     }
   }
-  .detail-movie-no-choose-noti{
+  .detail-movie-no-choose-noti {
     font-size: 17px;
-    margin:3vh;
+    margin: 3vh;
   }
 }
-.detail-movie-no-choose-noti{
-  color:white;
+.detail-movie-no-choose-noti {
+  color: white;
   font-family: Helvetica;
-  margin:4vh;
+  margin: 4vh;
 }
-.detail-movie-schedule-error{
+.detail-movie-schedule-error {
   @extend .detail-movie-no-choose-noti;
 }
