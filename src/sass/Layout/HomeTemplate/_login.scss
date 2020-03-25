@@ -1,7 +1,7 @@
 .login-container {
   text-align: center;
   padding: 30px;
-  margin: 16vh auto;
+  margin: 15vh auto;
   display: flex;
   align-items: center;
   width: 70%;
@@ -168,6 +168,7 @@
 @media (max-width: 768px) and (min-width: 320px) {
   .login-container {
     margin-left: 0 !important;
+    width: 100%;
     .formDangNhap {
       form {
         padding: 0;
