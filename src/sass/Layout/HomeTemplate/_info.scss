@@ -101,6 +101,12 @@
     }
   }
 }
+.wrap-table100 {
+  width: 100% !important;
+  th {
+    font-size: 1.5vw !important;
+  }
+}
 .MuiTab-wrapper {
   color: $white-darker-2;
 }
@@ -181,6 +187,12 @@
           }
         }
       }
+    }
+  }
+  .wrap-table100 {
+    th {
+      font-size: 2.5vw !important;
+      padding: 0;
     }
   }
   .info_cover {
