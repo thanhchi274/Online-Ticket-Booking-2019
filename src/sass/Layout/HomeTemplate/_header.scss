@@ -164,6 +164,8 @@ button:focus {
     .logined_mobile {
       display: flex;
       align-items: center;
+      margin: 0 auto;
+      width: 50%;
       &.vip {
         .userIcon_mobile {
           color: $primary;
@@ -183,10 +185,10 @@ button:focus {
       }
       .userIcon_mobile {
         color: $white-darker-2;
-        width: 8vw;
-        height: 6vh;
+        width: 50px;
+        height: 50px;
         text-align: center;
-        line-height: 6vh;
+        line-height: 50px;
         border-radius: 50%;
         border: 1px solid $white-darker-2;
       }
@@ -195,23 +197,20 @@ button:focus {
   .nav_content {
     overflow: auto;
     white-space: nowrap;
-    background-color: $main;
-    width: 60%;
+    background-color: rgba($main, 0.95);
+    width: 100%;
     text-align: center;
-    padding: 20% 5%;
-    border-right: 1px solid $primary;
+    padding: 30% 5%;
     position: fixed;
     z-index: 2001;
     height: 100%;
     top: 0;
     left: 0;
     transition: all 0.5s;
-    transform: translateX(-100%);
+    transform: translateX(100%);
     .nav-content {
       a {
-        padding: 5px 0;
         font-size: 4.6vw;
-        text-align: left;
       }
     }
     li {
@@ -243,6 +242,7 @@ button:focus {
     display: inline-block;
     cursor: pointer;
     position: relative;
+    z-index: 3001;
     .bar1,
     .bar2,
     .bar3 {
