@@ -16,13 +16,13 @@ class Booking extends Component {
       maLichChieu: "",
       danhSachVe: [],
       taiKhoanNguoiDung: "",
-      count: 1,
       tienVe: 0,
       payStyle: "airpay",
       bookedChair: [],
       booked: false,
       fail: false,
       over: false,
+      noti: false,
       bookingClass: "booking-ticket col-sm-4"
     };
   }
@@ -40,6 +40,7 @@ class Booking extends Component {
 
         danhSachVe: [
           ...this.state.danhSachVe,
+
           {
             tenGhe,
             maGhe,
@@ -47,13 +48,11 @@ class Booking extends Component {
           }
         ],
         taiKhoanNguoiDung: userName.taiKhoan,
-        tienVe: parseInt(this.state.tienVe) + parseInt(giaVe),
-        count: this.state.count + 1
+        tienVe: parseInt(this.state.tienVe) + parseInt(giaVe)
       });
     } else {
       this.xoaGhe(maGhe);
       this.setState({
-        count: this.state.count - 1,
         tienVe: this.state.tienVe - giaVe
       });
     }
@@ -77,7 +76,7 @@ class Booking extends Component {
     let ve = { ...this.state };
     if (
       this.state.danhSachVe.length !== 0 &&
-      this.state.danhSachVe.length <= 12 &&
+      this.state.danhSachVe.length <= 10 &&
       this.state.payStyle !== "card"
     ) {
       this.setState({
@@ -100,6 +99,43 @@ class Booking extends Component {
       fail: false
     });
   };
+  componentDidMount() {
+    const id = this.props.match.params.id;
+    this.props.setLoading();
+    this.props.getRoomList(id);
+  }
+  handleRenderNoti = () => {
+    this.setState({
+      noti: true
+    });
+  };
+  cancelNoti = () => {
+    this.setState({
+      noti: false
+    });
+  };
+  renderNoti = () => {
+    return (
+      <div className="pickedNoti-wrapper">
+        <FontAwesomeIcon
+          onClick={this.cancelNoti}
+          className="cancelNoti"
+          icon={faTimes}
+        />
+        <div className="pickedNoti">
+          <div className="pickedNoti-img">
+            <img
+              src="https://tix.vn/app/assets/img/Post-notification.png"
+              alt="Chọn ghế"
+            />
+          </div>
+          <div className="pickedNoti-content">
+            <p>Ghế đã có người đặt</p>
+          </div>
+        </div>
+      </div>
+    );
+  };
   renderChair = () => {
     if (this.props.room.danhSachGhe) {
       return this.props.room.danhSachGhe.map((item, index) => {
@@ -116,7 +152,9 @@ class Booking extends Component {
               maghe={item.maGhe}
               tenghe={item.tenGhe}
               giave={item.giaVe}
-              onClick={item.daDat ? null : this.handleChoose}
+              onClick={
+                item.daDat === true ? this.handleRenderNoti : this.handleChoose
+              }
             >
               {item.daDat ? <FontAwesomeIcon icon={faTimes} /> : item.tenGhe}
             </div>
@@ -128,11 +166,6 @@ class Booking extends Component {
       });
     }
   };
-  componentDidMount() {
-    const id = this.props.match.params.id;
-    this.props.setLoading();
-    this.props.getRoomList(id);
-  }
   renderTicket = () => {
     return this.state.danhSachVe.map((item, index) => {
       return <React.Fragment key={index}>{item.tenGhe} </React.Fragment>;
@@ -177,9 +210,9 @@ class Booking extends Component {
       return this.modalError("Vui lòng chọn ghế");
     } else if (this.state.payStyle === "card") {
       return this.modalError("Vui lòng chọn hình thức thanh toán khác");
-    } else if (this.state.danhSachVe.length > 12) {
+    } else if (this.state.danhSachVe.length > 10) {
       return this.modalError(
-        "Nếu bạn muốn đặt hơn 12 vé, vui lòng liên hệ với chúng tôi qua số hot line: (+84) 123 123 123"
+        "Nếu bạn muốn đặt hơn 10 vé, vui lòng liên hệ với chúng tôi qua số hot line: (+84) 123 123 123"
       );
     }
   };
@@ -199,6 +232,7 @@ class Booking extends Component {
     return (
       <div>
         {this.state.booked === true ? <Success tab={"Đặt vé"} /> : null}
+        {this.state.noti === true ? this.renderNoti() : null}
         <div className=" bookTicket_container">
           <div className="booking-movie">
             <CountDown />

@@ -20,7 +20,7 @@
     width: 25%;
     margin-left: 78%;
     .commentBtn {
-      padding: 10px 50px;
+      padding: 2vh 3vw;
       border-radius: 50px;
       color: $white-darker-2;
       background-color: $primary;
@@ -184,9 +184,10 @@
             }
           }
           .modaSwitchlLogin {
-            width: 44%;
-            margin-left: 65%;
+            width: 25vw;
+            margin-left: 50vw;
             .commentBtn {
+              padding: 2vh 10vw;
               margin: 2vh 0;
             }
           }

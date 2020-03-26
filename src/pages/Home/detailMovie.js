@@ -124,8 +124,11 @@ class DetailMovie extends Component {
           />
         </div>
         <div className="comment-mobile">
-      <CommentList id={this.props.match.params.id} danhGia={movie.danhGia} />
-    </div>
+          <CommentList
+            id={this.props.match.params.id}
+            danhGia={movie.danhGia}
+          />
+        </div>
       </div>
     );
   }
