@@ -33,6 +33,9 @@ class TicketHistory extends Component {
       return <Redirect to="/" />;
     }
   }
+  handleClick = e => {
+    console.log(e.target);
+  };
   renderTable = () => {
     let UserData = this.state.movieData;
     return (
@@ -68,12 +71,15 @@ class TicketHistory extends Component {
                               ].danhSachGhe
                             ).map((item3, index3) => {
                               return (
-                                <div key={index3}>
+                                <div key={index3} onClick={this.handleClick}>
                                   <div className="table100-body js-pscroll">
                                     <table>
                                       <tbody>
                                         <tr className="row100 body">
-                                          <td className="cell100 column1">
+                                          <td
+                                            name="tenPhim"
+                                            className="cell100 column1"
+                                          >
                                             {" "}
                                             {
                                               _.groupBy(
@@ -82,7 +88,10 @@ class TicketHistory extends Component {
                                               )[item2][index2].tenPhim
                                             }
                                           </td>
-                                          <td className="cell100 column2">
+                                          <td
+                                            name="ngayDat"
+                                            className="cell100 column2"
+                                          >
                                             {new Date(
                                               _.groupBy(
                                                 UserData[value],
@@ -90,7 +99,10 @@ class TicketHistory extends Component {
                                               )[item2][index2].ngayDat
                                             ).toLocaleDateString()}
                                           </td>
-                                          <td className="cell100 column3">
+                                          <td
+                                            name="tenHeThongRap"
+                                            className="cell100 column3"
+                                          >
                                             {" "}
                                             {
                                               _.groupBy(
@@ -101,7 +113,10 @@ class TicketHistory extends Component {
                                               ].tenHeThongRap
                                             }
                                           </td>
-                                          <td className="cell100 column4">
+                                          <td
+                                            name="tenRap"
+                                            className="cell100 column4"
+                                          >
                                             {" "}
                                             {
                                               _.groupBy(
@@ -112,7 +127,10 @@ class TicketHistory extends Component {
                                               ].tenRap
                                             }
                                           </td>
-                                          <td className="cell100 column5">
+                                          <td
+                                            name="tenGhe"
+                                            className="cell100 column5"
+                                          >
                                             {" "}
                                             {
                                               _.groupBy(

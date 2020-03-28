@@ -117,11 +117,6 @@ class Booking extends Component {
   renderNoti = () => {
     return (
       <div className="pickedNoti-wrapper">
-        <FontAwesomeIcon
-          onClick={this.cancelNoti}
-          className="cancelNoti"
-          icon={faTimes}
-        />
         <div className="pickedNoti">
           <div className="pickedNoti-img">
             <img
@@ -132,6 +127,14 @@ class Booking extends Component {
           <div className="pickedNoti-content">
             <p>Ghế đã có người đặt</p>
           </div>
+          <hr />
+          <button
+            type="button"
+            className="btnCloseErrForm btn btn-secondary"
+            onClick={this.cancelNoti}
+          >
+            Close
+          </button>
         </div>
       </div>
     );
@@ -226,7 +229,6 @@ class Booking extends Component {
       );
     }
     if (localStorage.getItem("UserHome") === null) {
-      alert("Bạn phải đăng nhập tài khoản trước khi đặt vé");
       return <Redirect to="/login" />;
     }
     return (

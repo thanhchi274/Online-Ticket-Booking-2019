@@ -60,6 +60,8 @@ class CommentList extends Component {
           });
         }
       );
+    } else {
+      window.location.href = "/login";
     }
   };
   handleDelete = e => {
@@ -81,6 +83,9 @@ class CommentList extends Component {
         },
         () => {
           this.props.actSuaComment(id, commentId, this.state);
+          this.setState({
+            nhanXet: ""
+          });
         }
       );
     }
@@ -88,55 +93,6 @@ class CommentList extends Component {
   renderAction = e => {
     e.target.classList.toggle("show");
   };
-
-  renderModalErr = () => {
-    const home = JSON.parse(localStorage.getItem("UserHome"));
-    if (!home) {
-      return (
-        <div
-          className="modal fade"
-          id="exampleModal"
-          tabIndex={-1}
-          role="dialog"
-          aria-labelledby="exampleModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h2 className="modal-title" id="exampleModalLabel">
-                  Thông báo
-                </h2>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">×</span>
-                </button>
-              </div>
-              <div className="modal-body">
-                Bạn phải đăng nhập để thực hiện hành động này
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="book-btn"
-                  onClick={() => {
-                    window.location.href = "/login";
-                  }}
-                >
-                  OK
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      );
-    }
-  };
-
   renderCommentList = () => {
     const home = JSON.parse(localStorage.getItem("UserHome"));
     if (this.props.comment.danhSachComment) {
@@ -287,14 +243,7 @@ class CommentList extends Component {
               onChange={this.handleChange}
             ></input>
             <div className="modaSwitchlLogin">
-              <button
-                className="commentBtn"
-                data-toggle="modal"
-                data-target="#exampleModal"
-              >
-                Đăng
-              </button>
-              {this.renderModalErr()}
+              <button className="commentBtn">Đăng</button>
             </div>
           </form>
         </div>
