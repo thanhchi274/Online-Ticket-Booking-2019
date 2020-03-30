@@ -9,20 +9,22 @@ function CountDown() {
   }, []);
   if (redirect)
     return (
-      <div className="modalContent">
-        <h5>
-          Thời gian giữ ghế của bạn đã kết thúc, vui lòng thực hiện lại quá
-          trình đặt vé
-        </h5>
-        <hr />
-        <span
-          className="btn btn-danger close-btn"
-          onClick={() => {
-            window.location.reload();
-          }}
-        >
-          Đóng
-        </span>
+      <div className="modalContent_wrapper">
+        <div className="modalContent">
+          <h5>
+            Thời gian giữ ghế của bạn đã kết thúc, vui lòng thực hiện lại quá
+            trình đặt vé
+          </h5>
+          <hr />
+          <span
+            className="btn btn-danger close-btn"
+            onClick={() => {
+              window.location.reload();
+            }}
+          >
+            Đóng
+          </span>
+        </div>
       </div>
     );
   const Completionist = () => <span>You are good to go!</span>;

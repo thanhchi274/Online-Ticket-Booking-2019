@@ -167,12 +167,16 @@
 
 @media (max-width: 767px) and (min-width: 320px) {
   .info-user {
+    width: 100% !important;
+    &.container {
+      max-width: none !important;
+    }
     .info-cover {
       .detail-info {
         display: block;
         align-items: center;
-        padding-top: 35%;
-        padding-left: 3%;
+        padding-top: 20%;
+        padding-left: 0;
         text-align: center;
         color: $white-darker-2;
         .ava {

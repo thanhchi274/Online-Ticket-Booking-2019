@@ -328,7 +328,7 @@
     }
   }
 }
-@media (max-width: 768px) and (min-width: 320px) {
+@media (max-width: 575px) and (min-width: 320px) {
   .ant-tabs-content {
     width: 79vw !important;
     max-width: 80vw !important;
@@ -510,4 +510,40 @@
 }
 .detail-movie-schedule-error {
   @extend .detail-movie-no-choose-noti;
+}
+@media (max-width: 768px) and (min-width: 576px) {
+  .detail-movie {
+    .img-movie {
+      overflow: hidden;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .tabInfo {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .detail-description {
+      margin: 0;
+    }
+    .tabs {
+      width: 100%;
+    }
+    .col-sm-8 {
+      flex: none !important;
+      max-width: none !important;
+    }
+    .col-sm-3 {
+      flex: none !important;
+    }
+    .container {
+      width: 100% !important;
+      max-width: none !important;
+    }
+  }
+
+  .upComment {
+    .ratingComment {
+      width: 35% !important;
+    }
+  }
 }
