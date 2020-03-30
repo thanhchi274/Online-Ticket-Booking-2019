@@ -305,9 +305,15 @@ class Signup extends Component {
     }
   };
   handleError = () => {
-    this.setState({
-      fail: true
-    });
+    if (
+      this.state.upper === "checkUppercase checked" &&
+      this.state.count === "checkCount checked" &&
+      this.state.number === "checkNumber checked"
+    ) {
+      this.setState({
+        fail: true
+      });
+    }
   };
   toggleError = () => {
     this.setState({
