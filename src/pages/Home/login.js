@@ -111,7 +111,6 @@ class Login extends Component {
     }
     this.setState(
       {
-        //   Copy lại values trên state và thay đổi [name]: value
         values: { ...this.state.values, [name]: value },
         errors: { ...this.state.errors, [name]: message },
         tkValid,
@@ -165,11 +164,13 @@ class Login extends Component {
     return loginedstt === 200 ? <Success tab={"Đăng nhập"} /> : null;
   };
   renderError = loginedstt => {
-    return this.state.fail === true &&
+    if (
+      this.state.fail === true &&
       this.props.errorData &&
-      loginedstt !== 200 ? (
-      <Fail tab={this.props.errorData} fail={this.toggleError} />
-    ) : null;
+      loginedstt !== 200
+    ) {
+      return <Fail tab={this.props.errorData} fail={this.toggleError} />;
+    }
   };
   renderHTML = () => {
     return (
@@ -180,7 +181,7 @@ class Login extends Component {
           <div className="col-sm-6 login_img desktop">
             <SVGAdminLogin />
           </div>
-          <div className="formDangNhap col-sm-5">
+          <div className="formDangNhap">
             <h3>Đăng nhập</h3>
             <form onSubmit={this.handleSubmit}>
               <div

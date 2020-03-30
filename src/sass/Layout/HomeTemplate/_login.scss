@@ -16,7 +16,7 @@
 
   .formDangNhap {
     margin-top: 40px;
-
+    width: 100%;
     h3 {
       text-transform: uppercase;
       color: $primary;
@@ -49,10 +49,9 @@
       border-radius: 70px;
       transition: all 0.2s;
       font-size: 20px !important;
-      &:hover {
-        background: linear-gradient(145deg, #14d280, #18f998);
-        color: white;
-        border: 2px solid #03ffd2;
+      &:disabled {
+        cursor: default;
+        background-color: transparent;
       }
     }
     .signup-btn {
