@@ -57,21 +57,22 @@ const FormSignUp = props => (
             />
           </div>
         </div>
-
-        <div className="passwordCheck">
-          <div className={props.count}>
-            <FontAwesomeIcon icon={faCheck} />
-            <p>Mật khẩu có ít nhất 4 kí tự</p>
+        {props.matKhau !== "" ? (
+          <div className="passwordCheck">
+            <div className={props.count}>
+              <FontAwesomeIcon icon={faCheck} />
+              <p>Mật khẩu có ít nhất 4 kí tự</p>
+            </div>
+            <div className={props.upper}>
+              <FontAwesomeIcon icon={faCheck} />
+              <p>Mật khẩu có ít nhất 1 kí tự in hoa</p>
+            </div>
+            <div className={props.number}>
+              <FontAwesomeIcon icon={faCheck} />
+              <p>Mật khẩu có ít nhất 1 số</p>
+            </div>
           </div>
-          <div className={props.upper}>
-            <FontAwesomeIcon icon={faCheck} />
-            <p>Mật khẩu có ít nhất 1 kí tự in hoa</p>
-          </div>
-          <div className={props.number}>
-            <FontAwesomeIcon icon={faCheck} />
-            <p>Mật khẩu có ít nhất 1 số</p>
-          </div>
-        </div>
+        ) : null}
       </div>
       <div className="signup-formRight">
         <div className="input-div signup">
@@ -351,6 +352,7 @@ class Signup extends Component {
                 upper={this.state.upper}
                 number={this.state.number}
                 handleBlur={this.handleBlur}
+                matKhau={this.state.matKhau}
               ></FormSignUp>
             </div>
           </div>
