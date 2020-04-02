@@ -239,7 +239,7 @@ export const actDatVe = (user, history) => {
       }
     })
       .then(result => {
-        history.push("/");
+        history.push("/ticket-detail");
         dispatch(result.data);
       })
       .catch(err => {

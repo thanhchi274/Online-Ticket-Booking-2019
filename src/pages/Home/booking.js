@@ -19,6 +19,11 @@ class Booking extends Component {
       tienVe: 0,
       payStyle: "airpay",
       bookedChair: [],
+      tenPhim: "",
+      tenCumRap: "",
+      tenRap: "",
+      ngayChieu: "",
+      gioChieu: "",
       booked: false,
       fail: false,
       over: false,
@@ -73,18 +78,31 @@ class Booking extends Component {
   };
 
   handleSubmit = () => {
+    let { room } = this.props;
     let ve = { ...this.state };
     if (
       this.state.danhSachVe.length !== 0 &&
       this.state.danhSachVe.length <= 10 &&
       this.state.payStyle !== "card"
     ) {
-      this.setState({
-        booked: true
-      });
-      setTimeout(() => {
-        this.props.bookingTicket(ve, this.props.history);
-      }, 1000);
+      if (room.thongTinPhim) {
+        this.setState(
+          {
+            booked: true,
+            tenPhim: room.thongTinPhim.tenPhim,
+            tenCumRap: room.thongTinPhim.tenCumRap,
+            tenRap: room.thongTinPhim.tenRap,
+            ngayChieu: room.thongTinPhim.ngayChieu,
+            gioChieu: room.thongTinPhim.gioChieu
+          },
+          () => {
+            localStorage.setItem("Ticket", JSON.stringify(this.state));
+            setTimeout(() => {
+              this.props.bookingTicket(ve, this.props.history);
+            }, 1000);
+          }
+        );
+      }
     }
   };
 
