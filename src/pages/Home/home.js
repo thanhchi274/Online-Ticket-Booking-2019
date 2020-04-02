@@ -22,16 +22,13 @@ class Home extends Component {
   };
   render() {
     let { loading } = this.props;
-    const UserHome = JSON.parse(localStorage.getItem("UserHome"));
+    localStorage.removeItem("DetailId");
     if (loading) {
       return (
         <div className="loading-spinner">
           <SVGLoading />
         </div>
       );
-    }
-    if (UserHome) {
-      localStorage.removeItem("DetailId");
     }
     return (
       <>
