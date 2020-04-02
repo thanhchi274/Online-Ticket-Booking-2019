@@ -23,6 +23,7 @@ class Home extends Component {
   render() {
     let { loading } = this.props;
     localStorage.removeItem("DetailId");
+    localStorage.removeItem("Ticket");
     if (loading) {
       return (
         <div className="loading-spinner">

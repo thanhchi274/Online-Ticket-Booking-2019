@@ -9,6 +9,7 @@ import InfoAdmin from "./pages/Admin/infoAdmin";
 import UserManagement from "./pages/Admin/UserManagement";
 import MovieManagement from "./pages/Admin/MovieManagement";
 import TicketManageMent from "./pages/Admin/ticket-management.js";
+import TicketDetail from "./Components/Home/BookingPage/ticketDetail.js";
 const routeHome = [
   {
     path: "/",
@@ -39,6 +40,11 @@ const routeHome = [
     path: "/info",
     exact: false,
     component: UserInfoPage
+  },
+  {
+    path: "/ticket-detail",
+    exact: false,
+    component: TicketDetail
   }
 ];
 const routeAdmin = [
