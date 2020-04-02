@@ -173,8 +173,9 @@ export const actLoginHome = (user, history) => {
       data: user
     })
       .then(result => {
+        const id = JSON.parse(localStorage.getItem("DetailId"));
         setTimeout(() => {
-          history.push("/");
+          id ? history.push(`/detail-movie/${id}`) : history.push("/");
         }, 500);
         dispatch({
           type: ActionTypes.LOGIN,

@@ -68,12 +68,19 @@ class DetailMovie extends Component {
   }
   render() {
     let { loading, movie, movieDate } = this.props;
+    const userhome = JSON.parse(localStorage.getItem("UserHome"));
+    const id = this.props.match.params.id;
     if (loading) {
       return (
         <div className="loading-spinner">
           <SVGLoading />
         </div>
       );
+    }
+    if (!userhome) {
+      localStorage.setItem("DetailId", JSON.stringify(id));
+    } else {
+      localStorage.removeItem("DetailId");
     }
     return (
       <div className="container-fluid detail-movie">
