@@ -28,7 +28,8 @@ class Booking extends Component {
       fail: false,
       over: false,
       noti: false,
-      bookingClass: "booking-ticket col-sm-4"
+      bookingClass: "booking-ticket col-sm-4",
+      phongVe: []
     };
   }
   handleChoose = e => {
@@ -93,7 +94,8 @@ class Booking extends Component {
             tenCumRap: room.thongTinPhim.tenCumRap,
             tenRap: room.thongTinPhim.tenRap,
             ngayChieu: room.thongTinPhim.ngayChieu,
-            gioChieu: room.thongTinPhim.gioChieu
+            gioChieu: room.thongTinPhim.gioChieu,
+            phongVe: room.danhSachGhe
           },
           () => {
             localStorage.setItem("Ticket", JSON.stringify(this.state));
@@ -248,6 +250,8 @@ class Booking extends Component {
     }
     if (localStorage.getItem("UserHome") === null) {
       return <Redirect to="/login" />;
+    } else if (localStorage.getItem("Ticket")) {
+      return <Redirect to="/" />;
     }
     return (
       <div>
