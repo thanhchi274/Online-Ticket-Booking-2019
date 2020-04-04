@@ -49,6 +49,16 @@
           }
         }
       }
+
+      .carousel_movieTitle {
+        position: absolute;
+        top: 45%;
+        left: 0;
+        max-width: 500px;
+        img {
+          width: 100%;
+        }
+      }
     }
   }
   @keyframes showContentTitle {
