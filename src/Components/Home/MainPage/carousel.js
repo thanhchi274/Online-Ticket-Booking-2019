@@ -30,6 +30,12 @@ class Carousel extends Component {
                 </AnchorLink>
               </div>
             </div>
+            <div className="carousel_movieTitle">
+              <img
+                alt="black title"
+                src="../Asset/black-removebg-preview.png"
+              />
+            </div>
           </div>
         </div>
       </div>
