@@ -17,7 +17,7 @@ class CommentList extends Component {
       value: 5,
       smallValue: 5,
       change: false,
-      commentList: []
+      commentList: [],
     };
   }
   componentDidMount() {
@@ -26,7 +26,7 @@ class CommentList extends Component {
     const danhGia = this.props.danhGia;
     this.setState({
       maPhim: id,
-      value: danhGia
+      value: danhGia,
     });
   }
 
@@ -35,14 +35,14 @@ class CommentList extends Component {
     this.props.actGetCommentList(id);
   }
 
-  handleChange = e => {
+  handleChange = (e) => {
     let { name, value } = e.target;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
 
-  handleComment = e => {
+  handleComment = (e) => {
     const home = JSON.parse(localStorage.getItem("UserHome"));
     e.preventDefault();
     if (home && this.state.nhanXet !== "") {
@@ -51,12 +51,12 @@ class CommentList extends Component {
           hoTen: home.hoTen,
           maPhim: this.state.maPhim,
           nhanXet: this.state.nhanXet,
-          danhGia: this.state.value
+          danhGia: this.state.value,
         },
         () => {
           this.props.actComment(this.state, this.state.maPhim);
           this.setState({
-            nhanXet: ""
+            nhanXet: "",
           });
         }
       );
@@ -64,12 +64,12 @@ class CommentList extends Component {
       window.location.href = "/login";
     }
   };
-  handleDelete = e => {
+  handleDelete = (e) => {
     const commentId = e.target.getAttribute("value");
     const id = this.props.id;
     this.props.actxoaComment(id, commentId);
   };
-  handleChangeComment = e => {
+  handleChangeComment = (e) => {
     const id = this.props.id;
     const commentId = e.target.getAttribute("value");
     const home = JSON.parse(localStorage.getItem("UserHome"));
@@ -79,18 +79,18 @@ class CommentList extends Component {
           hoTen: home.hoTen,
           nhanXet: this.state.nhanXet,
           danhGia: this.state.smallValue,
-          change: false
+          change: false,
         },
         () => {
           this.props.actSuaComment(id, commentId, this.state);
           this.setState({
-            nhanXet: ""
+            nhanXet: "",
           });
         }
       );
     }
   };
-  renderAction = e => {
+  renderAction = (e) => {
     e.target.classList.toggle("show");
   };
   renderCommentList = () => {
@@ -125,7 +125,7 @@ class CommentList extends Component {
                       value={this.state.smallValue}
                       onChange={(event, newValueSmall) => {
                         this.setState({
-                          smallValue: newValueSmall
+                          smallValue: newValueSmall,
                         });
                       }}
                     />
@@ -163,7 +163,7 @@ class CommentList extends Component {
                           className="cancelUpdate"
                           onClick={() => {
                             this.setState({
-                              change: false
+                              change: false,
                             });
                           }}
                         >
@@ -186,7 +186,7 @@ class CommentList extends Component {
                           onClick={() => {
                             this.setState({
                               change: true,
-                              nhanXet: item.nhanXet
+                              nhanXet: item.nhanXet,
                             });
                           }}
                         >
@@ -215,7 +215,7 @@ class CommentList extends Component {
     return (
       <div className="container">
         <div className="upComment">
-          <h1>{this.state.value}</h1>
+          <h1>{this.state.value > 5 ? 5 : this.state.value}</h1>
           <Box
             className="ratingComment"
             component="fieldset"
@@ -228,7 +228,7 @@ class CommentList extends Component {
               value={this.state.value}
               onChange={(event, newValue) => {
                 this.setState({
-                  value: newValue
+                  value: newValue,
                 });
               }}
             />
@@ -252,12 +252,12 @@ class CommentList extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  comment: state.movieReducer.comment
+const mapStateToProps = (state) => ({
+  comment: state.movieReducer.comment,
 });
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    actGetCommentList: id => {
+    actGetCommentList: (id) => {
       dispatch(action.actLayNhanXet(id));
     },
     actComment: (comment, id) => {
@@ -268,7 +268,7 @@ const mapDispatchToProps = dispatch => {
     },
     actSuaComment: (maPhim, maComment, comment) => {
       dispatch(action.actSuaComment(maPhim, maComment, comment));
-    }
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(CommentList);

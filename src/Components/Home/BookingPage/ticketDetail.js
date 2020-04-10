@@ -8,14 +8,14 @@ export default class TicketDetail extends Component {
     super(props);
     this.state = {
       tenGhe: "",
-      detail: false
+      detail: false,
     };
   }
-  setChair = e => {
+  setChair = (e) => {
     let tenGhe = e.target.getAttribute("tenghe");
     this.setState({
       tenGhe,
-      detail: true
+      detail: true,
     });
   };
   renderSeatName = () => {
@@ -25,17 +25,30 @@ export default class TicketDetail extends Component {
         return a.tenGhe - b.tenGhe;
       })
       .map((item, index) => {
-        return (
-          <AnchorLink
-            className="tenGhe"
-            href="#seat"
-            key={index}
-            onClick={this.setChair}
-            tenghe={item.tenGhe}
-          >
-            {item.tenGhe}{" "}
-          </AnchorLink>
-        );
+        if (this.state.detail) {
+          return (
+            <a
+              className="tenGhe"
+              key={index}
+              onClick={this.setChair}
+              tenghe={item.tenGhe}
+            >
+              {item.tenGhe}{" "}
+            </a>
+          );
+        } else {
+          return (
+            <AnchorLink
+              className="tenGhe"
+              href="#seat"
+              key={index}
+              onClick={this.setChair}
+              tenghe={item.tenGhe}
+            >
+              {item.tenGhe}{" "}
+            </AnchorLink>
+          );
+        }
       });
   };
   renderSeat = () => {

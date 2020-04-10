@@ -11,7 +11,7 @@ import FullWidthTabs from "../../Components/Home/DetailMoviePage/FullWidthTabs";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import CommentList from "../../Components/Home/DetailMoviePage/commentList";
 
-const DetailMovieDescription = props => (
+const DetailMovieDescription = (props) => (
   <div className="table detail-description">
     <div className="title_wrapper">
       <p className="title-description">
@@ -29,7 +29,7 @@ const DetailMovieDescription = props => (
     <div className="rating_wrapper">
       <div className="wrapper_circle">
         <p>Đánh giá</p>
-        <h4>{props.movie.danhGia}/5</h4>
+        <h4>{props.movie.danhGia > 5 ? 5 : props.movie.danhGia}/5</h4>
         <FontAwesomeIcon className="starIcon" icon={faStar} />
       </div>
       <p className="count-rating-people">
@@ -47,14 +47,14 @@ class DetailMovie extends Component {
     this.state = {
       isOpen: false,
       videoid: "",
-      bookTicket: false
+      bookTicket: false,
     };
     this.openModal = this.openModal.bind(this);
   }
   openModal() {
     this.setState({
       isOpen: true,
-      videoid: this.props.movie.trailer.slice(30)
+      videoid: this.props.movie.trailer.slice(30),
     });
   }
   componentDidMount() {
@@ -140,26 +140,26 @@ class DetailMovie extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   movie: state.movieReducer.movie,
   loading: state.movieReducer.loading,
   movieDate: state.movieReducer.movieDate,
-  comment: state.movieReducer.comment
+  comment: state.movieReducer.comment,
 });
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getdetailMovie: id => {
+    getdetailMovie: (id) => {
       dispatch(Action.actGetDetailMovieAPI(id));
     },
     setLoading: () => {
       dispatch(Action.actLoading());
     },
-    getMovieDateTime: ve => {
+    getMovieDateTime: (ve) => {
       dispatch(Action.actGetDateTimeMovie(ve));
     },
-    actGetCommentList: id => {
+    actGetCommentList: (id) => {
       dispatch(Action.actLayNhanXet(id));
-    }
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(DetailMovie);

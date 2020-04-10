@@ -354,6 +354,9 @@
     }
     .detail-description {
       top: 5% !important;
+      .scrollToBooking {
+        display: none;
+      }
     }
     .rating_wrapper {
       .wrapper_circle {
@@ -538,6 +541,11 @@
     .container {
       width: 100% !important;
       max-width: none !important;
+    }
+    .detail-description {
+      .scrollToBooking {
+        display: none;
+      }
     }
   }
 
