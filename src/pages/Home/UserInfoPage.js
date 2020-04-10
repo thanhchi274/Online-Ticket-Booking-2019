@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import Skeleton from "@material-ui/lab/Skeleton";
 import Success from "../../Components/success";
 import Fail from "../../Components/fail";
+import * as Action from "../../Store/action/index";
 
 const AvatarUser = () => (
   <div className="ava">
@@ -19,24 +20,31 @@ class Info extends Component {
     super(props);
     this.state = {
       error: false,
-      fail: false
+      fail: false,
     };
   }
   toggleError = () => {
     this.setState({
       error: true,
-      fail: true
+      fail: true,
     });
   };
   toggleFail = () => {
     this.setState({
-      fail: false
+      fail: false,
     });
   };
+  componentDidMount() {
+    let UserHome = JSON.parse(localStorage.getItem("UserHome"));
+    if (UserHome) {
+      let taiKhoan = UserHome.taiKhoan;
+      this.props.getUserInformation({ taiKhoan });
+    }
+  }
   renderHTML = () => {
     let UserHome = JSON.parse(localStorage.getItem("UserHome"));
     return (
-      <>
+      <React.Fragment>
         {this.props.success === true ? <Success tab="Cập nhật" /> : null}
         {this.state.fail === true && this.state.error === true ? (
           <Fail tab={"Sai mật khẩu cũ"} fail={this.toggleFail} />
@@ -82,7 +90,7 @@ class Info extends Component {
             <UserInformationTab error={this.toggleError} />
           </div>
         </div>
-      </>
+      </React.Fragment>
     );
   };
   render() {
@@ -93,7 +101,15 @@ class Info extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  success: state.movieReducer.success
+const mapStateToProps = (state) => ({
+  success: state.movieReducer.success,
 });
-export default connect(mapStateToProps, null)(Info);
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getUserInformation: (user) => {
+      dispatch(Action.actLayThongTinUser(user));
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Info);
