@@ -16,10 +16,10 @@ class DetailInfo extends Component {
       hoTen: "",
       maNhom: "",
       maLoaiNguoiDung: "",
-      clicked: false
+      clicked: false,
     };
   }
-  handleSubmit = e => {
+  handleSubmit = (e) => {
     e.preventDefault();
     let updatedUser = { ...this.state };
     let taiKhoan = this.state.taiKhoan;
@@ -27,26 +27,24 @@ class DetailInfo extends Component {
     this.setState(
       {
         ...this.state,
-        clicked: false
+        clicked: false,
       },
       () => {
         this.props.getUserInformation({ taiKhoan });
       }
     );
   };
-  handleChange = e => {
+  handleChange = (e) => {
     let target = e.target;
     let name = target.name;
     let value = target.value;
     this.setState({
-      [name]: value
+      [name]: value,
     });
   };
   componentDidMount() {
     let UserHome = JSON.parse(localStorage.getItem("UserHome"));
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
-    let taiKhoan = UserHome.taiKhoan;
-    this.props.getUserInformation({ taiKhoan });
     if (UserInfo && UserHome) {
       this.setState({
         taiKhoan: UserInfo.taiKhoan,
@@ -55,7 +53,7 @@ class DetailInfo extends Component {
         soDt: UserInfo.soDT,
         hoTen: UserInfo.hoTen,
         maNhom: UserHome.maNhom,
-        maLoaiNguoiDung: UserHome.maLoaiNguoiDung
+        maLoaiNguoiDung: UserHome.maLoaiNguoiDung,
       });
     }
   }
@@ -74,7 +72,7 @@ class DetailInfo extends Component {
             className="btn btn_cancel"
             onClick={() => {
               this.setState({
-                clicked: false
+                clicked: false,
               });
             }}
           >
@@ -84,6 +82,14 @@ class DetailInfo extends Component {
       );
     }
   };
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    this.setState({
+      taiKhoan: nextProps.userInformation.taiKhoan,
+      hoTen: nextProps.userInformation.hoTen,
+      email: nextProps.userInformation.email,
+      soDt: nextProps.userInformation.soDT,
+    });
+  }
   render() {
     let UserInfo = JSON.parse(localStorage.getItem("UserInfo"));
     return (
@@ -99,7 +105,7 @@ class DetailInfo extends Component {
                       className="updateButton"
                       onClick={() => {
                         this.setState({
-                          clicked: true
+                          clicked: true,
                         });
                       }}
                     >
@@ -192,17 +198,17 @@ class DetailInfo extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  userInformation: state.movieReducer.userInformation
+const mapStateToProps = (state) => ({
+  userInformation: state.movieReducer.userInformation,
 });
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getUserInformation: user => {
+    getUserInformation: (user) => {
       dispatch(Action.actLayThongTinUser(user));
     },
-    updateUser: user => {
+    updateUser: (user) => {
       dispatch(Action.actUpdateUserInformation(user));
-    }
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(DetailInfo);

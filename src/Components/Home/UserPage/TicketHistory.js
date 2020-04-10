@@ -9,7 +9,7 @@ class TicketHistory extends Component {
     super(props);
     this.input = React.createRef();
     this.state = {
-      movieData: []
+      movieData: [],
     };
   }
   componentDidMount() {
@@ -27,15 +27,22 @@ class TicketHistory extends Component {
         soDt: UserInfo.soDT,
         hoTen: UserInfo.hoTen,
         maNhom: UserHome.maNhom,
-        maLoaiNguoiDung: UserHome.maLoaiNguoiDung
+        maLoaiNguoiDung: UserHome.maLoaiNguoiDung,
       });
     } catch (err) {
       return <Redirect to="/" />;
     }
   }
-  handleClick = e => {
-    console.log(e.target);
-  };
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    console.log(_.groupBy(nextProps.userInformation.thongTinDatVe, "ngayDat"));
+    let groupDateTicket = _.groupBy(
+      nextProps.userInformation.thongTinDatVe,
+      "ngayDat"
+    );
+    this.setState({
+      movieData: groupDateTicket,
+    });
+  }
   renderTable = () => {
     let UserData = this.state.movieData;
     return (
@@ -176,17 +183,17 @@ class TicketHistory extends Component {
     }
   }
 }
-const mapStateToProps = state => ({
-  userInformation: state.movieReducer.userInformation
+const mapStateToProps = (state) => ({
+  userInformation: state.movieReducer.userInformation,
 });
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getUserInformation: user => {
+    getUserInformation: (user) => {
       dispatch(Action.actLayThongTinUser(user));
     },
-    updateUser: user => {
+    updateUser: (user) => {
       dispatch(Action.actUpdateUserInformation(user));
-    }
+    },
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(TicketHistory);
