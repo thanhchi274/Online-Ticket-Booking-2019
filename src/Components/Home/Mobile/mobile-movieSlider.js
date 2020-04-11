@@ -7,7 +7,7 @@ class MobileMovieSlider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      more: false
+      more: false,
     };
   }
   renderHTML() {
@@ -62,7 +62,7 @@ class MobileMovieSlider extends Component {
                       </p>
                     </div>
                     <div className="img-content_evaluate">
-                      <h5>{item.danhGia}</h5>
+                      <h5>{item.danhGia > 5 ? 5 : item.danhGia}</h5>
                       <Rating
                         className="rateStar"
                         name="read-only"
@@ -88,7 +88,7 @@ class MobileMovieSlider extends Component {
             className="moreBtn"
             onClick={() => {
               this.setState({
-                more: true
+                more: true,
               });
             }}
           >
@@ -99,8 +99,8 @@ class MobileMovieSlider extends Component {
     );
   }
 }
-const mapStateToProps = state => ({
-  listMovie: state.movieReducer.listMovie
+const mapStateToProps = (state) => ({
+  listMovie: state.movieReducer.listMovie,
 });
 
 export default connect(mapStateToProps, null)(MobileMovieSlider);
