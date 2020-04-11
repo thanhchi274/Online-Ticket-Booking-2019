@@ -34,7 +34,6 @@ class TicketHistory extends Component {
     }
   }
   UNSAFE_componentWillReceiveProps(nextProps) {
-    console.log(_.groupBy(nextProps.userInformation.thongTinDatVe, "ngayDat"));
     let groupDateTicket = _.groupBy(
       nextProps.userInformation.thongTinDatVe,
       "ngayDat"
