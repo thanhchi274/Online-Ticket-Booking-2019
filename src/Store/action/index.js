@@ -14,7 +14,7 @@ export const actGetListMovieAPI = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
   };
 };
@@ -55,7 +55,7 @@ export const actGetUserList = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
   };
 };
@@ -90,7 +90,7 @@ export const actGetDetailMovieAPI = (id) => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
   };
 };
@@ -263,7 +263,7 @@ export const actLayThongTinUser = (user) => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
   };
 };
@@ -282,7 +282,7 @@ export const actQuanLyVeUser = (user) => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        return err;
       });
   };
 };
@@ -455,14 +455,12 @@ export const actThemMovie = (user) => {
     })
       .then((result) => {
         alert("Cập Nhật Thành Công");
-        console.log(result);
         dispatch({
           type: ActionTypes.UPLOAD_MOVIE_IMAGE_CHECKED,
           checkedSucessMovie: true,
         });
       })
       .catch((err) => {
-        console.log(err.response);
         return err;
       });
   };
@@ -557,7 +555,7 @@ export const actLayNhanXet = (id) => {
         });
       })
       .catch((err) => {
-        console.log(err.data);
+        return err;
       });
   };
 };
