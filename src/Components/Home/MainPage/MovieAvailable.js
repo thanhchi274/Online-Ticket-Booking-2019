@@ -19,16 +19,16 @@ class MovieAvailable extends Component {
         stretch: 0,
         depth: 100,
         modifier: 1,
-        slideShadows: true
+        slideShadows: true,
       },
       pagination: {
         el: ".swiper-pagination",
-        clickable: true
+        clickable: true,
       },
       navigation: {
         nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      }
+        prevEl: ".swiper-button-prev",
+      },
     });
   }
   renderHTML = () => {
@@ -43,6 +43,10 @@ class MovieAvailable extends Component {
               className="container-fluid"
               alt="MovieAvailable"
               src={movie.hinhAnh}
+              onError={(e) => {
+                e.target.src =
+                  "https://miro.medium.com/max/978/1*pUEZd8z__1p-7ICIO1NZFA.png";
+              }}
             />
           </Link>
           <div className="movie-detail">
@@ -68,8 +72,8 @@ class MovieAvailable extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  listMovie: state.movieReducer.listMovie
+const mapStateToProps = (state) => ({
+  listMovie: state.movieReducer.listMovie,
 });
 
 export default connect(mapStateToProps, null)(MovieAvailable);
