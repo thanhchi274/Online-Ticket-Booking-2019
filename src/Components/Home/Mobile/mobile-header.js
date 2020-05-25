@@ -9,7 +9,7 @@ export default class MobileHeader extends Component {
       menu: "nav_content mobile",
       navigate: false,
       visibleNavBar: true,
-      menuClass: "mobilecontainer"
+      menuClass: "mobilecontainer",
     };
   }
 
@@ -17,33 +17,33 @@ export default class MobileHeader extends Component {
     window.scroll({
       top: 100,
       left: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
     this.setState({
       menuClass: "mobilecontainer",
-      menu: "nav_content mobile"
+      menu: "nav_content mobile",
     });
   };
   scrollToTop = () => {
     window.scroll({
       top: 0,
       left: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
     this.setState({
       menuClass: "mobilecontainer",
-      menu: "nav_content mobile"
+      menu: "nav_content mobile",
     });
   };
   scrollToFooter = () => {
     window.scroll({
       top: 50000,
       left: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
     this.setState({
       menuClass: "mobilecontainer",
-      menu: "nav_content mobile"
+      menu: "nav_content mobile",
     });
   };
   handleScroll = () => {
@@ -52,7 +52,7 @@ export default class MobileHeader extends Component {
     const visible = prevScrollpos <= currentScrollPos;
     this.setState({
       prevScrollpos: currentScrollPos,
-      visible
+      visible,
     });
   };
   componentDidMount() {
@@ -69,11 +69,11 @@ export default class MobileHeader extends Component {
       : this.setState({ menuClass: "mobilecontainer" });
     if (this.state.menuClass === "mobilecontainer") {
       this.setState({
-        menu: "nav_content mobile menu"
+        menu: "nav_content mobile menu",
       });
     } else {
       this.setState({
-        menu: "nav_content mobile"
+        menu: "nav_content mobile",
       });
     }
   };
@@ -94,7 +94,11 @@ export default class MobileHeader extends Component {
           }
         >
           <div className="userIcon_mobile">
-            <FontAwesomeIcon icon={faUser} />
+            <img
+              className="user_icon"
+              alt="user avatar"
+              src="../Asset/user_ava.png"
+            />
           </div>
           <div className="userIcon_info">
             <Link className="nav-link" to="/info">

@@ -134,6 +134,10 @@
   }
   .user_icon {
     margin-right: 10px;
+    width: 2.5em;
+    border: 1px solid $primary;
+    background-color: $white-darker-2;
+    border-radius: 50%;
   }
 }
 button:focus {
@@ -164,12 +168,14 @@ button:focus {
     .logined_mobile {
       display: flex;
       align-items: center;
+      justify-content: space-between;
       margin: 0 auto;
-      width: 50%;
+      width: fit-content;
       &.vip {
         .userIcon_mobile {
-          color: $primary;
-          border-color: $primary;
+          .user_icon {
+            border: 1px solid $primary;
+          }
         }
         a {
           color: $primary;
@@ -190,14 +196,20 @@ button:focus {
         text-align: center;
         line-height: 50px;
         border-radius: 50%;
-        border: 1px solid $white-darker-2;
+        .user_icon {
+          width: 100%;
+          text-align: center;
+          border: 1px solid $white-darker-2;
+          background-color: $white-darker-2;
+          border-radius: 50%;
+        }
       }
     }
   }
   .nav_content {
     overflow: auto;
     white-space: nowrap;
-    background-color: rgba($main, 0.95);
+    background-color: rgba($main, 0.99);
     width: 100%;
     text-align: center;
     padding: 30% 5%;

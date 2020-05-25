@@ -109,7 +109,7 @@ class CommentList extends Component {
                     <img
                       alt="avatar"
                       className="guest_ava mr-2"
-                      src="https://divineshop.vn/image/avatar/default.png?rand=963987"
+                      src="../Asset/user_ava.png"
                     />
                     <h5>{item.hoTen}</h5>
                   </div>
