@@ -12,22 +12,22 @@
         align-items: center;
         justify-content: space-between;
         .carousel_contentTitle {
-          padding: 20vh 5vw;
+          padding: 25vh 5vw;
           .first_content {
-            width: 20%;
+            width: fit-content;
             color: $white-darker-2;
             font-size: 40px;
             text-transform: uppercase;
           }
           .sec_content {
-            color: $text-color;
+            color: $white-darker;
           }
           animation: showContentTitle 1s;
         }
         .carousel_contentDescription {
           width: 32%;
           padding: 0 5%;
-          color: $text-color;
+          color: $white-darker;
           animation: showContentDescript 1s;
           .quoteLeft {
             margin-right: 10px;

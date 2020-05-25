@@ -7,14 +7,14 @@ export default class Navbar extends Component {
     super(props);
     this.state = {
       navigate: false,
-      visibleNavBar: true
+      visibleNavBar: true,
     };
   }
   scrollTo = (top, left) => {
     window.scroll({
       top: top,
       left: left,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   };
   handleScroll = () => {
@@ -23,7 +23,7 @@ export default class Navbar extends Component {
     const visible = prevScrollpos <= currentScrollPos;
     this.setState({
       prevScrollpos: currentScrollPos,
-      visible
+      visible,
     });
   };
   componentDidMount() {
@@ -56,7 +56,13 @@ export default class Navbar extends Component {
                 }
                 data-toggle="dropdown"
               >
-                <FontAwesomeIcon className="user_icon" icon={faUser} />
+                {
+                  <img
+                    className="user_icon"
+                    alt="user avatar"
+                    src="../Asset/user_ava.png"
+                  />
+                }
                 {obj.hoTen}
               </button>
               <div className="dropdown-menu">

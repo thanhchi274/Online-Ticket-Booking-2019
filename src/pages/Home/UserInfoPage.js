@@ -9,10 +9,7 @@ import * as Action from "../../Store/action/index";
 
 const AvatarUser = () => (
   <div className="ava">
-    <img
-      alt="avatar"
-      src="https://divineshop.vn/image/avatar/default.png?rand=963987"
-    />
+    <img alt="avatar" src="./Asset/user_ava.png" />
   </div>
 );
 class Info extends Component {

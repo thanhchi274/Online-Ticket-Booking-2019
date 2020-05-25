@@ -44,7 +44,7 @@
     margin: 3vh auto;
     cursor: pointer;
     font-size: 25px;
-    max-width: 200px;
+    width: fit-content;
     .detail-link {
       color: $primary;
       &:hover {
