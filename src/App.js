@@ -9,7 +9,6 @@ import { routeHome, routeAdmin } from "./routes";
 const showMenuHome = routes => {
   if (routes && routes.length > 0) {
     return routes.map((item, index) => {
-      //Duyệt mảng
       return <HomeTemplate key={index} {...item} Component={item.component} />;
     });
   }

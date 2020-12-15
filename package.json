@@ -83,7 +83,6 @@
     ]
   },
   "main": "index.js",
-  "repository": "https://github.com/thanhchi274/FinalProject-FE_33BT.git",
-  "author": "congminhle44 <46514752+congminhle44@users.noreply.github.com>",
+  "repository": "https://github.com/thanhchi274/MovieTheater.git",
   "license": "MIT"
 }

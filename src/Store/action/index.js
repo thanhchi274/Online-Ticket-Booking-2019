@@ -5,7 +5,7 @@ export const actGetListMovieAPI = () => {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP01",
     })
       .then(async (result) => {
         dispatch({
@@ -23,7 +23,7 @@ export const actUpdateMovie = (user) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhim",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/CapNhatPhim",
       data: user,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`,
@@ -46,7 +46,7 @@ export const actGetUserList = () => {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP01",
     })
       .then(async (result) => {
         dispatch({
@@ -64,7 +64,7 @@ export const actGetListMovieUpcomingAPI = () => {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP06",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayDanhSachPhim?maNhom=GP06",
     })
       .then(async (result) => {
         dispatch({
@@ -81,7 +81,7 @@ export const actGetDetailMovieAPI = (id) => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/LayThongTinPhim?MaPhim=${id}`,
     })
       .then(async (result) => {
         dispatch({
@@ -118,7 +118,7 @@ export const actLoginAdmin = (user, history) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
       data: user,
     })
       .then((result) => {
@@ -143,7 +143,7 @@ export const actSignupHome = (user, history) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangKy",
       data: user,
     })
       .then(async (result) => {
@@ -169,7 +169,7 @@ export const actLoginHome = (user, history) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/DangNhap",
       data: user,
     })
       .then((result) => {
@@ -197,7 +197,7 @@ export const actGetRoomList = (id) => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/LayDanhSachPhongVe?MaLichChieu=${id}`,
     })
       .then(async (result) => {
         dispatch({
@@ -214,7 +214,7 @@ export const actGetDateTimeMovie = (id) => {
   return (dispatch) => {
     Axios({
       mẹthod: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinLichChieuPhim?MaPhim=${id}`,
     })
       .then((result) => {
         dispatch({
@@ -232,7 +232,7 @@ export const actDatVe = (user, history) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/DatVe",
       data: user,
       headers: {
         Authorization: `Bearer ${UserHome.accessToken}`,
@@ -252,7 +252,7 @@ export const actLayThongTinUser = (user) => {
     Axios({
       method: "POST",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
       data: user,
     })
       .then(async (result) => {
@@ -272,7 +272,7 @@ export const actQuanLyVeUser = (user) => {
     Axios({
       method: "POST",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThongTinTaiKhoan",
       data: user,
     })
       .then((result) => {
@@ -292,7 +292,7 @@ export const actUpdateUserInformation = (user) => {
     Axios({
       method: "PUT",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
       data: user,
       headers: {
         Authorization: `Bearer ${UserHome.accessToken}`,
@@ -319,7 +319,7 @@ export const actUpdateUserAdminOnly = (user) => {
     Axios({
       method: "PUT",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
       data: user,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`,
@@ -342,7 +342,7 @@ export const actUpdateUserAdminInformation = (user) => {
     Axios({
       method: "PUT",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung",
       data: user,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`,
@@ -363,7 +363,7 @@ export const actSearchUser = (id) => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${id}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/TimKiemNguoiDung?MaNhom=GP01&tuKhoa=${id}`,
     })
       .then((result) => {
         dispatch({
@@ -382,7 +382,7 @@ export const actDeleteUser = (tk) => {
     const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
     Axios({
       method: "DELETE",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${tk}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${tk}`,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`,
       },
@@ -404,7 +404,7 @@ export const actDeleteMovie = (movie) => {
     const UserAdmin = JSON.parse(localStorage.getItem("UserAdmin"));
     Axios({
       method: "DELETE",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${movie}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/XoaPhim?MaPhim=${movie}`,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`,
       },
@@ -427,7 +427,7 @@ export const actThemNguoiDung = (user) => {
     Axios({
       method: "POST",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyNguoiDung/ThemNguoiDung",
       data: user,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`,
@@ -447,7 +447,7 @@ export const actThemMovie = (user) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhim",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/ThemPhim",
       data: user,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`,
@@ -470,7 +470,7 @@ export const actthemHinhAnhPhim = (hinhAnh) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyPhim/UploadHinhAnhPhim",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyPhim/UploadHinhAnhPhim",
       data: hinhAnh,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`,
@@ -490,7 +490,7 @@ export const actTaoLichChieu = (lichChieu) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: "http://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/TaoLichChieu",
+      url: "https://movie0706.cybersoft.edu.vn/api/QuanLyDatVe/TaoLichChieu",
       data: lichChieu,
       headers: {
         Authorization: `Bearer ${UserAdmin.accessToken}`,
@@ -511,7 +511,7 @@ export const actLayThongTinRap = () => {
     Axios({
       method: "GET",
       url:
-        "http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
+        "https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinHeThongRap",
     })
       .then((result) => {
         dispatch({
@@ -528,7 +528,7 @@ export const actLayThongTinCumRapTheoHeThong = (id) => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url: `http://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`,
+      url: `https://movie0706.cybersoft.edu.vn/api/QuanLyRap/LayThongTinCumRapTheoHeThong?maHeThongRap=${id}`,
     })
       .then((result) => {
         dispatch({
@@ -546,7 +546,7 @@ export const actLayNhanXet = (id) => {
   return (dispatch) => {
     Axios({
       method: "GET",
-      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${id}`,
+      url: `https://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${id}`,
     })
       .then(async (result) => {
         dispatch({
@@ -564,7 +564,7 @@ export const actNhanXet = (nhanXet, id) => {
   return (dispatch) => {
     Axios({
       method: "POST",
-      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${id}/danhSachComment`,
+      url: `https://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${id}/danhSachComment`,
       data: nhanXet,
     })
       .then(async (result) => {
@@ -579,7 +579,7 @@ export const actxoaComment = (maPhim, maComment) => {
   return (dispatch) => {
     Axios({
       method: "DELETE",
-      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${maPhim}/danhSachComment/${maComment}`,
+      url: `https://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${maPhim}/danhSachComment/${maComment}`,
     })
       .then((result) => {
         dispatch(result.data);
@@ -593,7 +593,7 @@ export const actSuaComment = (maPhim, maComment, comment) => {
   return (dispatch) => {
     Axios({
       method: "PUT",
-      url: `http://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${maPhim}/danhSachComment/${maComment}`,
+      url: `https://5dce9e0375f9360014c25fe6.mockapi.io/api/comment/${maPhim}/danhSachComment/${maComment}`,
       data: comment,
     })
       .then((result) => {
