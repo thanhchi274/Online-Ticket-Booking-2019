@@ -266,7 +266,6 @@ class Login extends Component {
   };
 
   render() {
-    const id = JSON.parse(localStorage.getItem("DetailId"));
     if (localStorage.getItem("UserHome")) {
       return <Redirect to="/" />;
     }

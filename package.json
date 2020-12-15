@@ -1,8 +1,7 @@
 {
-  "name": "fe33finalproject",
+  "name": "thanhchi-theater",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://thanhchi274.github.io/FinalProjectFE33BT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
