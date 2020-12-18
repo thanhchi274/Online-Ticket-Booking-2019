@@ -100,13 +100,14 @@ export default class Navbar extends Component {
   render() {
     return (
       <>
-        <nav className="navbar-expand-md justify-content-between desktop">
+        <nav className="navbar-expand-md justify-content-between desktop"  style={{width: "85%", margin: "0 auto 0 auto" }}>
           <div
             className={
               !this.state.visible
                 ? " header navbar"
                 : "header navbar--hidden-main row"
             }
+            style={{width: "85%", margin: "0 auto 0 auto" }}
           >
             <div className="logo col-sm-1">
               <Link
