@@ -4,12 +4,10 @@ import NavBar from "../Components/Admin/NavigationAdminTemplate";
 import SideBar from "../Components/Admin/TableandSideBar/Sidebar"
 const AdminLayout =(props)=>{
     return (
-      
       <div id="wrapper">
       <NavBar /> 
       <SideBar />
       <div id="content-wrapper" className="d-flex flex-column">
-       
         <div id="content">
         {props.children}
         </div>

@@ -1,4 +1,5 @@
 import Home from "./pages/Home/home.js";
+import Admin from "./pages/Admin/admin.js";
 import DetailMovie from "./pages/Home/detailMovie.js";
 import UserLoginPage from "./pages/Home/login";
 import UserSignupPage from "./pages/Home/signup.js";
@@ -45,6 +46,11 @@ const routeHome = [
     path: "/ticket-detail",
     exact: false,
     component: TicketDetail
+  },
+  {
+    path: "/admin",
+    exact: false,
+    component: Admin
   }
 ];
 const routeAdmin = [

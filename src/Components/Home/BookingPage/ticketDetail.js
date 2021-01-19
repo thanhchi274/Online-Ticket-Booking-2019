@@ -1,36 +1,29 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { Link, Redirect } from "react-router-dom";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
-export default class TicketDetail extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      tenGhe: "",
-      detail: false,
-    };
-  }
-  setChair = (e) => {
+ const TicketDetail =() => {
+   const [tenGhe, setTenGhe] = useState('')
+   const [detail, setDetail] = useState(false)
+  const setChair = (e) => {
     let tenGhe = e.target.getAttribute("tenghe");
-    this.setState({
-      tenGhe,
-      detail: true,
-    });
+    setTenGhe(tenGhe)
+    setDetail(true)
   };
-  renderSeatName = () => {
+  const renderSeatName = () => {
     const Ticket = JSON.parse(localStorage.getItem("Ticket"));
     return Ticket.danhSachVe
       .sort((a, b) => {
         return a.tenGhe - b.tenGhe;
       })
       .map((item, index) => {
-        if (this.state.detail) {
+        if (detail) {
           return (
             <a
               className="tenGhe"
               key={index}
-              onClick={this.setChair}
+              onClick={setChair}
               tenghe={item.tenGhe}
             >
               {item.tenGhe}{" "}
@@ -42,7 +35,7 @@ export default class TicketDetail extends Component {
               className="tenGhe"
               href="#seat"
               key={index}
-              onClick={this.setChair}
+              onClick={setChair}
               tenghe={item.tenGhe}
             >
               {item.tenGhe}{" "}
@@ -51,13 +44,13 @@ export default class TicketDetail extends Component {
         }
       });
   };
-  renderSeat = () => {
+  const renderSeat = () => {
     let Ticket = JSON.parse(localStorage.getItem("Ticket"));
     return Ticket.phongVe.map((item, index) => {
       return (
         <React.Fragment key={index}>
           <div className="chair">
-            <p>{this.state.tenGhe == item.tenGhe ? item.tenGhe : ""}</p>
+            <p>{tenGhe == item.tenGhe ? item.tenGhe : ""}</p>
           </div>
           {(index + 1) % 16 === 0 ? (
             <div style={{ width: "100%" }}></div>
@@ -66,7 +59,6 @@ export default class TicketDetail extends Component {
       );
     });
   };
-  render() {
     const Ticket = JSON.parse(localStorage.getItem("Ticket"));
     if (Ticket) {
       return (
@@ -86,7 +78,7 @@ export default class TicketDetail extends Component {
                 <p>{Ticket.tenPhim}</p>
                 <p>{Ticket.tenCumRap}</p>
                 <p>{Ticket.tenRap}</p>
-                <div>{this.renderSeatName()}</div>
+                <div>{renderSeatName()}</div>
               </div>
             </div>
             <div className="ticket-footer">
@@ -98,12 +90,12 @@ export default class TicketDetail extends Component {
           <div
             className="show-detail"
             onClick={() => {
-              this.state.detail === false
-                ? this.setState({ detail: true })
-                : this.setState({ detail: false });
+              detail === false
+                ? setDetail(true)
+                : setDetail(false)
             }}
           >
-            {this.state.detail === false ? (
+            {detail === false ? (
               <AnchorLink className="detail-link" href="#seat">
                 Xem chi tiết vé{" "}
                 <FontAwesomeIcon className="angle" icon={faAngleDown} />
@@ -116,12 +108,12 @@ export default class TicketDetail extends Component {
             )}
           </div>
           <div className="seat-pos_wrapper" id="seat">
-            <div className={this.state.detail ? "seat-pos detail" : "seat-pos"}>
+            <div className={detail ? "seat-pos detail" : "seat-pos"}>
               <h3>Vị trí ghế đã đặt</h3>
               <div className="monitor">
                 <span>SCREEN</span>
               </div>
-              <div className="chairList">{this.renderSeat()}</div>
+              <div className="chairList">{renderSeat()}</div>
             </div>
           </div>
         </div>
@@ -130,4 +122,5 @@ export default class TicketDetail extends Component {
       return <Redirect to="/" />;
     }
   }
-}
+
+export default TicketDetail
