@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Online-Ticket-Booking-2019/FinalProjectFE33BT/precache-manifest.53c21e986e2c6b11ba79ff247c2c330b.js"
+  "/Online-Ticket-Booking-2019/precache-manifest.94d2ce4ec9cce911ff1a984cdc7aaf91.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -33,7 +33,7 @@ workbox.core.clientsClaim();
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
-workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/Online-Ticket-Booking-2019/FinalProjectFE33BT/index.html"), {
+workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/Online-Ticket-Booking-2019/index.html"), {
   
   blacklist: [/^\/_/,/\/[^/?]+\.[^/]+$/],
 });

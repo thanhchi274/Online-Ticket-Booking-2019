@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/css/main.bf5dd3ea.chunk.css",
-    "main.js": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/js/main.70010fba.chunk.js",
-    "main.js.map": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/js/main.70010fba.chunk.js.map",
-    "runtime-main.js": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/js/runtime-main.97c9e854.js",
-    "runtime-main.js.map": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/js/runtime-main.97c9e854.js.map",
-    "static/css/2.c1f6b4f3.chunk.css": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/css/2.c1f6b4f3.chunk.css",
-    "static/js/2.d5b2f818.chunk.js": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/js/2.d5b2f818.chunk.js",
-    "static/js/2.d5b2f818.chunk.js.map": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/js/2.d5b2f818.chunk.js.map",
-    "index.html": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/index.html",
-    "precache-manifest.53c21e986e2c6b11ba79ff247c2c330b.js": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/precache-manifest.53c21e986e2c6b11ba79ff247c2c330b.js",
-    "service-worker.js": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/service-worker.js",
-    "static/css/2.c1f6b4f3.chunk.css.map": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/css/2.c1f6b4f3.chunk.css.map",
-    "static/css/main.bf5dd3ea.chunk.css.map": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/css/main.bf5dd3ea.chunk.css.map",
-    "static/js/2.d5b2f818.chunk.js.LICENSE.txt": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/js/2.d5b2f818.chunk.js.LICENSE.txt",
-    "static/media/App.scss": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/media/black_panther-carousel.72546589.jpg",
-    "static/media/slick-theme.css": "/Online-Ticket-Booking-2019/FinalProjectFE33BT/static/media/slick.f97e3bbf.svg"
+    "main.css": "/Online-Ticket-Booking-2019/static/css/main.d5f5c725.chunk.css",
+    "main.js": "/Online-Ticket-Booking-2019/static/js/main.95169422.chunk.js",
+    "main.js.map": "/Online-Ticket-Booking-2019/static/js/main.95169422.chunk.js.map",
+    "runtime-main.js": "/Online-Ticket-Booking-2019/static/js/runtime-main.f1fec2df.js",
+    "runtime-main.js.map": "/Online-Ticket-Booking-2019/static/js/runtime-main.f1fec2df.js.map",
+    "static/css/2.e1a44c37.chunk.css": "/Online-Ticket-Booking-2019/static/css/2.e1a44c37.chunk.css",
+    "static/js/2.200d87c6.chunk.js": "/Online-Ticket-Booking-2019/static/js/2.200d87c6.chunk.js",
+    "static/js/2.200d87c6.chunk.js.map": "/Online-Ticket-Booking-2019/static/js/2.200d87c6.chunk.js.map",
+    "index.html": "/Online-Ticket-Booking-2019/index.html",
+    "precache-manifest.94d2ce4ec9cce911ff1a984cdc7aaf91.js": "/Online-Ticket-Booking-2019/precache-manifest.94d2ce4ec9cce911ff1a984cdc7aaf91.js",
+    "service-worker.js": "/Online-Ticket-Booking-2019/service-worker.js",
+    "static/css/2.e1a44c37.chunk.css.map": "/Online-Ticket-Booking-2019/static/css/2.e1a44c37.chunk.css.map",
+    "static/css/main.d5f5c725.chunk.css.map": "/Online-Ticket-Booking-2019/static/css/main.d5f5c725.chunk.css.map",
+    "static/js/2.200d87c6.chunk.js.LICENSE.txt": "/Online-Ticket-Booking-2019/static/js/2.200d87c6.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/Online-Ticket-Booking-2019/static/media/black_panther-carousel.72546589.jpg",
+    "static/media/slick-theme.css": "/Online-Ticket-Booking-2019/static/media/slick.f97e3bbf.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.97c9e854.js",
-    "static/css/2.c1f6b4f3.chunk.css",
-    "static/js/2.d5b2f818.chunk.js",
-    "static/css/main.bf5dd3ea.chunk.css",
-    "static/js/main.70010fba.chunk.js"
+    "static/js/runtime-main.f1fec2df.js",
+    "static/css/2.e1a44c37.chunk.css",
+    "static/js/2.200d87c6.chunk.js",
+    "static/css/main.d5f5c725.chunk.css",
+    "static/js/main.95169422.chunk.js"
   ]
 }
