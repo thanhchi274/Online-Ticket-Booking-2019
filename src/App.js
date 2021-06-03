@@ -21,7 +21,7 @@ const showMenuAdmin = routes => {
 };
 function App() {
   return (
-    <BrowserRouter basename="/FinalProjectFE33BT">
+    <BrowserRouter basename="/">
       <div>
         <Switch>
           {showMenuHome(routeHome)}

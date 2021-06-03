@@ -83,7 +83,7 @@ function VerticalTabs(props) {
             label={
               <img
                 id={item.maHeThongRap}
-                src={item.logo}
+                src={"https://picsum.photos/100"}
                 onClick={handleClick}
                 className="theaterIcon"
                 alt="theater-Icon"

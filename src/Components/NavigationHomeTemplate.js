@@ -29,6 +29,9 @@ export default class Navbar extends Component {
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
   }
+  componentWillUnmount() {
+    window.addEventListener("scroll", this.handleScroll);
+  }
   logout = () => {
     localStorage.clear("token");
     localStorage.removeItem("UserInfo");
@@ -117,7 +120,7 @@ export default class Navbar extends Component {
               >
                 <img
                   className="img-fluid "
-                  src="https://www.upsieutoc.com/images/2020/03/14/logoMovies.png"
+                  src="https://picsum.photos/200"
                   alt="icons8-movie-ticket"
                   border={0}
                   width="50%"

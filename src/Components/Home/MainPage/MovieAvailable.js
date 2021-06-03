@@ -42,10 +42,10 @@ class MovieAvailable extends Component {
             <img
               className="container-fluid"
               alt="MovieAvailable"
-              src={movie.hinhAnh}
+              src={"https://picsum.photos/200/300"}
               onError={(e) => {
                 e.target.src =
-                  "https://miro.medium.com/max/978/1*pUEZd8z__1p-7ICIO1NZFA.png";
+                  "https://picsum.photos/400/600";
               }}
             />
           </Link>

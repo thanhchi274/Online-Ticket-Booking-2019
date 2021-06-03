@@ -93,7 +93,7 @@ class DetailMovie extends Component {
         <div className="detail-movie-intro">
           <LazyLoadImage
             className="detail-movie-intro-image"
-            src={movie.hinhAnh}
+            src={'https://picsum.photos/200/300'}
             effect="blur"
             alt="Card"
             height={100}
@@ -103,7 +103,7 @@ class DetailMovie extends Component {
         <div className="row tabInfo">
           <div className="col-sm-3 img-movie ">
             <LazyLoadImage
-              src={movie.hinhAnh}
+              src={"https://picsum.photos/200/300"}
               effect="blur"
               alt="Card"
               height={450}

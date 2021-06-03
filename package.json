@@ -2,6 +2,7 @@
   "name": "thanhchi-theater",
   "version": "0.1.0",
   "private": true,
+  "homepage":"https://thanhchi274.github.io/Online-Ticket-Booking-2019/FinalProjectFE33BT",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",
     "@fortawesome/free-solid-svg-icons": "^5.12.1",
