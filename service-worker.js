@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/Online-Ticket-Booking-2019/FinalProjectFE33BT/precache-manifest.4011b088bb111362e8c3bf3aa71409fa.js"
+  "/Online-Ticket-Booking-2019/FinalProjectFE33BT/precache-manifest.53c21e986e2c6b11ba79ff247c2c330b.js"
 );
 
 self.addEventListener('message', (event) => {
