@@ -1,27 +1,27 @@
 {
   "files": {
-    "main.css": "/Online-Ticket-Booking-2019/static/css/main.d5f5c725.chunk.css",
-    "main.js": "/Online-Ticket-Booking-2019/static/js/main.95169422.chunk.js",
-    "main.js.map": "/Online-Ticket-Booking-2019/static/js/main.95169422.chunk.js.map",
-    "runtime-main.js": "/Online-Ticket-Booking-2019/static/js/runtime-main.f1fec2df.js",
-    "runtime-main.js.map": "/Online-Ticket-Booking-2019/static/js/runtime-main.f1fec2df.js.map",
-    "static/css/2.e1a44c37.chunk.css": "/Online-Ticket-Booking-2019/static/css/2.e1a44c37.chunk.css",
-    "static/js/2.200d87c6.chunk.js": "/Online-Ticket-Booking-2019/static/js/2.200d87c6.chunk.js",
-    "static/js/2.200d87c6.chunk.js.map": "/Online-Ticket-Booking-2019/static/js/2.200d87c6.chunk.js.map",
-    "index.html": "/Online-Ticket-Booking-2019/index.html",
-    "precache-manifest.94d2ce4ec9cce911ff1a984cdc7aaf91.js": "/Online-Ticket-Booking-2019/precache-manifest.94d2ce4ec9cce911ff1a984cdc7aaf91.js",
-    "service-worker.js": "/Online-Ticket-Booking-2019/service-worker.js",
-    "static/css/2.e1a44c37.chunk.css.map": "/Online-Ticket-Booking-2019/static/css/2.e1a44c37.chunk.css.map",
-    "static/css/main.d5f5c725.chunk.css.map": "/Online-Ticket-Booking-2019/static/css/main.d5f5c725.chunk.css.map",
-    "static/js/2.200d87c6.chunk.js.LICENSE.txt": "/Online-Ticket-Booking-2019/static/js/2.200d87c6.chunk.js.LICENSE.txt",
-    "static/media/App.scss": "/Online-Ticket-Booking-2019/static/media/black_panther-carousel.72546589.jpg",
-    "static/media/slick-theme.css": "/Online-Ticket-Booking-2019/static/media/slick.f97e3bbf.svg"
+    "main.css": "/static/css/main.d36f17e0.chunk.css",
+    "main.js": "/static/js/main.49c1aef2.chunk.js",
+    "main.js.map": "/static/js/main.49c1aef2.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.cc5a405d.js",
+    "runtime-main.js.map": "/static/js/runtime-main.cc5a405d.js.map",
+    "static/css/2.ab1f0a18.chunk.css": "/static/css/2.ab1f0a18.chunk.css",
+    "static/js/2.0947f319.chunk.js": "/static/js/2.0947f319.chunk.js",
+    "static/js/2.0947f319.chunk.js.map": "/static/js/2.0947f319.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.ed245efded5d1c4948a805f3a074ac1a.js": "/precache-manifest.ed245efded5d1c4948a805f3a074ac1a.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.ab1f0a18.chunk.css.map": "/static/css/2.ab1f0a18.chunk.css.map",
+    "static/css/main.d36f17e0.chunk.css.map": "/static/css/main.d36f17e0.chunk.css.map",
+    "static/js/2.0947f319.chunk.js.LICENSE.txt": "/static/js/2.0947f319.chunk.js.LICENSE.txt",
+    "static/media/App.scss": "/static/media/black_panther-carousel.72546589.jpg",
+    "static/media/slick-theme.css": "/static/media/slick.f97e3bbf.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.f1fec2df.js",
-    "static/css/2.e1a44c37.chunk.css",
-    "static/js/2.200d87c6.chunk.js",
-    "static/css/main.d5f5c725.chunk.css",
-    "static/js/main.95169422.chunk.js"
+    "static/js/runtime-main.cc5a405d.js",
+    "static/css/2.ab1f0a18.chunk.css",
+    "static/js/2.0947f319.chunk.js",
+    "static/css/main.d36f17e0.chunk.css",
+    "static/js/main.49c1aef2.chunk.js"
   ]
 }
